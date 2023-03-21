@@ -1,0 +1,169 @@
+.titleTop {
+    font-size: 50px;
+    font-weight: 700;
+  }
+  
+  .p_x {
+    padding-left: 54px;
+    padding-right: 54px;
+  }
+  
+  .bg-this-page {
+    background-color: #232222;
+  }
+  
+  .gap50 {
+    padding-right: 50px;
+    font-weight: 700;
+  }
+  
+  .pb-55 {
+    padding-bottom: 55px;
+  }
+  
+  .sidebarBg {
+    background-color: #ffffff;
+    width: 300px !important;
+    min-height: 800px !important;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 45px;
+  }
+  
+  .-mbb {
+    margin-bottom: -7px !important;
+  }
+  
+  .f-18 {
+    font-size: 18px;
+  }
+  
+  .f-16 {
+    font-size: 16px;
+  }
+  
+  .card-434-h-334 {
+    width: 260px;
+    height: 280px;
+  }
+  
+  .card-240 {
+    height: 240px;
+  }
+  
+  .h-83 {
+    height: 73px;
+    width: 73px;
+    border-radius: 3px;
+  }
+  .-mt-2 {
+    margin-top: -20px;
+  }
+  
+  .-mt {
+    margin-top: -45px;
+  }
+  
+  .b-radios {
+    border-radius: 7%;
+    border: solid 0.5px gray;
+    overflow: hidden;
+  }
+  
+  .checkBox:checked {
+    background-color: #df4949;
+  }
+  
+  .fs-xs {
+    font-size: 10px;
+  }
+  
+  .roundedcustom {
+    border-radius: 2% !important;
+  }
+  
+  .butttonBGred {
+    background-color: #df4949;
+    border-radius: 14px;
+    color: white;
+  }
+  
+  .butttonBGred:hover {
+    background-color: white;
+    color: #df4949;
+  }
+  
+  .inputField {
+    width: 25%;
+    height: 46px;
+    background-color: #1d1b1b;
+    border: solid 0.5px gray;
+    border-radius: 5px;
+  }
+  
+  .inputField2 {
+    width: 40%;
+    height: 46px;
+    background-color: #1d1b1b;
+    border: solid 0.5px gray;
+    border-radius: 5px;
+  }
+  
+  .DropDownField {
+    width: 70px;
+    height: 46px;
+    border: solid 0.5px gray;
+    border-radius: 5px;
+  }
+  .ps-r{
+    position: relative;
+  }
+  .ps-a{
+   position: absolute;
+   left: 0;
+   top: 60px;
+   width: 150px;
+   padding: 2%;
+  }
+  .mt-2px{
+    margin-top: 5px;
+  }
+  .text-small{
+    font-size: 14px;
+  }
+  .liHover:hover{
+    background-color: #000000 !important;
+    color:whitesmoke ;
+    
+  }
+  .-mb{
+    margin-bottom: -20px;
+    z-index: 2;
+}
+.bg-wh{
+    background-color: rgb(255, 255, 255);
+}
+.card-cat{
+    width: 31% !important;
+}
+.bg-gray{
+    background-color: #343a40;
+}
+.btn-gray{
+    background-color: #343a40;
+}
+.bg-offwhite{
+  background-color: #f5f5f5;
+}
+.f-14{
+  font-size: 14px;
+}
+.Chover:hover{
+  background-color: bg-light;
+  cursor: pointer;
+  font-weight: 600;
+  padding-left: 10px;
+}
+.left-20{
+  left: 25%;
+}

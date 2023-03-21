@@ -1,0 +1,14 @@
+.bg-pink{
+    background-color: #F7E7CE;
+
+}
+.wc-22{
+    width: 300PX;
+    transition: all 0.5s;
+    
+    
+   
+}
+.wc-22:hover{
+    transform: scale(1.2);
+}

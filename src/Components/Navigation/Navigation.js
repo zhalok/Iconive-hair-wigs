@@ -15,7 +15,7 @@ export default function Navigation() {
   return (
     <div>
       {/* offer div */}
-      <div className="bg-theme-blue py-1 d-flex"><p className="mx-auto py-2 . my-auto text-light text-xs">FREE INTERNATIONAL SHIPPING On Orders Over $200!</p></div>
+      <div className="bg-dark py-1 d-flex"><p className="mx-auto py-2 . my-auto text-light text-xs">FREE INTERNATIONAL SHIPPING On Orders Over $200!</p></div>
       {/* login div */}
       <div className="d-flex">
         <div className="d-flex ms-auto me-4">
@@ -33,7 +33,7 @@ export default function Navigation() {
       </div>
       {/* title div */}
       <div className="d-flex justify-between">
-      <div className="ms-5 w-25 text-start">   
+      <div className="ms-5 w-25 text-start pt-3">   
         <img className="me-auto -mt" wiidt="50px" height="100px" src={logo} alt="this is a logo"/>
       </div>
       <div className="w-50 d-flex">
@@ -58,23 +58,23 @@ export default function Navigation() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto gap-4 d-flex mx-auto">
+            <Nav.Link href="/home" className="text-black">Home</Nav.Link>
               <Nav.Link href="#home" className="text-black">Hairstyle</Nav.Link>
               <NavDropdown title="Category" id="basic-nav-dropdown" className="text-black">
-                <NavDropdown.Item href="#action/3.1" className="text-black">wigs</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
+                <NavDropdown.Item href="/catagory" className="text-black">wigs</NavDropdown.Item>
+                <NavDropdown.Item href="/catagory">
                   Another action
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
+                <NavDropdown.Item href="/catagory">
                   Something
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
+                <NavDropdown.Item href="/catagory">
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="#home" className="text-black">Customization</Nav.Link>
               <Nav.Link href="#home" className="text-black"> Help me to chose</Nav.Link>
-              <Nav.Link href="#home" className="text-black">Offers</Nav.Link>
               <Nav.Link href="#home" className="text-black">Offers</Nav.Link>
               <Nav.Link href="#home" className="text-black">Services & Repair</Nav.Link>
               <Nav.Link href="#home" className="text-black">Join Us</Nav.Link>

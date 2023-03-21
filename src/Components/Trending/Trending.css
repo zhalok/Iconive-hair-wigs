@@ -1,0 +1,32 @@
+hr{
+    border: 2px solid rgb(0, 0, 0,0);
+    width: 90%;
+    margin: auto;
+    z-index: 1;
+   
+}
+.ps-r{
+    position: relative;
+}
+.abstop{
+    position: absolute;
+    top: -28px;
+    right: 38%;
+}
+.-mb{
+    margin-bottom: -20px;
+    z-index: 2;
+}
+.bg-wh{
+    background-color: rgb(255, 255, 255);
+}
+.card-main{
+    width: 23% !important;
+}
+.bg-gray{
+    background-color: #343a40;
+}
+.btn-gray{
+    background-color: #343a40;
+}
+

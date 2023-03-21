@@ -3,6 +3,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Navigation from "./Components/Navigation/Navigation";
+import Category from "./Pages/Category/Category";
+import Footer from "./Components/Footer/Footer";
 
 
 function App() {
@@ -12,10 +14,13 @@ function App() {
         <Navigation></Navigation>
 
         <Routes>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/catagory" element={<Category />} />
           <Route path="/aboutus" element={<Home />} />
         </Routes>
+
+        <Footer></Footer>
       </Router>
     </div>
   );

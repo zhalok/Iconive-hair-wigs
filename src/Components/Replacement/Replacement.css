@@ -1,0 +1,28 @@
+
+.bg-wh{
+    background-color: rgb(255, 255, 255);
+}
+
+.bg-gray{
+    background-color: #343a40;
+}
+.btn-gray{
+    background-color: #343a40;
+}
+.bg-ch{
+    background-color:rgba(239, 239, 239, 0.879); 
+}
+
+.w-22{
+    width: 300PX;
+    transition: all 0.5s;
+    transform: scale(1.4);
+    
+   
+}
+.w-22:hover{
+    transform: scale(1.6);
+}
+.pb5{
+    padding-bottom: 5%;
+}
