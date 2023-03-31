@@ -27,7 +27,7 @@ export default function Navigation() {
         <PersonIcon className="text-black"/>
        </div>
        <div className="p-1 ">
-        <LocalMallIcon className="text-black"/>
+        <a href="/checkout"><LocalMallIcon className="text-black"/></a>
        </div>
       </div>
       </div>
@@ -73,7 +73,7 @@ export default function Navigation() {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="#home" className="text-black">Customization</Nav.Link>
+              <Nav.Link href="/checkout" className="text-black">Customization</Nav.Link>
               <Nav.Link href="#home" className="text-black"> Help me to chose</Nav.Link>
               <Nav.Link href="#home" className="text-black">Offers</Nav.Link>
               <Nav.Link href="#home" className="text-black">Services & Repair</Nav.Link>
