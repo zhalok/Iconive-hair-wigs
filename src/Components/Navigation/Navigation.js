@@ -34,12 +34,12 @@ export default function Navigation() {
       {/* title div */}
       <div className="d-flex justify-between">
       <div className="ms-5 w-25 text-start pt-3">   
-        <img className="me-auto -mt" wiidt="50px" height="100px" src={logo} alt="this is a logo"/>
+      <a href="/home" className="text-decoration-none mx-auto text-black"> <img className="me-auto -mt" wiidt="50px" height="100px" src={logo} alt="this is a logo"/></a>
       </div>
       <div className="w-50 d-flex">
-      <h1 className="fw-bold pe-5 mb-auto mx-auto w-50">
+      <a href="/home" className="text-decoration-none mx-auto text-black"><h1 className="fw-bold pe-5 mb-auto mx-auto w-50">
         ICONIVE
-      </h1>
+      </h1></a>
       </div>
       
       <div className="w-25 d-flex py-4 justify-end">
@@ -59,8 +59,8 @@ export default function Navigation() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto gap-4 d-flex mx-auto">
             <Nav.Link href="/home" className="text-black">Home</Nav.Link>
-              <Nav.Link href="#home" className="text-black">Hairstyle</Nav.Link>
-              <NavDropdown title="Category" id="basic-nav-dropdown" className="text-black">
+              <Nav.Link href="#home" className="text-black">Hair Solution</Nav.Link>
+              <NavDropdown title="Collections" id="basic-nav-dropdown" className="text-black">
                 <NavDropdown.Item href="/catagory" className="text-black">wigs</NavDropdown.Item>
                 <NavDropdown.Item href="/catagory">
                   Another action

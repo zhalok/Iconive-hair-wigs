@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react'
 import './CustomWigs.css'
 import card1 from "../Images/custom/wigs1.jpg";

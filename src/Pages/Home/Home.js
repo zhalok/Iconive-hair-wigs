@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import {React,useState} from "react";
+import { React, useState } from "react";
 import CarouselHome from "../../Components/CarouselHome/CarouselHome";
 import "./Home.css";
 import girl from "../ImagesPage/girl.png";
@@ -9,12 +9,12 @@ import TopSelling from "../../Components/TopSelling/TopSelling";
 import Trending from "../../Components/Trending/Trending";
 import Replacement from "../../Components/Replacement/Replacement";
 import StarIcon from "@mui/icons-material/Star";
-import Footer from "../../Components/Footer/Footer";
+import LabelImportantIcon from '@mui/icons-material/LabelImportant';
 import CustomWigs from "../../Components/CustomWiga/CustomWigs";
 
 export default function Home() {
-  const [show,setShow]=useState(false);
-  
+  const [show, setShow] = useState(false);
+
   return (
     <div>
       <CarouselHome></CarouselHome>
@@ -41,8 +41,9 @@ export default function Home() {
             </div>
 
             <h4 className="fw-bold py-3 text-h my-auto">GENTS</h4>
-            <p>
-              Explore yourself, be the glamourous persona you always dreamed of.
+            <p className="px-3">
+              Be confident with any style you like to own from a large variety
+              of styles
             </p>
             <button className="btn btn-gray text-light px-5 py-2 rounded-0">
               SHOP THE COLLECTION
@@ -65,9 +66,8 @@ export default function Home() {
             </div>
 
             <h4 className="fw-bold py-3">LADIES</h4>
-            <p>
-              Be confident with any style you like to own from a large variety
-              of styles
+            <p className="px-3">
+              Explore yourself, be the glamourous persona you always dreamed of.
             </p>
             <button className="btn btn-gray text-light px-5 py-2 rounded-0">
               SHOP THE COLLECTION
@@ -81,62 +81,77 @@ export default function Home() {
       <Replacement></Replacement>
       {/* why choose us */}
       <div className="my-5">
-      <div className="container bg-gray2 p-md-5 p-sm-3 my
-      -md-5">
-        <h3 className="fw-bold mb-3 pt-4">Why Choose us?</h3>
-        <p>
-          We are a leading manufacturing company from Bangladesh. We specialize
-          in hair systems that promise a realistic look, a natural hairline,
-          long durability, and reasonable prices. Here are the reasons why
-          thousands of users can confidently chose us over others.
-        </p>
-        <div className="d-flex py-5 gap-4 mx-5">
-          <div className="w-33 d-flex flex-column p-5 border border-2 rounded-3">
-            <p className="text-start">
-              {" "}
-              <PlayArrowIcon /> Non-Surgical Hair Replacement{" "}
-            </p>
-            <p className="text-start">
-              <PlayArrowIcon /> No harmful effect{" "}
-            </p>
-            <p className="text-start">
-              {" "}
-              <PlayArrowIcon /> Safe & easy to use{" "}
-            </p>
-          </div>
-          <div className="w-33 d-flex flex-column text-start  p-5 border border-2 rounded-3">
-            <p>
-              {" "}
-              <PlayArrowIcon /> Easy return policy{" "}
-            </p>
-            <p>
-              {" "}
-              <PlayArrowIcon /> Loyal customer base{" "}
-            </p>
-            <p>
-              {" "}
-              <PlayArrowIcon /> Safe & easy to use{" "}
-            </p>
-          </div>
-          <div className="w-33 d-flex flex-column  text-start  p-5 border border-2 rounded-3">
-            <p>
-              {" "}
-              <PlayArrowIcon /> Fast Worldwide Free Shipping{" "}
-            </p>
-            <p>
-              {" "}
-              <PlayArrowIcon /> 24/7 Customer Service{" "}
-            </p>
-            <p>
-              {" "}
-              <PlayArrowIcon /> Regular Order Status Updates{" "}
-            </p>
+        <div
+          className="container bg-gray2 p-md-5 p-sm-3 my
+      -md-5        "
+        >
+          <h3 className="fw-bold mb-3 py-4">Why Choose us?</h3>
+          <p>
+            Welcome to Iconive, your one-stop destination for premium quality
+            wigs. We're a team of passionate hair enthusiasts dedicated to
+            providing our customers with the very best in hair products and
+            customer service. Our exquisite collection of wigs is designed to
+            cater to the needs of every individual, regardless of age or gender.
+            We understand that choosing the perfect wig can be overwhelming,
+            which is why we strive to make your shopping experience seamless and
+            enjoyable.
+          </p>
+          <p>
+            Our journey started with a simple idea: to create wigs and
+            extensions that look and feel just like natural hair. Over the
+            years, we've honed our skills and perfected our techniques to create
+            products that are both beautiful and functional.
+          </p>
+          <p>
+            At Iconive, we take pride in our commitment to delivering superior
+            quality wigs that are crafted with precision and care. Our team of
+            expert craftsmen utilizes state-of-the-art technology and the finest
+            materials to create wigs that are not only stylish and fashionable
+            but also comfortable and long-lasting.
+          </p>
+          <p>
+            But we're more than just a wig and extension retailer – we're a
+            community. We're here to support you on your hair journey, offering
+            expert advice and personalized recommendations to help you find the
+            perfect product for your needs.
+          </p>
+          <div className="d-flex py-4 gap-4 mx-md-5">
+            <div className="w-33 d-flex flex-column p-4  rounded-3">
+              <p className="text-start">
+                <LabelImportantIcon /> Non-Surgical Hair Replacement{" "}
+              </p>
+              <p className="text-start">
+                <LabelImportantIcon /> No harmful effect{" "}
+              </p>
+              <p className="text-start">
+                <LabelImportantIcon /> Safe & easy to use{" "}
+              </p>
+            </div>
+            <div className="w-33 d-flex flex-column text-start  p-4  rounded-3">
+              <p>
+                <LabelImportantIcon /> Easy return policy{" "}
+              </p>
+              <p>
+                <LabelImportantIcon /> Loyal customer base{" "}
+              </p>
+              <p>
+                <LabelImportantIcon /> Safe & easy to use{" "}
+              </p>
+            </div>
+            <div className="w-33 d-flex flex-column  text-start  p-4 rounded-3">
+              <p>
+                <LabelImportantIcon /> Fast Worldwide Free Shipping{" "}
+              </p>
+              <p>
+                <LabelImportantIcon /> 24/7 Customer Service{" "}
+              </p>
+              <p>
+                <LabelImportantIcon /> Regular Order Status Updates{" "}
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      </div>
-
-      
 
       {/* what people are sating */}
       <div className=" bg-dark p-md-5 p-sm-3 pt-md-5">
@@ -145,7 +160,7 @@ export default function Home() {
         <div className="d-flex py-5 gap-4 mx-5">
           <div className="w-33 d-flex flex-column p-5 shadow rounded-3 bg-light">
             <p className="d-flex mx-auto">
-              {" "}
+
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
             </p>
             <p>
@@ -183,9 +198,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-
-     
     </div>
   );
 }

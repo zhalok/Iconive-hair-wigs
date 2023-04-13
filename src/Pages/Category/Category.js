@@ -1,7 +1,11 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Collection from "./image/Collections.png";
 import maleCollection from "./image/malecollection.png";
 import femaleCollection from "./image/femaleCollections.png";
+import Rawhair from "./image/Rawhair.png";
+import Accessories from "./image/Accessories.png";
 import down from "./icons/downArrow.svg";
 import card1 from "./image/cardh1.jpg";
 import "./Category.css";
@@ -17,10 +21,11 @@ export default function Category() {
   const [backup, setBackup] = useState(false);
   const [gear, setGear] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [gents , setgents]=useState(false);
-  const [ladies , setladies]=useState(false);
-  const [rawhair , setrowhair]=useState(false);
-  const [accessories , setaccessories]=useState(false);
+  const [gents, setgents] = useState(false);
+  const [ladies, setladies] = useState(false);
+  const [rawhair, setrowhair] = useState(false);
+  const [accessories, setaccessories] = useState(false);
+  const [topbanner, setTopBanner] = useState(0);
 
   const TabHead = [
     {
@@ -44,7 +49,11 @@ export default function Category() {
       name: "Weapon",
     },
   ];
+  const navigate = useNavigate();
 
+  function handleClick() {
+    navigate("/ProductDetails");
+  }
   const cards = [
     {
       id: 1,
@@ -115,8 +124,20 @@ export default function Category() {
         <div className=" py-4 border-bottom">
           <div className="container text-start my-auto d-flex">
             <small className="my-auto">
-              <p className="text-black my-auto text-start ps-4 my-auto">
-                Home <KeyboardDoubleArrowRightIcon /> Collections
+              <p className="text-black my-auto text-start ps-4 my-auto d-flex">
+                <a
+                  href="/home"
+                  className="text-decoration-none mx-auto text-black alink"
+                >
+                  <p className="">home</p>
+                </a>
+                <KeyboardDoubleArrowRightIcon />
+                <a
+                  href="/home"
+                  className="text-decoration-none mx-auto text-black alink"
+                >
+                  <p className="">Collections</p>
+                </a>
               </p>
             </small>
           </div>
@@ -126,28 +147,37 @@ export default function Category() {
           <div className="d-flex">
             <div className="w-100 flex flex-column pb-5">
               <div className="w-full px-4 pt-5">
-              {
-                  (!status && !ladiesDrop)&& <img
-                  src={maleCollection}
-                  width={"100%"}
-                  alt="This is an bannnner"
-                />
-                } 
-                {
-                  (status=== true && gents === true)&& <img
-                  src={maleCollection}
-                  width={"100%"}
-                  alt="This is an bannnner"
-                />
-                }
-                {
-                  (ladiesDrop=== true && ladies === true)&& <img
-                  src={femaleCollection}
-                  width={"100%"}
-                  alt="This is an bannnner"
-                />
-                }
-               
+                {topbanner === 0 && (
+                  <img
+                    src={Collection}
+                    width={"100%"}
+                    alt="This is an bannnner"
+                  />
+                )}
+                {topbanner === 1 && (
+                  <img
+                    src={maleCollection}
+                    width={"100%"}
+                    alt="This is an bannnner"
+                  />
+                )}
+                {topbanner === 2 && (
+                  <img
+                    src={femaleCollection}
+                    width={"100%"}
+                    alt="This is an bannnner"
+                  />
+                )}
+                {topbanner === 3 && (
+                  <img src={Rawhair} width={"100%"} alt="This is an bannnner" />
+                )}
+                {topbanner === 4 && (
+                  <img
+                    src={Accessories}
+                    width={"100%"}
+                    alt="This is an bannnner"
+                  />
+                )}
               </div>
 
               <div className="d-flex">
@@ -163,9 +193,11 @@ export default function Category() {
                           setStatus((prevState) => {
                             return !prevState;
                           });
-                          setgents((prevState) => {
-                            return !prevState;
-                          });
+                          // setgents((prevState) => {
+                          //   return !prevState;
+                          // });
+                          if (status === false) setTopBanner(1);
+                          else setTopBanner(0);
                         }}
                       >
                         {status === false ? (
@@ -215,6 +247,8 @@ export default function Category() {
                           setladies((prevState) => {
                             return !prevState;
                           });
+                          if (ladiesDrop === false) setTopBanner(2);
+                          else setTopBanner(0);
                         }}
                       >
                         {ladiesDrop === false ? (
@@ -245,8 +279,6 @@ export default function Category() {
                     )}
                   </div>
 
-                 
-
                   {/* Raw Hair Bundles */}
                   <div className="border-bottom border-white">
                     <div className="text-black d-flex mt-4">
@@ -257,6 +289,8 @@ export default function Category() {
                           setBackup((prevState) => {
                             return !prevState;
                           });
+                          if (backup === false) setTopBanner(3);
+                          else setTopBanner(0);
                         }}
                       >
                         <span className="my-auto mx-2 fs-xs">36</span>
@@ -299,6 +333,8 @@ export default function Category() {
                           setGear((prevState) => {
                             return !prevState;
                           });
+                          if (gear === false) setTopBanner(4);
+                          else setTopBanner(0);
                         }}
                       >
                         <span className="my-auto mx-2 fs-xs">6</span>
@@ -346,7 +382,11 @@ export default function Category() {
 
                   <div className="d-flex flex-wrap w-100 pt-4 gap-4 mx-auto">
                     {cards.map((card, index) => (
-                      <div key={index} className="card-cat  shadow w-25 ">
+                      <div
+                        onClick={handleClick}
+                        key={index}
+                        className="card-cat  shadow w-25 "
+                      >
                         <div className="img-card position-relative">
                           <img
                             className="w-100 h-100"

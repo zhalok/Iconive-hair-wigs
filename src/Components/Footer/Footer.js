@@ -4,7 +4,7 @@ import "./Footer.css";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 export default function Footer() {
   return (
@@ -100,10 +100,11 @@ export default function Footer() {
 
         <div>
             <div className="mt-4 ">
-            <a className="mx-1" href="#"><button className="btn btn-outline-light p-2 rounded-circle"><FacebookIcon/></button></a>
-            <a className="mx-1" href="#"><button className="btn btn-outline-light p-2 rounded-circle"><InstagramIcon/></button></a>
-            <a className="mx-1" href="#"><button className="btn btn-outline-light p-2 rounded-circle"><WhatsAppIcon/></button></a>
-            <a className="mx-1" href="#"><button className="btn btn-outline-light p-2 rounded-circle"><LinkedInIcon/></button></a>
+            <a className="mx-1" href="https://www.facebook.com/profile.php?id=100087712010768"><button className="btn btn-outline-light p-2 rounded-circle"><FacebookIcon/></button></a>
+            <a className="mx-1" href="https://wa.me/message/PIZLMGBXCLUUN1"><button className="btn btn-outline-light p-2 rounded-circle"><WhatsAppIcon/></button></a>
+            <a className="mx-1" href="https://www.instagram.com/invites/contact/?i=5jfrooti9ghz&utm_content=qa5m1k1"><button className="btn btn-outline-light p-2 rounded-circle"><InstagramIcon/></button></a>
+          
+            <a className="mx-1" href="https://twitter.com/Iconivehairwigs?t=NKMVGHrLlnyuKu5bZkZ3MA&s=35"><button className="btn btn-outline-light p-2 rounded-circle"><TwitterIcon/></button></a>
             </div>
         </div>
 

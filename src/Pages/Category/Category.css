@@ -163,7 +163,12 @@
   cursor: pointer;
   font-weight: 600;
   padding-left: 10px;
+  transition: 0.5s;
 }
 .left-20{
   left: 25%;
+}
+
+.alink:hover{
+  font-weight: 600;
 }
