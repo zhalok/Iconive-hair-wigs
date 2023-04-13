@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Collection from "./image/Collections.png";
 import maleCollection from "./image/malecollection.png";
@@ -14,6 +14,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProductModal from "../../Components/ProductModal/ProductModal";
+import axios from "../../utils/axios";
+import { Cookie } from "@mui/icons-material";
 
 export default function Category() {
   const [status, setStatus] = useState(false);
@@ -26,7 +28,23 @@ export default function Category() {
   const [rawhair, setrowhair] = useState(false);
   const [accessories, setaccessories] = useState(false);
   const [topbanner, setTopBanner] = useState(0);
+  const [products, setProducts] = useState([]);
 
+  const getProducts = async () => {
+    try {
+      // console
+      const response = await axios.get("/products", {
+        // headers:{
+        //   Authorization:`Bearer ${Cookies}`
+        // }
+      });
+      console.log(response.data);
+      setProducts(response.data);
+    } catch (e) {}
+  };
+  useEffect(() => {
+    getProducts();
+  }, []);
   const TabHead = [
     {
       id: 1,
@@ -381,7 +399,7 @@ export default function Category() {
                   </div>
 
                   <div className="d-flex flex-wrap w-100 pt-4 gap-4 mx-auto">
-                    {cards.map((card, index) => (
+                    {products.map((product, index) => (
                       <div
                         onClick={handleClick}
                         key={index}
@@ -390,7 +408,7 @@ export default function Category() {
                         <div className="img-card position-relative">
                           <img
                             className="w-100 h-100"
-                            src={card1}
+                            src={product.photo}
                             alt="This  is an  picture"
                           />
                           <button
@@ -408,9 +426,9 @@ export default function Category() {
                           </button>
                         </div>
                         <div className="text-center px-2">
-                          <h6 className="mt-4 mb-2 fw-bold">COCO LEE</h6>
-                          <p className="m-0">Coco Lee, coins are Kumis brown</p>
-                          <h5 className="mt-2 mb-3 fw-bold">$500</h5>
+                          <h6 className="mt-4 mb-2 fw-bold">{product.name}</h6>
+                          {/* <p className="m-0">Coco Lee, coins are Kumis brown</p> */}
+                          <h5 className="mt-2 mb-3 fw-bold">{`$ ${product.price}`}</h5>
                         </div>
                       </div>
                     ))}
