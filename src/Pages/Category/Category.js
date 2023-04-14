@@ -26,6 +26,8 @@ export default function Category() {
   const [rawhair, setrowhair] = useState(false);
   const [accessories, setaccessories] = useState(false);
   const [topbanner, setTopBanner] = useState(0);
+  const [isShown, setIsShown] = useState(false);
+  const [activePointer, setActivePointer] = useState(-1);
 
   const TabHead = [
     {
@@ -383,7 +385,11 @@ export default function Category() {
                   <div className="d-flex flex-wrap w-100 pt-4 gap-4 mx-auto">
                     {cards.map((card, index) => (
                       <div
-                        onClick={handleClick}
+                        onMouseEnter={() => setIsShown(true)}
+                     
+                        onMouseLeave={() => setIsShown(false)}
+                        onMouseOver={() => setActivePointer(index)}
+                        
                         key={index}
                         className="card-cat  shadow w-25 "
                       >
@@ -393,19 +399,29 @@ export default function Category() {
                             src={card1}
                             alt="This  is an  picture"
                           />
-                          <button
-                            onClick={() =>
-                              setShowModal((pre) => {
-                                return !pre;
-                              })
-                            }
-                            data-bs-target="#modalID"
-                            data-bs-toggle="modal"
-                            className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0"
-                          >
-                            <ShoppingCartIcon className="pe-1 my-auto" /> ADD TO
-                            CART
-                          </button>
+                          {(isShown &&activePointer===index) && (
+                            <button
+                              onClick={() =>
+                                setShowModal((pre) => {
+                                  return !pre;
+                                })
+                              }
+                              data-bs-target="#modalID"
+                              data-bs-toggle="modal"
+                              className="position-absolute top-0 end-0 d-flex btn btn-outline-dark shodow px-3 py-1 f-14 rounded-0 mt-3 "
+                            >
+                              Quick View
+                            </button>
+                          )}
+                          {(isShown &&activePointer===index) &&  (
+                            <button
+                              onClick={handleClick}
+                              className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0 "
+                            >
+                              <ShoppingCartIcon className="pe-1 my-auto" /> ADD
+                              TO CART
+                            </button>
+                          )}
                         </div>
                         <div className="text-center px-2">
                           <h6 className="mt-4 mb-2 fw-bold">COCO LEE</h6>

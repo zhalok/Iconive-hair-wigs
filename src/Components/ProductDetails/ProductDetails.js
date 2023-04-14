@@ -1,20 +1,33 @@
 import React, { useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
+import { useNavigate } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import SendIcon from "@mui/icons-material/Send";
 import pic1 from "./Images/modalpic2.jpg";
-
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import checkimg from "./Images/checkimg.jpg";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import DeleteIcon from "@mui/icons-material/Delete";
 import "./ProductDetails.css";
 
 export default function ProductDetails({ id }) {
+    const navigate = useNavigate();
+
+  function handleClick() {
+    navigate("/checkout");
+  }
+
+  const [amount, setAmount] = useState(0);
   return (
     <>
       <div className="container d-flex my-5">
         <div className=" w-50 px-4">
           <div className="w-100 position-relative">
             <img src={pic1} alt="wigs" className="w-100" />
-            <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-3 rounded-circle m-3">
+            <span className="position-absolute top-0 end-0 bg-dark text-light px-4 py-3 rounded-circle m-3">
               <h4 className="fw-bold mb-0 mt-2">20%</h4>
               <h4 className="fw-bold mt-0 mb-2">Off</h4>
             </span>
@@ -32,13 +45,12 @@ export default function ProductDetails({ id }) {
             7"X8" COURTNEY | MONO PART | LEFT PART REMY HUMAN HAIR TOPPER
           </h4>
 
-          <p className="text-start text-secondary">SKU: 2050</p>
-          <div className="d-flex justify-content-between py-3">
+          <div className="d-flex justify-content-between pt-3">
             <div className="d-flex gap-4">
               <h3 className="fw-bold my-auto text-danger text-decoration-line-through">
-                $308.50
+                $308
               </h3>
-              <h3 className="fw-bold my-auto h ">$240.50</h3>
+              <h3 className="fw-bold my-auto h ">$240</h3>
             </div>
             <span className="d-flex ">
               <h5 className="fw-bold my-auto d-flex">
@@ -164,18 +176,110 @@ export default function ProductDetails({ id }) {
             </p>
 
             <div className="w-100">
-              <button className="w-50 btn btn-dark py-2 rounded-0 me-4">
+              <button
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight"
+                className="w-50 btn btn-dark py-2 rounded-0 me-4"
+              >
                 <ShoppingCartIcon /> ADD TO CART
               </button>
               <button className=" btn btn-outline-dark py-2 px-5  rounded-0">
                 + WISH LIST
               </button>
             </div>
+            <div
+              class="offcanvas offcanvas-end"
+              tabindex="-1"
+              id="offcanvasRight"
+              aria-labelledby="offcanvasRightLabel"
+            >
+              <div class="offcanvas-header">
+                <h5 id="offcanvasRightLabel">Shopping Cart</h5>
+                <button
+                  type="button"
+                  class="btn-close text-reset"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="offcanvas-body">
+              <div>
+                {[1, 2, 3].map((card, index) => (
+                  <div
+                    key={index}
+                    className="w-100 text-start py-4 border-bottom border-1"
+                  >
+                    <div className="d-flex">
+                      <div className="w-s100 w-15 ">
+                        <img
+                          className="w-100 h-100"
+                          src={checkimg}
+                          alt="this is an icon"
+                        />
+                      </div>
+                      <div className="d-flex w-85 ms-2">
+                        <h6 className="fw-bold my-auto">
+                          8.5"x9" Blake | Silk Part Remy Human Hair Topper With
+                          Layers | Left Part
+                        </h6>
+                      </div>
+                    </div>
+                    <p className="mt-1">
+                      <small>
+                        Color : Natural Black With Brown Shades, Length : 12",
+                        Density : 130%
+                      </small>
+                    </p>
+                    <div className="d-flex justify-content-between">
+                      <h5 className="fw-bold my-auto">$ {501 * amount}</h5>
+                      <div>
+                        <ButtonGroup size="sm">
+                          <Button
+                            onClick={() => {
+                              if (amount === 0) return;
+                              else
+                                setAmount((prevs) => {
+                                  return prevs - 1;
+                                });
+                            }}
+                            className="btn-light rounded-0 border"
+                          >
+                            <RemoveIcon />
+                          </Button>
+                          <Button className="btn-light rounded-0 border px-4">
+                            {amount}
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setAmount((prevs) => {
+                                return prevs + 1;
+                              });
+                            }}
+                            className="btn-light rounded-0 border "
+                          >
+                            <AddIcon />
+                          </Button>
+                        </ButtonGroup>
+                      </div>
+                      <div>
+                        <button size="sm" className="btn  py-0 me-3">
+                          <DeleteIcon className="text-danger" />{" "}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button onClick={handleClick} className="btn btn-dark w-100 rounded-0 py-2 mt-3">Check out</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="w-100 text-start py-3">
+      <div className="container border-top ">
+        <div className="w-100 text-start py-3 pt-5">
           <p className="text-secondary pb-2 fs-5 fw-bold">Description :</p>
           <p className="pb-0">
             Welcome to Iconive, your one-stop destination for premium quality
@@ -214,7 +318,7 @@ export default function ProductDetails({ id }) {
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                      Shipping policy
+                      <SendIcon /> Shipping policy
                     </h5>
                     <button
                       type="button"
@@ -335,8 +439,11 @@ export default function ProductDetails({ id }) {
                   </div>
                   <div class="modal-body">
                     <h4 className="fw-bold  my-3  ">
-                      Thanks for shopping at Iconive. <br/> 
-                      <h5 className="fw-normal">If you are not entirely satisfied with your purchase, we're here to help.</h5>
+                      Thanks for shopping at Iconive. <br />
+                      <h5 className="fw-normal">
+                        If you are not entirely satisfied with your purchase,
+                        we're here to help.
+                      </h5>
                     </h4>
                     <p>
                       1 .
