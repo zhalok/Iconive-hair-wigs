@@ -57,28 +57,28 @@ export default function ProductDetails({ id }) {
 
           <p className="text-start text-secondary">SKU: 2050</p>
           <div className="d-flex justify-content-between py-3">
-            <div className="d-flex gap-4">
+            <div className="d-flex gap-3">
               {productDetails.discount != 0 && (
                 <h3 className="fw-bold my-auto text-danger text-decoration-line-through">
                   ${productDetails.price}
                 </h3>
               )}
-              <h3 className="fw-bold my-auto h ">
+              <h3 className="fw-bold my-auto h">
                 $
                 {productDetails.price -
                   (productDetails.price * productDetails.discount) / 100}
               </h3>
             </div>
-            <span className="d-flex ">
-              <h5 className="fw-bold my-auto d-flex">
-                <StarIcon className="text-black fw-bold" />
-                <StarIcon className="text-black fw-bold" />
-                <StarIcon className="text-black fw-bold" />
-                <StarIcon className="text-black fw-bold" />
-                <StarIcon className="text-black fw-bold" />
-              </h5>
-              <p className="my-auto ms-1 text-secondary me-5">(90) Reviews</p>
-            </span>
+          </div>
+          <div className="d-flex ">
+            <h5 className="fw-bold my-auto d-flex">
+              <StarIcon className="text-black fw-bold" />
+              <StarIcon className="text-black fw-bold" />
+              <StarIcon className="text-black fw-bold" />
+              <StarIcon className="text-black fw-bold" />
+              <StarIcon className="text-black fw-bold" />
+            </h5>
+            <p className="my-auto ms-1 text-secondary me-5">(90) Reviews</p>
           </div>
           <div className="text-start">
             {/* color */}
