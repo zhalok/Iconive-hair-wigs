@@ -9,7 +9,7 @@ import TopSelling from "../../Components/TopSelling/TopSelling";
 import Trending from "../../Components/Trending/Trending";
 import Replacement from "../../Components/Replacement/Replacement";
 import StarIcon from "@mui/icons-material/Star";
-import LabelImportantIcon from '@mui/icons-material/LabelImportant';
+import LabelImportantIcon from "@mui/icons-material/LabelImportant";
 import CustomWigs from "../../Components/CustomWiga/CustomWigs";
 
 export default function Home() {
@@ -34,9 +34,7 @@ export default function Home() {
                 alt="this is a picture of girl"
               />
               <div className="overlay d-flex mx-auto w-100">
-                <h1 className="abs  text-light fw-bold p-50p  mx-auto">
-                  GENTS
-                </h1>
+                <h1 className="abs  text-light fw-bold p-50p mx-auto">GENTS</h1>
               </div>
             </div>
 
@@ -160,7 +158,6 @@ export default function Home() {
         <div className="d-flex py-5 gap-4 mx-5">
           <div className="w-33 d-flex flex-column p-5 shadow rounded-3 bg-light">
             <p className="d-flex mx-auto">
-
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
             </p>
             <p>

@@ -16,6 +16,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProductModal from "../../Components/ProductModal/ProductModal";
 import axios from "../../utils/axios";
 import { Cookie } from "@mui/icons-material";
+// import { useNavigate } from "react-router-dom";
 
 export default function Category() {
   const [status, setStatus] = useState(false);
@@ -29,7 +30,7 @@ export default function Category() {
   const [accessories, setaccessories] = useState(false);
   const [topbanner, setTopBanner] = useState(0);
   const [products, setProducts] = useState([]);
-
+  // const navigate = useNavigate();
   const getProducts = async () => {
     try {
       // console
@@ -69,8 +70,8 @@ export default function Category() {
   ];
   const navigate = useNavigate();
 
-  function handleClick() {
-    navigate("/ProductDetails");
+  function handleClick(id) {
+    navigate(`/ProductDetails/${id}`);
   }
   const cards = [
     {
@@ -401,7 +402,9 @@ export default function Category() {
                   <div className="d-flex flex-wrap w-100 pt-4 gap-4 mx-auto">
                     {products.map((product, index) => (
                       <div
-                        onClick={handleClick}
+                        onClick={() => {
+                          handleClick(product._id);
+                        }}
                         key={index}
                         className="card-cat  shadow w-25 "
                       >
@@ -412,13 +415,14 @@ export default function Category() {
                             alt="This  is an  picture"
                           />
                           <button
-                            onClick={() =>
-                              setShowModal((pre) => {
-                                return !pre;
-                              })
+                            onClick={
+                              () => {}
+                              // setShowModal((pre) => {
+                              //   return !pre;
+                              // })
                             }
-                            data-bs-target="#modalID"
-                            data-bs-toggle="modal"
+                            // data-bs-target="#modalID"
+                            // data-bs-toggle="modal"
                             className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0"
                           >
                             <ShoppingCartIcon className="pe-1 my-auto" /> ADD TO

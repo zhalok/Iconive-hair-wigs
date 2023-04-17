@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import StarIcon from "@mui/icons-material/Star";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -6,31 +6,53 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import pic1 from "./Images/modalpic2.jpg";
 
 import "./ProductDetails.css";
+import { useParams } from "react-router-dom";
+import axios from "../../utils/axios";
 
 export default function ProductDetails({ id }) {
+  // console.log(product);
+  const [productDetails, setProductDetails] = useState();
+  const { product } = useParams();
+  const getProductDetails = async () => {
+    try {
+      const response = await axios.get(`/products/${product}`, {});
+      // console.log(response);
+      setProductDetails(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  if (productDetails) console.log(productDetails.addOns);
+  useEffect(() => {
+    getProductDetails();
+  }, []);
+
+  if (!productDetails) return <></>;
   return (
     <>
       <div className="container d-flex my-5">
         <div className=" w-50 px-4">
-          <div className="w-100 position-relative">
-            <img src={pic1} alt="wigs" className="w-100" />
-            <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-3 rounded-circle m-3">
-              <h4 className="fw-bold mb-0 mt-2">20%</h4>
-              <h4 className="fw-bold mt-0 mb-2">Off</h4>
-            </span>
-          </div>
-          <div className="w-100 d-flex justify-content-between py-3">
+          {
+            <div className="w-100 position-relative">
+              <img src={productDetails.photo} alt="wigs" className="w-100" />
+              {productDetails.discount != 0 && (
+                <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-3 rounded-circle m-3">
+                  <h4 className="fw-bold mb-0 mt-2">20%</h4>
+                  <h4 className="fw-bold mt-0 mb-2">Off</h4>
+                </span>
+              )}
+            </div>
+          }
+          {/* <div className="w-100 d-flex justify-content-between py-3">
             <img src={pic1} alt="wigs" className="wm-22 h-25 " />
             <img src={pic1} alt="wigs" className="wm-22 h-25 " />
             <img src={pic1} alt="wigs" className="wm-22 h-25  " />
             <img src={pic1} alt="wigs" className="wm-22 h-25 " />
             <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-          </div>
+          </div> */}
         </div>
         <div className="w-50 px-4 my-auto">
-          <h4 className="text-start fw-bold">
-            7"X8" COURTNEY | MONO PART | LEFT PART REMY HUMAN HAIR TOPPER
-          </h4>
+          <h4 className="text-start fw-bold">{productDetails.name}</h4>
 
           <p className="text-start text-secondary">SKU: 2050</p>
           <div className="d-flex justify-content-between py-3">
@@ -38,7 +60,7 @@ export default function ProductDetails({ id }) {
               <h3 className="fw-bold my-auto text-danger text-decoration-line-through">
                 $308.50
               </h3>
-              <h3 className="fw-bold my-auto h ">$240.50</h3>
+              <h3 className="fw-bold my-auto h ">${productDetails.price}</h3>
             </div>
             <span className="d-flex ">
               <h5 className="fw-bold my-auto d-flex">
@@ -55,45 +77,52 @@ export default function ProductDetails({ id }) {
             {/* color */}
             <p className="text-secondary pt-3 ">Color :</p>
             <div className="d-flex gap-2">
+              {/* 
               <button className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6">
                 p
               </button>
               <button className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6">
                 p
-              </button>
-              <button className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6">
-                p
-              </button>
+              </button> */}
+              {productDetails.colors.map((e) => {
+                return (
+                  <>
+                    <button
+                      className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6"
+                      style={{ backgroundColor: e.color }}
+                    >
+                      {/* {e.name} */}
+                    </button>
+                    <small>{e.name}</small>
+                  </>
+                );
+              })}
             </div>
 
             {/* length*/}
-            <p className="text-secondary pt-2 ">Hair length :</p>
-            <div className="d-flex gap-2">
-              <button className="btn btn-dark rounded-0 fs-6">12"</button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                14"
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                16"
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                18"
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                20"
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                22"
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                24"
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                26"
-              </button>
-            </div>
+            <>
+              {productDetails &&
+                productDetails.addOns.map((e) => {
+                  return e ? (
+                    <>
+                      <p className="text-secondary pt-2 ">{e?.name} :</p>
+                      <div className="d-flex gap-2">
+                        {e?.values.map((f) => {
+                          return (
+                            <button className="btn btn-dark rounded-0 fs-6">
+                              {f.value}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  );
+                })}
+            </>
 
-            {/*Lengtth */}
+            {/*          
             <p className="text-secondary pt-3 ">Base size :</p>
             <div className="d-flex gap-2">
               <button className="btn btn-dark rounded-0 fs-6">7x5</button>
@@ -114,7 +143,7 @@ export default function ProductDetails({ id }) {
               </button>
             </div>
 
-            {/*density */}
+           
             <p className="text-secondary pt-3 ">Density :</p>
             <div className="d-flex gap-2">
               <button className="btn btn-dark rounded-0 fs-6">80%</button>
@@ -132,21 +161,22 @@ export default function ProductDetails({ id }) {
               </button>
             </div>
 
-            {/* style */}
+           
             <p className="text-secondary pt-3 ">Style :</p>
             <div className="d-flex gap-2">
               <button className="btn btn-dark rounded-0 fs-6">Straight</button>
               <button className="btn btn-outline-dark rounded-0 fs-6">
                 Wavy
               </button>
-            </div>
+            </div> */}
 
-            <p className="text-secondary pt-3 ">FH Base size :</p>
+            {/* <p className="text-secondary pt-3 ">FH Base size :</p>
             <div className="d-flex gap-2">
               <button className="btn btn-outline-dark rounded-0 fs-6 d-flex fw-bold">
                 8x12x16 <p className="my-auto ms-3 fw-normal"> Like this</p>
               </button>
-            </div>
+            </div> */}
+
             <p className="mt-4 my-auto">
               <AccessTimeIcon className="me-1 my-auto" />
               <small>
@@ -335,8 +365,11 @@ export default function ProductDetails({ id }) {
                   </div>
                   <div class="modal-body">
                     <h4 className="fw-bold  my-3  ">
-                      Thanks for shopping at Iconive. <br/> 
-                      <h5 className="fw-normal">If you are not entirely satisfied with your purchase, we're here to help.</h5>
+                      Thanks for shopping at Iconive. <br />
+                      <h5 className="fw-normal">
+                        If you are not entirely satisfied with your purchase,
+                        we're here to help.
+                      </h5>
                     </h4>
                     <p>
                       1 .
