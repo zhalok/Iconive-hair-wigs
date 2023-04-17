@@ -18,11 +18,12 @@ export default function ProductDetails({ id }) {
       const response = await axios.get(`/products/${product}`, {});
       // console.log(response);
       setProductDetails(response.data);
+      console.log(response.data);
     } catch (e) {
       console.log(e);
     }
   };
-  if (productDetails) console.log(productDetails.addOns);
+  // if (productDetails) console.log(productDetails.addOns);
   useEffect(() => {
     getProductDetails();
   }, []);
@@ -57,10 +58,16 @@ export default function ProductDetails({ id }) {
           <p className="text-start text-secondary">SKU: 2050</p>
           <div className="d-flex justify-content-between py-3">
             <div className="d-flex gap-4">
-              <h3 className="fw-bold my-auto text-danger text-decoration-line-through">
-                $308.50
+              {productDetails.discount != 0 && (
+                <h3 className="fw-bold my-auto text-danger text-decoration-line-through">
+                  ${productDetails.price}
+                </h3>
+              )}
+              <h3 className="fw-bold my-auto h ">
+                $
+                {productDetails.price -
+                  (productDetails.price * productDetails.discount) / 100}
               </h3>
-              <h3 className="fw-bold my-auto h ">${productDetails.price}</h3>
             </div>
             <span className="d-flex ">
               <h5 className="fw-bold my-auto d-flex">
