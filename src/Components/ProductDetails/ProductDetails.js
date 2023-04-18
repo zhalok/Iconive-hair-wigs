@@ -14,7 +14,7 @@ export default function ProductDetails({ id }) {
   const [productDetails, setProductDetails] = useState();
   const { product } = useParams();
   const [selectedAddOns, setSelectedAddons] = useState([]);
-  console.log(selectedAddOns);
+  // console.log(selectedAddOns);
   const getProductDetails = async () => {
     try {
       const response = await axios.get(`/products/${product}`, {});
@@ -36,6 +36,8 @@ export default function ProductDetails({ id }) {
   useEffect(() => {
     getProductDetails();
   }, []);
+  const cart = localStorage.getItem("cart");
+  console.log(JSON.parse(cart));
 
   if (!productDetails) return <></>;
   return (
@@ -196,7 +198,15 @@ export default function ProductDetails({ id }) {
             </p>
 
             <div className="w-100">
-              <button className="w-50 btn btn-dark py-2 rounded-0 me-4">
+              <button
+                className="w-50 btn btn-dark py-2 rounded-0 me-4"
+                onClick={() => {
+                  localStorage.setItem(
+                    "cart",
+                    JSON.stringify([{ name: "hi" }])
+                  );
+                }}
+              >
                 <ShoppingCartIcon /> ADD TO CART
               </button>
               <button className=" btn btn-outline-dark py-2 px-5  rounded-0">
