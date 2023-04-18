@@ -144,20 +144,20 @@ export default function ProductDetails({ id }) {
                                   const idx = newState
                                     .map((e) => e._id)
                                     .indexOf(f._id);
-                                  // if (idx == -1) {
-                                  //   const idx_name = prev
-                                  //     .map((e) => e.name)
-                                  //     .indexOf(f.name);
-                                  //   if (idx_name != -1) {
-                                  //     prev[idx_name]._id = f._id;
-                                  //   } else {
-                                  //     prev.push({ name: f.name, _id: f._id });
-                                  //   }
-                                  // } else {
-                                  //   prev.splice(idx);
-                                  // }
-                                  if (idx == -1) newState.push({ _id: f._id });
-                                  else newState.splice(idx);
+                                  if (idx == -1) {
+                                    const idx_name = prev
+                                      .map((e) => e.name)
+                                      .indexOf(f.name);
+                                    if (idx_name != -1) {
+                                      prev[idx_name]._id = f._id;
+                                    } else {
+                                      prev.push({ name: f.name, _id: f._id });
+                                    }
+                                  } else {
+                                    prev.splice(idx);
+                                  }
+                                  // if (idx == -1) newState.push({ _id: f._id });
+                                  // else newState.splice(idx);
 
                                   return [...newState];
                                 });
