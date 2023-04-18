@@ -134,14 +134,16 @@ export default function ProductDetails({ id }) {
                           return (
                             <button
                               className={`btn btn-${
-                                selectedAddOns.includes(f._id)
+                                selectedAddOns.map((e) => e._id).includes(f._id)
                                   ? "dark"
                                   : "light"
                               } rounded-0 fs-6`}
                               onClick={(e) => {
                                 setSelectedAddons((prev) => {
                                   const newState = [...prev];
-                                  const idx = prev.indexOf(f._id);
+                                  const idx = newState
+                                    .map((e) => e._id)
+                                    .indexOf(f._id);
                                   // if (idx == -1) {
                                   //   const idx_name = prev
                                   //     .map((e) => e.name)
@@ -154,7 +156,7 @@ export default function ProductDetails({ id }) {
                                   // } else {
                                   //   prev.splice(idx);
                                   // }
-                                  if (idx == -1) newState.push(f._id);
+                                  if (idx == -1) newState.push({ _id: f._id });
                                   else newState.splice(idx);
 
                                   return [...newState];
