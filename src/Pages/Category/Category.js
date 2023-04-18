@@ -456,6 +456,9 @@ export default function Category() {
                         }}
                         key={index}
                         className="card-cat  shadow w-25 "
+                        style={{
+                          cursor: "pointer",
+                        }}
                       >
                         <div className="img-card position-relative">
                           <img
@@ -474,8 +477,8 @@ export default function Category() {
                             // data-bs-toggle="modal"
                             className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0"
                           >
-                            <ShoppingCartIcon className="pe-1 my-auto" /> ADD TO
-                            CART
+                            <ShoppingCartIcon className="pe-1 my-auto" /> Add To
+                            Cart
                           </button>
                         </div>
                         <div className="text-center px-2">
@@ -489,7 +492,7 @@ export default function Category() {
                 </div>
               </div>
 
-              <ProductModal id="modalID"></ProductModal>
+              {/* <ProductModal id="modalID"></ProductModal> */}
             </div>
           </div>
         </div>

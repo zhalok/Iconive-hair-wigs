@@ -13,6 +13,8 @@ export default function ProductDetails({ id }) {
   // console.log(product);
   const [productDetails, setProductDetails] = useState();
   const { product } = useParams();
+  const [selectedAddOns, setSelectedAddons] = useState([]);
+  console.log(selectedAddOns);
   const getProductDetails = async () => {
     try {
       const response = await axios.get(`/products/${product}`, {});
@@ -130,7 +132,35 @@ export default function ProductDetails({ id }) {
                       <div className="d-flex gap-2">
                         {e?.values.map((f) => {
                           return (
-                            <button className="btn btn-dark rounded-0 fs-6">
+                            <button
+                              className={`btn btn-${
+                                selectedAddOns.map((e) => e._id).includes(f._id)
+                                  ? "dark"
+                                  : "light"
+                              } rounded-0 fs-6`}
+                              onClick={(e) => {
+                                setSelectedAddons((prev) => {
+                                  const newState = [...prev];
+                                  const idx = prev
+                                    .map((e) => e._id)
+                                    .indexOf(f._id);
+                                  if (idx == -1) {
+                                    const idx_name = prev
+                                      .map((e) => e.name)
+                                      .indexOf(f.name);
+                                    if (idx_name != -1) {
+                                      prev[idx_name]._id = f._id;
+                                    } else {
+                                      prev.push({ name: f.name, _id: f._id });
+                                    }
+                                  } else {
+                                    prev.splice(idx);
+                                  }
+
+                                  return [...newState];
+                                });
+                              }}
+                            >
                               {f.value}
                             </button>
                           );
