@@ -145,7 +145,7 @@ export default function ProductDetails({ id }) {
                                     .map((e) => e._id)
                                     .indexOf(f._id);
                                   if (idx == -1) {
-                                    const idx_name = prev
+                                    const idx_name = newState
                                       .map((e) => e.name)
                                       .indexOf(f.name);
                                     if (idx_name != -1) {
