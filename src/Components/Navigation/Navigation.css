@@ -5,3 +5,13 @@
 .text-black{
     color: black !important;
 }
+.z-100{
+    z-index: 100;
+}
+.mt-50{
+    margin-top: 40px;
+}
+.drop:hover{
+    background: rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+}
