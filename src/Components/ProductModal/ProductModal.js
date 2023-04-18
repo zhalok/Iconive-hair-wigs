@@ -26,7 +26,7 @@ export default function ProductModal({ id }) {
               <div className=" w-50 px-4">
                 <div className="w-100 position-relative">
                   <img src={pic1} alt="wigs" className="w-100" />
-                  <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-3 rounded-circle m-3">
+                  <span className="position-absolute top-0 end-0 bg-dark text-light px-4 py-3 rounded-circle m-3">
                     <h4 className="fw-bold mb-0 mt-2">20%</h4>
                     <h4 className="fw-bold mt-0 mb-2">Off</h4>
                   </span>
@@ -40,17 +40,17 @@ export default function ProductModal({ id }) {
                 </div>
               </div>
               <div className="w-50 px-4 my-auto">
-                <h4 className="text-start fw-bold">
+                <h5 className="text-start fw-bold">
                   7"X8" COURTNEY | MONO PART | LEFT PART REMY HUMAN HAIR TOPPER
-                </h4>
+                </h5>
 
-                <p className="text-start text-secondary">SKU: 2050</p>
-                <div className="d-flex justify-content-between py-3">
-                  <div className="d-flex gap-4">
-                    <h3 className="fw-bold my-auto text-danger text-decoration-line-through ">
-                      $308.50
-                    </h3>
-                    <h3 className="fw-bold my-auto h ">$240.50</h3>
+               
+                <div className="d-flex justify-content-between pt-3">
+                  <div className="d-flex  gap-3">
+                    <h4 className="fw-bold my-auto text-danger text-decoration-line-through ">
+                      $308
+                    </h4>
+                    <h4 className="fw-bold my-auto ">$240</h4>
                   </div>
                   <span className="d-flex ">
                     <h5 className="fw-bold my-auto d-flex">
@@ -67,7 +67,7 @@ export default function ProductModal({ id }) {
                 </div>
                 <div className="text-start">
                   {/* color */}
-                  <p className="text-secondary pt-3 ">Color :</p>
+                  <p className="text-secondary pt-2 ">Color :</p>
                   <div className="d-flex gap-2">
                     <button className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6">
                       p
@@ -108,7 +108,7 @@ export default function ProductModal({ id }) {
                   </div>
 
                   {/*Lengtth */}
-                  <p className="text-secondary pt-3 ">Base size :</p>
+                  <p className="text-secondary pt-2 ">Base size :</p>
                   <div className="d-flex gap-2">
                     <button className="btn btn-dark rounded-0 fs-6">7x5</button>
                     <button className="btn btn-outline-dark rounded-0 fs-6">
@@ -129,7 +129,7 @@ export default function ProductModal({ id }) {
                   </div>
 
                   {/*density */}
-                  <p className="text-secondary pt-3 ">Density :</p>
+                  <p className="text-secondary pt-2 ">Density :</p>
                   <div className="d-flex gap-2">
                     <button className="btn btn-dark rounded-0 fs-6">80%</button>
                     <button className="btn btn-outline-dark rounded-0 fs-6">
@@ -147,7 +147,7 @@ export default function ProductModal({ id }) {
                   </div>
 
                   {/* style */}
-                  <p className="text-secondary pt-3 ">Style :</p>
+                  <p className="text-secondary pt-2 ">Style :</p>
                   <div className="d-flex gap-2">
                     <button className="btn btn-dark rounded-0 fs-6">
                       Straight
@@ -157,14 +157,14 @@ export default function ProductModal({ id }) {
                     </button>
                   </div>
 
-                  <p className="text-secondary pt-3 ">FH Base size :</p>
+                  <p className="text-secondary pt-2 ">FH Base size :</p>
                   <div className="d-flex gap-2">
                     <button className="btn btn-outline-dark rounded-0 fs-6 d-flex fw-bold">
                       8x12x16{" "}
                       <p className="my-auto ms-3 fw-normal"> Like this</p>
                     </button>
                   </div>
-                  <p className="mt-4 my-auto">
+                  <p className="pt-3 my-auto ">
                     <AccessTimeIcon className="me-1 my-auto" />
                     <small>
                       Processing Time:
@@ -173,18 +173,16 @@ export default function ProductModal({ id }) {
                       </span>
                     </small>
                   </p>
-                  <p className="pt-3">
+                  <p className="pt-1">
                     <small>
                       {" "}
                       Processing time does not include delivery time
                     </small>
                   </p>
-                  <p className="">
-                    <small></small>
-                  </p>
+                 
 
                   <div className="w-100">
-                    <button className="w-50 btn btn-dark py-2 rounded-0 me-4">
+                    <button  className="w-50 btn btn-dark py-2 rounded-0 me-4">
                       <ShoppingCartIcon /> ADD TO CART
                     </button>
                     <button className=" btn btn-outline-dark py-2 px-5  rounded-0">

@@ -30,6 +30,8 @@ export default function Category() {
   const [rawhair, setrowhair] = useState(false);
   const [accessories, setaccessories] = useState(false);
   const [topbanner, setTopBanner] = useState(0);
+  const [isShown, setIsShown] = useState(false);
+  const [activePointer, setActivePointer] = useState(-1);
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({});
   const [categories, setCategories] = useState([]);
