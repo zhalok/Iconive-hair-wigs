@@ -134,28 +134,28 @@ export default function ProductDetails({ id }) {
                           return (
                             <button
                               className={`btn btn-${
-                                selectedAddOns.map((e) => e._id).includes(f._id)
+                                selectedAddOns.includes(f._id)
                                   ? "dark"
                                   : "light"
                               } rounded-0 fs-6`}
                               onClick={(e) => {
                                 setSelectedAddons((prev) => {
                                   const newState = [...prev];
-                                  const idx = prev
-                                    .map((e) => e._id)
-                                    .indexOf(f._id);
-                                  if (idx == -1) {
-                                    const idx_name = prev
-                                      .map((e) => e.name)
-                                      .indexOf(f.name);
-                                    if (idx_name != -1) {
-                                      prev[idx_name]._id = f._id;
-                                    } else {
-                                      prev.push({ name: f.name, _id: f._id });
-                                    }
-                                  } else {
-                                    prev.splice(idx);
-                                  }
+                                  const idx = prev.indexOf(f._id);
+                                  // if (idx == -1) {
+                                  //   const idx_name = prev
+                                  //     .map((e) => e.name)
+                                  //     .indexOf(f.name);
+                                  //   if (idx_name != -1) {
+                                  //     prev[idx_name]._id = f._id;
+                                  //   } else {
+                                  //     prev.push({ name: f.name, _id: f._id });
+                                  //   }
+                                  // } else {
+                                  //   prev.splice(idx);
+                                  // }
+                                  if (idx == -1) newState.push(f._id);
+                                  else newState.splice(idx);
 
                                   return [...newState];
                                 });
@@ -172,61 +172,6 @@ export default function ProductDetails({ id }) {
                   );
                 })}
             </>
-
-            {/*          
-            <p className="text-secondary pt-3 ">Base size :</p>
-            <div className="d-flex gap-2">
-              <button className="btn btn-dark rounded-0 fs-6">7x5</button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                8x5
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                8x6
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                9x7
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                10x7
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                10x8
-              </button>
-            </div>
-
-           
-            <p className="text-secondary pt-3 ">Density :</p>
-            <div className="d-flex gap-2">
-              <button className="btn btn-dark rounded-0 fs-6">80%</button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                90%
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                100%
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                120%
-              </button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                140%"
-              </button>
-            </div>
-
-           
-            <p className="text-secondary pt-3 ">Style :</p>
-            <div className="d-flex gap-2">
-              <button className="btn btn-dark rounded-0 fs-6">Straight</button>
-              <button className="btn btn-outline-dark rounded-0 fs-6">
-                Wavy
-              </button>
-            </div> */}
-
-            {/* <p className="text-secondary pt-3 ">FH Base size :</p>
-            <div className="d-flex gap-2">
-              <button className="btn btn-outline-dark rounded-0 fs-6 d-flex fw-bold">
-                8x12x16 <p className="my-auto ms-3 fw-normal"> Like this</p>
-              </button>
-            </div> */}
 
             <p className="mt-4 my-auto">
               <AccessTimeIcon className="me-1 my-auto" />
