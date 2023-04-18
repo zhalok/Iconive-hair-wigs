@@ -16,6 +16,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProductModal from "../../Components/ProductModal/ProductModal";
 import axios from "../../utils/axios";
 import { Cookie } from "@mui/icons-material";
+import { useSearchParams } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 export default function Category() {
@@ -30,7 +31,18 @@ export default function Category() {
   const [accessories, setaccessories] = useState(false);
   const [topbanner, setTopBanner] = useState(0);
   const [products, setProducts] = useState([]);
-  // const navigate = useNavigate();
+  const [filters, setFilters] = useState({});
+  const [categories, setCategories] = useState([]);
+  const [showSubCategory, setShowSubCategory] = useState("");
+  const getCategories = async () => {
+    try {
+      const response = await axios.get("/category/getCategory");
+
+      setCategories(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const getProducts = async () => {
     try {
       // console
@@ -38,13 +50,24 @@ export default function Category() {
         // headers:{
         //   Authorization:`Bearer ${Cookies}`
         // }
+        // params: {
+        //   category: filters,
+        // },
+        params: filters,
       });
-      console.log(response.data);
+      // console.log(response.data);
       setProducts(response.data);
     } catch (e) {}
   };
+
+  // const filterProducts = async () => {
+  //   console.log();
+  // };
   useEffect(() => {
     getProducts();
+  }, [filters]);
+  useEffect(() => {
+    getCategories();
   }, []);
   const TabHead = [
     {
@@ -203,58 +226,84 @@ export default function Category() {
                 {/* sidebar */}
                 <div className="sidebarBg h-100 ">
                   {/* Gents Wig */}
-                  <div className="border-bottom border-white">
-                    <div className="text-black d-flex ">
-                      <p className="f-16 fw-bold">Gents Wig </p>
-                      <p
-                        className="ms-auto"
-                        onClick={() => {
-                          setStatus((prevState) => {
-                            return !prevState;
-                          });
-                          // setgents((prevState) => {
-                          //   return !prevState;
-                          // });
-                          if (status === false) setTopBanner(1);
-                          else setTopBanner(0);
-                        }}
-                      >
-                        {status === false ? (
-                          <ExpandMoreIcon className="my-auto" />
-                        ) : (
-                          <KeyboardArrowUpIcon className="my-auto" />
+                  {categories.map((category) => {
+                    return (
+                      <div className="border-bottom border-white">
+                        <div className="text-black d-flex ">
+                          <p className="f-16 fw-bold">{category.name} </p>
+                          <p
+                            className="ms-auto"
+                            onClick={() => {
+                              setShowSubCategory((prevState) => {
+                                if (prevState != category._id) {
+                                  setFilters({
+                                    category: category._id,
+                                  });
+                                } else {
+                                  setFilters({});
+                                }
+
+                                return prevState != category._id
+                                  ? category._id
+                                  : "";
+                              });
+                            }}
+                          >
+                            {showSubCategory !== category._id ? (
+                              <ExpandMoreIcon className="my-auto" />
+                            ) : (
+                              <KeyboardArrowUpIcon className="my-auto" />
+                            )}
+                          </p>
+                        </div>
+                        {showSubCategory === category._id && (
+                          <div className=" text-black border-top pt-2">
+                            {category.subcategories?.map((subcategory) => {
+                              return (
+                                <div
+                                  className="ps-2  d-flex f-18"
+                                  onClick={() => {
+                                    setFilters((prev) => {
+                                      prev["subCategory"] = subcategory._id;
+                                      return { ...prev };
+                                    });
+                                  }}
+                                >
+                                  <p className="f-16 Chover">
+                                    {subcategory.name}
+                                  </p>
+                                </div>
+                              );
+                            })}
+
+                            {/* <div className="ps-2  d-flex f-18">
+                              <p className="f-16 Chover">Lace Base</p>
+                            </div>
+                            <div className="ps-2 d-flex f-18">
+                              <p className="f-16 Chover">Silk Base</p>
+                            </div>
+                            <div className="ps-2 d-flex f-18">
+                              <p className="f-16 Chover">Skin Base</p>
+                            </div>
+                            <div className="ps-2 d-flex f-18">
+                              <p className="f-16 Chover">Mixed Base</p>
+                            </div>
+                            <div className="ps-2 d-flex f-18">
+                              <p className="f-16 Chover">Full Head Toupee</p>
+                            </div>
+                            <div className="ps-2 d-flex f-18">
+                              <p className="f-16 Chover">
+                                African American Toupee
+                              </p>
+                            </div> */}
+                          </div>
                         )}
-                      </p>
-                    </div>
-                    {status === true && (
-                      <div className=" text-black border-top pt-2">
-                        <div className="ps-2  d-flex f-18">
-                          <p className="f-16 Chover">Mono Base</p>
-                        </div>
-                        <div className="ps-2  d-flex f-18">
-                          <p className="f-16 Chover">Lace Base</p>
-                        </div>
-                        <div className="ps-2 d-flex f-18">
-                          <p className="f-16 Chover">Silk Base</p>
-                        </div>
-                        <div className="ps-2 d-flex f-18">
-                          <p className="f-16 Chover">Skin Base</p>
-                        </div>
-                        <div className="ps-2 d-flex f-18">
-                          <p className="f-16 Chover">Mixed Base</p>
-                        </div>
-                        <div className="ps-2 d-flex f-18">
-                          <p className="f-16 Chover">Full Head Toupee</p>
-                        </div>
-                        <div className="ps-2 d-flex f-18">
-                          <p className="f-16 Chover">African American Toupee</p>
-                        </div>
                       </div>
-                    )}
-                  </div>
+                    );
+                  })}
 
                   {/* Ladies Wig  */}
-                  <div className="border-bottom border-white">
+                  {/* <div className="border-bottom border-white">
                     <div className="text-black d-flex mt-4">
                       <p className="f-16 fw-bold">Ladies Wig </p>
                       <p
@@ -296,10 +345,10 @@ export default function Category() {
                         </div>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* Raw Hair Bundles */}
-                  <div className="border-bottom border-white">
+                  {/* <div className="border-bottom border-white">
                     <div className="text-black d-flex mt-4">
                       <p className="f-16 fw-bold">Raw Hair Bundles</p>
                       <p
@@ -340,10 +389,10 @@ export default function Category() {
                         </div>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* Accessories */}
-                  <div className="">
+                  {/* <div className="">
                     <div className="text-black d-flex mt-4">
                       <p className="f-16 fw-bold">Accessories</p>
                       <p
@@ -384,7 +433,7 @@ export default function Category() {
                         </div>
                       </div>
                     )}
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="w-75 p-4  pt-5 text-start">

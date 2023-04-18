@@ -18,6 +18,13 @@ export default function ProductDetails({ id }) {
       const response = await axios.get(`/products/${product}`, {});
       // console.log(response);
       setProductDetails(response.data);
+      response.data.map((e) => {
+        const arr = [];
+        if (response.data.rating) {
+          for (let i = 0; i < response.data.rating; i++) arr.push("*");
+        }
+        return { ...e, rating: arr };
+      });
       console.log(response.data);
     } catch (e) {
       console.log(e);
@@ -44,13 +51,15 @@ export default function ProductDetails({ id }) {
               )}
             </div>
           }
-          {/* <div className="w-100 d-flex justify-content-between py-3">
-            <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            <img src={pic1} alt="wigs" className="wm-22 h-25  " />
-            <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-          </div> */}
+          {
+            // <div className="w-100 d-flex justify-content-between py-3">
+            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
+            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
+            //   <img src={pic1} alt="wigs" className="wm-22 h-25  " />
+            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
+            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
+            // </div>
+          }
         </div>
         <div className="w-50 px-4 my-auto">
           <h4 className="text-start fw-bold">{productDetails.name}</h4>
@@ -70,16 +79,21 @@ export default function ProductDetails({ id }) {
               </h3>
             </div>
           </div>
-          <div className="d-flex ">
-            <h5 className="fw-bold my-auto d-flex">
-              <StarIcon className="text-black fw-bold" />
-              <StarIcon className="text-black fw-bold" />
-              <StarIcon className="text-black fw-bold" />
-              <StarIcon className="text-black fw-bold" />
-              <StarIcon className="text-black fw-bold" />
-            </h5>
-            <p className="my-auto ms-1 text-secondary me-5">(90) Reviews</p>
-          </div>
+          {productDetails.rating && (
+            <div className="d-flex ">
+              <h5 className="fw-bold my-auto d-flex">
+                {productDetails.rating.map((e) => {
+                  return <StarIcon className="text-black fw-bold" />;
+                })}
+
+                {/* <StarIcon className="text-black fw-bold" />
+                <StarIcon className="text-black fw-bold" />
+                <StarIcon className="text-black fw-bold" />
+                <StarIcon className="text-black fw-bold" /> */}
+              </h5>
+              <p className="my-auto ms-1 text-secondary me-5">(90) Reviews</p>
+            </div>
+          )}
           <div className="text-start">
             {/* color */}
             <p className="text-secondary pt-3 ">Color :</p>
