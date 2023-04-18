@@ -148,11 +148,14 @@ export default function ProductDetails({ id }) {
                                     const idx_name = newState
                                       .map((e) => e.name)
                                       .indexOf(f.name);
-                                    console.log(idx_name);
+                                    // console.log(idx_name);
                                     if (idx_name != -1) {
-                                      prev[idx_name]._id = f._id;
+                                      newState[idx_name]._id = f._id;
                                     } else {
-                                      prev.push({ name: f.name, _id: f._id });
+                                      newState.push({
+                                        name: f.name,
+                                        _id: f._id,
+                                      });
                                     }
                                   } else {
                                     prev.splice(idx);
