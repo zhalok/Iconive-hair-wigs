@@ -13,13 +13,17 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./ProductDetails.css";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 
 export default function ProductDetails({ id }) {
   // console.log(product);
+  const navigate = useNavigate();
   const [productDetails, setProductDetails] = useState();
   const { product } = useParams();
   const [selectedAddOns, setSelectedAddons] = useState([]);
+  const [amount, setAmount] = useState(0);
+
   // console.log(selectedAddOns);
   const getProductDetails = async () => {
     try {
@@ -46,13 +50,11 @@ export default function ProductDetails({ id }) {
   console.log(JSON.parse(cart));
 
   if (!productDetails) return <></>;
-  const navigate = useNavigate();
 
   function handleClick() {
     navigate("/checkout");
   }
 
-  const [amount, setAmount] = useState(0);
   return (
     <>
       <div className="container d-flex my-5">
