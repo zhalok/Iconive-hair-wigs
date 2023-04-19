@@ -30,27 +30,35 @@ export default function ProductDetails({ id, setCartRenderer }) {
     try {
       const response = await axios.get(`/products/${product}`, {});
       setProductDetails(response.data);
-      response.data.map((e) => {
-        const arr = [];
-        if (response.data.rating) {
-          for (let i = 0; i < response.data.rating; i++) arr.push("*");
-        }
-        return { ...e, rating: arr };
-      });
-      console.log(response.data);
+      // response.data.map((e) => {
+      //   const arr = [];
+      //   if (response.data.rating) {
+      //     for (let i = 0; i < response.data.rating; i++) arr.push("*");
+      //   }
+      //   return { ...e, rating: arr };
+      // });
+      // console.log(response.data);
     } catch (e) {
       console.log(e);
     }
   };
   useEffect(() => {
     getProductDetails();
-    let cart = localStorage.getItem("cart");
-    if (cart) {
-      cart = JSON.parse(cart);
-      if (cart.map((e) => e.product).includes(productDetails._id))
-        setCartAdded(true);
-    }
   }, []);
+  useEffect(() => {
+    if (productDetails) {
+      let cart = localStorage.getItem("cart");
+      // console.log(cart);
+      // if (typeof cart == "object" && cart instanceof "array") {
+      //   console.log("Hello");
+      // }
+      if (cart) {
+        cart = JSON.parse(cart);
+        if (cart.map((e) => e.product).includes(productDetails._id))
+          setCartAdded(true);
+      }
+    }
+  }, [productDetails]);
   // const cart = localStorage.getItem("cart");
   // console.log(JSON.parse(cart));
 
