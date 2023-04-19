@@ -8,7 +8,16 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
-export default function CartItem({ id, addOns, quantity, discardCartItem }) {
+export default function CartItem({
+  id,
+  addOns,
+  quantity,
+  discardCartItem,
+  setCartItems,
+  setProductTotal,
+}) {
+  // console.log("hello");
+  // console.log(setProductTotal);
   //   console.log("addons", addOns);
   const [product, setProduct] = useState({});
   const [amount, setAmount] = useState(0);
@@ -83,10 +92,22 @@ export default function CartItem({ id, addOns, quantity, discardCartItem }) {
             <Button
               onClick={() => {
                 if (amount === 0) return;
-                else
-                  setAmount((prevs) => {
-                    return prevs - 1;
+                // setAmount((prevs) => {
+                else {
+                  setCartItems((prevCart) => {
+                    const newCart = [...prevCart];
+                    const idx = newCart
+                      .map((e) => e.product)
+                      .indexOf(product._id);
+                    if (idx != -1)
+                      newCart[idx].amount = Math.max(
+                        0,
+                        newCart[idx].amount - 1
+                      );
+                    return [...newCart];
                   });
+                  setProductTotal((prev) => prev - product.price);
+                }
               }}
               className="btn-light rounded-0 border"
             >
@@ -97,9 +118,19 @@ export default function CartItem({ id, addOns, quantity, discardCartItem }) {
             </Button>
             <Button
               onClick={() => {
-                setAmount((prevs) => {
-                  return prevs + 1;
+                // console.log("clicked");
+                // setAmount((prevs) => {
+                setCartItems((prevCart) => {
+                  const newCart = [...prevCart];
+                  const idx = newCart
+                    .map((e) => e.product)
+                    .indexOf(product._id);
+                  if (idx != -1) newCart[idx].amount += 1;
+                  return [...newCart];
                 });
+                setProductTotal((prev) => prev + product.price);
+
+                // });
               }}
               className="btn-light rounded-0 border "
             >

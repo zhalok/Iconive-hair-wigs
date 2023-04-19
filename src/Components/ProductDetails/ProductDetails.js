@@ -240,6 +240,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
                       product: productDetails._id,
                       addons: selectedAddOns,
                       amount: 1,
+                      price: productDetails.price,
                     });
                   } else {
                     cartItems = JSON.parse(cartItems);
@@ -252,6 +253,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
                         product: productDetails._id,
                         addons: selectedAddOns,
                         amount: 1,
+                        price: productDetails.price,
                       });
                     } else {
                       cartItems.splice(

@@ -10,8 +10,9 @@ import CartItem from "../../Components/CartItem/CartItem.js";
 
 export default function Checkout() {
   const [cartItems, setCartItems] = useState([]);
+  const [deliveryCharge, setDeliveryCharge] = useState(20);
   // console.log("cart itmes", cartItems);
-
+  const [productTotal, setProductTotal] = useState(0);
   let countryData = Country.getAllCountries();
   const [stateData, setStateData] = useState();
   const [cityData, setCityData] = useState();
@@ -19,6 +20,7 @@ export default function Checkout() {
   const [state, setState] = useState();
   const [city, setCity] = useState();
 
+  // console.log("cartItems", cartItems);
   useEffect(() => {
     setStateData(State.getStatesOfCountry(country?.isoCode));
   }, [country]);
@@ -38,21 +40,34 @@ export default function Checkout() {
   const discardCartItem = (product) => {
     const cart = localStorage.getItem("cart");
     if (cart) {
-      const cartItems = JSON.parse(cart);
-      const idx = cartItems.map((e) => e.product).indexOf(product);
-      if (idx != -1) cartItems.splice(idx);
-      localStorage.setItem("cart", JSON.stringify(cartItems));
-      setCartItems(cartItems);
+      const _cartItems = JSON.parse(cart);
+      const idx = _cartItems.map((e) => e.product).indexOf(product);
+      // console.log(idx);
+      const _product = cartItems[idx];
+      // console
+      if (idx != -1) _cartItems.splice(idx, 1);
+      // console.log(_cartItems);
+      localStorage.setItem("cart", JSON.stringify(_cartItems));
+      setProductTotal((prev) => prev - _product.price * _product.amount);
+      setCartItems(_cartItems);
     }
   };
-
+  // console.log("product total", val);
   useEffect(() => {
     const cart = localStorage.getItem("cart");
+    // console.log("hello");
     if (cart) {
       setCartItems(JSON.parse(cart));
-      console.log("Cart items", cartItems);
+      const _cartItems = JSON.parse(cart);
+      setProductTotal(
+        _cartItems.reduce((acc, val) => acc + val.price * val.amount, 0)
+      );
     }
   }, []);
+
+  useEffect(() => {
+    if (productTotal > 200) setDeliveryCharge(0);
+  }, [productTotal]);
   const [checkAddress, setCheckAddress] = useState(false);
   const [checkRefund, setCheckRefund] = useState(true);
   const [amount, setAmount] = useState(1);
@@ -300,19 +315,27 @@ export default function Checkout() {
                   type="submit"
                   value="SUBMIT"
                   className="border-0 btn-dark text-white px-5 py-3 my-5 w-100 pe-4"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log(cartItems);
+                    // console.log("hello");
+                  }}
                 />
               </form>
             </div>
             <div className="col-4 border-start p-4 ">
               <div>
-                {cartItems.map((card, index) => (
-                  <CartItem
-                    id={card.product}
-                    addOns={card.addons}
-                    quantity={card.amount}
-                    discardCartItem={discardCartItem}
-                  />
-                ))}
+                {cartItems &&
+                  cartItems.map((card, index) => (
+                    <CartItem
+                      id={card.product}
+                      addOns={card.addons}
+                      quantity={card.amount}
+                      discardCartItem={discardCartItem}
+                      setCartItems={setCartItems}
+                      setProductTotal={setProductTotal}
+                    />
+                  ))}
               </div>
               <div>
                 <div className="w-100 hc-50 d-flex my-4">
@@ -329,15 +352,17 @@ export default function Checkout() {
                 </div>
                 <div className="d-flex justify-content-between my-2 border-bottom">
                   <h6 className="fw-bold">Products </h6>
-                  <p>$2887</p>
+                  <p>${productTotal}</p>
                 </div>
                 <div className="d-flex justify-content-between  my-2 border-2 border-bottom">
                   <h6 className="fw-bold">Subtotal </h6>
-                  <p>$2887</p>
+                  <p>${deliveryCharge}</p>
                 </div>
                 <div className="d-flex justify-content-between  ">
                   <h5 className="fw-bold">Total </h5>
-                  <p className="fw-bold">$2887</p>
+                  <p className="fw-bold">
+                    ${parseFloat(productTotal) + parseFloat(deliveryCharge)}
+                  </p>
                 </div>
                 <div className="form-check form-switch pt-5 flex">
                   <input
