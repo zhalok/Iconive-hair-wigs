@@ -15,20 +15,20 @@ import "./ProductDetails.css";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
+import CartContext from "../../Contexts/CartContext";
 
-export default function ProductDetails({ id }) {
-  // console.log(product);
+export default function ProductDetails({ id, setCartRenderer }) {
   const navigate = useNavigate();
   const [productDetails, setProductDetails] = useState();
   const { product } = useParams();
   const [selectedAddOns, setSelectedAddons] = useState([]);
   const [amount, setAmount] = useState(0);
+  const [cartAdded, setCartAdded] = useState(false);
+  // const [reRenderer, setReRenderer] = useState(0);
 
-  // console.log(selectedAddOns);
   const getProductDetails = async () => {
     try {
       const response = await axios.get(`/products/${product}`, {});
-      // console.log(response);
       setProductDetails(response.data);
       response.data.map((e) => {
         const arr = [];
@@ -42,12 +42,17 @@ export default function ProductDetails({ id }) {
       console.log(e);
     }
   };
-  // if (productDetails) console.log(productDetails.addOns);
   useEffect(() => {
     getProductDetails();
+    let cart = localStorage.getItem("cart");
+    if (cart) {
+      cart = JSON.parse(cart);
+      if (cart.map((e) => e.product).includes(productDetails._id))
+        setCartAdded(true);
+    }
   }, []);
-  const cart = localStorage.getItem("cart");
-  console.log(JSON.parse(cart));
+  // const cart = localStorage.getItem("cart");
+  // console.log(JSON.parse(cart));
 
   if (!productDetails) return <></>;
 
@@ -216,14 +221,42 @@ export default function ProductDetails({ id }) {
               <button
                 className="w-50 btn btn-dark py-2 rounded-0 me-4"
                 onClick={() => {
-                  localStorage.setItem(
-                    "cart",
-                    JSON.stringify([{ name: "hi" }])
-                  );
+                  let cartItems = localStorage.getItem("cart");
+                  if (!cartItems) {
+                    cartItems = [];
+                    cartItems.push({
+                      product: productDetails._id,
+                      addons: selectedAddOns,
+                    });
+                  } else {
+                    cartItems = JSON.parse(cartItems);
+                    if (
+                      !cartItems
+                        .map((e) => e.product)
+                        .includes(productDetails._id)
+                    ) {
+                      cartItems.push({
+                        product: productDetails._id,
+                        addons: selectedAddOns,
+                      });
+                    } else {
+                      cartItems.splice(
+                        cartItems
+                          .map((e) => e.product)
+                          .indexOf(productDetails._id)
+                      );
+                    }
+                  }
+                  cartItems = JSON.stringify(cartItems);
+                  localStorage.setItem("cart", cartItems);
+                  setCartRenderer({});
+                  setCartAdded((prev) => !prev);
                 }}
               >
-                <ShoppingCartIcon /> ADD TO CART
+                <ShoppingCartIcon />{" "}
+                {!cartAdded ? "ADD TO CART" : "REMOVE FROM CART"}
               </button>
+
               <button className=" btn btn-outline-dark py-2 px-5  rounded-0">
                 + WISH LIST
               </button>
