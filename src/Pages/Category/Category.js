@@ -479,8 +479,8 @@ export default function Category() {
                             // data-bs-toggle="modal"
                             className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0"
                           >
-                            <ShoppingCartIcon className="pe-1 my-auto" /> Add To
-                            Cart
+                            <ShoppingCartIcon className="pe-1 my-auto" />{" "}
+                            Details
                           </button>
                         </div>
                         <div className="text-center px-2">
