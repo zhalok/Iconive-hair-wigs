@@ -2,21 +2,19 @@ import React, { useEffect, useState } from "react";
 import { City, Country, State } from "country-state-city";
 import Selector from "./Selector.jsx";
 import "./checkout.css";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import checkimg from "./Image/checkimg.jpg";
 import locicon from "./Image/icons/location-pin.png";
 import callicon from "./Image/icons/phone-call.png";
 import mailicon from "./Image/icons/email.png";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import DeleteIcon from "@mui/icons-material/Delete";
+
+import CartItem from "../../Components/CartItem/CartItem.js";
 
 export default function Checkout() {
+  const [cartItems, setCartItems] = useState([]);
+  // console.log("cart itmes", cartItems);
+
   let countryData = Country.getAllCountries();
   const [stateData, setStateData] = useState();
   const [cityData, setCityData] = useState();
-
   const [country, setCountry] = useState(countryData[0]);
   const [state, setState] = useState();
   const [city, setCity] = useState();
@@ -37,10 +35,28 @@ export default function Checkout() {
     cityData && setCity(cityData[0]);
   }, [cityData]);
 
+  const discardCartItem = (product) => {
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      const cartItems = JSON.parse(cart);
+      const idx = cartItems.map((e) => e.product).indexOf(product);
+      if (idx != -1) cartItems.splice(idx);
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+      setCartItems(cartItems);
+    }
+  };
 
+  useEffect(() => {
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      setCartItems(JSON.parse(cart));
+      console.log("Cart items", cartItems);
+    }
+  }, []);
   const [checkAddress, setCheckAddress] = useState(false);
   const [checkRefund, setCheckRefund] = useState(true);
   const [amount, setAmount] = useState(1);
+
   return (
     <div>
       <div>
@@ -289,70 +305,13 @@ export default function Checkout() {
             </div>
             <div className="col-4 border-start p-4 ">
               <div>
-                {[1, 2, 3].map((card, index) => (
-                  <div
-                    key={index}
-                    className="w-100 text-start py-4 border-bottom border-1"
-                  >
-                    <div className="d-flex">
-                      <div className="w-s100 w-15 ">
-                        <img
-                          className="w-100 h-100"
-                          src={checkimg}
-                          alt="this is an icon"
-                        />
-                      </div>
-                      <div className="d-flex w-85 ms-2">
-                        <h6 className="fw-bold my-auto">
-                          8.5"x9" Blake | Silk Part Remy Human Hair Topper With
-                          Layers | Left Part
-                        </h6>
-                      </div>
-                    </div>
-                    <p className="mt-1">
-                      <small>
-                        Color : Natural Black With Brown Shades, Length : 12",
-                        Density : 130%
-                      </small>
-                    </p>
-                    <div className="d-flex justify-content-between">
-                      <h5 className="fw-bold my-auto">$ {501 * amount}</h5>
-                      <div>
-                        <ButtonGroup size="sm">
-                          <Button
-                            onClick={() => {
-                              if (amount === 0) return;
-                              else
-                                setAmount((prevs) => {
-                                  return prevs - 1;
-                                });
-                            }}
-                            className="btn-light rounded-0 border"
-                          >
-                            <RemoveIcon />
-                          </Button>
-                          <Button className="btn-light rounded-0 border px-4">
-                            {amount}
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              setAmount((prevs) => {
-                                return prevs + 1;
-                              });
-                            }}
-                            className="btn-light rounded-0 border "
-                          >
-                            <AddIcon />
-                          </Button>
-                        </ButtonGroup>
-                      </div>
-                      <div>
-                        <button size="sm" className="btn  py-0 me-3">
-                          <DeleteIcon className="text-danger" />{" "}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                {cartItems.map((card, index) => (
+                  <CartItem
+                    id={card.product}
+                    addOns={card.addons}
+                    quantity={card.amount}
+                    discardCartItem={discardCartItem}
+                  />
                 ))}
               </div>
               <div>
@@ -364,7 +323,9 @@ export default function Checkout() {
                     placeholder="Coupon Code "
                     className="w-75 h-100 px-2 rounded-0 border-1 "
                   />
-                  <button className="w-25 h-100 btn btn-dark rounded-0">APPLY</button>
+                  <button className="w-25 h-100 btn btn-dark rounded-0">
+                    APPLY
+                  </button>
                 </div>
                 <div className="d-flex justify-content-between my-2 border-bottom">
                   <h6 className="fw-bold">Products </h6>
@@ -382,11 +343,12 @@ export default function Checkout() {
                   <input
                     onClick={() => {
                       setCheckRefund((prevState) => {
-                       return !prevState;
+                        return !prevState;
                       });
                     }}
-                    className={` form-check-input fs-5 my-auto checked ${(checkRefund)&&" "}`}
-                   
+                    className={` form-check-input fs-5 my-auto checked ${
+                      checkRefund && " "
+                    }`}
                     type="checkbox"
                     id="flexSwitchCheckChecked"
                   />
@@ -394,13 +356,16 @@ export default function Checkout() {
                     className="form-check-label text-start my-auto"
                     for="flexSwitchCheckChecked"
                   >
-                    I have read and agree to all the terms of <a className="text-decoration-none text-primary" href="/returnpolicy">RETURN POLICY</a>
+                    I have read and agree to all the terms of{" "}
+                    <a
+                      className="text-decoration-none text-primary"
+                      href="/returnpolicy"
+                    >
+                      RETURN POLICY
+                    </a>
                   </label>
                 </div>
-                
               </div>
-
-              
             </div>
           </div>
         </div>

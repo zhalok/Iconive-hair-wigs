@@ -181,10 +181,14 @@ export default function ProductDetails({ id, setCartRenderer }) {
                                     // console.log(idx_name);
                                     if (idx_name != -1) {
                                       newState[idx_name]._id = f._id;
+                                      newState[idx_name].price = f.price;
+                                      newState[idx_name].value = f.value;
                                     } else {
                                       newState.push({
                                         name: f.name,
                                         _id: f._id,
+                                        price: f.price,
+                                        value: f.value,
                                       });
                                     }
                                   } else {
@@ -235,6 +239,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
                     cartItems.push({
                       product: productDetails._id,
                       addons: selectedAddOns,
+                      amount: 1,
                     });
                   } else {
                     cartItems = JSON.parse(cartItems);
@@ -246,6 +251,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
                       cartItems.push({
                         product: productDetails._id,
                         addons: selectedAddOns,
+                        amount: 1,
                       });
                     } else {
                       cartItems.splice(
