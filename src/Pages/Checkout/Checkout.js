@@ -1,41 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { City, Country, State } from "country-state-city";
-import Selector from "./Selector.jsx";
 import "./checkout.css";
-import locicon from "./Image/icons/location-pin.png";
-import callicon from "./Image/icons/phone-call.png";
-import mailicon from "./Image/icons/email.png";
-
 import CartItem from "../../Components/CartItem/CartItem.js";
 
 export default function Checkout() {
   const [cartItems, setCartItems] = useState([]);
   const [deliveryCharge, setDeliveryCharge] = useState(20);
-  // console.log("cart itmes", cartItems);
   const [productTotal, setProductTotal] = useState(0);
-  let countryData = Country.getAllCountries();
-  const [stateData, setStateData] = useState();
-  const [cityData, setCityData] = useState();
-  const [country, setCountry] = useState(countryData[0]);
-  const [state, setState] = useState();
-  const [city, setCity] = useState();
-
-  // console.log("cartItems", cartItems);
-  useEffect(() => {
-    setStateData(State.getStatesOfCountry(country?.isoCode));
-  }, [country]);
+  const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState();
+  const [city, setCity] = useState([]);
+  const [selectedCity, setSelectedCity] = useState();
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
-    setCityData(City.getCitiesOfState(country?.isoCode, state?.isoCode));
-  }, [state]);
+    if (selectedCountry) {
+      setCity(City.getCitiesOfCountry(selectedCountry));
+      console.log("city", city);
+      setSelectedCity(City.getCitiesOfCountry(selectedCountry)[0].countryCode);
+    }
+  }, [selectedCountry]);
 
   useEffect(() => {
-    stateData && setState(stateData[0]);
-  }, [stateData]);
-
-  useEffect(() => {
-    cityData && setCity(cityData[0]);
-  }, [cityData]);
+    setCountries((prev) => {
+      return Country.getAllCountries();
+    });
+    setSelectedCountry(Country.getAllCountries()[0].isoCode);
+  }, []);
 
   const discardCartItem = (product) => {
     const cart = localStorage.getItem("cart");
@@ -52,10 +45,10 @@ export default function Checkout() {
       setCartItems(_cartItems);
     }
   };
-  // console.log("product total", val);
+
   useEffect(() => {
     const cart = localStorage.getItem("cart");
-    // console.log("hello");
+
     if (cart) {
       setCartItems(JSON.parse(cart));
       const _cartItems = JSON.parse(cart);
@@ -68,6 +61,7 @@ export default function Checkout() {
   useEffect(() => {
     if (productTotal > 200) setDeliveryCharge(0);
   }, [productTotal]);
+
   const [checkAddress, setCheckAddress] = useState(false);
   const [checkRefund, setCheckRefund] = useState(true);
   const [amount, setAmount] = useState(1);
@@ -133,7 +127,7 @@ export default function Checkout() {
                   </div>
                   <div className="w-50 ">
                     <p className="text-start mb-1">
-                      Password<span className="spanRed">*</span>
+                      Phone<span className="spanRed">*</span>
                     </p>
                     <input
                       type="text"
@@ -157,7 +151,45 @@ export default function Checkout() {
                   </div>
                   <div className="w-50 ">
                     <p className="text-start mb-1">
+                      Country<span className="spanRed">*</span>
+                    </p>
+
+                    <select
+                      className="w-100 h-75 px-2 rounded-0 border-1"
+                      value={selectedCountry}
+                      onChange={(e) => {
+                        setSelectedCountry(e.target.value);
+                      }}
+                    >
+                      {countries &&
+                        countries.map((e) => {
+                          return <option value={e.isoCode}>{e.name}</option>;
+                        })}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="d-flex pt-4 ">
+                  <div className="w-50 pe-lg-4">
+                    <p className="text-start mb-1">
                       City<span className="spanRed">*</span>
+                    </p>
+
+                    <select
+                      className="w-100 h-75 px-2rounded-0 border-1"
+                      value={selectedCity}
+                      onChange={(e) => {
+                        setSelectedCity(e.target.value);
+                      }}
+                    >
+                      {city.map((e) => {
+                        return <option value={e.countryCode}>{e.name}</option>;
+                      })}
+                    </select>
+                  </div>
+                  <div className="w-50 ">
+                    <p className="text-start mb-1 mr-auto">
+                      Postal Code<span className="spanRed">*</span>
                     </p>
                     <input
                       type="text"
@@ -168,152 +200,14 @@ export default function Checkout() {
                   </div>
                 </div>
 
-                <div className="pt-4 h-100  d-flex justify-content-between">
-                  <div className="w-30 ">
-                    <p className="text-start mb-1">
-                      Address<span className="spanRed">*</span>
-                    </p>
-                    <input
-                      type="text"
-                      name="contactName"
-                      id=""
-                      className="w-100 h-75 px-2 rounded-0 border-1"
-                    />
-                  </div>
-                  <div className="w-30 ">
-                    <p className="text-start mb-1">
-                      City<span className="spanRed">*</span>
-                    </p>
-                    <input
-                      type="text"
-                      name="contactName"
-                      id=""
-                      className="w-100 h-75 px-2 rounded-0 border-1"
-                    />
-                  </div>
-                  <div className="w-30 ">
-                    <p className="text-start mb-1">
-                      City<span className="spanRed">*</span>
-                    </p>
-                    <input
-                      type="text"
-                      name="contactName"
-                      id=""
-                      className="w-100 h-75 px-2 rounded-0 border-1"
-                    />
-                  </div>
+                <div className="d-flex pt-4">
+                  <div className="w-50 "></div>
+                  <div className="w-50"></div>
                 </div>
-                <div className="form-check form-switch pt-5">
-                  <input
-                    onClick={() => {
-                      setCheckAddress((prevState) => {
-                        return !prevState;
-                      });
-                    }}
-                    className={` form-check-input btn-dark bg-light  ${
-                      checkAddress && "bg-dark"
-                    }`}
-                    type="checkbox"
-                    id="flexSwitchCheckChecked"
-                  />
-                  <label
-                    className="form-check-label"
-                    for="flexSwitchCheckChecked"
-                  >
-                    Billing another address
-                  </label>
-                </div>
-                {/* billing another address  */}
-                {checkAddress && (
-                  <div>
-                    <div className="d-flex pt-4">
-                      <div className="w-50 pe-lg-4">
-                        <p className="text-start mb-1">
-                          Name<span className="spanRed">*</span>
-                        </p>
-                        <input
-                          type="text"
-                          name="contactName"
-                          id=""
-                          className="w-100 h-75 px-2 rounded-0 border-1"
-                        />
-                      </div>
-                      <div className="w-50 ">
-                        <p className="text-start mb-1 d-flex">
-                          Phone Number <span className="spanRed"> *</span>
-                        </p>
-                        <input
-                          type="number"
-                          name="contactName"
-                          id=""
-                          className="w-100 h-75 px-2 rounded-0 border-1"
-                        />
-                      </div>
-                    </div>
-                    <div className="d-flex pt-4 ">
-                      <div className="w-50 pe-lg-4">
-                        <p className="text-start mb-1">
-                          Address<span className="spanRed">*</span>
-                        </p>
-                        <input
-                          type="text"
-                          name="contactName"
-                          id=""
-                          className="w-100 h-75 px-2 rounded-0 border-1"
-                        />
-                      </div>
-                      <div className="w-50 ">
-                        <p className="text-start mb-1">
-                          City<span className="spanRed">*</span>
-                        </p>
-                        <input
-                          type="text"
-                          name="contactName"
-                          id=""
-                          className="w-100 h-75 px-2 rounded-0 border-1"
-                        />
-                      </div>
-                    </div>
-                    <div className="pt-4 h-100  d-flex justify-content-between">
-                      <div className="w-30 ">
-                        <p className="text-start mb-1">
-                          Address<span className="spanRed">*</span>
-                        </p>
-                        <input
-                          type="text"
-                          name="contactName"
-                          id=""
-                          className="w-100 h-75 px-2 rounded-0 border-1"
-                        />
-                      </div>
-                      <div className="w-30 ">
-                        <p className="text-start mb-1">
-                          City<span className="spanRed">*</span>
-                        </p>
-                        <input
-                          type="text"
-                          name="contactName"
-                          id=""
-                          className="w-100 h-75 px-2 rounded-0 border-1"
-                        />
-                      </div>
-                      <div className="w-30 ">
-                        <p className="text-start mb-1">
-                          City<span className="spanRed">*</span>
-                        </p>
-                        <input
-                          type="text"
-                          name="contactName"
-                          id=""
-                          className="w-100 h-75 px-2 rounded-0 border-1"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
+
                 <input
                   type="submit"
-                  value="SUBMIT"
+                  value="CHECKOUT"
                   className="border-0 btn-dark text-white px-5 py-3 my-5 w-100 pe-4"
                   onClick={(e) => {
                     e.preventDefault();
@@ -394,38 +288,6 @@ export default function Checkout() {
             </div>
           </div>
         </div>
-        {/* <div>
-              <h2 className="text-2xl font-bold text-teal-900">
-                Country, State and City Selectors
-              </h2>
-              <br />
-              <div className="flex flex-wrap gap-3 bg-teal-300 rounded-lg p-8">
-                <div>
-                  <p className="text-teal-800 font-semibold">Country :</p>
-                  <Selector
-                    data={countryData}
-                    selected={country}
-                    setSelected={setCountry}
-                  />
-                </div>
-                {state && (
-                  <div>
-                    <p className="text-teal-800 font-semibold">State :</p>
-                    <Selector
-                      data={stateData}
-                      selected={state}
-                      setSelected={setState}
-                    />
-                  </div>
-                )}
-                {city && (
-                  <div>
-                    <p className="text-teal-800 font-semibold">City :</p>
-                    <Selector data={cityData} selected={city} setSelected={setCity} />
-                  </div>
-                )}
-              </div>
-        </div> */}
       </div>
     </div>
   );
