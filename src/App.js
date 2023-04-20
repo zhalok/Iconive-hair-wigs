@@ -19,9 +19,12 @@ function App() {
   const [user, setUser] = useState(null);
   useEffect(() => {
     const token = Cookies.get("jwt");
+    // console.log("token")
+    // const token = localStorage.getItem("jwt");
     if (token) {
       const decoded = jwtDecode(token);
       setUser(decoded);
+      // console.log("user", decoded);
     }
   }, []);
   return (
@@ -37,16 +40,11 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route
               path="/ProductDetails/:product"
-              element={
-                // <CartContext.Provider value={cartRenderer}>
-                <ProductDetails setCartRenderer={setCartRenderer} />
-                // </CartContext.Provider>
-              }
+              element={<ProductDetails setCartRenderer={setCartRenderer} />}
             />
             <Route path="/aboutus" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/signup" element={<Signup setUser={setUser} />} />
           </Routes>
 
           <Footer></Footer>

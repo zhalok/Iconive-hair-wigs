@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -17,10 +17,17 @@ import Rawhair from "./image/Rawhair.png";
 import Accessories from "./image/Accessories.png";
 import { Badge } from "@mui/material";
 import { render } from "@testing-library/react";
+import AuthContext from "../../Contexts/AuthContext";
+import { DropdownButton, Dropdown } from "react-bootstrap";
+import LoginIcon from "@mui/icons-material/Login";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export default function Navigation({ renderer }) {
+  const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
   const [cartItems, setCartItems] = useState(0);
+  const [showProfileSecton, setShowProfileSection] = useState(false);
   useEffect(() => {
     let cart = localStorage.getItem("cart");
     if (cart) {
@@ -31,6 +38,8 @@ export default function Navigation({ renderer }) {
   }, [renderer]);
   // console.log(CollectionDropdown);
   console.log(renderer);
+  const authContext = useContext(AuthContext);
+  console.log("authContext", authContext);
 
   return (
     <div>
@@ -43,11 +52,81 @@ export default function Navigation({ renderer }) {
       {/* login div */}
       <div className="d-flex">
         <div className="d-flex ms-auto me-4">
-          <div className="p-1  ">
+          {/* <div className="p-1  ">
             <FavoriteBorderIcon className="text-black" />
-          </div>
+          </div> */}
           <div className="p-1 ">
-            <PersonIcon className="text-black" />
+            <AuthContext.Consumer>
+              {(value) => {
+                if (value) {
+                  return (
+                    <>
+                      <div
+                        onClick={() => {
+                          setShowProfileSection((prev) => !prev);
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <PersonIcon />
+                      </div>
+                      {showProfileSecton && (
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <div
+                            style={{ width: "100%", cursor: "pointer" }}
+                            onClick={() => {
+                              Cookies.remove("jwt");
+                              window.location.reload();
+                            }}
+                          >
+                            <small>Signout </small>{" "}
+                          </div>
+                          <div style={{ width: "100%", cursor: "pointer" }}>
+                            <small>Profile</small>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                } else {
+                  return (
+                    <>
+                      <div
+                        onClick={() => {
+                          setShowProfileSection((prev) => !prev);
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <LoginIcon />
+                      </div>
+                      {showProfileSecton && (
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <div
+                            style={{ width: "100%", cursor: "pointer" }}
+                            onClick={() => {
+                              navigate("/login");
+                            }}
+                          >
+                            <small>Login </small>{" "}
+                          </div>
+                          <div
+                            style={{ width: "100%", cursor: "pointer" }}
+                            onClick={() => {
+                              navigate("/signup");
+                            }}
+                          >
+                            <small>Signup</small>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                }
+              }}
+            </AuthContext.Consumer>
           </div>
           <div className="p-1 ">
             <a href="/checkout">
