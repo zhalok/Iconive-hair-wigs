@@ -13,7 +13,10 @@ export default function Checkout() {
   const [selectedCity, setSelectedCity] = useState();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [altPhone, setAltPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [postalCode, setPostalCode] = useState("");
 
   useEffect(() => {
     if (selectedCountry) {
@@ -98,6 +101,10 @@ export default function Checkout() {
                       type="text"
                       name="contactName"
                       id=""
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
                       className="w-100 h-75 px-2 rounded-0 border-1"
                     />
                   </div>
@@ -110,6 +117,10 @@ export default function Checkout() {
                       name="contactName"
                       id=""
                       className="w-100 h-75 px-2 rounded-0 border-1"
+                      value={phone}
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                      }}
                     />
                   </div>
                 </div>
@@ -122,17 +133,23 @@ export default function Checkout() {
                       type="email"
                       name="contactName"
                       id=""
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
                       className="w-100 h-75 px-2 rounded-0 border-1"
                     />
                   </div>
                   <div className="w-50 ">
-                    <p className="text-start mb-1">
-                      Phone<span className="spanRed">*</span>
-                    </p>
+                    <p className="text-start mb-1">Alternative Phone Number</p>
                     <input
                       type="text"
                       name="contactName"
                       id=""
+                      value={altPhone}
+                      onChange={(e) => {
+                        setAltPhone(e.target.value);
+                      }}
                       className="w-100 h-75  px-2 rounded-0 border-1"
                     />
                   </div>
@@ -147,6 +164,10 @@ export default function Checkout() {
                       name="contactName"
                       id=""
                       className="w-100 h-75 px-2 rounded-0 border-1"
+                      value={address}
+                      onChange={(e) => {
+                        setAddress(e.target.value);
+                      }}
                     />
                   </div>
                   <div className="w-50 ">
@@ -195,6 +216,10 @@ export default function Checkout() {
                       type="text"
                       name="contactName"
                       id=""
+                      value={postalCode}
+                      onChange={(e) => {
+                        setPostalCode(e.target.value);
+                      }}
                       className="w-100 h-75 px-2 rounded-0 border-1"
                     />
                   </div>
