@@ -7,11 +7,12 @@ import Category from "./Pages/Category/Category";
 import Footer from "./Components/Footer/Footer";
 import Checkout from "./Pages/Checkout/Checkout";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
+import Login from "./Components/Login/Login";
+import Signup from "./Components/Signup/Signup";
 import CartContext from "./Contexts/CartContext";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import AuthContext from "./Contexts/AuthContext";
-import Login from "./Pages/Authentication/Login";
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
@@ -44,6 +45,8 @@ function App() {
             />
             <Route path="/aboutus" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
 
           <Footer></Footer>
