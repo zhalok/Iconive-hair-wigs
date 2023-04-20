@@ -7,6 +7,8 @@ import Category from "./Pages/Category/Category";
 import Footer from "./Components/Footer/Footer";
 import Checkout from "./Pages/Checkout/Checkout";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
+import Login from "./Components/Login/Login";
+import Signup from "./Components/Signup/Signup";
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/ProductDetails" element={<ProductDetails />} />
           <Route path="/aboutus" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
 
         <Footer></Footer>
