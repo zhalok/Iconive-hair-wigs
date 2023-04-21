@@ -5,6 +5,7 @@ import CartItem from "../../Components/CartItem/CartItem.js";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
+import { PulseLoader } from "react-spinners";
 
 export default function Checkout() {
   const [cartItems, setCartItems] = useState([]);
@@ -69,6 +70,19 @@ export default function Checkout() {
     if (productTotal > 200) setDeliveryCharge(0);
   }, [productTotal]);
 
+  useEffect(() => {
+    const billing = localStorage.getItem("billingInfo");
+    if (billing) {
+      const billingInfo = JSON.parse(billing);
+      setAddress(billingInfo.address);
+      setName(billingInfo.name);
+      setPhone(billingInfo.phone);
+      setEmail(billingInfo.email);
+      setAltPhone(billingInfo.altPhone);
+      setPostalCode(billingInfo.postalCode);
+    }
+  }, []);
+
   const [checkAddress, setCheckAddress] = useState(false);
   const [checkRefund, setCheckRefund] = useState(true);
   const [amount, setAmount] = useState(1);
@@ -116,10 +130,19 @@ export default function Checkout() {
 
       try {
         setLoading(true);
-        const response = await axios.post("/order", {
-          billingInfo,
-          products: cartItems,
-        });
+        const response = await axios.post(
+          "/order",
+          {
+            billingInfo,
+            cartItems,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get("jwt")}`,
+            },
+          }
+        );
+        setLoading(false);
         console.log(response.data);
       } catch (e) {
         setLoading(false);
@@ -175,7 +198,7 @@ export default function Checkout() {
                       Phone Number <span className="spanRed"> *</span>
                     </p>
                     <input
-                      type="number"
+                      type="text"
                       name="contactName"
                       id=""
                       className="w-100 h-75 px-2 rounded-0 border-1"
@@ -292,17 +315,21 @@ export default function Checkout() {
                   <div className="w-50"></div>
                 </div>
 
-                <input
-                  type="submit"
-                  value="CHECKOUT"
-                  className="border-0 btn-dark text-white px-5 py-3 my-5 w-100 pe-4"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    // console.log(cartItems);
-                    checkout();
-                    // console.log("hello");
-                  }}
-                />
+                {loading ? (
+                  <PulseLoader />
+                ) : (
+                  <input
+                    type="submit"
+                    value="CHECKOUT"
+                    className="border-0 btn-dark text-white px-5 py-3 my-5 w-100 pe-4"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      // console.log(cartItems);
+                      checkout();
+                      // console.log("hello");
+                    }}
+                  />
+                )}
               </form>
             </div>
             <div className="col-4 border-start p-4 ">

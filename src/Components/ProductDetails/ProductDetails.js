@@ -24,20 +24,14 @@ export default function ProductDetails({ id, setCartRenderer }) {
   const [selectedAddOns, setSelectedAddons] = useState([]);
   const [amount, setAmount] = useState(0);
   const [cartAdded, setCartAdded] = useState(false);
+  const [selectedColor, setSelectedColor] = useState("");
   // const [reRenderer, setReRenderer] = useState(0);
+  console.log(selectedColor);
 
   const getProductDetails = async () => {
     try {
       const response = await axios.get(`/products/${product}`, {});
       setProductDetails(response.data);
-      // response.data.map((e) => {
-      //   const arr = [];
-      //   if (response.data.rating) {
-      //     for (let i = 0; i < response.data.rating; i++) arr.push("*");
-      //   }
-      //   return { ...e, rating: arr };
-      // });
-      // console.log(response.data);
     } catch (e) {
       console.log(e);
     }
@@ -48,10 +42,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
   useEffect(() => {
     if (productDetails) {
       let cart = localStorage.getItem("cart");
-      // console.log(cart);
-      // if (typeof cart == "object" && cart instanceof "array") {
-      //   console.log("Hello");
-      // }
+
       if (cart) {
         cart = JSON.parse(cart);
         if (cart.map((e) => e.product).includes(productDetails._id))
@@ -59,8 +50,6 @@ export default function ProductDetails({ id, setCartRenderer }) {
       }
     }
   }, [productDetails]);
-  // const cart = localStorage.getItem("cart");
-  // console.log(JSON.parse(cart));
 
   if (!productDetails) return <></>;
 
@@ -82,15 +71,6 @@ export default function ProductDetails({ id, setCartRenderer }) {
                 </span>
               )}
             </div>
-          }
-          {
-            // <div className="w-100 d-flex justify-content-between py-3">
-            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            //   <img src={pic1} alt="wigs" className="wm-22 h-25  " />
-            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            // </div>
           }
         </div>
         <div className="w-50 px-4 my-auto">
@@ -130,24 +110,28 @@ export default function ProductDetails({ id, setCartRenderer }) {
             {/* color */}
             <p className="text-secondary pt-3 ">Color :</p>
             <div className="d-flex gap-2">
-              {/* 
-              <button className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6">
-                p
-              </button>
-              <button className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6">
-                p
-              </button> */}
               {productDetails.colors.map((e) => {
                 return (
-                  <>
+                  <div
+                    style={{
+                      opacity: selectedColor == e._id ? "1" : ".5",
+                      border: "1px solid black",
+                      padding: "10px",
+
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      setSelectedColor(e._id);
+                    }}
+                  >
                     <button
                       className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6"
                       style={{ backgroundColor: e.color }}
                     >
                       {/* {e.name} */}
                     </button>
-                    <small>{e.name}</small>
-                  </>
+                    <small style={{ marginLeft: "10px" }}>{e.name}</small>
+                  </div>
                 );
               })}
             </div>
@@ -241,6 +225,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
                       addons: selectedAddOns,
                       amount: 1,
                       price: productDetails.price,
+                      color: selectedColor,
                     });
                   } else {
                     cartItems = JSON.parse(cartItems);
@@ -254,6 +239,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
                         addons: selectedAddOns,
                         amount: 1,
                         price: productDetails.price,
+                        color: selectedColor,
                       });
                     } else {
                       cartItems.splice(
@@ -291,81 +277,6 @@ export default function ProductDetails({ id, setCartRenderer }) {
                   data-bs-dismiss="offcanvas"
                   aria-label="Close"
                 ></button>
-              </div>
-              <div class="offcanvas-body">
-                <div>
-                  {[1, 2, 3].map((card, index) => (
-                    <div
-                      key={index}
-                      className="w-100 text-start py-4 border-bottom border-1"
-                    >
-                      <div className="d-flex">
-                        <div className="w-s100 w-15 ">
-                          <img
-                            className="w-100 h-100"
-                            src={checkimg}
-                            alt="this is an icon"
-                          />
-                        </div>
-                        <div className="d-flex w-85 ms-2">
-                          <h6 className="fw-bold my-auto">
-                            8.5"x9" Blake | Silk Part Remy Human Hair Topper
-                            With Layers | Left Part
-                          </h6>
-                        </div>
-                      </div>
-                      <p className="mt-1">
-                        <small>
-                          Color : Natural Black With Brown Shades, Length : 12",
-                          Density : 130%
-                        </small>
-                      </p>
-                      <div className="d-flex justify-content-between">
-                        <h5 className="fw-bold my-auto">$ {501 * amount}</h5>
-                        <div>
-                          <ButtonGroup size="sm">
-                            <Button
-                              onClick={() => {
-                                if (amount === 0) return;
-                                else
-                                  setAmount((prevs) => {
-                                    return prevs - 1;
-                                  });
-                              }}
-                              className="btn-light rounded-0 border"
-                            >
-                              <RemoveIcon />
-                            </Button>
-                            <Button className="btn-light rounded-0 border px-4">
-                              {amount}
-                            </Button>
-                            <Button
-                              onClick={() => {
-                                setAmount((prevs) => {
-                                  return prevs + 1;
-                                });
-                              }}
-                              className="btn-light rounded-0 border "
-                            >
-                              <AddIcon />
-                            </Button>
-                          </ButtonGroup>
-                        </div>
-                        <div>
-                          <button size="sm" className="btn  py-0 me-3">
-                            <DeleteIcon className="text-danger" />{" "}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  onClick={handleClick}
-                  className="btn btn-dark w-100 rounded-0 py-2 mt-3"
-                >
-                  Check out
-                </button>
               </div>
             </div>
           </div>

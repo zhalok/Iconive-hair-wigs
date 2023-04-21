@@ -15,7 +15,8 @@ export default function Signup() {
   const [pass, setpass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const handleEmailchange = (e) => {
     setemail(e.target.value);
   };
@@ -74,10 +75,13 @@ export default function Signup() {
       setLoading(true);
       const response = await axios.post("/auth/signup", signupInfo);
       setLoading(false);
-      console.log(response.data);
+      setMessage("Please check email and confirm");
+      // console.log(response.data);
     } catch (e) {
+      // console.log()
       setLoading(false);
-      alert(e);
+      setMessage("Email already exists");
+      // alert(e);
     }
   };
   return (
@@ -157,6 +161,8 @@ export default function Signup() {
                       Sign Up
                     </button>
                   )}
+                  <small className="text-success">{message}</small>
+                  <small className="text-danger">{error}</small>
                 </form>
                 <p className="my-3 ">
                   Already register ?
