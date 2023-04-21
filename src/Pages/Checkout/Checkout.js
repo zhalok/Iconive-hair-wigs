@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { City, Country, State } from "country-state-city";
 import "./checkout.css";
 import CartItem from "../../Components/CartItem/CartItem.js";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import axios from "../../utils/axios";
 
 export default function Checkout() {
   const [cartItems, setCartItems] = useState([]);
@@ -17,11 +20,12 @@ export default function Checkout() {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (selectedCountry) {
       setCity(City.getCitiesOfCountry(selectedCountry));
-      console.log("city", city);
+      // console.log("city", city);
       setSelectedCity(City.getCitiesOfCountry(selectedCountry)[0].countryCode);
     }
   }, [selectedCountry]);
@@ -68,6 +72,64 @@ export default function Checkout() {
   const [checkAddress, setCheckAddress] = useState(false);
   const [checkRefund, setCheckRefund] = useState(true);
   const [amount, setAmount] = useState(1);
+  const navigate = useNavigate();
+
+  const checkout = async () => {
+    const billingInfo = {
+      name,
+      phone,
+      altPhone,
+      address,
+      email,
+      address,
+      country: Country.getCountryByCode(selectedCountry).name,
+      city: selectedCity,
+      postalCode,
+    };
+    if (
+      !name ||
+      !phone ||
+      !address ||
+      !email ||
+      !selectedCity ||
+      !selectedCountry ||
+      !postalCode
+    ) {
+      alert("FIll necessary informations");
+      return;
+    }
+    // console.log(billingInfo);
+    // return;
+    const token = Cookies.get("jwt");
+    if (!token) {
+      localStorage.setItem("billingInfo", JSON.stringify(billingInfo));
+      navigate("/login?proceeedToCheckout=true");
+      return;
+    }
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      const cartItems = JSON.parse(cart);
+      if (cartItems.length == 0) {
+        alert("Cart is empty");
+        return;
+      }
+
+      try {
+        setLoading(true);
+        const response = await axios.post("/order", {
+          billingInfo,
+          products: cartItems,
+        });
+        console.log(response.data);
+      } catch (e) {
+        setLoading(false);
+        console.log(e);
+      }
+    } else {
+      alert("Cart is empty");
+    }
+  };
+  // console.log(city);
 
   return (
     <div>
@@ -204,7 +266,7 @@ export default function Checkout() {
                       }}
                     >
                       {city.map((e) => {
-                        return <option value={e.countryCode}>{e.name}</option>;
+                        return <option value={e.name}>{e.name}</option>;
                       })}
                     </select>
                   </div>
@@ -236,7 +298,8 @@ export default function Checkout() {
                   className="border-0 btn-dark text-white px-5 py-3 my-5 w-100 pe-4"
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log(cartItems);
+                    // console.log(cartItems);
+                    checkout();
                     // console.log("hello");
                   }}
                 />
