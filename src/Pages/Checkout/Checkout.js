@@ -142,8 +142,13 @@ export default function Checkout() {
             },
           }
         );
+
         setLoading(false);
-        console.log(response.data);
+
+        localStorage.removeItem("billingInfo");
+        localStorage.removeItem("cart");
+        window.location.replace(response.data.payment.payment_url);
+        // console.log(response.data);
       } catch (e) {
         setLoading(false);
         console.log(e);

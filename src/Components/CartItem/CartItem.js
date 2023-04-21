@@ -107,6 +107,13 @@ export default function CartItem({
                     return [...newCart];
                   });
                   setProductTotal((prev) => prev - product.price);
+                  let cart = localStorage.getItem("cart");
+                  if (cart) {
+                    cart = JSON.parse(cart);
+                    const idx = cart.map((e) => e.product).indexOf(product._id);
+                    cart[idx].amount--;
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                  }
                 }
               }}
               className="btn-light rounded-0 border"
@@ -128,7 +135,15 @@ export default function CartItem({
                   if (idx != -1) newCart[idx].amount += 1;
                   return [...newCart];
                 });
+
                 setProductTotal((prev) => prev + product.price);
+                let cart = localStorage.getItem("cart");
+                if (cart) {
+                  cart = JSON.parse(cart);
+                  const idx = cart.map((e) => e.product).indexOf(product._id);
+                  cart[idx].amount++;
+                  localStorage.setItem("cart", JSON.stringify(cart));
+                }
 
                 // });
               }}
