@@ -83,9 +83,8 @@ export default function Checkout() {
     }
   }, []);
 
-  const [checkAddress, setCheckAddress] = useState(false);
   const [checkRefund, setCheckRefund] = useState(true);
-  const [amount, setAmount] = useState(1);
+
   const navigate = useNavigate();
 
   const checkout = async () => {
@@ -112,8 +111,7 @@ export default function Checkout() {
       alert("FIll necessary informations");
       return;
     }
-    // console.log(billingInfo);
-    // return;
+
     const token = Cookies.get("jwt");
     if (!token) {
       localStorage.setItem("billingInfo", JSON.stringify(billingInfo));
@@ -144,11 +142,9 @@ export default function Checkout() {
         );
 
         setLoading(false);
-
         localStorage.removeItem("billingInfo");
         localStorage.removeItem("cart");
         window.location.replace(response.data.payment.payment_url);
-        // console.log(response.data);
       } catch (e) {
         setLoading(false);
         console.log(e);
@@ -157,7 +153,6 @@ export default function Checkout() {
       alert("Cart is empty");
     }
   };
-  // console.log(city);
 
   return (
     <div>
