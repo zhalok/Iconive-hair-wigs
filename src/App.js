@@ -17,26 +17,37 @@ import AuthContext from "./Contexts/AuthContext";
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
   const [user, setUser] = useState(null);
+  const [currency, setCurrency] = useState("USD");
+  const [exchangeRate, setExchangeRate] = useState(1);
+
   useEffect(() => {
+    !localStorage.getItem("currency") &&
+      localStorage.setItem("currency", "USD");
+    localStorage.setItem("fxrate", JSON.stringify({ usd: 1, bdt: 106 }));
     const token = Cookies.get("jwt");
-    // console.log("token")
-    // const token = localStorage.getItem("jwt");
+
     if (token) {
       const decoded = jwtDecode(token);
       setUser(decoded);
-      // console.log("user", decoded);
     }
   }, []);
   return (
     <div className="App">
       <AuthContext.Provider value={user}>
         <Router>
-          <Navigation renderer={cartRenderer} />
+          <Navigation
+            renderer={cartRenderer}
+            currency={currency}
+            setCurrency={setCurrency}
+          />
 
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/catagory" element={<Category />} />
+            <Route
+              path="/catagory"
+              element={<Category currency={currency} />}
+            />
             <Route path="/checkout" element={<Checkout />} />
             <Route
               path="/ProductDetails/:product"

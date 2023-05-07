@@ -20,8 +20,18 @@ export default function Checkout() {
   const [altPhone, setAltPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [states, setStates] = useState([]);
+  const [selectedState, setSelectedState] = useState();
   const [postalCode, setPostalCode] = useState("");
+
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (selectedCountry) {
+      setStates(State.getStatesOfCountry(selectedCountry));
+      setSelectedState(State.getStatesOfCountry(selectedCountry)[0].isoCode);
+    }
+  }, [selectedCountry]);
 
   useEffect(() => {
     if (selectedCountry) {
@@ -97,6 +107,7 @@ export default function Checkout() {
       address,
       country: Country.getCountryByCode(selectedCountry).name,
       city: selectedCity,
+      state: selectedState,
       postalCode,
     };
     if (
@@ -293,6 +304,27 @@ export default function Checkout() {
                       })}
                     </select>
                   </div>
+
+                  <div className="w-50 pe-lg-4">
+                    <p className="text-start mb-1">
+                      State<span className="spanRed">*</span>
+                    </p>
+
+                    <select
+                      className="w-100 h-75 px-2rounded-0 border-1"
+                      value={selectedState}
+                      onChange={(e) => {
+                        setSelectedState(e.target.value);
+                      }}
+                    >
+                      {states.map((e) => {
+                        return <option value={e.name}>{e.name}</option>;
+                      })}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="d-flex pt-4">
                   <div className="w-50 ">
                     <p className="text-start mb-1 mr-auto">
                       Postal Code<span className="spanRed">*</span>

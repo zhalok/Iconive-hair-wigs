@@ -22,24 +22,24 @@ import { DropdownButton, Dropdown } from "react-bootstrap";
 import LoginIcon from "@mui/icons-material/Login";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import CurrencySwitch from "../Switches/CurrencySwitch";
 
-export default function Navigation({ renderer }) {
+export default function Navigation({ renderer, currency, setCurrency }) {
   const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
   const [cartItems, setCartItems] = useState(0);
   const [showProfileSecton, setShowProfileSection] = useState(false);
+
   useEffect(() => {
     let cart = localStorage.getItem("cart");
     if (cart) {
       cart = JSON.parse(cart);
       setCartItems(cart.length);
     }
-    // setCartItems(renderer);
   }, [renderer]);
-  // console.log(CollectionDropdown);
-  console.log(renderer);
+  // console.log(renderer);
   const authContext = useContext(AuthContext);
-  console.log("authContext", authContext);
+  // console.log("authContext", authContext);
 
   return (
     <div>
@@ -52,9 +52,9 @@ export default function Navigation({ renderer }) {
       {/* login div */}
       <div className="d-flex">
         <div className="d-flex ms-auto me-4">
-          {/* <div className="p-1  ">
-            <FavoriteBorderIcon className="text-black" />
-          </div> */}
+          <div>
+            <CurrencySwitch currency={currency} setCurrency={setCurrency} />
+          </div>
           <div className="p-1 ">
             <AuthContext.Consumer>
               {(value) => {
@@ -128,6 +128,7 @@ export default function Navigation({ renderer }) {
               }}
             </AuthContext.Consumer>
           </div>
+
           <div className="p-1 ">
             <a href="/checkout">
               <Badge badgeContent={cartItems} color="primary">
@@ -280,29 +281,7 @@ export default function Navigation({ renderer }) {
                   </a>
                 </div>
               )}
-              {/* <NavDropdown title="Collections" id="basic-nav-dropdown" className="text-black">
-               <div className="d-flex">
-               <NavDropdown.Item href="/catagory" className="text-black w-25">
-                  <div className="w-100">
-                    <div className="w-100">
-                      <img src="./image/malecollection.png"  alt="This is an Image"/>
-                    </div>
-                   <p>Gents Wigs</p>
 
-                  </div>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/catagory">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/catagory">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/catagory">
-                  Separated link
-                </NavDropdown.Item>
-               </div>
-              </NavDropdown> */}
               <Nav.Link href="/checkout" className="text-black drop"></Nav.Link>
               <Nav.Link href="#home" className="text-black drop">
                 {" "}
