@@ -37,8 +37,6 @@ export default function Category({ currency }) {
   const [filters, setFilters] = useState({});
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
-  // const [currency, setCurrency] = useState("USD");
-  // console.log("Checkout", currency);
 
   const getCategories = async () => {
     try {

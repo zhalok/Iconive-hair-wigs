@@ -34,8 +34,8 @@ export default function CollectionCard({ currency, productId, index }) {
     });
   };
 
-  const handleClick = (id) => {
-    navigate(`/product/${id}`);
+  const handleClick = () => {
+    navigate(`/productDetails/${productId}`);
   };
 
   useEffect(() => {
@@ -52,9 +52,7 @@ export default function CollectionCard({ currency, productId, index }) {
 
   return (
     <div
-      onClick={() => {
-        // handleClick(product._id);
-      }}
+      onClick={handleClick}
       key={index}
       className="card-cat  shadow w-25 "
       style={{
@@ -68,14 +66,7 @@ export default function CollectionCard({ currency, productId, index }) {
           alt="This  is an  picture"
         />
         <button
-          onClick={
-            () => {}
-            // setShowModal((pre) => {
-            //   return !pre;
-            // })
-          }
-          // data-bs-target="#modalID"
-          // data-bs-toggle="modal"
+          onClick={handleClick}
           className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0"
         >
           <ShoppingCartIcon className="pe-1 my-auto" /> Details

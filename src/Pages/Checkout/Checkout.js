@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { City, Country, State } from "country-state-city";
 import "./checkout.css";
 import CartItem from "../../Components/CartItem/CartItem.js";
@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
+import AuthContext from "../../Contexts/AuthContext";
 
 export default function Checkout() {
   const [cartItems, setCartItems] = useState([]);
@@ -23,7 +24,8 @@ export default function Checkout() {
   const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState();
   const [postalCode, setPostalCode] = useState("");
-
+  const auth = useContext(AuthContext);
+  // console.log("auth", auth);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -130,6 +132,7 @@ export default function Checkout() {
       return;
     }
     const cart = localStorage.getItem("cart");
+    const currency = localStorage.getItem("currency");
     if (cart) {
       const cartItems = JSON.parse(cart);
       if (cartItems.length == 0) {
@@ -139,11 +142,12 @@ export default function Checkout() {
 
       try {
         setLoading(true);
-        const response = await axios.post(
+        const orderResponse = await axios.post(
           "/order",
           {
             billingInfo,
             cartItems,
+            currency,
           },
           {
             headers: {
@@ -155,7 +159,19 @@ export default function Checkout() {
         setLoading(false);
         localStorage.removeItem("billingInfo");
         localStorage.removeItem("cart");
-        window.location.replace(response.data.payment.payment_url);
+        const order = orderResponse.data;
+        console.log(order);
+        const paymentResponse = await axios.post(
+          `/payment/create/${order._id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get("jwt")}`,
+            },
+          }
+        );
+
+        window.location.replace(paymentResponse.data.payment_url);
       } catch (e) {
         setLoading(false);
         console.log(e);
@@ -180,12 +196,14 @@ export default function Checkout() {
         <div className="container py-5 ">
           <div className="row  shadow">
             <div className="col-8 p-4 ">
-              <div className="text-start mb-5">
-                <h4 className="mb-3">Already registered?</h4>
-                <button className="btn btn-dark rounded-0 px-4 fs-6">
-                  <small>CLICK HERE TO LOGIN</small>
-                </button>
-              </div>
+              {!auth && (
+                <div className="text-start mb-5">
+                  <h4 className="mb-3">Already registered?</h4>
+                  <button className="btn btn-dark rounded-0 px-4 fs-6">
+                    <small>CLICK HERE TO LOGIN</small>
+                  </button>
+                </div>
+              )}
               <h4 className="text-theme text-start ">Delivery Address</h4>
               <form action="" className="text-start pe-4">
                 <div className="d-flex pt-4">
