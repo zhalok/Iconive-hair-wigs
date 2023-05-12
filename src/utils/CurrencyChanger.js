@@ -1,7 +1,8 @@
-const currencyConverter = (from, to, amount) => {
-  if (from == to) return from;
-  if (to == "BDT") return amount * 106;
-  if (to == "USD") return amount / 106;
+const currencyConverter = (currency, amount) => {
+  // console.log("amount", amount);
+
+  if (currency == "USD") return (amount / 106).toFixed(2);
+  else return amount;
 };
 
 module.exports = currencyConverter;

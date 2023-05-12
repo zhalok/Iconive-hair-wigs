@@ -7,8 +7,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
 import AuthContext from "../../Contexts/AuthContext";
+import currencyConverter from "../../utils/CurrencyChanger";
 
-export default function Checkout() {
+export default function Checkout(props) {
   const [cartItems, setCartItems] = useState([]);
   const [deliveryCharge, setDeliveryCharge] = useState(20);
   const [productTotal, setProductTotal] = useState(0);
@@ -24,9 +25,39 @@ export default function Checkout() {
   const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState();
   const [postalCode, setPostalCode] = useState("");
+  const [currency, setCurrency] = useState("USD");
+
   const auth = useContext(AuthContext);
   // console.log("auth", auth);
   const [loading, setLoading] = useState(false);
+  // console.log(props);
+
+  const discardCartItem = (product) => {
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      const _cartItems = JSON.parse(cart);
+      const idx = _cartItems.map((e) => e.product).indexOf(product);
+
+      const _product = cartItems[idx];
+
+      if (idx != -1) _cartItems.splice(idx, 1);
+
+      localStorage.setItem("cart", JSON.stringify(_cartItems));
+      setProductTotal((prev) => prev - _product.price * _product.amount);
+      setCartItems(_cartItems);
+      props.setCartRenderer({});
+    }
+  };
+
+  const calculateTotal = async () => {
+    const response = await axios.post("/cart/totalPrice", { cartItems });
+    // console.log(response.data.totalPrice);
+    setProductTotal(response.data.totalPrice);
+  };
+
+  useEffect(() => {
+    setCurrency(props.currency);
+  }, [props?.currency]);
 
   useEffect(() => {
     if (selectedCountry) {
@@ -50,33 +81,17 @@ export default function Checkout() {
     setSelectedCountry(Country.getAllCountries()[0].isoCode);
   }, []);
 
-  const discardCartItem = (product) => {
-    const cart = localStorage.getItem("cart");
-    if (cart) {
-      const _cartItems = JSON.parse(cart);
-      const idx = _cartItems.map((e) => e.product).indexOf(product);
-      // console.log(idx);
-      const _product = cartItems[idx];
-      // console
-      if (idx != -1) _cartItems.splice(idx, 1);
-      // console.log(_cartItems);
-      localStorage.setItem("cart", JSON.stringify(_cartItems));
-      setProductTotal((prev) => prev - _product.price * _product.amount);
-      setCartItems(_cartItems);
-    }
-  };
-
   useEffect(() => {
     const cart = localStorage.getItem("cart");
 
     if (cart) {
       setCartItems(JSON.parse(cart));
-      const _cartItems = JSON.parse(cart);
-      setProductTotal(
-        _cartItems.reduce((acc, val) => acc + val.price * val.amount, 0)
-      );
     }
   }, []);
+
+  useEffect(() => {
+    calculateTotal();
+  }, [cartItems]);
 
   useEffect(() => {
     if (productTotal > 200) setDeliveryCharge(0);
@@ -132,7 +147,7 @@ export default function Checkout() {
       return;
     }
     const cart = localStorage.getItem("cart");
-    const currency = localStorage.getItem("currency");
+    // const currency = localStorage.getItem("currency");
     if (cart) {
       const cartItems = JSON.parse(cart);
       if (cartItems.length == 0) {
@@ -147,7 +162,8 @@ export default function Checkout() {
           {
             billingInfo,
             cartItems,
-            currency,
+            currency: props.currency,
+            // propscurrency,
           },
           {
             headers: {
@@ -160,7 +176,7 @@ export default function Checkout() {
         localStorage.removeItem("billingInfo");
         localStorage.removeItem("cart");
         const order = orderResponse.data;
-        console.log(order);
+        // console.log(order);
         const paymentResponse = await axios.post(
           `/payment/create/${order._id}`,
           {},
@@ -393,6 +409,7 @@ export default function Checkout() {
                       discardCartItem={discardCartItem}
                       setCartItems={setCartItems}
                       setProductTotal={setProductTotal}
+                      currency={currency}
                     />
                   ))}
               </div>
@@ -411,7 +428,11 @@ export default function Checkout() {
                 </div>
                 <div className="d-flex justify-content-between my-2 border-bottom">
                   <h6 className="fw-bold">Products </h6>
-                  <p>${productTotal}</p>
+                  {currency != undefined ? (
+                    <p>${currencyConverter(currency, productTotal)}</p>
+                  ) : (
+                    <PulseLoader />
+                  )}
                 </div>
                 <div className="d-flex justify-content-between  my-2 border-2 border-bottom">
                   <h6 className="fw-bold">Subtotal </h6>
@@ -420,7 +441,11 @@ export default function Checkout() {
                 <div className="d-flex justify-content-between  ">
                   <h5 className="fw-bold">Total </h5>
                   <p className="fw-bold">
-                    ${parseFloat(productTotal) + parseFloat(deliveryCharge)}
+                    $
+                    {currencyConverter(
+                      currency,
+                      parseFloat(productTotal) + parseFloat(deliveryCharge)
+                    )}
                   </p>
                 </div>
                 <div className="form-check form-switch pt-5 flex">

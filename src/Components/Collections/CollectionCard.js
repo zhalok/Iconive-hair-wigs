@@ -24,15 +24,15 @@ export default function CollectionCard({ currency, productId, index }) {
     }
   };
 
-  const changeCurrency = async (from, to, amount) => {
-    const convertedAmount = currencyConverter(from, to, amount);
-    setProduct((prevState) => {
-      const newState = { ...prevState };
-      newState["price"] = convertedAmount;
-      newState["currency"] = to;
-      return newState;
-    });
-  };
+  // const changeCurrency = async (from, to, amount) => {
+  //   const convertedAmount = currencyConverter(from, to, amount);
+  //   setProduct((prevState) => {
+  //     const newState = { ...prevState };
+  //     newState["price"] = convertedAmount;
+  //     newState["currency"] = to;
+  //     return newState;
+  //   });
+  // };
 
   const handleClick = () => {
     navigate(`/productDetails/${productId}`);
@@ -43,10 +43,10 @@ export default function CollectionCard({ currency, productId, index }) {
     getProduct(productId);
   }, [productId]);
 
-  useEffect(() => {
-    console.log(currency);
-    changeCurrency(product.currency, currency, product.price);
-  }, [currency]);
+  // useEffect(() => {
+  //   console.log(currency);
+  //   changeCurrency(product.currency, currency, product.price);
+  // }, [currency]);
 
   if (loading) return <PulseLoader color="#F50057" size={20} />;
 
@@ -75,9 +75,10 @@ export default function CollectionCard({ currency, productId, index }) {
       <div className="text-center px-2">
         <h6 className="mt-4 mb-2 fw-bold">{product.name}</h6>
         {/* <p className="m-0">Coco Lee, coins are Kumis brown</p> */}
-        <h5 className="mt-2 mb-3 fw-bold">{`${currency == "BDT" ? "৳" : "$"} ${
-          product.price
-        }`}</h5>
+        <h5 className="mt-2 mb-3 fw-bold">
+          {currency == "USD" ? "$" : "৳"}
+          {currencyConverter(currency, product.price)}
+        </h5>
       </div>
     </div>
   );

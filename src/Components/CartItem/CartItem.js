@@ -8,6 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import currencyConverter from "../../utils/CurrencyChanger";
 export default function CartItem({
   id,
   addOns,
@@ -15,7 +16,9 @@ export default function CartItem({
   discardCartItem,
   setCartItems,
   setProductTotal,
+  currency,
 }) {
+  // console.log("currency", currency);
   // console.log("hello");
   // console.log(setProductTotal);
   //   console.log("addons", addOns);
@@ -23,6 +26,7 @@ export default function CartItem({
   const [amount, setAmount] = useState(0);
   const [price, setPrice] = useState(0);
   const [addons, setAddons] = useState([]);
+
   //   const sum =
   //   console.log(sum);
   const getProduct = async () => {
@@ -30,6 +34,11 @@ export default function CartItem({
       const response = await axios.get(`/products/${id}`);
       //   console.log("cart item", response.data);
       setProduct(response.data);
+      setPrice(() => {
+        const price = response.data.price;
+        const discount = response.data.discount;
+        return price - (price * discount) / 100;
+      });
     } catch (e) {
       console.log(e);
     }
@@ -79,21 +88,29 @@ export default function CartItem({
       <div className="d-flex justify-content-between">
         <h5 className="fw-bold my-auto">
           ${" "}
-          {(parseFloat(product.price) +
-            parseFloat(
-              addons.reduce((accumulator, current) => {
-                return accumulator + current.price;
-              }, 0)
-            )) *
-            amount}
+          {currencyConverter(
+            currency,
+            (parseFloat(price) +
+              parseFloat(
+                addons.reduce((accumulator, current) => {
+                  return accumulator + current.price;
+                }, 0)
+              )) *
+              amount
+          )}
         </h5>
         <div>
           <ButtonGroup size="sm">
             <Button
               onClick={() => {
-                if (amount === 0) return;
+                console.log(amount);
+                if (amount <= 1) {
+                  return;
+                }
                 // setAmount((prevs) => {
                 else {
+                  setAmount((prevs) => prevs - 1);
+                  console.log("hello");
                   setCartItems((prevCart) => {
                     const newCart = [...prevCart];
                     const idx = newCart
@@ -125,8 +142,7 @@ export default function CartItem({
             </Button>
             <Button
               onClick={() => {
-                // console.log("clicked");
-                // setAmount((prevs) => {
+                setAmount((prevs) => prevs + 1);
                 setCartItems((prevCart) => {
                   const newCart = [...prevCart];
                   const idx = newCart

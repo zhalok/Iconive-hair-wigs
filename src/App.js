@@ -48,10 +48,23 @@ function App() {
               path="/catagory"
               element={<Category currency={currency} />}
             />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route
+              path="/checkout"
+              element={
+                <Checkout
+                  currency={currency}
+                  setCartRenderer={setCartRenderer}
+                />
+              }
+            />
             <Route
               path="/ProductDetails/:product"
-              element={<ProductDetails setCartRenderer={setCartRenderer} />}
+              element={
+                <ProductDetails
+                  setCartRenderer={setCartRenderer}
+                  currency={currency}
+                />
+              }
             />
             <Route path="/aboutus" element={<Home />} />
             <Route path="/login" element={<Login setUser={setUser} />} />

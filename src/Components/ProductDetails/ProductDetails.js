@@ -16,8 +16,9 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import CartContext from "../../Contexts/CartContext";
+import currencyConverter from "../../utils/CurrencyChanger";
 
-export default function ProductDetails({ id, setCartRenderer }) {
+export default function ProductDetails({ id, setCartRenderer, currency }) {
   const navigate = useNavigate();
   const [productDetails, setProductDetails] = useState();
   const { product } = useParams();
@@ -66,7 +67,9 @@ export default function ProductDetails({ id, setCartRenderer }) {
               <img src={productDetails.photo} alt="wigs" className="w-100" />
               {productDetails.discount != 0 && (
                 <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-3 rounded-circle m-3">
-                  <h4 className="fw-bold mb-0 mt-2">20%</h4>
+                  <h4 className="fw-bold mb-0 mt-2">
+                    {productDetails.discount}%
+                  </h4>
                   <h4 className="fw-bold mt-0 mb-2">Off</h4>
                 </span>
               )}
@@ -81,13 +84,16 @@ export default function ProductDetails({ id, setCartRenderer }) {
             <div className="d-flex gap-3">
               {productDetails.discount != 0 && (
                 <h3 className="fw-bold my-auto text-danger text-decoration-line-through">
-                  ${productDetails.price}
+                  ${currencyConverter(currency, productDetails.price)}
                 </h3>
               )}
               <h3 className="fw-bold my-auto h">
                 $
-                {productDetails.price -
-                  (productDetails.price * productDetails.discount) / 100}
+                {currencyConverter(
+                  currency,
+                  productDetails.price -
+                    (productDetails.price * productDetails.discount) / 100
+                )}
               </h3>
             </div>
           </div>
@@ -97,11 +103,6 @@ export default function ProductDetails({ id, setCartRenderer }) {
                 {productDetails.rating.map((e) => {
                   return <StarIcon className="text-black fw-bold" />;
                 })}
-
-                {/* <StarIcon className="text-black fw-bold" />
-                <StarIcon className="text-black fw-bold" />
-                <StarIcon className="text-black fw-bold" />
-                <StarIcon className="text-black fw-bold" /> */}
               </h5>
               <p className="my-auto ms-1 text-secondary me-5">(90) Reviews</p>
             </div>
