@@ -21,12 +21,13 @@ import discountCalculator from "../../utils/calculateDIscount";
 
 export default function ProductDetails({ id, setCartRenderer, currency }) {
   const navigate = useNavigate();
-  const [productDetails, setProductDetails] = useState();
+  const [productDetails, setProductDetails] = useState(null);
   const { product } = useParams();
   const [selectedAddOns, setSelectedAddons] = useState([]);
   const [amount, setAmount] = useState(0);
   const [cartAdded, setCartAdded] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedColor, setSelectedColor] = useState();
+  const [selectedColorPrice, setSelectedColorPrice] = useState(0);
 
   const getProductDetails = async () => {
     try {
@@ -57,18 +58,25 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
   }, [productDetails]);
 
   useEffect(() => {
-    setAmount((prev) => {
-      return selectedAddOns.reduce(
-        (acc, curr) => acc + parseFloat(curr.price),
-        prev
-      );
-    });
-    console.log(amount);
-  }, [selectedAddOns]);
-
-  // useEffect(() => {
-  //   setAmount((prev) => prev + selectedColor.price);
-  // }, [selectedColor]);
+    if (productDetails) {
+      setAmount(() => {
+        const discountedPrice = discountCalculator(
+          productDetails.price,
+          productDetails.discount
+        );
+        const totalAddons = selectedAddOns.reduce(
+          (acc, cur) => acc + parseFloat(cur.price),
+          0
+        );
+        console.log("selected add ons", selectedAddOns);
+        const totalPrice =
+          parseFloat(discountedPrice) +
+          parseFloat(selectedColorPrice) +
+          parseFloat(totalAddons);
+        return totalPrice;
+      });
+    }
+  }, [selectedColorPrice, selectedAddOns, productDetails]);
 
   if (!productDetails) return <></>;
 
@@ -115,10 +123,19 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
               </h3>
             </div>
             <div className="d-flex gap-3">
-              Total:{" "}
-              <h3 className="fw-bold my-auto h">
-                ${currencyConverter(currency, amount)}
-              </h3>
+              <div className="d-flex flex-column gap-3">
+                <h3 className="fw-bold my-auto h">
+                  Total: ${currencyConverter(currency, amount)}
+                </h3>
+                <button
+                  className={`btn btn-dark rounded-0 fs-6`}
+                  onClick={() => {
+                    setSelectedAddons([]);
+                  }}
+                >
+                  Remove All Add ons
+                </button>
+              </div>
             </div>
           </div>
           {productDetails.rating && (
@@ -148,10 +165,12 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                     onClick={() => {
                       if (selectedColor) {
                         setSelectedColor(null);
-                        setAmount((prev) => prev - e.price);
+                        setSelectedColorPrice(0);
+                        // setAmount((prev) => prev - e.price);
                       } else {
                         setSelectedColor(e._id);
-                        setAmount((prev) => prev + e.price);
+                        setSelectedColorPrice(e.price);
+                        // setAmount((prev) => prev + e.price);
                       }
                     }}
                   >
@@ -189,6 +208,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                                   const idx = newState
                                     .map((e) => e._id)
                                     .indexOf(f._id);
+                                  console.log("selected addons idx", idx);
                                   if (idx == -1) {
                                     const idx_name = newState
                                       .map((e) => e.name)
@@ -207,7 +227,8 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                                       });
                                     }
                                   } else {
-                                    prev.splice(idx);
+                                    // console.log("hello");
+                                    prev.splice(idx, 1);
                                   }
                                   // if (idx == -1) newState.push({ _id: f._id });
                                   // else newState.splice(idx);
