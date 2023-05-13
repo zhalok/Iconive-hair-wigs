@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import CartContext from "../../Contexts/CartContext";
 import currencyConverter from "../../utils/CurrencyChanger";
+import discountCalculator from "../../utils/calculateDIscount";
 
 export default function ProductDetails({ id, setCartRenderer, currency }) {
   const navigate = useNavigate();
@@ -27,19 +28,25 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
   const [cartAdded, setCartAdded] = useState(false);
   const [selectedColor, setSelectedColor] = useState("");
   // const [reRenderer, setReRenderer] = useState(0);
-  console.log(selectedColor);
+  // console.log(selectedColor);
+  // console.log("productDetails", productDetails);
 
   const getProductDetails = async () => {
     try {
       const response = await axios.get(`/products/${product}`, {});
       setProductDetails(response.data);
+      setAmount(
+        discountCalculator(response.data.price, response.data.discount)
+      );
     } catch (e) {
       console.log(e);
     }
   };
+  // console.log(productDetails);
   useEffect(() => {
     getProductDetails();
   }, []);
+
   useEffect(() => {
     if (productDetails) {
       let cart = localStorage.getItem("cart");
@@ -51,6 +58,16 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
       }
     }
   }, [productDetails]);
+
+  useEffect(() => {
+    setAmount((prev) => {
+      return selectedAddOns.reduce(
+        (acc, curr) => acc + parseFloat(curr.price),
+        prev
+      );
+    });
+    console.log(amount);
+  }, [selectedAddOns]);
 
   if (!productDetails) return <></>;
 
@@ -80,11 +97,11 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
           <h4 className="text-start fw-bold">{productDetails.name}</h4>
 
           <p className="text-start text-secondary">SKU: 2050</p>
-          <div className="d-flex justify-content-between py-3">
+          <div className="d-flex justify-content-between py-3 ">
             <div className="d-flex gap-3">
               {productDetails.discount != 0 && (
                 <h3 className="fw-bold my-auto text-danger text-decoration-line-through">
-                  ${currencyConverter(currency, productDetails.price)}
+                  ${currencyConverter(currency, amount)}
                 </h3>
               )}
               <h3 className="fw-bold my-auto h">
@@ -94,6 +111,12 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                   productDetails.price -
                     (productDetails.price * productDetails.discount) / 100
                 )}
+              </h3>
+            </div>
+            <div className="d-flex gap-3">
+              Total:{" "}
+              <h3 className="fw-bold my-auto h">
+                ${currencyConverter(currency, amount)}
               </h3>
             </div>
           </div>
@@ -123,6 +146,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                     }}
                     onClick={() => {
                       setSelectedColor(e._id);
+                      setAmount((prev) => prev + parseFloat(e.price));
                     }}
                   >
                     <button
