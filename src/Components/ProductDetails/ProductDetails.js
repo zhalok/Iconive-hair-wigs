@@ -26,10 +26,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
   const [selectedAddOns, setSelectedAddons] = useState([]);
   const [amount, setAmount] = useState(0);
   const [cartAdded, setCartAdded] = useState(false);
-  const [selectedColor, setSelectedColor] = useState("");
-  // const [reRenderer, setReRenderer] = useState(0);
-  // console.log(selectedColor);
-  // console.log("productDetails", productDetails);
+  const [selectedColor, setSelectedColor] = useState(null);
 
   const getProductDetails = async () => {
     try {
@@ -69,6 +66,10 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
     console.log(amount);
   }, [selectedAddOns]);
 
+  // useEffect(() => {
+  //   setAmount((prev) => prev + selectedColor.price);
+  // }, [selectedColor]);
+
   if (!productDetails) return <></>;
 
   function handleClick() {
@@ -101,7 +102,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
             <div className="d-flex gap-3">
               {productDetails.discount != 0 && (
                 <h3 className="fw-bold my-auto text-danger text-decoration-line-through">
-                  ${currencyConverter(currency, amount)}
+                  ${currencyConverter(currency, productDetails.price)}
                 </h3>
               )}
               <h3 className="fw-bold my-auto h">
@@ -145,8 +146,13 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                       cursor: "pointer",
                     }}
                     onClick={() => {
-                      setSelectedColor(e._id);
-                      setAmount((prev) => prev + parseFloat(e.price));
+                      if (selectedColor) {
+                        setSelectedColor(null);
+                        setAmount((prev) => prev - e.price);
+                      } else {
+                        setSelectedColor(e._id);
+                        setAmount((prev) => prev + e.price);
+                      }
                     }}
                   >
                     <button
