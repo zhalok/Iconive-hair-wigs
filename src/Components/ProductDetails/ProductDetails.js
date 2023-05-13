@@ -68,7 +68,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
           (acc, cur) => acc + parseFloat(cur.price),
           0
         );
-        // console.log("selected add ons", selectedAddOns);
+
         const totalPrice =
           parseFloat(discountedPrice) +
           parseFloat(selectedColorPrice) +
@@ -276,7 +276,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                       product: productDetails._id,
                       addons: selectedAddOns,
                       amount: 1,
-                      price: productDetails.price,
+                      price: amount,
                       color: selectedColor,
                     });
                   } else {
@@ -290,7 +290,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                         product: productDetails._id,
                         addons: selectedAddOns,
                         amount: 1,
-                        price: productDetails.price,
+                        price: amount,
                         color: selectedColor,
                       });
                     } else {

@@ -17,6 +17,7 @@ export default function CartItem({
   setCartItems,
   setProductTotal,
   currency,
+  price,
 }) {
   // console.log("currency", currency);
   // console.log("hello");
@@ -24,7 +25,7 @@ export default function CartItem({
   //   console.log("addons", addOns);
   const [product, setProduct] = useState({});
   const [amount, setAmount] = useState(0);
-  const [price, setPrice] = useState(0);
+  // const [price, setPrice] = useState(0);
   const [addons, setAddons] = useState([]);
 
   //   const sum =
@@ -34,11 +35,11 @@ export default function CartItem({
       const response = await axios.get(`/products/${id}`);
       //   console.log("cart item", response.data);
       setProduct(response.data);
-      setPrice(() => {
-        const price = response.data.price;
-        const discount = response.data.discount;
-        return price - (price * discount) / 100;
-      });
+      // setPrice(() => {
+      //   const price = response.data.price;
+      //   const discount = response.data.discount;
+      //   return price - (price * discount) / 100;
+      // });
     } catch (e) {
       console.log(e);
     }
@@ -87,17 +88,7 @@ export default function CartItem({
       </p>
       <div className="d-flex justify-content-between">
         <h5 className="fw-bold my-auto">
-          ${" "}
-          {currencyConverter(
-            currency,
-            (parseFloat(price) +
-              parseFloat(
-                addons.reduce((accumulator, current) => {
-                  return accumulator + current.price;
-                }, 0)
-              )) *
-              amount
-          )}
+          $ {currencyConverter(currency, price * amount)}
         </h5>
         <div>
           <ButtonGroup size="sm">

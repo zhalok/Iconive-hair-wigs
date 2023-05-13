@@ -10,7 +10,7 @@ import AuthContext from "../../Contexts/AuthContext";
 import currencyConverter from "../../utils/CurrencyChanger";
 
 export default function Checkout(props) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(null);
   const [deliveryCharge, setDeliveryCharge] = useState(20);
   const [productTotal, setProductTotal] = useState(0);
   const [countries, setCountries] = useState([]);
@@ -50,9 +50,14 @@ export default function Checkout(props) {
   };
 
   const calculateTotal = async () => {
-    const response = await axios.post("/cart/totalPrice", { cartItems });
+    // const response = await axios.post("/cart/totalPrice", { cartItems });
     // console.log(response.data.totalPrice);
-    setProductTotal(response.data.totalPrice);
+    // console.log(response.data.totalPrice);
+    // setProductTotal(response.data.totalPrice);
+    const total = cartItems.reduce((acc, item) => {
+      return acc + item.price * item.amount;
+    }, 0);
+    setProductTotal(total);
   };
 
   useEffect(() => {
@@ -86,11 +91,13 @@ export default function Checkout(props) {
 
     if (cart) {
       setCartItems(JSON.parse(cart));
+      // console.log("cart item", JSON.parse(cart));
     }
   }, []);
 
   useEffect(() => {
     calculateTotal();
+    // if (cartItems) console.log("cart items", cartItems);
   }, [cartItems]);
 
   useEffect(() => {
@@ -176,7 +183,7 @@ export default function Checkout(props) {
         localStorage.removeItem("billingInfo");
         localStorage.removeItem("cart");
         const order = orderResponse.data;
-        // console.log(order);
+
         const paymentResponse = await axios.post(
           `/payment/create/${order._id}`,
           {},
@@ -410,6 +417,7 @@ export default function Checkout(props) {
                       setCartItems={setCartItems}
                       setProductTotal={setProductTotal}
                       currency={currency}
+                      price={card.price}
                     />
                   ))}
               </div>
