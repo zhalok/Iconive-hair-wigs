@@ -68,7 +68,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
           (acc, cur) => acc + parseFloat(cur.price),
           0
         );
-        console.log("selected add ons", selectedAddOns);
+        // console.log("selected add ons", selectedAddOns);
         const totalPrice =
           parseFloat(discountedPrice) +
           parseFloat(selectedColorPrice) +
@@ -208,7 +208,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                                   const idx = newState
                                     .map((e) => e._id)
                                     .indexOf(f._id);
-                                  console.log("selected addons idx", idx);
+                                  // console.log("selected addons idx", idx);
                                   if (idx == -1) {
                                     const idx_name = newState
                                       .map((e) => e.name)
