@@ -1,22 +1,26 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import logo from "../Images/logoblack.png";
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import "./Navigation.css";
-import SearchIcon from "@mui/icons-material/Search";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import PersonIcon from "@mui/icons-material/Person";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
-import Collection from "./image/Collections.png";
 import maleCollection from "./image/malecollection.png";
 import femaleCollection from "./image/femaleCollections.png";
 import Rawhair from "./image/Rawhair.png";
 import Accessories from "./image/Accessories.png";
 import { Badge } from "@mui/material";
 import { render } from "@testing-library/react";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import profile from "./image/profile.svg";
+import search from "./image/search.svg";
+import wish from "./image/wishj.svg";
+import cart from "./image/cart.svg";
+import { shadows } from "@mui/system";
 
 export default function Navigation({ renderer }) {
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
@@ -40,8 +44,55 @@ export default function Navigation({ renderer }) {
           FREE INTERNATIONAL SHIPPING On Orders Over $200!
         </p>
       </div>
+      {/* 2nd section email and icons  */}
+      <div className="bg-light d-flex justify-content-between border-bottom px115">
+        <div className="my-auto text-dark d-flex py-2">
+        <MailOutlineIcon className="text-secondary me-1 my-auto"/>
+        <p className="text-14 navtxt my-auto">iconivehairwigs@gmail.com</p>
+        </div>
+        <div className=" text-dark d-flex gap-2">
+            <a
+              className="mx-1 text-secondary my-auto"
+              href="https://www.facebook.com/profile.php?id=100087712010768"
+            >
+             
+                <FacebookIcon />
+             
+            </a>
+            <a  className="mx-1 text-secondary my-auto"
+             href="https://wa.me/message/PIZLMGBXCLUUN1"> 
+                <WhatsAppIcon />
+            </a>
+            <a
+              className="mx-1 text-secondary my-auto"
+              href="https://www.instagram.com/invites/contact/?i=5jfrooti9ghz&utm_content=qa5m1k1"
+            >
+                <InstagramIcon />
+            </a>
+
+            <a
+               className="mx-1 text-secondary my-auto"
+              href="https://twitter.com/Iconivehairwigs?t=NKMVGHrLlnyuKu5bZkZ3MA&s=35"
+            >  
+                <TwitterIcon />
+            </a>
+            <a
+               className="mx-1 text-secondary my-auto"
+              href="https://www.facebook.com/profile.php?id=100087712010768"
+            >
+                <YouTubeIcon />
+            </a>
+            <a
+               className="mx-1 text-secondary my-auto"
+              href="https://www.facebook.com/profile.php?id=100087712010768"
+            >
+                <LinkedInIcon />
+            </a>
+          </div>
+      </div>
+
       {/* login div */}
-      <div className="d-flex">
+      {/* <div className="d-flex">
         <div className="d-flex ms-auto me-4">
           <div className="p-1  ">
             <FavoriteBorderIcon className="text-black" />
@@ -57,64 +108,33 @@ export default function Navigation({ renderer }) {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* title div */}
-      <div className="d-flex justify-between">
-        <div className="ms-5 w-25 text-start pt-3">
-          <a href="/home" className="text-decoration-none mx-auto text-black">
-            {" "}
-            <img
-              className="me-auto -mt"
-              wiidt="50px"
-              height="100px"
-              src={logo}
-              alt="this is a logo"
-            />
+      <div className="d-flex justify-contentx-between px115">
+        <div className="text-start">
+        <a href="/home" className="text-decoration-none text-start text-black">
+            <h1 className="fw-bold text44 ">ICONIVE</h1>
           </a>
         </div>
-        <div className="w-50 d-flex">
-          <a href="/home" className="text-decoration-none mx-auto text-black">
-            <h1 className="fw-bold pe-5 mb-auto mx-auto w-50">ICONIVE</h1>
-          </a>
-        </div>
-
-        <div className="w-25 d-flex py-4 justify-end">
-          <div class="d-flex border rounded-3 ms-auto overflow-hidden">
-            <input
-              class="border-0 my-auto  me-2 py-1"
-              type="search"
-              placeholder=" Search wigs"
-              aria-label="Search"
-            />
-            <SearchIcon className="text-black me-2 my-auto" />
-          </div>
-          <div className="my-auto me-4 h-100">
-            <button className="btn h-100 ms-2 btn-warning px-3 py-1 rounded-3 text-light my-auto">
-              Wholesale
-            </button>
-          </div>
-        </div>
-      </div>
-      <Navbar bg="light" expand="lg py-0">
-        <Container className="h-100">
+        <div className="d-flex mx-auto">
+        <Navbar  expand="lg m-auto ">
+     
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto gap-4 d-flex mx-auto position-relative">
-              <Nav.Link href="/home" className="text-black drop">
-                Home
+              <Nav.Link href="/home" className="text-black text-18 fw-bold  drop">
+                HOME
               </Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                Hair Solution
-              </Nav.Link>
+             
               <Nav.Link
                 onClick={() => {
                   setCollectionDropdown((prevs) => {
                     return !prevs;
                   });
                 }}
-                className="text-black drop"
+                className="text-black drop fw-bold text-18"
               >
-                Collections
+                SHOP
               </Nav.Link>
               {CollectionDropdown && (
                 <div className=" w-100 container d-flex position-absolute z-100 mt-50 bg-white">
@@ -201,50 +221,55 @@ export default function Navigation({ renderer }) {
                   </a>
                 </div>
               )}
-              {/* <NavDropdown title="Collections" id="basic-nav-dropdown" className="text-black">
-               <div className="d-flex">
-               <NavDropdown.Item href="/catagory" className="text-black w-25">
-                  <div className="w-100">
-                    <div className="w-100">
-                      <img src="./image/malecollection.png"  alt="This is an Image"/>
-                    </div>
-                   <p>Gents Wigs</p>
-
-                  </div>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/catagory">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/catagory">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/catagory">
-                  Separated link
-                </NavDropdown.Item>
-               </div>
-              </NavDropdown> */}
-              <Nav.Link href="/checkout" className="text-black drop"></Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                {" "}
-                Help me to chose
+              
+               <Nav.Link href="#home" className="text-black drop text-18 fw-bold ">
+                HAIR SOLUTION
               </Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
+             
+              <Nav.Link href="#home" className="text-black text-18 fw-bold text-uppercase">
+                {" "}
+                Guide ME
+              </Nav.Link>
+           
+              <Nav.Link href="#home" className="text-black text-18 fw-bold text-uppercase drop">
+              customIZE
+              </Nav.Link>
+              <Nav.Link href="#home" className="text-black text-18 fw-bold text-uppercase drop">
                 Offers
               </Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                Services & Repair
+              <Nav.Link href="#home" className="text-black text-18 fw-bold text-uppercase drop">
+                JOIN US
               </Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                Join Us
-              </Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                Guide
+              <Nav.Link href="#home" className="text-warning text-18 fw-bold text-uppercase drop">
+              Wholesale
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-        </Container>
-      </Navbar>
+       
+        </Navbar>
+        </div>
+
+
+        <div className="d-flex  my-auto gap-3">
+          <div className="m-auto  ">
+            <img src={search} alt="this is an icon" />
+          </div>
+          <div className="m-auto ">
+            <img src={wish} alt="this is an icon" />
+          </div>
+          <div className="m-auto">
+            <a href="/checkout">
+              <Badge badgeContent={cartItems} color="primary">
+               <img src={cart} alt="this is an icon" />
+              </Badge>
+            </a>
+          </div>
+          <div className="m-auto">
+            <img src={profile} className="shadow-lg rounded-circle" alt="this is an icon" />
+          </div>
+        </div>
+      </div>
+      
     </div>
   );
 }
