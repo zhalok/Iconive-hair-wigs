@@ -10,19 +10,49 @@
     background-color: #343a40;
 }
 .bg-ch{
-    background-color:rgba(239, 239, 239, 0.879); 
+    background-color:#F9F5F0;
+    max-height: 481px;
 }
 
 .w-22{
-    width: 300PX;
+    width: 100% !important;
     transition: all 0.5s;
-    transform: scale(1.4);
+  
     
    
 }
 .w-22:hover{
-    transform: scale(1.6);
+    transform: scale(1.1);
 }
 .pb5{
     padding-bottom: 5%;
+}
+.marginTop{
+    margin-top: -200px;
+}
+.paddingBottom{
+    padding-top: 40px;
+    padding-bottom: 150px;
+}
+.text-20{
+    font-size: 20px;
+}
+.text-12{
+    font-size: 12px;
+}
+.text-15{
+    font-size: 15px;
+}
+.text-16{
+    font-size: 16px;
+}
+.text-18{
+    font-size: 18px;
+}
+.text-theme-gray{
+    color: #666666;
+}
+
+.rounded-iconive{
+    border-radius: 8px;
 }
