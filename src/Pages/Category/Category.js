@@ -16,6 +16,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProductModal from "../../Components/ProductModal/ProductModal";
 import axios from "../../utils/axios";
 import { Cookie } from "@mui/icons-material";
+import { useSearchParams } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function Category() {
   const [status, setStatus] = useState(false);
@@ -31,7 +33,18 @@ export default function Category() {
   const [isShown, setIsShown] = useState(false);
   const [activePointer, setActivePointer] = useState(-1);
   const [products, setProducts] = useState([]);
+  const [filters, setFilters] = useState({});
+  const [categories, setCategories] = useState([]);
+  const [showSubCategory, setShowSubCategory] = useState("");
+  const getCategories = async () => {
+    try {
+      const response = await axios.get("/category/getCategory");
 
+      setCategories(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const getProducts = async () => {
     try {
       // console
@@ -39,13 +52,24 @@ export default function Category() {
         // headers:{
         //   Authorization:`Bearer ${Cookies}`
         // }
+        // params: {
+        //   category: filters,
+        // },
+        params: filters,
       });
-      console.log(response.data);
+      // console.log(response.data);
       setProducts(response.data);
     } catch (e) {}
   };
+
+  // const filterProducts = async () => {
+  //   console.log();
+  // };
   useEffect(() => {
     getProducts();
+  }, [filters]);
+  useEffect(() => {
+    getCategories();
   }, []);
   const TabHead = [
     {
@@ -71,8 +95,8 @@ export default function Category() {
   ];
   const navigate = useNavigate();
 
-  function handleClick() {
-    navigate("/ProductDetails");
+  function handleClick(id) {
+    navigate(`/ProductDetails/${id}`);
   }
   const cards = [
     {
@@ -204,58 +228,84 @@ export default function Category() {
                 {/* sidebar */}
                 <div className="sidebarBg h-100 ">
                   {/* Gents Wig */}
-                  <div className="border-bottom border-white">
-                    <div className="text-black d-flex ">
-                      <p className="f-16 fw-bold">Gents Wig </p>
-                      <p
-                        className="ms-auto"
-                        onClick={() => {
-                          setStatus((prevState) => {
-                            return !prevState;
-                          });
-                          // setgents((prevState) => {
-                          //   return !prevState;
-                          // });
-                          if (status === false) setTopBanner(1);
-                          else setTopBanner(0);
-                        }}
-                      >
-                        {status === false ? (
-                          <ExpandMoreIcon className="my-auto" />
-                        ) : (
-                          <KeyboardArrowUpIcon className="my-auto" />
+                  {categories.map((category) => {
+                    return (
+                      <div className="border-bottom border-white">
+                        <div className="text-black d-flex ">
+                          <p className="f-16 fw-bold">{category.name} </p>
+                          <p
+                            className="ms-auto"
+                            onClick={() => {
+                              setShowSubCategory((prevState) => {
+                                if (prevState != category._id) {
+                                  setFilters({
+                                    category: category._id,
+                                  });
+                                } else {
+                                  setFilters({});
+                                }
+
+                                return prevState != category._id
+                                  ? category._id
+                                  : "";
+                              });
+                            }}
+                          >
+                            {showSubCategory !== category._id ? (
+                              <ExpandMoreIcon className="my-auto" />
+                            ) : (
+                              <KeyboardArrowUpIcon className="my-auto" />
+                            )}
+                          </p>
+                        </div>
+                        {showSubCategory === category._id && (
+                          <div className=" text-black border-top pt-2">
+                            {category.subcategories?.map((subcategory) => {
+                              return (
+                                <div
+                                  className="ps-2  d-flex f-18"
+                                  onClick={() => {
+                                    setFilters((prev) => {
+                                      prev["subCategory"] = subcategory._id;
+                                      return { ...prev };
+                                    });
+                                  }}
+                                >
+                                  <p className="f-16 Chover">
+                                    {subcategory.name}
+                                  </p>
+                                </div>
+                              );
+                            })}
+
+                        <div className="ps-2  d-flex f-18">
+                              <p className="f-16 Chover">Lace Base</p>
+                            </div>
+                            <div className="ps-2 d-flex f-18">
+                              <p className="f-16 Chover">Silk Base</p>
+                            </div>
+                            <div className="ps-2 d-flex f-18">
+                              <p className="f-16 Chover">Skin Base</p>
+                            </div>
+                            <div className="ps-2 d-flex f-18">
+                              <p className="f-16 Chover">Mixed Base</p>
+                            </div>
+                            <div className="ps-2 d-flex f-18">
+                              <p className="f-16 Chover">Full Head Toupee</p>
+                            </div>
+                            <div className="ps-2 d-flex f-18">
+                              <p className="f-16 Chover">
+                                African American Toupee
+                              </p>
+                            </div>
+                          </div>
                         )}
-                      </p>
-                    </div>
-                    {status === true && (
-                      <div className=" text-black border-top pt-2">
-                        <div className="ps-2  d-flex f-18">
-                          <p className="f-16 Chover">Mono Base</p>
-                        </div>
-                        <div className="ps-2  d-flex f-18">
-                          <p className="f-16 Chover">Lace Base</p>
-                        </div>
-                        <div className="ps-2 d-flex f-18">
-                          <p className="f-16 Chover">Silk Base</p>
-                        </div>
-                        <div className="ps-2 d-flex f-18">
-                          <p className="f-16 Chover">Skin Base</p>
-                        </div>
-                        <div className="ps-2 d-flex f-18">
-                          <p className="f-16 Chover">Mixed Base</p>
-                        </div>
-                        <div className="ps-2 d-flex f-18">
-                          <p className="f-16 Chover">Full Head Toupee</p>
-                        </div>
-                        <div className="ps-2 d-flex f-18">
-                          <p className="f-16 Chover">African American Toupee</p>
-                        </div>
                       </div>
-                    )}
-                  </div>
+                    );
+                  })}
 
                   {/* Ladies Wig  */}
-                  <div className="border-bottom border-white">
+                   <div className="border-bottom border-white">
                     <div className="text-black d-flex mt-4">
                       <p className="f-16 fw-bold">Ladies Wig </p>
                       <p
@@ -344,7 +394,7 @@ export default function Category() {
                   </div>
 
                   {/* Accessories */}
-                  <div className="">
+                   <div className="">
                     <div className="text-black d-flex mt-4">
                       <p className="f-16 fw-bold">Accessories</p>
                       <p
@@ -403,13 +453,14 @@ export default function Category() {
                   <div className="d-flex flex-wrap w-100 pt-4 gap-4 mx-auto">
                     {products.map((product, index) => (
                       <div
-                        onMouseEnter={() => setIsShown(true)}
-                     
-                        onMouseLeave={() => setIsShown(false)}
-                        onMouseOver={() => setActivePointer(index)}
-                        
+                        onClick={() => {
+                          handleClick(product._id);
+                        }}
                         key={index}
                         className="card-cat  shadow w-25 "
+                        style={{
+                          cursor: "pointer",
+                        }}
                       >
                         <div className="img-card position-relative">
                           <img
@@ -417,29 +468,20 @@ export default function Category() {
                             src={product.photo}
                             alt="This  is an  picture"
                           />
-                          {(isShown &&activePointer===index) && (
-                            <button
-                              onClick={() =>
-                                setShowModal((pre) => {
-                                  return !pre;
-                                })
-                              }
-                              data-bs-target="#modalID"
-                              data-bs-toggle="modal"
-                              className="position-absolute top-0 end-0 d-flex btn btn-outline-dark shodow px-3 py-1 f-14 rounded-0 mt-3 "
-                            >
-                              Quick View
-                            </button>
-                          )}
-                          {(isShown &&activePointer===index) &&  (
-                            <button
-                              onClick={handleClick}
-                              className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0 "
-                            >
-                              <ShoppingCartIcon className="pe-1 my-auto" /> ADD
-                              TO CART
-                            </button>
-                          )}
+                          <button
+                            onClick={
+                              () => {}
+                              // setShowModal((pre) => {
+                              //   return !pre;
+                              // })
+                            }
+                            // data-bs-target="#modalID"
+                            // data-bs-toggle="modal"
+                            className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0"
+                          >
+                            <ShoppingCartIcon className="pe-1 my-auto" />{" "}
+                            Details
+                          </button>
                         </div>
                         <div className="text-center px-2">
                           <h6 className="mt-4 mb-2 fw-bold">{product.name}</h6>
@@ -452,7 +494,7 @@ export default function Category() {
                 </div>
               </div>
 
-              <ProductModal id="modalID"></ProductModal>
+              {/* <ProductModal id="modalID"></ProductModal> */}
             </div>
           </div>
         </div>

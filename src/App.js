@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Navigation from "./Components/Navigation/Navigation";
@@ -9,20 +9,36 @@ import Checkout from "./Pages/Checkout/Checkout";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
-
+import CartContext from "./Contexts/CartContext";
 
 function App() {
+  const [cartRenderer, setCartRenderer] = useState({});
   return (
     <div className="App">
       <Router>
-        <Navigation></Navigation>
+        {/*
+         */}
+        {/* <CartContext.Consumer>
+          {(value) => {
+            console.log(value);
+            return <Navigation renderer={value} />;
+          }}
+        </CartContext.Consumer> */}
+        <Navigation renderer={cartRenderer} />
 
         <Routes>
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/catagory" element={<Category />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/ProductDetails" element={<ProductDetails />} />
+          <Route
+            path="/ProductDetails/:product"
+            element={
+              // <CartContext.Provider value={cartRenderer}>
+              <ProductDetails setCartRenderer={setCartRenderer} />
+              // </CartContext.Provider>
+            }
+          />
           <Route path="/aboutus" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

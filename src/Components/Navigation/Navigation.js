@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -15,10 +15,22 @@ import maleCollection from "./image/malecollection.png";
 import femaleCollection from "./image/femaleCollections.png";
 import Rawhair from "./image/Rawhair.png";
 import Accessories from "./image/Accessories.png";
+import { Badge } from "@mui/material";
+import { render } from "@testing-library/react";
 
-export default function Navigation() {
+export default function Navigation({ renderer }) {
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
-  console.log(CollectionDropdown);
+  const [cartItems, setCartItems] = useState(0);
+  useEffect(() => {
+    let cart = localStorage.getItem("cart");
+    if (cart) {
+      cart = JSON.parse(cart);
+      setCartItems(cart.length);
+    }
+    // setCartItems(renderer);
+  }, [renderer]);
+  // console.log(CollectionDropdown);
+  console.log(renderer);
 
   return (
     <div>
@@ -39,7 +51,9 @@ export default function Navigation() {
           </div>
           <div className="p-1 ">
             <a href="/checkout">
-              <LocalMallIcon className="text-black" />
+              <Badge badgeContent={cartItems} color="primary">
+                <LocalMallIcon className="text-black" />{" "}
+              </Badge>
             </a>
           </div>
         </div>
@@ -118,66 +132,72 @@ export default function Navigation() {
                       </div>
                       <a
                         href="/catagory"
-                        className="text-decoration-none text-dark fw-bold ">
+                        className="text-decoration-none text-dark fw-bold "
+                      >
                         <h6 className="mt-2 fw-bold ">Gents Wigs</h6>
                       </a>
                     </div>
                   </a>
                   <a
                     href="/catagory"
-                    className="text-decoration-none w-25 drop">
-                  <div className="w-100 p-4 border-end ">
-                    <div className="w-100 ">
-                      <img
-                        src={femaleCollection}
-                        alt="This is an Image"
-                        className="w-100"
-                      />
+                    className="text-decoration-none w-25 drop"
+                  >
+                    <div className="w-100 p-4 border-end ">
+                      <div className="w-100 ">
+                        <img
+                          src={femaleCollection}
+                          alt="This is an Image"
+                          className="w-100"
+                        />
+                      </div>
+                      <a
+                        href="/catagory"
+                        className="text-decoration-none text-dark fw-bold "
+                      >
+                        {" "}
+                        <h6 className="mt-2 fw-bold ">Ladis Wigs</h6>
+                      </a>
                     </div>
-                    <a
-                      href="/catagory"
-                      className="text-decoration-none text-dark fw-bold "
-                    >
-                      {" "}
-                      <h6 className="mt-2 fw-bold ">Ladis Wigs</h6>
-                    </a>
-                  </div>
                   </a>
                   <a
                     href="/catagory"
-                    className="text-decoration-none w-25 drop">
-                  <div className="w-100 p-4 border-end">
-                    <div className="w-100 ">
-                      <img
-                        src={Rawhair}
-                        alt="This is an Image"
-                        className="w-100"
-                      />
+                    className="text-decoration-none w-25 drop"
+                  >
+                    <div className="w-100 p-4 border-end">
+                      <div className="w-100 ">
+                        <img
+                          src={Rawhair}
+                          alt="This is an Image"
+                          className="w-100"
+                        />
+                      </div>
+                      <a
+                        href="/catagory"
+                        className="text-decoration-none text-dark fw-bold "
+                      >
+                        <h6 className="mt-2 fw-bold ">Raw Hair</h6>
+                      </a>
                     </div>
-                    <a
-                      href="/catagory"
-                      className="text-decoration-none text-dark fw-bold ">
-                      <h6 className="mt-2 fw-bold ">Raw Hair</h6>
-                    </a>
-                  </div>
                   </a>
                   <a
                     href="/catagory"
-                    className="text-decoration-none w-25 drop">
-                  <div className="w-100 p-4 ">
-                    <div className="w-100 ">
-                      <img
-                        src={Accessories}
-                        alt="This is an Image"
-                        className="w-100"
-                      />
+                    className="text-decoration-none w-25 drop"
+                  >
+                    <div className="w-100 p-4 ">
+                      <div className="w-100 ">
+                        <img
+                          src={Accessories}
+                          alt="This is an Image"
+                          className="w-100"
+                        />
+                      </div>
+                      <a
+                        href="/catagory"
+                        className="text-decoration-none text-dark fw-bold "
+                      >
+                        <h6 className="mt-2 fw-bold ">Accessories</h6>
+                      </a>
                     </div>
-                    <a
-                      href="/catagory"
-                      className="text-decoration-none text-dark fw-bold ">
-                      <h6 className="mt-2 fw-bold ">Accessories</h6>
-                    </a>
-                  </div>
                   </a>
                 </div>
               )}
@@ -204,9 +224,7 @@ export default function Navigation() {
                 </NavDropdown.Item>
                </div>
               </NavDropdown> */}
-              <Nav.Link href="/checkout" className="text-black drop">
-                Customization
-              </Nav.Link>
+              <Nav.Link href="/checkout" className="text-black drop"></Nav.Link>
               <Nav.Link href="#home" className="text-black drop">
                 {" "}
                 Help me to chose

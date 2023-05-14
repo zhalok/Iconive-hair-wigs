@@ -1,11 +1,22 @@
-.bg-pink{
-    background-color: #F7E7CE;
+.bg-footer{
+    background-color: #F5F5F5;
 
-}
-.borderB{
-    border-bottom: 1px solid black;
 }
 
 .bg-outline-white{
     border: 1px solid white;
+}
+.w-30{
+    width: 33%;
+}
+.text-16{
+    font-size: 14px;
+    color: #666666;
+}
+.px90{
+    padding-left: 90px;
+}
+.containerpro{
+    padding-left: 150px;
+    padding-right: 150px;
 }

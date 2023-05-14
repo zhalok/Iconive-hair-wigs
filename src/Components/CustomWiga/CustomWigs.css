@@ -1,14 +1,36 @@
-.bg-pink{
-    background-color: #F7E7CE;
+.bg-custom{
+    background-color: #f6f6f6d5;
 
 }
 .wc-22{
-    width: 22%;
+    width: 18%;
     transition: all 0.5s;
     
     
    
 }
 .wc-22:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
+}
+.m-90{
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+.whychooseUs{
+    width: 40%;
+    background-color: #ffffffd7;
+    border-radius: 10px 10px 0px 0px;
+    margin-top: 20%;
+}
+.my-whole{
+    padding-top: 80px;
+    padding-bottom: 55px;
+}
+.px85{
+    padding-left: 85px;
+    padding-right: 85px;
+}
+
+.pb100{
+    padding-bottom: 100px;
 }

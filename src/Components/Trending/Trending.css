@@ -1,32 +1,38 @@
-hr{
-    border: 2px solid rgb(0, 0, 0,0);
-    width: 90%;
-    margin: auto;
-    z-index: 1;
-   
-}
+
 .ps-r{
     position: relative;
 }
-.abstop{
+.ps-a{
     position: absolute;
-    top: -28px;
-    right: 38%;
 }
+
 .-mb{
     margin-bottom: -20px;
     z-index: 2;
 }
-.bg-wh{
-    background-color: rgb(255, 255, 255);
-}
 .card-main{
     width: 23% !important;
 }
-.bg-gray{
-    background-color: #343a40;
+
+.text-20{
+    font-size: 20px;
 }
-.btn-gray{
-    background-color: #343a40;
+.text-12{
+    font-size: 12px;
+}
+.text-15{
+    font-size: 15px;
+}
+.text-16{
+    font-size: 16px;
+}
+.text-18{
+    font-size: 18px;
+}
+.text-theme-gray{
+    color: #666666;
 }
 
+.rounded-iconive{
+    border-radius: 8px;
+}
