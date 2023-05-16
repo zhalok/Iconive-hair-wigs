@@ -1,17 +1,18 @@
-.container {
+.orderContainer {
   text-align: left;
   display: flex;
   flex-direction: column;
   row-gap: 30px;
+  padding: 100px;
 }
 
-.inline {
+.orderInline {
   display: flex;
   flex-direction: row;
   column-gap: 10px;
 }
 
-.information {
+.userInformation {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
@@ -20,10 +21,4 @@
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-}
-
-.title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
 }

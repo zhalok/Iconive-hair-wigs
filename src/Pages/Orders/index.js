@@ -21,6 +21,7 @@ import AuthContext from "../../Contexts/AuthContext";
 import axios from "../../utils/axios";
 import { Cookie } from "@mui/icons-material";
 import Cookies from "js-cookie";
+import OrderList from "../../Components/Orders/OrderList";
 
 export default function Profile() {
   const { user, setUser } = useContext(AuthContext);
@@ -41,29 +42,29 @@ export default function Profile() {
     }
   };
 
-  const getOrdersByUser = async () => {
-    try {
-      const response = await axios.get("/order/getAllByUser", {
-        headers: {
-          Authorization: `Bearer ${Cookies.get("jwt")}`,
-        },
-      });
-      console.log("orders", response.data);
-      // setUserInformation(response.data.user);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const getOrdersByUser = async () => {
+  //   try {
+  //     const response = await axios.get("/order/getAllByUser", {
+  //       headers: {
+  //         Authorization: `Bearer ${Cookies.get("jwt")}`,
+  //       },
+  //     });
+  //     // console.log("orders", response.data);
+  //     // setUserInformation(response.data.user);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
   useEffect(() => {
-    getOrdersByUser();
+    // getOrdersByUser();
     getUserInformation();
   }, []);
-  console.log("user information", userInformation);
+  // console.log("user information", userInformation);
 
   return (
     <>
-      <div className="container">
-        <div className="information">
+      <div className="orderContainer">
+        <div className="userInformation">
           <h1>Information</h1>
           <div>
             {" "}
@@ -76,6 +77,7 @@ export default function Profile() {
         </div>
         <div className="orders">
           <h1>Orders</h1>
+          <OrderList />
         </div>
       </div>
     </>

@@ -28,9 +28,8 @@ export default function Checkout(props) {
   const [currency, setCurrency] = useState("USD");
 
   const auth = useContext(AuthContext);
-  // console.log("auth", auth);
+
   const [loading, setLoading] = useState(false);
-  // console.log(props);
 
   const discardCartItem = (product) => {
     const cart = localStorage.getItem("cart");
@@ -50,10 +49,6 @@ export default function Checkout(props) {
   };
 
   const calculateTotal = async () => {
-    // const response = await axios.post("/cart/totalPrice", { cartItems });
-    // console.log(response.data.totalPrice);
-    // console.log(response.data.totalPrice);
-    // setProductTotal(response.data.totalPrice);
     const total = cartItems.reduce((acc, item) => {
       return acc + item.price * item.amount;
     }, 0);
@@ -74,7 +69,7 @@ export default function Checkout(props) {
   useEffect(() => {
     if (selectedCountry) {
       setCity(City.getCitiesOfCountry(selectedCountry));
-      // console.log("city", city);
+
       setSelectedCity(City.getCitiesOfCountry(selectedCountry)[0].countryCode);
     }
   }, [selectedCountry]);
@@ -91,13 +86,11 @@ export default function Checkout(props) {
 
     if (cart) {
       setCartItems(JSON.parse(cart));
-      // console.log("cart item", JSON.parse(cart));
     }
   }, []);
 
   useEffect(() => {
     calculateTotal();
-    // if (cartItems) console.log("cart items", cartItems);
   }, [cartItems]);
 
   useEffect(() => {
@@ -154,7 +147,6 @@ export default function Checkout(props) {
       return;
     }
     const cart = localStorage.getItem("cart");
-    // const currency = localStorage.getItem("currency");
     if (cart) {
       const cartItems = JSON.parse(cart);
       if (cartItems.length == 0) {
@@ -170,7 +162,6 @@ export default function Checkout(props) {
             billingInfo,
             cartItems,
             currency: props.currency,
-            // propscurrency,
           },
           {
             headers: {
@@ -183,18 +174,19 @@ export default function Checkout(props) {
         localStorage.removeItem("billingInfo");
         localStorage.removeItem("cart");
         const order = orderResponse.data;
+        window.location.reload();
 
-        const paymentResponse = await axios.post(
-          `/payment/create/${order._id}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${Cookies.get("jwt")}`,
-            },
-          }
-        );
+        // const paymentResponse = await axios.post(
+        //   `/payment/create/${order._id}`,
+        //   {},
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${Cookies.get("jwt")}`,
+        //     },
+        //   }
+        // );
 
-        window.location.replace(paymentResponse.data.payment_url);
+        // window.location.replace(paymentResponse.data.payment_url);
       } catch (e) {
         setLoading(false);
         console.log(e);
