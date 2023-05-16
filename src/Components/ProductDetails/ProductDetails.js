@@ -70,7 +70,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
 
   return (
     <>
-      <div className="container d-flex my-5">
+      <div className="px120 d-flex my-5">
         <div className=" w-50 px-4">
           {
             <div className="w-100 position-relative">
@@ -78,7 +78,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
               {productDetails.discount != 0 && (
                 <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-3 rounded-circle m-3">
                   <h4 className="fw-bold mb-0 mt-2">20%</h4>
-                  <h4 className="fw-bold mt-0 mb-2">Off</h4>
+                  <p className="fw-bold my-0">OFF</p>
                 </span>
               )}
             </div>
@@ -141,12 +141,12 @@ export default function ProductDetails({ id, setCartRenderer }) {
                 return (
                   <>
                     <button
-                      className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6"
+                      className="btn btn-dark rounded-circle px-3 py-3 text-dark fs-6"
                       style={{ backgroundColor: e.color }}
                     >
                       {/* {e.name} */}
                     </button>
-                    <small>{e.name}</small>
+                    <small  className="my-auto">{e.name}</small>
                   </>
                 );
               })}
@@ -163,10 +163,10 @@ export default function ProductDetails({ id, setCartRenderer }) {
                         {e?.values.map((f) => {
                           return (
                             <button
-                              className={`btn btn-${
+                              className={`btn btn-outline-secondary rounded-6 btn-${
                                 selectedAddOns.map((e) => e._id).includes(f._id)
                                   ? "dark"
-                                  : "light"
+                                  : "lightpro"
                               } rounded-0 fs-6`}
                               onClick={(e) => {
                                 setSelectedAddons((prev) => {
@@ -215,23 +215,21 @@ export default function ProductDetails({ id, setCartRenderer }) {
 
             <p className="mt-4 my-auto">
               <AccessTimeIcon className="me-1 my-auto" />
-              <small>
+              <small className="text-theme-gray">
                 Processing Time:
-                <span className="text-secondary fw-bold">
-                  3-5 business days
+                <span className="text-secondary fw-bold ps-2"> 
+                  12-15 business days
                 </span>
               </small>
             </p>
-            <p className="pt-3">
-              <small> Processing time does not include delivery time</small>
+            <p className="py-3">
+              <small className="text-theme-gray" > Processing time does not include delivery time</small>
             </p>
-            <p className="">
-              <small></small>
-            </p>
+          
 
             <div className="w-100">
               <button
-                className="w-50 btn btn-dark py-2 rounded-0 me-4"
+                className="w-50 btn btn-add py-2 me-4 fw-bold"
                 onClick={() => {
                   let cartItems = localStorage.getItem("cart");
                   if (!cartItems) {
@@ -269,11 +267,11 @@ export default function ProductDetails({ id, setCartRenderer }) {
                   setCartAdded((prev) => !prev);
                 }}
               >
-                <ShoppingCartIcon />{" "}
-                {!cartAdded ? "ADD TO CART" : "REMOVE FROM CART"}
+                <ShoppingCartIcon className="me-2" />{" "}
+             {!cartAdded ? "ADD TO CART" : "REMOVE FROM CART"}
               </button>
 
-              <button className=" btn btn-outline-dark py-2 px-5  rounded-0">
+              <button className=" btn outline-wish py-2 px-5 ">
                 + WISH LIST
               </button>
             </div>
@@ -371,10 +369,10 @@ export default function ProductDetails({ id, setCartRenderer }) {
           </div>
         </div>
       </div>
-      <div className="container border-top ">
+      <div className="px120 border-top ">
         <div className="w-100 text-start py-3 pt-5">
-          <p className="text-secondary pb-2 fs-5 fw-bold">Description :</p>
-          <p className="pb-0">
+          <h5 className=" pb-2 fs-4 fw-bold">Description :</h5>
+          <p className="pb-0 text-16 text-theme-gray">
             Welcome to Iconive, your one-stop destination for premium quality
             wigs. We're a team of passionate hair enthusiasts dedicated to
             providing our customers with the very best in hair products and
@@ -386,15 +384,15 @@ export default function ProductDetails({ id, setCartRenderer }) {
           </p>
         </div>
         <div className="w-100 text-start py-2">
-          <p className="text-secondary pb-2 fs-5 fw-bold">Shipping policy :</p>
-          <p className="pb-0">
+          <h5 className=" pb-2 fs-4 fw-bold">Shipping policy :</h5>
+          <p className="pb-0 text-16 text-theme-gray">
             At Iconive, we understand how important it is for you to receive
             your products in a timely and efficient manner. That's why we offer
             fast and reliable shipping to ensure that your order arrives as
             quickly as possible.
             <button
               type="button"
-              class="btn btn-outline-info py-0 mx-2"
+              class="btn btn-theme py-0 mx-2"
               data-bs-toggle="modal"
               data-bs-target="#shippingModal"
             >
@@ -496,15 +494,15 @@ export default function ProductDetails({ id, setCartRenderer }) {
           </p>
         </div>
         <div className="w-100 text-start py-3 pb-5">
-          <p className="text-secondary pb-2 fs-5 fw-bold">
+          <h5 className=" pb-2 fs-4 fw-bold">
             Return & Refund policy :
-          </p>
-          <p className="pb-0">
+          </h5>
+          <p className="pb-0 text-theme-gray text-16">
             Welcome to Iconive, your one-stop destination for premium quality
             wigs.
             <button
               type="button"
-              class="btn btn-outline-info py-0 mx-2"
+              class="btn btn-theme py-0 mx-2"
               data-bs-toggle="modal"
               data-bs-target="#refundandreturnpolicy"
             >
@@ -531,13 +529,14 @@ export default function ProductDetails({ id, setCartRenderer }) {
                     ></button>
                   </div>
                   <div class="modal-body">
-                    <h4 className="fw-bold  my-3  ">
+                    <h5 className="fw-bold  my-2">
                       Thanks for shopping at Iconive. <br />
-                      <h5 className="fw-normal">
+                     
+                    </h5>
+                    <h5 className="fw-normal pb-3">
                         If you are not entirely satisfied with your purchase,
                         we're here to help.
                       </h5>
-                    </h4>
                     <p>
                       1 .
                       <small>

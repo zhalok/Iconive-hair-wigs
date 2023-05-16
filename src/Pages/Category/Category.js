@@ -9,7 +9,11 @@ import Accessories from "./image/Accessories.png";
 import down from "./icons/downArrow.svg";
 import card1 from "./image/cardh1.jpg";
 import "./Category.css";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import cardicon1 from "./image/cardicon1.svg";
+import cardicon2 from "./image/cardicon2.svg";
+import sidebarimg from "./image/sidebar.svg";
+import filter from "./image/filter.svg";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -165,32 +169,35 @@ export default function Category() {
   return (
     <>
       <div>
-        <div className=" py-4 border-bottom">
-          <div className="container text-start my-auto d-flex">
-            <small className="my-auto">
-              <p className="text-black my-auto text-start ps-4 my-auto d-flex">
-                <a
-                  href="/home"
-                  className="text-decoration-none mx-auto text-black alink"
-                >
-                  <p className="">home</p>
-                </a>
-                <KeyboardDoubleArrowRightIcon />
-                <a
-                  href="/home"
-                  className="text-decoration-none mx-auto text-black alink"
-                >
-                  <p className="">Collections</p>
-                </a>
-              </p>
-            </small>
+        <div className=" py-5 border-bottom">
+          <div className="px120 text-start my-auto d-flex text-18">
+            <a
+              href="/home"
+              className="text-decoration-none  text-18 text-theme-gray text-uppercase my-auto"
+            >
+              Home
+            </a>
+            <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
+            <a
+              href="/home"
+              className="text-decoration-none text-18 text-theme-gray text-uppercase"
+            >
+              cATAGORIES
+            </a>
+            <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
+            <a
+              href="/home"
+              className="text-decoration-none text-black text-18 text-uppercase "
+            >
+              Gents wig
+            </a>
           </div>
         </div>
 
-        <div className="container">
+        <div className="w-100 ">
           <div className="d-flex">
             <div className="w-100 flex flex-column pb-5">
-              <div className="w-full px-4 pt-5">
+              <div className="w-100">
                 {topbanner === 0 && (
                   <img
                     src={Collection}
@@ -223,89 +230,110 @@ export default function Category() {
                   />
                 )}
               </div>
+              <div className="d-flex justify-content-between py-5 px120">
+                <div className="d-flex gap-2">
+                  <p className="text-uppercase text-22 my-auto ps-4 fw-bold">
+                    Filters{" "}
+                  </p>
+                  <img src={filter} alt="this is an image" />
+                </div>
 
-              <div className="d-flex">
+                <div className="my-auto d-flex pe-5 gap-5">
+                  <p className="text-16 text-theme-gray">SORT BY</p>
+                  <p className="text-16 text-theme-gray">PRICE</p>
+                </div>
+              </div>
+
+              <div className="d-flex px120">
                 {/* sidebar */}
-                <div className="sidebarBg h-100 ">
-                  {/* Gents Wig */}
-                  {categories.map((category) => {
-                    return (
-                      <div className="border-bottom border-white">
-                        <div className="text-black d-flex ">
-                          <p className="f-16 fw-bold">{category.name} </p>
-                          <p
-                            className="ms-auto"
-                            onClick={() => {
-                              setShowSubCategory((prevState) => {
-                                if (prevState != category._id) {
-                                  setFilters({
-                                    category: category._id,
-                                  });
-                                } else {
-                                  setFilters({});
-                                }
-
-                                return prevState != category._id
-                                  ? category._id
-                                  : "";
-                              });
-                            }}
-                          >
-                            {showSubCategory !== category._id ? (
-                              <ExpandMoreIcon className="my-auto" />
-                            ) : (
-                              <KeyboardArrowUpIcon className="my-auto" />
-                            )}
-                          </p>
-                        </div>
-                        {showSubCategory === category._id && (
-                          <div className=" text-black border-top pt-2">
-                            {category.subcategories?.map((subcategory) => {
-                              return (
-                                <div
-                                  className="ps-2  d-flex f-18"
-                                  onClick={() => {
-                                    setFilters((prev) => {
-                                      prev["subCategory"] = subcategory._id;
-                                      return { ...prev };
+                <div className="sidebarwidth d-flex flex-column gap-4">
+                  <div className="sidebarBg  ">
+                    <div className="text-start border-bottom border-dark pb-4 mb-2">
+                      <p className="text-20  text-uppercase my-auto fw-bold">
+                        Categories
+                      </p>
+                    </div>
+                    {/* Gents Wig */}
+                    {categories.map((category) => {
+                      return (
+                        <div className="border-bottom border-secondary py-4">
+                          <div className="text-black d-flex ">
+                            <p className="text-18 text-theme-gray ">
+                              {category.name}{" "}
+                            </p>
+                            <p
+                              className="ms-auto"
+                              onClick={() => {
+                                setShowSubCategory((prevState) => {
+                                  if (prevState != category._id) {
+                                    setFilters({
+                                      category: category._id,
                                     });
-                                  }}
-                                >
-                                  <p className="f-16 Chover">
-                                    {subcategory.name}
-                                  </p>
-                                </div>
-                              );
-                            })}
+                                  } else {
+                                    setFilters({});
+                                  }
 
-                        <div className="ps-2  d-flex f-18">
-                              <p className="f-16 Chover">Lace Base</p>
-                            </div>
-                            <div className="ps-2 d-flex f-18">
-                              <p className="f-16 Chover">Silk Base</p>
-                            </div>
-                            <div className="ps-2 d-flex f-18">
-                              <p className="f-16 Chover">Skin Base</p>
-                            </div>
-                            <div className="ps-2 d-flex f-18">
-                              <p className="f-16 Chover">Mixed Base</p>
-                            </div>
-                            <div className="ps-2 d-flex f-18">
-                              <p className="f-16 Chover">Full Head Toupee</p>
-                            </div>
-                            <div className="ps-2 d-flex f-18">
-                              <p className="f-16 Chover">
-                                African American Toupee
-                              </p>
-                            </div>
+                                  return prevState != category._id
+                                    ? category._id
+                                    : "";
+                                });
+                              }}
+                            >
+                              {showSubCategory !== category._id ? (
+                                <ExpandMoreIcon className="my-auto" />
+                              ) : (
+                                <KeyboardArrowUpIcon className="my-auto" />
+                              )}
+                            </p>
                           </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                          {showSubCategory === category._id && (
+                            <div className=" text-theme-gray  pt-2">
+                              {category.subcategories?.map((subcategory) => {
+                                return (
+                                  <div
+                                    className="ps-2  d-flex f-18"
+                                    onClick={() => {
+                                      setFilters((prev) => {
+                                        prev["subCategory"] = subcategory._id;
+                                        return { ...prev };
+                                      });
+                                    }}
+                                  >
+                                    <p className="f-16 Chover">
+                                      {subcategory.name}
+                                    </p>
+                                  </div>
+                                );
+                              })}
 
-                  {/* Ladies Wig  */}
-                   <div className="border-bottom border-white">
+                              <div className="ps-2  d-flex f-18">
+                                <p className="f-16 Chover">Lace Base</p>
+                              </div>
+                              <div className="ps-2 d-flex f-18">
+                                <p className="f-16 Chover">Silk Base</p>
+                              </div>
+                              <div className="ps-2 d-flex f-18">
+                                <p className="f-16 Chover">Skin Base</p>
+                              </div>
+                              <div className="ps-2 d-flex f-18">
+                                <p className="f-16 Chover">Mixed Base</p>
+                              </div>
+                              <div className="ps-2 d-flex f-18">
+                                <p className="f-16 Chover">Full Head Toupee</p>
+                              </div>
+                              <div className="ps-2 d-flex f-18">
+                                <p className="f-16 Chover">
+                                  African American Toupee
+                                </p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+
+                    {/* Ladies Wig  */}
+                    {/* <div className="border-bottom border-white">
                     <div className="text-black d-flex mt-4">
                       <p className="f-16 fw-bold">Ladies Wig </p>
                       <p
@@ -347,10 +375,10 @@ export default function Category() {
                         </div>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
-                  {/* Raw Hair Bundles */}
-                  <div className="border-bottom border-white">
+                    {/* Raw Hair Bundles */}
+                    {/* <div className="border-bottom border-white">
                     <div className="text-black d-flex mt-4">
                       <p className="f-16 fw-bold">Raw Hair Bundles</p>
                       <p
@@ -391,10 +419,10 @@ export default function Category() {
                         </div>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
-                  {/* Accessories */}
-                   <div className="">
+                    {/* Accessories */}
+                    {/* <div className="">
                     <div className="text-black d-flex mt-4">
                       <p className="f-16 fw-bold">Accessories</p>
                       <p
@@ -435,11 +463,19 @@ export default function Category() {
                         </div>
                       </div>
                     )}
+                  </div> */}
+                  </div>
+                  <div className="m-auto pt-2">
+                    <img
+                      src={sidebarimg}
+                      alt="this is an image "
+                      className="w-100 m-auto"
+                    />
                   </div>
                 </div>
 
-                <div className="w-75 p-4  pt-5 text-start">
-                  <div>
+                <div className="w-75 px-5 text-start">
+                  {/* <div>
                     <h5 className=" fw-bolder">Collections</h5>
                     <p className="pt-2 fw-lighter">
                       Lorem ipsum dolor sit amet consectetur adipiscing elit.
@@ -448,23 +484,61 @@ export default function Category() {
                       dorci maces consequat blandi susto dusto elementum libero
                       non honcus.
                     </p>
-                  </div>
+                  </div> */}
 
-                  <div className="d-flex flex-wrap w-100 pt-4 gap-4 mx-auto">
+                  <div className="d-flex w-100 flex-wrap gap-4 mx-auto justify-content-center">
                     {products.map((product, index) => (
+                      // <div
+                      //   onClick={() => {
+                      //     handleClick(product._id);
+                      //   }}
+                      //   key={index}
+                      //   className="card-cat  shadow w-25 "
+                      //   style={{
+                      //     cursor: "pointer",
+                      //   }}
+                      // >
+                      //   <div className="img-card position-relative">
+                      //     <img
+                      //       className="w-100 h-100"
+                      //       src={product.photo}
+                      //       alt="This  is an  picture"
+                      //     />
+                      //     <button
+                      //       onClick={
+                      //         () => {}
+                      //         // setShowModal((pre) => {
+                      //         //   return !pre;
+                      //         // })
+                      //       }
+                      //       // data-bs-target="#modalID"
+                      //       // data-bs-toggle="modal"
+                      //       className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0"
+                      //     >
+                      //       <ShoppingCartIcon className="pe-1 my-auto" />{" "}
+                      //       Details
+                      //     </button>
+                      //   </div>
+                      //   <div className="text-center px-2">
+                      //     <h6 className="mt-4 mb-2 fw-bold">{product.name}</h6>
+                      //     {/* <p className="m-0">Coco Lee, coins are Kumis brown</p> */}
+                      //     <h5 className="mt-2 mb-3 fw-bold">{`$ ${product.price}`}</h5>
+                      //   </div>
+                      // </div>
+
                       <div
                         onClick={() => {
                           handleClick(product._id);
                         }}
                         key={index}
-                        className="card-cat  shadow w-25 "
                         style={{
                           cursor: "pointer",
                         }}
+                        className="card-main border rounded-iconive w-25 d-flex flex-column"
                       >
                         <div className="img-card position-relative">
                           <img
-                            className="w-100 h-100"
+                            className="w-100 h-100 rounded-iconive"
                             src={product.photo}
                             alt="This  is an  picture"
                           />
@@ -477,16 +551,39 @@ export default function Category() {
                             }
                             // data-bs-target="#modalID"
                             // data-bs-toggle="modal"
-                            className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0"
+                            className="position-absolute top-50 left-20 d-flex btn btn-details px-3 py-1 f-14 text-light "
                           >
                             <ShoppingCartIcon className="pe-1 my-auto" />{" "}
-                            Details
+                           <p className="m-auto"> Details</p>
                           </button>
                         </div>
-                        <div className="text-center px-2">
-                          <h6 className="mt-4 mb-2 fw-bold">{product.name}</h6>
-                          {/* <p className="m-0">Coco Lee, coins are Kumis brown</p> */}
-                          <h5 className="mt-2 mb-3 fw-bold">{`$ ${product.price}`}</h5>
+                        <div className="text-start p-3 mt-auto">
+                          <p className=" fw-bold  ">{product.name}</p>
+                          <p className="m-0 py-0 text-12 text-theme-gray">
+                            Be confident with any style you like to own from a
+                            large variety of styles.
+                          </p>
+                          <div className="d-flex justify-content-between mt-4">
+                            <p className="text-20 fw-bold text-dark my-auto pt-1">{`$ ${product.price}`}</p>
+                            <div className="d-flex">
+                              <button className="btn px-0 mt-1">
+                                {" "}
+                                <img
+                                  src={cardicon2}
+                                  className=""
+                                  alt="this is an icon"
+                                />
+                              </button>
+                              <button className="btn ps-2 my-auto">
+                                {" "}
+                                <img
+                                  src={cardicon1}
+                                  className="w-100 "
+                                  alt="this is an icon"
+                                />
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     ))}
