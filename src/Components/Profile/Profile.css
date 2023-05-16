@@ -1,0 +1,42 @@
+.w-33{
+    width: 33%;
+}
+.bg-gray3{
+    background-color: #130c0c;
+   
+}
+.text-20{
+    font-size: 20px;
+}
+.text-15{
+    font-size: 15px;
+}
+.text-18{
+    font-size: 18px;
+}
+.text-theme-gray{
+    color: #666666;
+}
+.mt-100{
+    margin-top: 50px;
+}
+.feature-hover:hover{
+    background-color: #6666660d;
+}
+
+.bg-wholeslae{
+    background-color: #f9f5f0e9;
+}
+
+.postion-wholesale{
+    top:21%;
+    border-radius: 8px;
+
+}
+.bg-testimonial{
+    background-color: #F9F5F0;
+}
+.py9060{
+    padding-top: 90px;
+    padding-bottom: 60px;
+}

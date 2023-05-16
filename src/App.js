@@ -10,6 +10,7 @@ import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
 import CartContext from "./Contexts/CartContext";
+import Profile from "./Components/Profile/Profile";
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
@@ -31,6 +32,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/catagory" element={<Category />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/profile" element={<Profile />} />
           <Route
             path="/ProductDetails/:product"
             element={
