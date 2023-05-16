@@ -15,7 +15,7 @@ export default function OrderList({ orderList }) {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       });
-      // console.log(response.data);
+      console.log(response.data);
       setOrders(response.data.reverse());
     } catch (e) {
       console.log(e);
@@ -32,7 +32,7 @@ export default function OrderList({ orderList }) {
         {orders.map((order, index) => {
           return (
             <div key={index}>
-              <Order index={orders.length - index} orderId={order} />
+              <Order index={orders.length - index} order={order} />
             </div>
           );
         })}
