@@ -13,6 +13,8 @@ import CartContext from "./Contexts/CartContext";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import AuthContext from "./Contexts/AuthContext";
+import AuthDispatcherContext from "./Contexts/AuthDIspatcherContext";
+import Profile from "./Pages/Orders";
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
@@ -33,46 +35,49 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <AuthContext.Provider value={user}>
-        <Router>
-          <Navigation
-            renderer={cartRenderer}
-            currency={currency}
-            setCurrency={setCurrency}
-          />
+      <AuthContext.Provider value={{ user, setUser }}>
+        <AuthDispatcherContext.Provider value={setUser}>
+          <Router>
+            <Navigation
+              renderer={cartRenderer}
+              currency={currency}
+              setCurrency={setCurrency}
+            />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route
-              path="/catagory"
-              element={<Category currency={currency} />}
-            />
-            <Route
-              path="/checkout"
-              element={
-                <Checkout
-                  currency={currency}
-                  setCartRenderer={setCartRenderer}
-                />
-              }
-            />
-            <Route
-              path="/ProductDetails/:product"
-              element={
-                <ProductDetails
-                  setCartRenderer={setCartRenderer}
-                  currency={currency}
-                />
-              }
-            />
-            <Route path="/aboutus" element={<Home />} />
-            <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/signup" element={<Signup setUser={setUser} />} />
-          </Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route
+                path="/catagory"
+                element={<Category currency={currency} />}
+              />
+              <Route
+                path="/checkout"
+                element={
+                  <Checkout
+                    currency={currency}
+                    setCartRenderer={setCartRenderer}
+                  />
+                }
+              />
+              <Route
+                path="/ProductDetails/:product"
+                element={
+                  <ProductDetails
+                    setCartRenderer={setCartRenderer}
+                    currency={currency}
+                  />
+                }
+              />
+              <Route path="/aboutus" element={<Home />} />
+              <Route path="/login" element={<Login setUser={setUser} />} />
+              <Route path="/signup" element={<Signup setUser={setUser} />} />
+              <Route path="/orders/" element={<Profile />} />
+            </Routes>
 
-          <Footer></Footer>
-        </Router>
+            <Footer></Footer>
+          </Router>
+        </AuthDispatcherContext.Provider>
       </AuthContext.Provider>
     </div>
   );

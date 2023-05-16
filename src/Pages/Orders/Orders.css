@@ -1,0 +1,29 @@
+.container {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.inline {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.orders {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

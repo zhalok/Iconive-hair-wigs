@@ -3,22 +3,17 @@ import React, { useContext, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../Images/logoblack.png";
 import "./Navigation.css";
 import SearchIcon from "@mui/icons-material/Search";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PersonIcon from "@mui/icons-material/Person";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import Collection from "./image/Collections.png";
 import maleCollection from "./image/malecollection.png";
 import femaleCollection from "./image/femaleCollections.png";
 import Rawhair from "./image/Rawhair.png";
 import Accessories from "./image/Accessories.png";
 import { Badge } from "@mui/material";
-import { render } from "@testing-library/react";
 import AuthContext from "../../Contexts/AuthContext";
-import { DropdownButton, Dropdown } from "react-bootstrap";
 import LoginIcon from "@mui/icons-material/Login";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
@@ -37,9 +32,8 @@ export default function Navigation({ renderer, currency, setCurrency }) {
       setCartItems(cart.length);
     }
   }, [renderer]);
-  // console.log(renderer);
+
   const authContext = useContext(AuthContext);
-  // console.log("authContext", authContext);
 
   return (
     <div>
@@ -58,7 +52,7 @@ export default function Navigation({ renderer, currency, setCurrency }) {
           <div className="p-1 ">
             <AuthContext.Consumer>
               {(value) => {
-                if (value) {
+                if (value?.user) {
                   return (
                     <>
                       <div
@@ -82,8 +76,13 @@ export default function Navigation({ renderer, currency, setCurrency }) {
                           >
                             <small>Signout </small>{" "}
                           </div>
-                          <div style={{ width: "100%", cursor: "pointer" }}>
-                            <small>Profile</small>
+                          <div
+                            style={{ width: "100%", cursor: "pointer" }}
+                            onClick={() => {
+                              navigate("/orders");
+                            }}
+                          >
+                            <small>Orders</small>
                           </div>
                         </div>
                       )}
