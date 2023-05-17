@@ -176,17 +176,17 @@ export default function Checkout(props) {
         const order = orderResponse.data;
         window.location.reload();
 
-        // const paymentResponse = await axios.post(
-        //   `/payment/create/${order._id}`,
-        //   {},
-        //   {
-        //     headers: {
-        //       Authorization: `Bearer ${Cookies.get("jwt")}`,
-        //     },
-        //   }
-        // );
+        const paymentResponse = await axios.post(
+          `/payment/create/${order._id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get("jwt")}`,
+            },
+          }
+        );
 
-        // window.location.replace(paymentResponse.data.payment_url);
+        window.location.replace(paymentResponse.data.payment_url);
       } catch (e) {
         setLoading(false);
         console.log(e);

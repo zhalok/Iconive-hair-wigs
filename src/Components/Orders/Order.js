@@ -16,19 +16,45 @@ const badgeMapping = {
 };
 
 export default function Order({ order, index, setOrders, getOrders }) {
+  // console.log("orderId", order._id);
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [loading, setLoading] = useState(false);
   const cancelOrder = async () => {
     try {
       setLoading(true);
-      const response = await axios.delete(`/order/deleteOne/${order._id}`, {
-        headers: {
-          Authorization: `Bearer ${Cookies.get("jwt")}`,
-        },
-      });
+      const response = await axios.put(
+        `/order/cancelOne/${order._id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("jwt")}`,
+          },
+        }
+      );
 
       setLoading(false);
       getOrders();
+    } catch (e) {
+      setLoading(false);
+      console.log(e);
+    }
+  };
+
+  const payOrder = async () => {
+    try {
+      setLoading(true);
+      const paymentResponse = await axios.post(
+        `/payment/create/${order._id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("jwt")}`,
+          },
+        }
+      );
+      setLoading(false);
+      console.log(paymentResponse);
+      // window.location.replace(paymentResponse.data.payment_url);
     } catch (e) {
       setLoading(false);
       console.log(e);
@@ -60,12 +86,34 @@ export default function Order({ order, index, setOrders, getOrders }) {
           </div>
         </div>
         <div className="order-buttons">
-          {loading ? (
-            <PulseLoader />
-          ) : (
-            <Button variant="danger" onClick={cancelOrder}>
-              Cancel Order
-            </Button>
+          <div>
+            {loading ? (
+              <PulseLoader />
+            ) : (
+              <Button
+                variant="danger"
+                className="order-button"
+                onClick={cancelOrder}
+              >
+                Cancel Order
+              </Button>
+            )}
+          </div>
+
+          {order.payment_status.toLowerCase() == "pending" && (
+            <div>
+              {loading ? (
+                <PulseLoader />
+              ) : (
+                <Button
+                  variant="success"
+                  className="order-button"
+                  onClick={payOrder}
+                >
+                  Pay now
+                </Button>
+              )}
+            </div>
           )}
         </div>
       </div>
