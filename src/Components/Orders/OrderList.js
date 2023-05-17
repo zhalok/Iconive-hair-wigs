@@ -15,7 +15,7 @@ export default function OrderList({ orderList }) {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
       setOrders(response.data.reverse());
     } catch (e) {
       console.log(e);
@@ -27,16 +27,19 @@ export default function OrderList({ orderList }) {
   }, []);
 
   return (
-    <>
-      <Accordion defaultActiveKey={0}>
-        {orders.map((order, index) => {
-          return (
-            <div key={index}>
-              <Order index={orders.length - index} order={order} />
-            </div>
-          );
-        })}
-      </Accordion>
-    </>
+    <div className="orderlist">
+      {orders.map((order, index) => {
+        return (
+          <div key={index}>
+            <Order
+              index={orders.length - index}
+              order={order}
+              setOrders={setOrders}
+              getOrders={getOrders}
+            />
+          </div>
+        );
+      })}
+    </div>
   );
 }

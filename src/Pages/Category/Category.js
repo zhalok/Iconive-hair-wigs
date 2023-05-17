@@ -21,18 +21,7 @@ import CollectionCard from "../../Components/Collections/CollectionCard";
 // import { useNavigate } from "react-router-dom";
 
 export default function Category({ currency }) {
-  const [status, setStatus] = useState(false);
-  const [ladiesDrop, setladiesDrop] = useState(false);
-  const [backup, setBackup] = useState(false);
-  const [gear, setGear] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [gents, setgents] = useState(false);
-  const [ladies, setladies] = useState(false);
-  const [rawhair, setrowhair] = useState(false);
-  const [accessories, setaccessories] = useState(false);
   const [topbanner, setTopBanner] = useState(0);
-  const [isShown, setIsShown] = useState(false);
-  const [activePointer, setActivePointer] = useState(-1);
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({});
   const [categories, setCategories] = useState([]);
@@ -49,37 +38,12 @@ export default function Category({ currency }) {
   };
   const getProducts = async () => {
     try {
-      // console
       const response = await axios.get("/products", {
-        // headers:{
-        //   Authorization:`Bearer ${Cookies}`
-        // }
-        // params: {
-        //   category: filters,
-        // },
         params: filters,
       });
-      // console.log(response.data);
+
       setProducts(response.data);
     } catch (e) {}
-  };
-
-  const convertCurrency = async (from, to, amount) => {
-    const conversionResponse = await apiLayerAxios.get(
-      "/currency_data/convert",
-      {
-        params: {
-          from,
-          to,
-          amount,
-        },
-        headers: {
-          apikey: "YdCsdlEb6On8gogoA4c6rsqz2bbxHd6y",
-        },
-      }
-    );
-    // console.log("convert currency", conversionResponse.data);
-    return conversionResponse.data.result;
   };
 
   useEffect(() => {
@@ -87,7 +51,6 @@ export default function Category({ currency }) {
   }, [filters]);
   useEffect(() => {
     getCategories();
-    // convertCurrency("USD", "BDT", 1);
   }, []);
 
   const navigate = useNavigate();
@@ -221,13 +184,7 @@ export default function Category({ currency }) {
                 <div className="w-75 p-4  pt-5 text-start">
                   <div>
                     <h5 className=" fw-bolder">Collections</h5>
-                    <p className="pt-2 fw-lighter">
-                      Lorem ipsum dolor sit amet consectetur adipiscing elit.
-                      Quisque non nulla nulla, nec tincidunt risus morbi
-                      ultricies est ditae odio ultrices imperdiet. Cras accumsan
-                      dorci maces consequat blandi susto dusto elementum libero
-                      non honcus.
-                    </p>
+                    <p className="pt-2 fw-lighter"></p>
                   </div>
 
                   <div className="d-flex flex-wrap w-100 pt-4 gap-4 mx-auto">
