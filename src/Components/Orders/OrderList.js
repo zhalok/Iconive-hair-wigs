@@ -15,7 +15,7 @@ export default function OrderList({ orderList }) {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       });
-      // console.log(response.data);
+
       setOrders(response.data.reverse());
     } catch (e) {
       console.log(e);

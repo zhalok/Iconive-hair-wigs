@@ -149,6 +149,7 @@ export default function Checkout(props) {
     const cart = localStorage.getItem("cart");
     if (cart) {
       const cartItems = JSON.parse(cart);
+      console.log("Cart Items", cartItems);
       if (cartItems.length == 0) {
         alert("Cart is empty");
         return;
@@ -176,17 +177,17 @@ export default function Checkout(props) {
         const order = orderResponse.data;
         window.location.reload();
 
-        const paymentResponse = await axios.post(
-          `/payment/create/${order._id}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${Cookies.get("jwt")}`,
-            },
-          }
-        );
+        // const paymentResponse = await axios.post(
+        //   `/payment/create/${order._id}`,
+        //   {},
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${Cookies.get("jwt")}`,
+        //     },
+        //   }
+        // );
 
-        window.location.replace(paymentResponse.data.payment_url);
+        // window.location.replace(paymentResponse.data.payment_url);
       } catch (e) {
         setLoading(false);
         console.log(e);

@@ -125,7 +125,7 @@ export default function Order({ order, index, setOrders, getOrders }) {
             <Accordion.Body>
               <div>
                 {order?.orderItems?.map((orderItem, index) => {
-                  return <OrderItem index={index} orderItem={orderItem} />;
+                  return <OrderItem index={index} orderItemId={orderItem} />;
                 })}
               </div>
             </Accordion.Body>

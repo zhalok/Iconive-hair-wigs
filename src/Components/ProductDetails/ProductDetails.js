@@ -26,7 +26,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
   const [selectedAddOns, setSelectedAddons] = useState([]);
   const [amount, setAmount] = useState(0);
   const [cartAdded, setCartAdded] = useState(false);
-  const [selectedColor, setSelectedColor] = useState();
+  const [selectedColor, setSelectedColor] = useState(null);
   const [selectedColorPrice, setSelectedColorPrice] = useState(0);
 
   const getProductDetails = async () => {
@@ -163,7 +163,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                       cursor: "pointer",
                     }}
                     onClick={() => {
-                      if (selectedColor) {
+                      if (selectedColor == e._id) {
                         setSelectedColor(null);
                         setSelectedColorPrice(0);
                         // setAmount((prev) => prev - e.price);
