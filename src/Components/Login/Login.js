@@ -18,6 +18,9 @@ const Login = () => {
   const [email, setemail] = useState("");
   const [pass, setpass] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const login = async () => {
@@ -37,6 +40,7 @@ const Login = () => {
       window.location.reload();
     } catch (e) {
       console.log(e);
+      setError("Invalid Credentials");
       setLoading(false);
     }
   };
@@ -56,28 +60,6 @@ const Login = () => {
       navigate("/Home");
     }
   }, []);
-  // const handleLogin = e => {
-  //   console.log(email);
-  //    console.log(pass);
-
-  //     signInWithEmailAndPassword(auth,email,pass)
-  //     .then((user)=>{
-  //       setUser(user.user)
-  //     }).catch((error)=>{
-  //       console.log(error)
-  //     })
-
-  //     e.preventDefault();
-
-  // }
-  // const handleGoogleLogin = (e)=> {
-
-  //   signInWithPopup(auth,provider).then((data)=>{
-  //     setGooglelog(data.user.email);
-  //     localStorage.setItem('email',data.user.email)
-  //   });
-  //   e.preventDefault();
-  //  }
 
   useEffect(() => {
     setGooglelog(localStorage.getItem("email"));
@@ -89,12 +71,6 @@ const Login = () => {
   };
   return (
     <>
-      {/* {
-        googlelog?<h2 className=" my-4 pt-5 text-center "><span className="text-danger">Congratulation</span> Google lognin is Done !!!!</h2>:<h2 className="my-4 text-center pt-5"></h2>
-     }
-     {
-      user&&<><h2> <span className="text-danger">Congratulation!! </span> on your brilliant success </h2> <button className="btn btn-info mt-3" ><a className="text-decoration-none text-light" href="/home">Go Home</a></button> </>
-     } */}
       <div className="text-center d-flex ">
         <div className="d-flex shadow-lg mx-auto my-5 marginTopBot">
           <div className="w-50 d-flex mx-4">
@@ -139,6 +115,7 @@ const Login = () => {
                     </button>
                   )}
                 </form>
+                <small className="text-danger">{error}</small>
                 <p className="my-4 ">
                   New to Iconive ?
                   <Link to="/signup" className="ms-2">
