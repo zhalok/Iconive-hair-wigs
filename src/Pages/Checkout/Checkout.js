@@ -83,22 +83,22 @@ export default function Checkout() {
             <div className="col-8 p-4 ">
               <div className="text-start mb-5">
                 <h4 className="mb-3">Already registered?</h4>
-                <button className="btn btn-dark rounded-0 px-4 fs-6">
+                <button className="btn btn-theme border-0 text-light rounded-3 px-4 fs-6">
                   <small>CLICK HERE TO LOGIN</small>
                 </button>
               </div>
               <h4 className="text-theme text-start ">Delivery Address</h4>
-              <form action="" className="text-start pe-4">
+              <form action="" className="text-center pe-4">
                 <div className="d-flex pt-4">
                   <div className="w-50 pe-lg-4">
                     <p className="text-start mb-1">
-                      Name<span className="spanRed">*</span>
+                      Name
                     </p>
                     <input
                       type="text"
                       name="contactName"
                       id=""
-                      className="w-100 h-75 px-2 rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
                   <div className="w-50 ">
@@ -109,7 +109,7 @@ export default function Checkout() {
                       type="number"
                       name="contactName"
                       id=""
-                      className="w-100 h-75 px-2 rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function Checkout() {
                       type="email"
                       name="contactName"
                       id=""
-                      className="w-100 h-75 px-2 rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
                   <div className="w-50 ">
@@ -133,7 +133,7 @@ export default function Checkout() {
                       type="text"
                       name="contactName"
                       id=""
-                      className="w-100 h-75  px-2 rounded-0 border-1"
+                      className="w-100 h-75  px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
                 </div>
@@ -146,7 +146,7 @@ export default function Checkout() {
                       type="text"
                       name="contactName"
                       id=""
-                      className="w-100 h-75 px-2 rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
                   <div className="w-50 ">
@@ -155,7 +155,7 @@ export default function Checkout() {
                     </p>
 
                     <select
-                      className="w-100 h-75 px-2 rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                       value={selectedCountry}
                       onChange={(e) => {
                         setSelectedCountry(e.target.value);
@@ -176,7 +176,7 @@ export default function Checkout() {
                     </p>
 
                     <select
-                      className="w-100 h-75 px-2rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                       value={selectedCity}
                       onChange={(e) => {
                         setSelectedCity(e.target.value);
@@ -195,7 +195,7 @@ export default function Checkout() {
                       type="text"
                       name="contactName"
                       id=""
-                      className="w-100 h-75 px-2 rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
                 </div>
@@ -207,8 +207,8 @@ export default function Checkout() {
 
                 <input
                   type="submit"
-                  value="CHECKOUT"
-                  className="border-0 btn-dark text-white px-5 py-3 my-5 w-100 pe-4"
+                  value="CHECK OUT"
+                  className="border-0 btn-theme-check text-white mx-auto my-4 w-50 pe-4"
                   onClick={(e) => {
                     e.preventDefault();
                     console.log(cartItems);
@@ -238,9 +238,9 @@ export default function Checkout() {
                     name="cupone"
                     id="#cupone"
                     placeholder="Coupon Code "
-                    className="w-75 h-100 px-2 rounded-0 border-1 "
+                    className="w-75 h-100 px-2 rounded-0 border-1 border-theme "
                   />
-                  <button className="w-25 h-100 btn btn-dark rounded-0">
+                  <button className="w-25 h-100 btn btn-dark text-light rounded-0 border-1 border-dark">
                     APPLY
                   </button>
                 </div>
@@ -258,14 +258,14 @@ export default function Checkout() {
                     ${parseFloat(productTotal) + parseFloat(deliveryCharge)}
                   </p>
                 </div>
-                <div className="form-check form-switch pt-5 flex">
+                <div className="form-check form-switch pt-5 flex ">
                   <input
                     onClick={() => {
                       setCheckRefund((prevState) => {
                         return !prevState;
                       });
                     }}
-                    className={` form-check-input fs-5 my-auto checked ${
+                    className={` form-check-input ps-3 fs-5 mt-1 checked ${
                       checkRefund && " "
                     }`}
                     type="checkbox"

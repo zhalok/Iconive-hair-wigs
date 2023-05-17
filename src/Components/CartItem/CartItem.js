@@ -60,24 +60,25 @@ export default function CartItem({
             alt="this is an icon"
           />
         </div>
-        <div className="d-flex w-85 ms-2">
-          <Link to={`/productDetails/${product._id}`}>
-            <h6 className="fw-bold my-auto">{product.name}</h6>
+        <div className=" w-85 ms-2">
+          <Link className="text-dark text-decoration-none text-uppercase " to={`/productDetails/${product._id}`}>
+            <h6 className="fw-bold my-auto ">{product.name}</h6>
           </Link>
-        </div>
-      </div>
-      <p className="mt-1 ">
+          <p className="mt-1 ">
         {/* */}
         {addOns.map((e) => {
           return (
-            <small style={{ marginRight: "10px" }}>
+            <small className="text-theme-gray" style={{ marginRight: "10px" }}>
               {e.name} : {e.value}
             </small>
           );
         })}
       </p>
+        </div>
+      </div>
+      
       <div className="d-flex justify-content-between">
-        <h5 className="fw-bold my-auto">
+        <h5 className="fw-bold my-auto ps-3">
           ${" "}
           {(parseFloat(product.price) +
             parseFloat(
@@ -114,7 +115,7 @@ export default function CartItem({
               <RemoveIcon />
             </Button>
             <Button className="btn-light rounded-0 border px-4">
-              {amount}
+             <h5>{amount}</h5> 
             </Button>
             <Button
               onClick={() => {
@@ -141,7 +142,7 @@ export default function CartItem({
         <div>
           <button
             size="sm"
-            className="btn  py-0 me-3"
+            className="btn  py-0 mx-3"
             onClick={() => {
               discardCartItem(product._id);
             }}
