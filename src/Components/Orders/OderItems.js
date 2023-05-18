@@ -3,6 +3,7 @@ import axios from "../../utils/axios";
 import { Accordion } from "react-bootstrap";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import currencyConverter from "../../utils/CurrencyChanger";
+import discountCalculator from "../../utils/calculateDIscount";
 
 export default function OrderItem({ orderItemId }) {
   const [orderItem, setOrderItem] = useState({});
@@ -35,8 +36,16 @@ export default function OrderItem({ orderItemId }) {
       <div>Amount: {orderItem.amount}</div>
       <div>Color: {orderItem?.color?.name}</div>
       <div>
-        Price: {currencyConverter(currency, orderItem.totalPrice)} {currency}
+        Product Price:{" "}
+        {currencyConverter(
+          currency,
+          discountCalculator(
+            orderItem.product.price,
+            orderItem.product.discount
+          )
+        )}{" "}
       </div>
+
       <div>
         <Accordion defaultActiveKey={0}>
           <Accordion.Item eventKey="0">
@@ -57,6 +66,10 @@ export default function OrderItem({ orderItemId }) {
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
+      </div>
+      <div>
+        Total Price: {currencyConverter(currency, orderItem.totalPrice)}{" "}
+        {currency}
       </div>
     </div>
   );

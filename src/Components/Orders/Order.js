@@ -66,6 +66,7 @@ export default function Order({ order, index, setOrders, getOrders }) {
       <div className="order-control">
         <div className="order-information">
           <div className="label">Order #{index}</div>
+
           <div>
             <span className="label"> Total Price:</span>{" "}
             {currencyConverter(currency, order.payment_amount)} {currency}

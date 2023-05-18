@@ -88,7 +88,8 @@ export default function CartItem({
       </p>
       <div className="d-flex justify-content-between">
         <h5 className="fw-bold my-auto">
-          $ {currencyConverter(currency, price * amount)}
+          {currency == "USD" ? "$" : "৳"}{" "}
+          {currencyConverter(currency, price * amount)}
         </h5>
         <div>
           <ButtonGroup size="sm">

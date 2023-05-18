@@ -430,19 +430,25 @@ export default function Checkout(props) {
                 <div className="d-flex justify-content-between my-2 border-bottom">
                   <h6 className="fw-bold">Products </h6>
                   {currency != undefined ? (
-                    <p>${currencyConverter(currency, productTotal)}</p>
+                    <p>
+                      {currency == "USD" ? "$" : "৳"}
+                      {currencyConverter(currency, productTotal)}
+                    </p>
                   ) : (
                     <PulseLoader />
                   )}
                 </div>
                 <div className="d-flex justify-content-between  my-2 border-2 border-bottom">
                   <h6 className="fw-bold">Subtotal </h6>
-                  <p>${deliveryCharge}</p>
+                  <p>
+                    {currency == "USD" ? "$" : "৳"}
+                    {currencyConverter(currency, deliveryCharge)}
+                  </p>
                 </div>
                 <div className="d-flex justify-content-between  ">
                   <h5 className="fw-bold">Total </h5>
                   <p className="fw-bold">
-                    $
+                    {currency == "USD" ? "$" : "৳"}
                     {currencyConverter(
                       currency,
                       parseFloat(productTotal) + parseFloat(deliveryCharge)

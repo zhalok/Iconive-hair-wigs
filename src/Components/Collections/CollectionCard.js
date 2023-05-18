@@ -5,6 +5,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { PulseLoader } from "react-spinners";
 import apiLayerAxios from "../../utils/apiLayerAxios";
 import currencyConverter from "../../utils/CurrencyChanger";
+import discountCalculator from "../../utils/calculateDIscount";
 
 export default function CollectionCard({ currency, productId, index }) {
   const navigate = useNavigate();
@@ -77,7 +78,10 @@ export default function CollectionCard({ currency, productId, index }) {
         {/* <p className="m-0">Coco Lee, coins are Kumis brown</p> */}
         <h5 className="mt-2 mb-3 fw-bold">
           {currency == "USD" ? "$" : "৳"}
-          {currencyConverter(currency, product.price)}
+          {currencyConverter(
+            currency,
+            discountCalculator(product.price, product.discount)
+          )}
         </h5>
       </div>
     </div>
