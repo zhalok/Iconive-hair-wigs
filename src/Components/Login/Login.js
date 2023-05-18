@@ -8,6 +8,7 @@ import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import AuthContext from "../../Contexts/AuthContext";
 import { PulseLoader } from "react-spinners";
+import { useSearchParams } from "react-router-dom";
 // import {auth,provider} from './config.js'
 // import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
@@ -22,6 +23,8 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  // console.log(searchParams.get("proceeedToCheckout"));
 
   const login = async () => {
     if (!email || !pass) {
@@ -37,6 +40,10 @@ const Login = () => {
       const response = await axios.post("/auth/login", loginInfo);
       Cookies.set("jwt", response.data.token);
       setLoading(false);
+      if (searchParams.get("proceeedToCheckout") == "true") {
+        navigate("/checkout");
+        return;
+      }
       window.location.reload();
     } catch (e) {
       console.log(e);

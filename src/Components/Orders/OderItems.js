@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "../../utils/axios";
 import { Accordion } from "react-bootstrap";
+import CurrencyContext from "../../Contexts/CurrencyContext";
+import currencyConverter from "../../utils/CurrencyChanger";
 
 export default function OrderItem({ orderItemId }) {
   const [orderItem, setOrderItem] = useState({});
+  const { currency, setCurrency } = useContext(CurrencyContext);
 
   const getOrderItem = async () => {
     try {
@@ -30,6 +33,10 @@ export default function OrderItem({ orderItemId }) {
     >
       <h2>Name: {orderItem?.product?.name}</h2>
       <div>Amount: {orderItem.amount}</div>
+      <div>Color: {orderItem?.color?.name}</div>
+      <div>
+        Price: {currencyConverter(currency, orderItem.totalPrice)} {currency}
+      </div>
       <div>
         <Accordion defaultActiveKey={0}>
           <Accordion.Item eventKey="0">
@@ -40,7 +47,10 @@ export default function OrderItem({ orderItemId }) {
                   <div key={index} style={{ marginTop: "10px" }}>
                     <div>Name: {addOn.name}</div>
                     <div>Value: {addOn.value}</div>
-                    <div>Price: {addOn.price}</div>
+                    <div>
+                      Price: {currencyConverter(currency, addOn.price)}{" "}
+                      {currency}
+                    </div>
                   </div>
                 );
               })}
