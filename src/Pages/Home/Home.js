@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { React, useState } from "react";
@@ -131,7 +132,7 @@ export default function Home() {
           </div>
           <div className="w-50 me-autos position-absolute bg-wholeslae text-start p-5 postion-wholesale shadow-lg ">
             <h2 className="fw-bold">For Wholesellers</h2>
-            <p className="mt-3 mb-4 text-18 text-justify text-theme-gray ">Shop wigs in bulk at discounted prices in our wholesale section. Ideal for resellers or stocking up on your favorite styles, explore a wide range of wig types, colors, and styles with customization options, fast shipping, and dedicated support. Minimum order quantities may apply, start saving on your wig purchases now.</p>
+            <p className="py-4 text-16 text-justify text-theme-gray ">Shop wigs in bulk at discounted prices in our wholesale section. Ideal for resellers or stocking up on your favorite styles, explore a wide range of wig types, colors, and styles with customization options, fast shipping, and dedicated support. Minimum order quantities may apply, start saving on your wig purchases now.</p>
             <a className="text-theme-gray text-decoration-none border-2 border-bottom pb-2 " href="" target="_blank" >View Wholesale Shop</a>
              
           </div>
