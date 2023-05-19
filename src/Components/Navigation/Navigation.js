@@ -39,8 +39,8 @@ export default function Navigation({ renderer }) {
   return (
     <div className="shadow">
       {/* offer div */}
-      <div className="bg-dark py-1 d-flex">
-        <p className="mx-auto py-2 . my-auto text-light text-xs">
+      <div className="bg-top d-flex">
+        <p className="m-auto text-light text-14">
           FREE INTERNATIONAL SHIPPING On Orders Over $200!
         </p>
       </div>
@@ -124,7 +124,7 @@ export default function Navigation({ renderer }) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto gap-4 d-flex mx-auto position-relative">
-                <Nav.Link href="/home" className="text-black text-18  drop">
+                <Nav.Link href="/home" className="text-black text-nav  drop">
                   HOME
                 </Nav.Link>
 
@@ -134,7 +134,7 @@ export default function Navigation({ renderer }) {
                       return !prevs;
                     });
                   }}
-                  className="text-black drop  text-18"
+                  className="text-black drop  text-nav"
                 >
                   SHOP
                 </Nav.Link>
@@ -224,13 +224,13 @@ export default function Navigation({ renderer }) {
                   </div>
                 )}
 
-                <Nav.Link href="#home" className="text-black drop text-18">
+                <Nav.Link href="#home" className="text-black drop text-nav">
                   HAIR SOLUTION
                 </Nav.Link>
 
                 <Nav.Link
                   href="#home"
-                  className="text-black text-18 text-uppercase"
+                  className="text-black text-nav text-uppercase"
                 >
                   {" "}
                   Guide ME
@@ -238,25 +238,25 @@ export default function Navigation({ renderer }) {
 
                 <Nav.Link
                   href="#home"
-                  className="text-black text-18 text-uppercase drop"
+                  className="text-black text-nav text-uppercase drop"
                 >
                   customIZE
                 </Nav.Link>
                 <Nav.Link
                   href="#home"
-                  className="text-black text-18 text-uppercase drop"
+                  className="text-black text-nav text-uppercase drop"
                 >
                   Offers
                 </Nav.Link>
                 <Nav.Link
                   href="#home"
-                  className="text-black text-18 text-uppercase drop"
+                  className="text-black text-nav text-uppercase drop"
                 >
                   JOIN US
                 </Nav.Link>
                 <Nav.Link
                   href="#home"
-                  className="text-warning text-18 text-uppercase drop"
+                  className="text-warning text-nav text-uppercase drop"
                 >
                   Wholesale
                 </Nav.Link>

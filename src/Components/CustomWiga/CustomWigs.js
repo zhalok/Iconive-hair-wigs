@@ -33,8 +33,9 @@ export default function CustomWigs() {
           <img src={p6} alt="this is a picture" />
         </div>
       </div>
-      <div className=" position-relative">
-        <div className="position-absolute bottom-0">
+      {/* position-relative position-absolute */}
+      <div className="bg-custom-banner pt-5">
+        <div className=" bottom-0">
           <div className="ps-r">
             <h4 className="fw-bold fs-2  pt-5  w-100 mx-auto text-uppercase">
               Custom medical wigs
@@ -122,7 +123,7 @@ export default function CustomWigs() {
           </div>
           </div>
         </div>
-        <img src={bg} alt="this is an picture" />
+        {/* <img src={bg} alt="this is an picture" /> */}
       </div>
     </div>
   );

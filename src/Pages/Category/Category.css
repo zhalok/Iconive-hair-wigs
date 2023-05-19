@@ -23,14 +23,13 @@
   
   .sidebarBg {
     background-color: #F6F6F6;
-    width: 400px !important;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 45px;
     border-radius: 10px;
   }
   .sidebarwidth{
-    width: 400px;
+    width: 20%;
   }
   .-mbb {
     margin-bottom: -7px !important;
@@ -168,7 +167,7 @@
   transition: 0.5s;
 }
 .left-20{
-  left: 28%;
+  left: 33%;
 }
 
 .alink:hover{
@@ -212,4 +211,7 @@
   background: #ecb30a;
 box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
 border-radius: 6px;
+}
+.w-80{
+  width: 80%;
 }

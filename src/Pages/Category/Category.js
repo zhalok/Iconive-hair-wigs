@@ -169,25 +169,25 @@ export default function Category() {
   return (
     <>
       <div>
-        <div className=" py-5 border-bottom">
-          <div className="px120 text-start my-auto d-flex text-18">
+        <div className=" py-4 border-bottom">
+          <div className="px120 text-start my-1 d-flex text-18">
             <a
               href="/home"
-              className="text-decoration-none  text-18 text-theme-gray text-uppercase my-auto"
+              className="text-decoration-none  f-18 text-theme-gray text-uppercase"
             >
               Home
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
               href="/home"
-              className="text-decoration-none text-18 text-theme-gray text-uppercase"
+              className="text-decoration-none f-18 text-theme-gray text-uppercase"
             >
               cATAGORIES
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
               href="/home"
-              className="text-decoration-none text-black text-18 text-uppercase "
+              className="text-decoration-none text-black f-18 text-uppercase "
             >
               Gents wig
             </a>
@@ -248,7 +248,7 @@ export default function Category() {
                 {/* sidebar */}
                 <div className="sidebarwidth d-flex flex-column gap-4">
                   <div className="sidebarBg  ">
-                    <div className="text-start border-bottom border-dark pb-4 mb-2">
+                    <div className="text-start pb-4">
                       <p className="text-20  text-uppercase my-auto fw-bold">
                         Categories
                       </p>
@@ -256,13 +256,13 @@ export default function Category() {
                     {/* Gents Wig */}
                     {categories.map((category) => {
                       return (
-                        <div className="border-bottom border-secondary py-4">
+                        <div className="border-top border-1 border-secondary py-4">
                           <div className="text-black d-flex ">
-                            <p className="text-18 text-theme-gray ">
-                              {category.name}{" "}
+                            <p className="text-18 text-start text-theme-gray mb-0 pt-1">
+                              {category.name}
                             </p>
                             <p
-                              className="ms-auto"
+                              className="ms-auto my-auto"
                               onClick={() => {
                                 setShowSubCategory((prevState) => {
                                   if (prevState != category._id) {
@@ -474,7 +474,7 @@ export default function Category() {
                   </div>
                 </div>
 
-                <div className="w-75 px-5 text-start">
+                <div className="w-80 ps-5 text-center">
                   {/* <div>
                     <h5 className=" fw-bolder">Collections</h5>
                     <p className="pt-2 fw-lighter">

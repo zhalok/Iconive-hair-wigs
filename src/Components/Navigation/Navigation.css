@@ -54,7 +54,9 @@
 .mt-100{
     margin-top: 50px;
 }
-
+.text-nav{
+    font-size: 1.05vw;
+}
 .bg-wholeslae{
     background-color: #f9f5f0e9;
 }
@@ -73,4 +75,8 @@
     font-size: 44px;
     padding-top: 34px;
     padding-bottom: 34px;
+}
+.bg-top{
+   background-color: #363636; 
+   height: 45px;
 }

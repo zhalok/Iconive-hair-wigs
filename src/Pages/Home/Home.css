@@ -98,9 +98,12 @@ hr{
 
 }
 .bg-testimonial{
-    background-color: #F9F5F0;
+    background-color: #f9f5f0;
 }
 .py9060{
     padding-top: 90px;
     padding-bottom: 60px;
+}
+.bg-light-test{
+    background-color: #ffffff9a;
 }

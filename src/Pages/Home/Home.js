@@ -148,7 +148,7 @@ export default function Home() {
         <h3 className="fw-bold py9060 text-dark">WHAT PEOPLE ARE SAYING</h3>
 
         <div className="d-flex py-5 gap-4 mx-5">
-          <div className="w-33 d-flex flex-column p-5 shadow rounded-3 bg-light">
+          <div className="w-33 d-flex flex-column p-5 shadow rounded-3 bg-light-test">
             <p className="d-flex mx-auto text-warning">
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
             </p>
@@ -162,7 +162,7 @@ export default function Home() {
             </p>
             <p className="text-center fw-bold"> @ Ellen White</p>
           </div>
-          <div className="w-33 d-flex flex-column text-start  p-5 shadow rounded-3 bg-light">
+          <div className="w-33 d-flex flex-column text-start  p-5 shadow rounded-3 bg-light-test">
             <p className="d-flex mx-auto text-warning">
               {" "}
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
@@ -176,7 +176,7 @@ export default function Home() {
             </p>
             <p className="text-center fw-bold"> @ Abdul Kader Akash </p>
           </div>
-          <div className="w-33 d-flex flex-column  text-start  p-5 shadow rounded-3 bg-light">
+          <div className="w-33 d-flex flex-column  text-start  p-5 shadow rounded-3 bg-light-test">
             <p className="d-flex mx-auto text-warning">
               {" "}
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
