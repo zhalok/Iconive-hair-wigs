@@ -89,7 +89,7 @@ hr {
 }
 
 .postion-wholesale {
-  top: 21%;
+  top: 22%;
   border-radius: 8px;
 }
 .bg-testimonial {
@@ -98,4 +98,7 @@ hr {
 .py9060 {
   padding-top: 90px;
   padding-bottom: 60px;
+}
+.bg-light-test {
+  background-color: #ffffff9a;
 }

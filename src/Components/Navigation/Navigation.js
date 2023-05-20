@@ -18,6 +18,17 @@ import LoginIcon from "@mui/icons-material/Login";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import CurrencySwitch from "../Switches/CurrencySwitch";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import profile from "./image/profile.svg";
+import search from "./image/search.svg";
+import wish from "./image/wishj.svg";
+import cart from "./image/cart.svg";
+import { shadows } from "@mui/system";
 
 export default function Navigation({ renderer, currency, setCurrency }) {
   const navigate = useNavigate();
@@ -36,15 +47,62 @@ export default function Navigation({ renderer, currency, setCurrency }) {
   const authContext = useContext(AuthContext);
 
   return (
-    <div>
+    <div className="shadow">
       {/* offer div */}
-      <div className="bg-dark py-1 d-flex">
-        <p className="mx-auto py-2 . my-auto text-light text-xs">
+      <div className="bg-top d-flex">
+        <p className="m-auto text-light text-14">
           FREE INTERNATIONAL SHIPPING On Orders Over $200!
         </p>
       </div>
+      {/* 2nd section email and icons  */}
+      <div className="bg-light d-flex justify-content-between border-bottom px115">
+        <div className="my-auto text-dark d-flex py-2">
+          <MailOutlineIcon className="text-secondary me-1 my-auto" />
+          <p className="text-14 navtxt my-auto">iconivehairwigs@gmail.com</p>
+        </div>
+        <div className=" text-dark d-flex gap-2">
+          <a
+            className="mx-1 text-secondary my-auto"
+            href="https://www.facebook.com/profile.php?id=100087712010768"
+          >
+            <FacebookIcon />
+          </a>
+          <a
+            className="mx-1 text-secondary my-auto"
+            href="https://wa.me/message/PIZLMGBXCLUUN1"
+          >
+            <WhatsAppIcon />
+          </a>
+          <a
+            className="mx-1 text-secondary my-auto"
+            href="https://www.instagram.com/invites/contact/?i=5jfrooti9ghz&utm_content=qa5m1k1"
+          >
+            <InstagramIcon />
+          </a>
+
+          <a
+            className="mx-1 text-secondary my-auto"
+            href="https://twitter.com/Iconivehairwigs?t=NKMVGHrLlnyuKu5bZkZ3MA&s=35"
+          >
+            <TwitterIcon />
+          </a>
+          <a
+            className="mx-1 text-secondary my-auto"
+            href="https://www.facebook.com/profile.php?id=100087712010768"
+          >
+            <YouTubeIcon />
+          </a>
+          <a
+            className="mx-1 text-secondary my-auto"
+            href="https://www.facebook.com/profile.php?id=100087712010768"
+          >
+            <LinkedInIcon />
+          </a>
+        </div>
+      </div>
+
       {/* login div */}
-      <div className="d-flex">
+      {/* <div className="d-flex">
         <div className="d-flex ms-auto me-4">
           <div>
             <CurrencySwitch currency={currency} setCurrency={setCurrency} />
@@ -136,19 +194,15 @@ export default function Navigation({ renderer, currency, setCurrency }) {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* title div */}
-      <div className="d-flex justify-between">
-        <div className="ms-5 w-25 text-start pt-3">
-          <a href="/home" className="text-decoration-none mx-auto text-black">
-            {" "}
-            <img
-              className="me-auto -mt"
-              wiidt="50px"
-              height="100px"
-              src={logo}
-              alt="this is a logo"
-            />
+      <div className="d-flex justify-contentx-between px115">
+        <div className="text-start">
+          <a
+            href="/home"
+            className="text-decoration-none text-start text-black"
+          >
+            <h1 className="fw-bold text44 ps-1">ICONIVE</h1>
           </a>
         </div>
         <div className="w-50 d-flex">
@@ -281,27 +335,68 @@ export default function Navigation({ renderer, currency, setCurrency }) {
                 </div>
               )}
 
-              <Nav.Link href="/checkout" className="text-black drop"></Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                {" "}
-                Help me to chose
-              </Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                Offers
-              </Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                Services & Repair
-              </Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                Join Us
-              </Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                Guide
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+                <Nav.Link
+                  href="#home"
+                  className="text-black text-nav text-uppercase"
+                >
+                  {" "}
+                  Guide ME
+                </Nav.Link>
+
+                <Nav.Link
+                  href="#home"
+                  className="text-black text-nav text-uppercase drop"
+                >
+                  customIZE
+                </Nav.Link>
+                <Nav.Link
+                  href="#home"
+                  className="text-black text-nav text-uppercase drop"
+                >
+                  Offers
+                </Nav.Link>
+                <Nav.Link
+                  href="#home"
+                  className="text-black text-nav text-uppercase drop"
+                >
+                  JOIN US
+                </Nav.Link>
+                <Nav.Link
+                  href="#home"
+                  className="text-warning text-nav text-uppercase drop"
+                >
+                  Wholesale
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </div>
+
+        <div className="d-flex  my-auto gap-3">
+          <div className="m-auto  ">
+            <img src={search} alt="this is an icon" />
+          </div>
+          <div className="m-auto ">
+            <img src={wish} alt="this is an icon" />
+          </div>
+          <div className="m-auto">
+            <a href="/checkout">
+              <Badge badgeContent={cartItems} color="primary">
+                <img src={cart} alt="this is an icon" />
+              </Badge>
+            </a>
+          </div>
+          <div className="m-auto">
+            <a href="/profile">
+              <img
+                src={profile}
+                className="shadow-lg rounded-circle"
+                alt="this is an icon"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

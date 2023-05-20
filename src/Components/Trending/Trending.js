@@ -45,7 +45,7 @@ export default function Trending() {
                 />
               </div>
               <div className="text-start p-3">
-                <p className=" fw-bold text-16 ">SuperSkin - Ladies Blonde Wig</p>
+                <p className=" fw-bold text-16 text-dark">SuperSkin - Ladies Blonde Wig</p>
                 <p className="m-0 py-0 text-12 text-theme-gray">Be confident with any style you like to own from a large variety of styles.</p>
                 <div className="d-flex justify-content-between mt-4">
                 <p className="text-20 fw-bold text-dark my-auto pt-1">$500</p>

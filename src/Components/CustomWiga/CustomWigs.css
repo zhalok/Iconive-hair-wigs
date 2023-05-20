@@ -2,6 +2,12 @@
     background-color: #f6f6f6d5;
 
 }
+.bg-custom-banner{
+    background-image: url('../Images/custom/bg-custom.svg');
+    background-size: cover;
+    height: 100%;
+    background-repeat: no-repeat;
+}
 .wc-22{
     width: 18%;
     transition: all 0.5s;
