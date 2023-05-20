@@ -35,16 +35,6 @@ export default function OrderItem({ orderItemId }) {
       <h2>Name: {orderItem?.product?.name}</h2>
       <div>Amount: {orderItem.amount}</div>
       <div>Color: {orderItem?.color?.name}</div>
-      <div>
-        Product Price:{" "}
-        {currencyConverter(
-          currency,
-          discountCalculator(
-            orderItem.product.price,
-            orderItem.product.discount
-          )
-        )}{" "}
-      </div>
 
       <div>
         <Accordion defaultActiveKey={0}>
@@ -57,7 +47,7 @@ export default function OrderItem({ orderItemId }) {
                     <div>Name: {addOn.name}</div>
                     <div>Value: {addOn.value}</div>
                     <div>
-                      Price: {currencyConverter(currency, addOn.price)}{" "}
+                      {/* Price: {currencyConverter(currency, addOn.price)}{" "} */}
                       {currency}
                     </div>
                   </div>
