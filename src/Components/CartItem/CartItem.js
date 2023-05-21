@@ -8,6 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import currencyConverter from "../../utils/CurrencyChanger";
 export default function CartItem({
   id,
   addOns,
@@ -15,14 +16,18 @@ export default function CartItem({
   discardCartItem,
   setCartItems,
   setProductTotal,
+  currency,
+  price,
 }) {
+  // console.log("currency", currency);
   // console.log("hello");
   // console.log(setProductTotal);
   //   console.log("addons", addOns);
   const [product, setProduct] = useState({});
   const [amount, setAmount] = useState(0);
-  const [price, setPrice] = useState(0);
+  // const [price, setPrice] = useState(0);
   const [addons, setAddons] = useState([]);
+
   //   const sum =
   //   console.log(sum);
   const getProduct = async () => {
@@ -30,6 +35,11 @@ export default function CartItem({
       const response = await axios.get(`/products/${id}`);
       //   console.log("cart item", response.data);
       setProduct(response.data);
+      // setPrice(() => {
+      //   const price = response.data.price;
+      //   const discount = response.data.discount;
+      //   return price - (price * discount) / 100;
+      // });
     } catch (e) {
       console.log(e);
     }
@@ -61,40 +71,45 @@ export default function CartItem({
           />
         </div>
         <div className=" w-85 ms-2">
-          <Link className="text-dark text-decoration-none text-uppercase " to={`/productDetails/${product._id}`}>
+          <Link
+            className="text-dark text-decoration-none text-uppercase "
+            to={`/productDetails/${product._id}`}
+          >
             <h6 className="fw-bold my-auto ">{product.name}</h6>
           </Link>
           <p className="mt-1 ">
-        {/* */}
-        {addOns.map((e) => {
-          return (
-            <small className="text-theme-gray" style={{ marginRight: "10px" }}>
-              {e.name} : {e.value}
-            </small>
-          );
-        })}
-      </p>
+            {/* */}
+            {addOns.map((e) => {
+              return (
+                <small
+                  className="text-theme-gray"
+                  style={{ marginRight: "10px" }}
+                >
+                  {e.name} : {e.value}
+                </small>
+              );
+            })}
+          </p>
         </div>
       </div>
-      
+
       <div className="d-flex justify-content-between">
         <h5 className="fw-bold my-auto ps-3">
-          ${" "}
-          {(parseFloat(product.price) +
-            parseFloat(
-              addons.reduce((accumulator, current) => {
-                return accumulator + current.price;
-              }, 0)
-            )) *
-            amount}
+          {currency == "USD" ? "$" : "৳"}{" "}
+          {currencyConverter(currency, price * amount)}
         </h5>
         <div>
           <ButtonGroup size="sm">
             <Button
               onClick={() => {
-                if (amount === 0) return;
+                console.log(amount);
+                if (amount <= 1) {
+                  return;
+                }
                 // setAmount((prevs) => {
                 else {
+                  setAmount((prevs) => prevs - 1);
+                  console.log("hello");
                   setCartItems((prevCart) => {
                     const newCart = [...prevCart];
                     const idx = newCart
@@ -108,6 +123,13 @@ export default function CartItem({
                     return [...newCart];
                   });
                   setProductTotal((prev) => prev - product.price);
+                  let cart = localStorage.getItem("cart");
+                  if (cart) {
+                    cart = JSON.parse(cart);
+                    const idx = cart.map((e) => e.product).indexOf(product._id);
+                    cart[idx].amount--;
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                  }
                 }
               }}
               className="btn-light rounded-0 border"
@@ -115,12 +137,11 @@ export default function CartItem({
               <RemoveIcon />
             </Button>
             <Button className="btn-light rounded-0 border px-4">
-             <h5>{amount}</h5> 
+              <h5>{amount}</h5>
             </Button>
             <Button
               onClick={() => {
-                // console.log("clicked");
-                // setAmount((prevs) => {
+                setAmount((prevs) => prevs + 1);
                 setCartItems((prevCart) => {
                   const newCart = [...prevCart];
                   const idx = newCart
@@ -129,7 +150,15 @@ export default function CartItem({
                   if (idx != -1) newCart[idx].amount += 1;
                   return [...newCart];
                 });
+
                 setProductTotal((prev) => prev + product.price);
+                let cart = localStorage.getItem("cart");
+                if (cart) {
+                  cart = JSON.parse(cart);
+                  const idx = cart.map((e) => e.product).indexOf(product._id);
+                  cart[idx].amount++;
+                  localStorage.setItem("cart", JSON.stringify(cart));
+                }
 
                 // });
               }}

@@ -16,42 +16,42 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import CartContext from "../../Contexts/CartContext";
+import currencyConverter from "../../utils/CurrencyChanger";
+import discountCalculator from "../../utils/calculateDIscount";
+import { SipRounded } from "@mui/icons-material";
+import OffCanvas from "../../Pages/Checkout/OffCanvas";
 
-export default function ProductDetails({ id, setCartRenderer }) {
+export default function ProductDetails({ id, setCartRenderer, currency }) {
   const navigate = useNavigate();
-  const [productDetails, setProductDetails] = useState();
+  const [productDetails, setProductDetails] = useState(null);
   const { product } = useParams();
   const [selectedAddOns, setSelectedAddons] = useState([]);
   const [amount, setAmount] = useState(0);
   const [cartAdded, setCartAdded] = useState(false);
-  // const [reRenderer, setReRenderer] = useState(0);
-
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedColorPrice, setSelectedColorPrice] = useState(0);
+  const [sideCart, setSizeCart] = useState(false);
+  console.log("sidecart", sideCart);
   const getProductDetails = async () => {
     try {
       const response = await axios.get(`/products/${product}`, {});
       setProductDetails(response.data);
-      // response.data.map((e) => {
-      //   const arr = [];
-      //   if (response.data.rating) {
-      //     for (let i = 0; i < response.data.rating; i++) arr.push("*");
-      //   }
-      //   return { ...e, rating: arr };
-      // });
-      // console.log(response.data);
+      setAmount(
+        discountCalculator(response.data.price, response.data.discount)
+      );
     } catch (e) {
       console.log(e);
     }
   };
+  // console.log(productDetails);
   useEffect(() => {
     getProductDetails();
   }, []);
+
   useEffect(() => {
     if (productDetails) {
       let cart = localStorage.getItem("cart");
-      // console.log(cart);
-      // if (typeof cart == "object" && cart instanceof "array") {
-      //   console.log("Hello");
-      // }
+
       if (cart) {
         cart = JSON.parse(cart);
         if (cart.map((e) => e.product).includes(productDetails._id))
@@ -59,8 +59,27 @@ export default function ProductDetails({ id, setCartRenderer }) {
       }
     }
   }, [productDetails]);
-  // const cart = localStorage.getItem("cart");
-  // console.log(JSON.parse(cart));
+
+  useEffect(() => {
+    if (productDetails) {
+      setAmount(() => {
+        const discountedPrice = discountCalculator(
+          productDetails.price,
+          productDetails.discount
+        );
+        const totalAddons = selectedAddOns.reduce(
+          (acc, cur) => acc + parseFloat(cur.price),
+          0
+        );
+
+        const totalPrice =
+          parseFloat(discountedPrice) +
+          parseFloat(selectedColorPrice) +
+          parseFloat(totalAddons);
+        return totalPrice;
+      });
+    }
+  }, [selectedColorPrice, selectedAddOns, productDetails]);
 
   if (!productDetails) return <></>;
 
@@ -75,41 +94,72 @@ export default function ProductDetails({ id, setCartRenderer }) {
           {
             <div className="w-100 position-relative">
               <img src={productDetails.photo} alt="wigs" className="w-100" />
-              {productDetails.discount != 0 && (
+              {productDetails.discount !== 0 && (
                 <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-3 rounded-circle m-3">
-                  <h4 className="fw-bold mb-0 mt-2">20%</h4>
+                  <p className="fw-bold mb-0 mt-2 text-28">
+                    {productDetails.discount}%
+                  </p>
                   <p className="fw-bold my-0">OFF</p>
                 </span>
               )}
             </div>
           }
-          {
-            // <div className="w-100 d-flex justify-content-between py-3">
-            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            //   <img src={pic1} alt="wigs" className="wm-22 h-25  " />
-            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            //   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-            // </div>
-          }
         </div>
         <div className="w-50 px-4 my-auto">
-          <h4 className="text-start fw-bold">{productDetails.name}</h4>
+          <h3 className="text-start fw-bold">{productDetails.name}</h3>
 
           <p className="text-start text-secondary">SKU: 2050</p>
-          <div className="d-flex justify-content-between py-3">
+          <div className="d-flex justify-content-between py-3 ">
             <div className="d-flex gap-3">
               {productDetails.discount != 0 && (
-                <h3 className="fw-bold my-auto text-danger text-decoration-line-through">
-                  ${productDetails.price}
-                </h3>
+                <p className="fw-bold my-auto text-danger text-decoration-line-through text-28">
+                  ${currencyConverter(currency, productDetails.price)}
+                </p>
               )}
-              <h3 className="fw-bold my-auto h">
+              <p className="fw-bold my-auto text-28 ms-3">
                 $
-                {productDetails.price -
-                  (productDetails.price * productDetails.discount) / 100}
-              </h3>
+                {currencyConverter(
+                  currency,
+                  productDetails.price -
+                    (productDetails.price * productDetails.discount) / 100
+                )}
+              </p>
+              {amount -
+                (productDetails.price -
+                  (productDetails.price * productDetails.discount) / 100) !==
+                0 && (
+                <p className="fw-bold my-auto text-28 text-theme-gray">
+                  + $
+                  {currencyConverter(
+                    currency,
+                    amount -
+                      (productDetails.price -
+                        (productDetails.price * productDetails.discount) / 100)
+                  )}
+                </p>
+              )}
             </div>
+            {/* <div className="d-flex gap-3">
+              <div className="d-flex flex-column gap-3">
+                <p className="fw-bold my-auto text-20">
+                  Total: $
+                  {currencyConverter(
+                    currency,
+                    amount -
+                      (productDetails.price -
+                        (productDetails.price * productDetails.discount) / 100)
+                  )}
+                </p>
+                <button
+                  className={`btn btn-dark rounded-0 fs-6`}
+                  onClick={() => {
+                    setSelectedAddons([]);
+                  }}
+                >
+                  Remove All Add ons
+                </button>
+              </div>
+            </div> */}
           </div>
           {productDetails.rating && (
             <div className="d-flex ">
@@ -117,11 +167,6 @@ export default function ProductDetails({ id, setCartRenderer }) {
                 {productDetails.rating.map((e) => {
                   return <StarIcon className="text-black fw-bold" />;
                 })}
-
-                {/* <StarIcon className="text-black fw-bold" />
-                <StarIcon className="text-black fw-bold" />
-                <StarIcon className="text-black fw-bold" />
-                <StarIcon className="text-black fw-bold" /> */}
               </h5>
               <p className="my-auto ms-1 text-secondary me-5">(90) Reviews</p>
             </div>
@@ -130,24 +175,38 @@ export default function ProductDetails({ id, setCartRenderer }) {
             {/* color */}
             <p className="text-secondary pt-3 ">Color :</p>
             <div className="d-flex gap-2">
-              {/* 
-              <button className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6">
-                p
-              </button>
-              <button className="btn btn-dark rounded-circle px-3 py-2 text-dark fs-6">
-                p
-              </button> */}
               {productDetails.colors.map((e) => {
                 return (
-                  <>
+                  <div
+                    style={{
+                      opacity: selectedColor == e._id ? "1" : ".5",
+                      border: "1px solid black",
+                      padding: "10px",
+
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      if (selectedColor == e._id) {
+                        setSelectedColor(null);
+                        setSelectedColorPrice(0);
+                        // setAmount((prev) => prev - e.price);
+                      } else {
+                        setSelectedColor(e._id);
+                        setSelectedColorPrice(e.price);
+                        // setAmount((prev) => prev + e.price);
+                      }
+                    }}
+                  >
                     <button
                       className="btn btn-dark rounded-circle px-3 py-3 text-dark fs-6"
                       style={{ backgroundColor: e.color }}
                     >
                       {/* {e.name} */}
                     </button>
-                    <small  className="my-auto">{e.name}</small>
-                  </>
+                    <small className="my-auto" style={{ marginLeft: "10px" }}>
+                      {e.name}
+                    </small>
+                  </div>
                 );
               })}
             </div>
@@ -174,6 +233,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
                                   const idx = newState
                                     .map((e) => e._id)
                                     .indexOf(f._id);
+                                  // console.log("selected addons idx", idx);
                                   if (idx == -1) {
                                     const idx_name = newState
                                       .map((e) => e.name)
@@ -192,7 +252,8 @@ export default function ProductDetails({ id, setCartRenderer }) {
                                       });
                                     }
                                   } else {
-                                    prev.splice(idx);
+                                    // console.log("hello");
+                                    prev.splice(idx, 1);
                                   }
                                   // if (idx == -1) newState.push({ _id: f._id });
                                   // else newState.splice(idx);
@@ -217,20 +278,30 @@ export default function ProductDetails({ id, setCartRenderer }) {
               <AccessTimeIcon className="me-1 my-auto" />
               <small className="text-theme-gray">
                 Processing Time:
-                <span className="text-secondary fw-bold ps-2"> 
-                  12-15 business days
+                <span className="text-secondary fw-bold ps-2">
+                  15-20 business days
                 </span>
               </small>
             </p>
-            <p className="py-3">
-              <small className="text-theme-gray" > Processing time does not include delivery time</small>
+            <p className="pt-3">
+              <small className="text-theme-gray">
+                {" "}
+                Processing time does not include delivery time
+              </small>
             </p>
-          
-
+            <p className="fw-bold my-auto text-theme-gray text-20 mb-4">
+              Total : ${currencyConverter(currency, amount)}
+            </p>
             <div className="w-100">
               <button
-                className="w-50 btn btn-add py-2 me-4 fw-bold"
+                className="btn btn-add py-2 px-5 me-4 fw-bold"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight"
                 onClick={() => {
+                  setSizeCart((prevs) => {
+                    return !prevs;
+                  });
                   let cartItems = localStorage.getItem("cart");
                   if (!cartItems) {
                     cartItems = [];
@@ -238,7 +309,8 @@ export default function ProductDetails({ id, setCartRenderer }) {
                       product: productDetails._id,
                       addons: selectedAddOns,
                       amount: 1,
-                      price: productDetails.price,
+                      price: amount,
+                      color: selectedColor,
                     });
                   } else {
                     cartItems = JSON.parse(cartItems);
@@ -251,7 +323,8 @@ export default function ProductDetails({ id, setCartRenderer }) {
                         product: productDetails._id,
                         addons: selectedAddOns,
                         amount: 1,
-                        price: productDetails.price,
+                        price: amount,
+                        color: selectedColor,
                       });
                     } else {
                       cartItems.splice(
@@ -268,10 +341,17 @@ export default function ProductDetails({ id, setCartRenderer }) {
                 }}
               >
                 <ShoppingCartIcon className="me-2" />{" "}
-             {!cartAdded ? "ADD TO CART" : "REMOVE FROM CART"}
+                {!cartAdded ? "ADD TO CART" : "REMOVE FROM CART"}
               </button>
-
-              <button className=" btn outline-wish py-2 px-5 ">
+              <button
+                className={`btn outline-wish px-5 py-2 fs-6 `}
+                onClick={() => {
+                  setSelectedAddons([]);
+                }}
+              >
+                Remove Add Ons
+              </button>
+              <button className=" btn outline-wish py-2 px-4 ms-3">
                 + WISH LIST
               </button>
             </div>
@@ -289,81 +369,6 @@ export default function ProductDetails({ id, setCartRenderer }) {
                   data-bs-dismiss="offcanvas"
                   aria-label="Close"
                 ></button>
-              </div>
-              <div class="offcanvas-body">
-                <div>
-                  {[1, 2, 3].map((card, index) => (
-                    <div
-                      key={index}
-                      className="w-100 text-start py-4 border-bottom border-1"
-                    >
-                      <div className="d-flex">
-                        <div className="w-s100 w-15 ">
-                          <img
-                            className="w-100 h-100"
-                            src={checkimg}
-                            alt="this is an icon"
-                          />
-                        </div>
-                        <div className="d-flex w-85 ms-2">
-                          <h6 className="fw-bold my-auto">
-                            8.5"x9" Blake | Silk Part Remy Human Hair Topper
-                            With Layers | Left Part
-                          </h6>
-                        </div>
-                      </div>
-                      <p className="mt-1">
-                        <small>
-                          Color : Natural Black With Brown Shades, Length : 12",
-                          Density : 130%
-                        </small>
-                      </p>
-                      <div className="d-flex justify-content-between">
-                        <h5 className="fw-bold my-auto">$ {501 * amount}</h5>
-                        <div>
-                          <ButtonGroup size="sm">
-                            <Button
-                              onClick={() => {
-                                if (amount === 0) return;
-                                else
-                                  setAmount((prevs) => {
-                                    return prevs - 1;
-                                  });
-                              }}
-                              className="btn-light rounded-0 border"
-                            >
-                              <RemoveIcon />
-                            </Button>
-                            <Button className="btn-light rounded-0 border px-4">
-                              {amount}
-                            </Button>
-                            <Button
-                              onClick={() => {
-                                setAmount((prevs) => {
-                                  return prevs + 1;
-                                });
-                              }}
-                              className="btn-light rounded-0 border "
-                            >
-                              <AddIcon />
-                            </Button>
-                          </ButtonGroup>
-                        </div>
-                        <div>
-                          <button size="sm" className="btn  py-0 me-3">
-                            <DeleteIcon className="text-danger" />{" "}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  onClick={handleClick}
-                  className="btn btn-dark w-100 rounded-0 py-2 mt-3"
-                >
-                  Check out
-                </button>
               </div>
             </div>
           </div>
@@ -392,7 +397,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
             quickly as possible.
             <button
               type="button"
-              class="btn btn-theme py-0 mx-2"
+              class="btn btn-outline-secondary text-14 py-0 mx-2"
               data-bs-toggle="modal"
               data-bs-target="#shippingModal"
             >
@@ -494,15 +499,13 @@ export default function ProductDetails({ id, setCartRenderer }) {
           </p>
         </div>
         <div className="w-100 text-start py-3 pb-5">
-          <h5 className=" pb-2 fs-4 fw-bold">
-            Return & Refund policy :
-          </h5>
+          <h5 className=" pb-2 fs-4 fw-bold">Return & Refund policy :</h5>
           <p className="pb-0 text-theme-gray text-16">
             Welcome to Iconive, your one-stop destination for premium quality
             wigs.
             <button
               type="button"
-              class="btn btn-theme py-0 mx-2"
+              class="btn btn-outline-secondary py-0 mx-2 text-14"
               data-bs-toggle="modal"
               data-bs-target="#refundandreturnpolicy"
             >
@@ -531,12 +534,11 @@ export default function ProductDetails({ id, setCartRenderer }) {
                   <div class="modal-body">
                     <h5 className="fw-bold  my-2">
                       Thanks for shopping at Iconive. <br />
-                     
                     </h5>
                     <h5 className="fw-normal pb-3">
-                        If you are not entirely satisfied with your purchase,
-                        we're here to help.
-                      </h5>
+                      If you are not entirely satisfied with your purchase,
+                      we're here to help.
+                    </h5>
                     <p>
                       1 .
                       <small>
@@ -625,6 +627,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
           </div>
         </div>
       </div>
+      {sideCart && <OffCanvas>hello</OffCanvas>}
     </>
   );
 }

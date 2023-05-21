@@ -17,29 +17,20 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import ProductModal from "../../Components/ProductModal/ProductModal";
 import axios from "../../utils/axios";
 import { Cookie } from "@mui/icons-material";
 import { useSearchParams } from "react-router-dom";
+import apiLayerAxios from "../../utils/apiLayerAxios";
+import CollectionCard from "../../Components/Collections/CollectionCard";
 // import { useNavigate } from "react-router-dom";
 
-export default function Category() {
-  const [status, setStatus] = useState(false);
-  const [ladiesDrop, setladiesDrop] = useState(false);
-  const [backup, setBackup] = useState(false);
-  const [gear, setGear] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [gents, setgents] = useState(false);
-  const [ladies, setladies] = useState(false);
-  const [rawhair, setrowhair] = useState(false);
-  const [accessories, setaccessories] = useState(false);
+export default function Category({ currency }) {
   const [topbanner, setTopBanner] = useState(0);
-  const [isShown, setIsShown] = useState(false);
-  const [activePointer, setActivePointer] = useState(-1);
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({});
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
+
   const getCategories = async () => {
     try {
       const response = await axios.get("/category/getCategory");
@@ -51,120 +42,26 @@ export default function Category() {
   };
   const getProducts = async () => {
     try {
-      // console
       const response = await axios.get("/products", {
-        // headers:{
-        //   Authorization:`Bearer ${Cookies}`
-        // }
-        // params: {
-        //   category: filters,
-        // },
         params: filters,
       });
-      // console.log(response.data);
+
       setProducts(response.data);
     } catch (e) {}
   };
 
-  // const filterProducts = async () => {
-  //   console.log();
-  // };
   useEffect(() => {
     getProducts();
   }, [filters]);
   useEffect(() => {
     getCategories();
   }, []);
-  const TabHead = [
-    {
-      id: 1,
-      name: "Trending",
-    },
-    {
-      id: 2,
-      name: "Top",
-    },
-    {
-      id: 3,
-      name: "In-Game",
-    },
-    {
-      id: 4,
-      name: "Avatar",
-    },
-    {
-      id: 5,
-      name: "Weapon",
-    },
-  ];
+
   const navigate = useNavigate();
 
   function handleClick(id) {
     navigate(`/ProductDetails/${id}`);
   }
-  const cards = [
-    {
-      id: 1,
-      name: "card",
-    },
-    {
-      id: 2,
-      name: "card",
-    },
-    {
-      id: 3,
-      name: "card",
-    },
-    {
-      id: 4,
-      name: "card",
-    },
-    {
-      id: 5,
-      name: "card",
-    },
-    {
-      id: 6,
-      name: "card",
-    },
-    {
-      id: 7,
-      name: "card",
-    },
-    {
-      id: 8,
-      name: "card",
-    },
-    {
-      id: 9,
-      name: "card",
-    },
-    {
-      id: 10,
-      name: "card",
-    },
-    {
-      id: 11,
-      name: "card",
-    },
-    {
-      id: 12,
-      name: "card",
-    },
-    {
-      id: 13,
-      name: "card",
-    },
-    {
-      id: 14,
-      name: "card",
-    },
-    {
-      id: 15,
-      name: "card",
-    },
-  ];
-  const prices = ["ETH-1", "ETH-2", "ETH-3", "ETH-4"];
 
   return (
     <>
@@ -477,13 +374,7 @@ export default function Category() {
                 <div className="w-80 ps-5 text-center">
                   {/* <div>
                     <h5 className=" fw-bolder">Collections</h5>
-                    <p className="pt-2 fw-lighter">
-                      Lorem ipsum dolor sit amet consectetur adipiscing elit.
-                      Quisque non nulla nulla, nec tincidunt risus morbi
-                      ultricies est ditae odio ultrices imperdiet. Cras accumsan
-                      dorci maces consequat blandi susto dusto elementum libero
-                      non honcus.
-                    </p>
+                    <p className="pt-2 fw-lighter"></p>
                   </div> */}
 
                   <div className="d-flex w-100 flex-wrap gap-4 mx-auto justify-content-center">
@@ -554,7 +445,7 @@ export default function Category() {
                             className="position-absolute top-50 left-20 d-flex btn btn-details px-3 py-1 f-14 text-light "
                           >
                             <ShoppingCartIcon className="pe-1 my-auto" />{" "}
-                           <p className="m-auto"> Details</p>
+                            <p className="m-auto"> Details</p>
                           </button>
                         </div>
                         <div className="text-start p-3 mt-auto">

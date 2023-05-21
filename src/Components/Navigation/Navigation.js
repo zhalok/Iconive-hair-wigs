@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -9,7 +9,11 @@ import femaleCollection from "./image/femaleCollections.png";
 import Rawhair from "./image/Rawhair.png";
 import Accessories from "./image/Accessories.png";
 import { Badge } from "@mui/material";
-import { render } from "@testing-library/react";
+import AuthContext from "../../Contexts/AuthContext";
+import LoginIcon from "@mui/icons-material/Login";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import CurrencySwitch from "../Switches/CurrencySwitch";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -22,19 +26,21 @@ import wish from "./image/wishj.svg";
 import cart from "./image/cart.svg";
 import { shadows } from "@mui/system";
 
-export default function Navigation({ renderer }) {
+export default function Navigation({ renderer, currency, setCurrency }) {
+  const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
   const [cartItems, setCartItems] = useState(0);
+  const [showProfileSecton, setShowProfileSection] = useState(false);
+
   useEffect(() => {
     let cart = localStorage.getItem("cart");
     if (cart) {
       cart = JSON.parse(cart);
       setCartItems(cart.length);
     }
-    // setCartItems(renderer);
   }, [renderer]);
-  // console.log(CollectionDropdown);
-  console.log(renderer);
+
+  const authContext = useContext(AuthContext);
 
   return (
     <div className="shadow">
@@ -94,12 +100,88 @@ export default function Navigation({ renderer }) {
       {/* login div */}
       {/* <div className="d-flex">
         <div className="d-flex ms-auto me-4">
-          <div className="p-1  ">
-            <FavoriteBorderIcon className="text-black" />
+          <div>
+            <CurrencySwitch currency={currency} setCurrency={setCurrency} />
           </div>
           <div className="p-1 ">
-            <PersonIcon className="text-black" />
+            <AuthContext.Consumer>
+              {(value) => {
+                if (value?.user) {
+                  return (
+                    <>
+                      <div
+                        onClick={() => {
+                          setShowProfileSection((prev) => !prev);
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <PersonIcon />
+                      </div>
+                      {showProfileSecton && (
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <div
+                            style={{ width: "100%", cursor: "pointer" }}
+                            onClick={() => {
+                              Cookies.remove("jwt");
+                              window.location.reload();
+                            }}
+                          >
+                            <small>Signout </small>{" "}
+                          </div>
+                          <div
+                            style={{ width: "100%", cursor: "pointer" }}
+                            onClick={() => {
+                              navigate("/orders");
+                            }}
+                          >
+                            <small>Orders</small>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                } else {
+                  return (
+                    <>
+                      <div
+                        onClick={() => {
+                          setShowProfileSection((prev) => !prev);
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <LoginIcon />
+                      </div>
+                      {showProfileSecton && (
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <div
+                            style={{ width: "100%", cursor: "pointer" }}
+                            onClick={() => {
+                              navigate("/login");
+                            }}
+                          >
+                            <small>Login </small>{" "}
+                          </div>
+                          <div
+                            style={{ width: "100%", cursor: "pointer" }}
+                            onClick={() => {
+                              navigate("/signup");
+                            }}
+                          >
+                            <small>Signup</small>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                }
+              }}
+            </AuthContext.Consumer>
           </div>
+
           <div className="p-1 ">
             <a href="/checkout">
               <Badge badgeContent={cartItems} color="primary">

@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import GoogleIcon from '@mui/icons-material/Google';
+import GoogleIcon from "@mui/icons-material/Google";
 import logo from "../Images/logogold.png";
 import "../globalcss/style.css";
+import { PulseLoader } from "react-spinners";
+import axios from "../../utils/axios";
 // import { auth, provider } from "../Login/config.js";
 // import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 export default function Signup() {
   const [googlelog, setGooglelog] = useState("");
-  const [user, setUser]=useState('');
-    const [ email, setemail ] = useState('');
-    const [ pass, setpass ] = useState('');
-   
-   
+  const [name, setName] = useState("");
+  const [email, setemail] = useState("");
+  const [pass, setpass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const handleEmailchange = (e) => {
+    setemail(e.target.value);
+  };
 
-    const handleEmailchange = e => {
-         setemail(e.target.value);
-        //console.log(email);
-        
-    }
-    const handlePassChange = e => {
-        setpass(e.target.value);
-        //console.log(pass);
-       
-    }
+  const handlePassChange = (e) => {
+    setpass(e.target.value);
+    //console.log(pass);
+  };
 
   // const handleSignup = e => {
   //     e.preventDefault();
@@ -37,8 +38,6 @@ export default function Signup() {
   //         console.log(error)
   //       })
 
-        
-        
   //   }
   // const handleGoogleLogin = (e) => {
   //   // console.log(email);
@@ -48,7 +47,7 @@ export default function Signup() {
   //     localStorage.setItem("email", data.user.email);
   //     console.log('login kor')
   //   });
-    
+
   // };
 
   useEffect(() => {
@@ -57,7 +56,33 @@ export default function Signup() {
 
   const googleLogout = () => {
     localStorage.clear();
-    window.location.reload()
+    window.location.reload();
+  };
+  const signup = async () => {
+    if (!name || !email || !pass || !confirmPass) {
+      alert("Please fill all necessary informations");
+      return;
+    }
+
+    const signupInfo = {
+      name,
+      email,
+      password: pass,
+      passwordConfirm: confirmPass,
+    };
+
+    try {
+      setLoading(true);
+      const response = await axios.post("/auth/signup", signupInfo);
+      setLoading(false);
+      setMessage("Please check email and confirm");
+      // console.log(response.data);
+    } catch (e) {
+      // console.log()
+      setLoading(false);
+      setMessage("Email already exists");
+      // alert(e);
+    }
   };
   return (
     <>
@@ -75,12 +100,7 @@ export default function Signup() {
       <div className="text-center d-flex ">
         <div className="d-flex shadow-lg mx-auto my-5 marginTopBot">
           <div className="w-50 d-flex mx-4">
-            <img
-              src={logo}
-              alt="login img"
-              className="m-auto"
-              width="50%"
-            />
+            <img src={logo} alt="login img" className="m-auto" width="50%" />
           </div>
           <div className="w-50">
             <Container className="border-start w-100   p-5">
@@ -93,6 +113,10 @@ export default function Signup() {
                     type="text"
                     className="form-control mx-auto"
                     placeholder="Enter Name"
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
                   />
                   <br />
                   <input
@@ -111,12 +135,34 @@ export default function Signup() {
                     onChange={handlePassChange}
                   />
                   <br />
-                  <button
-                    type="submit"
-                    className="btn btn-dark text-light px-5 py-2 btn rounded-0"
-                    value="Sign Up"
-                    // onClick={handleSignup}
-                  >Sign Up</button>
+                  <input
+                    type="password"
+                    className="form-control mx-auto"
+                    placeholder="Confirm Password"
+                    value={confirmPass}
+                    onChange={(e) => {
+                      setConfirmPass(e.target.value);
+                    }}
+                  />
+                  <br />
+                  {loading ? (
+                    <PulseLoader />
+                  ) : (
+                    <button
+                      type="submit"
+                      className="btn btn-dark text-light px-5 py-2 btn rounded-0"
+                      value="Sign Up"
+                      // onClick={handleSignup}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        signup();
+                      }}
+                    >
+                      Sign Up
+                    </button>
+                  )}
+                  <small className="text-success">{message}</small>
+                  <small className="text-danger">{error}</small>
                 </form>
                 <p className="my-3 ">
                   Already register ?
@@ -129,7 +175,7 @@ export default function Signup() {
                   // onClick={handleGoogleLogin}
                   className="btn-light my-2 px-5 py-2 btn shadow"
                 >
-                <GoogleIcon />
+                  <GoogleIcon />
                   Sign in with Google
                 </button>
               </div>
