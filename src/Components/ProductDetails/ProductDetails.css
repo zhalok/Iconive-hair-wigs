@@ -50,11 +50,7 @@
 .rounded-6 {
   border-radius: 6px !important;
 }
-.btn-theme {
-  border: #666666 1px solid;
-  color: #666666;
-  font-size: 14px;
-}
+
 .btn-dark {
   background-color: #666666 !important;
   border: #373737 1px solid !important;

@@ -204,7 +204,7 @@ export default function Checkout(props) {
         <div className="top-banner ">
           <div className="xyauto">
             <h3 className="big-txt text-dark">Checkout</h3>
-            <p className="">Home / Checkout</p>
+            <p className="text-theme-gray">Home / Checkout</p>
           </div>
         </div>
 
@@ -212,17 +212,23 @@ export default function Checkout(props) {
         <div className="container py-5 ">
           <div className="row  shadow">
             <div className="col-8 p-4 ">
-              {!auth && (
-                <div className="text-start mb-5">
-                  <h4 className="mb-3">Already registered?</h4>
-                  <button className="btn btn-theme border-0 text-light rounded-3 px-4 fs-6">
-                    <small>CLICK HERE TO LOGIN</small>
-                  </button>
-                </div>
-              )}
-              <h4 className="text-theme text-start ">Delivery Address</h4>
+              {/* {!auth && ( */}
+              <div className="text-start my-4  d-flex">
+                <h5 className="">Already registered?</h5>
+
+                <h5>
+                  <a
+                    className="text-decoration-none border-bottom border-dark pb-0 text-dark fw-bold ms-2"
+                    href="/signup"
+                  >
+                    Login Here
+                  </a>
+                </h5>
+              </div>
+              {/* )} */}
+              <h4 className="text-dark text-start fw-bold">Delivery Address</h4>
               <form action="" className="text-center pe-4">
-                <div className="d-flex pt-4">
+                <div className="d-flex py-4">
                   <div className="w-50 pe-lg-4">
                     <p className="text-start mb-1">Name</p>
                     <input
@@ -252,7 +258,7 @@ export default function Checkout(props) {
                     />
                   </div>
                 </div>
-                <div className="d-flex pt-4">
+                <div className="d-flex py-3">
                   <div className="w-50 pe-lg-4">
                     <p className="text-start mb-1 d-flex">
                       Email <span className="spanRed"> *</span>
@@ -282,7 +288,7 @@ export default function Checkout(props) {
                     />
                   </div>
                 </div>
-                <div className="d-flex pt-4 ">
+                <div className="d-flex py-3 ">
                   <div className="w-50 pe-lg-4">
                     <p className="text-start mb-1">
                       Address<span className="spanRed">*</span>
@@ -318,7 +324,7 @@ export default function Checkout(props) {
                   </div>
                 </div>
 
-                <div className="d-flex pt-4 ">
+                <div className="d-flex pt-4 pb-2 ">
                   <div className="w-50 pe-lg-4">
                     <p className="text-start mb-1">
                       City<span className="spanRed">*</span>
@@ -337,13 +343,13 @@ export default function Checkout(props) {
                     </select>
                   </div>
 
-                  <div className="w-50 pe-lg-4">
+                  <div className="w-50">
                     <p className="text-start mb-1">
                       State<span className="spanRed">*</span>
                     </p>
 
                     <select
-                      className="w-100 h-75 px-2rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                       value={selectedState}
                       onChange={(e) => {
                         setSelectedState(e.target.value);
@@ -356,7 +362,7 @@ export default function Checkout(props) {
                   </div>
                 </div>
 
-                <div className="d-flex pt-4">
+                {/* <div className="d-flex pt-4">
                   <div className="w-50 ">
                     <p className="text-start mb-1 mr-auto">
                       Postal Code<span className="spanRed">*</span>
@@ -372,7 +378,7 @@ export default function Checkout(props) {
                       className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="d-flex pt-4">
                   <div className="w-50 "></div>

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React , { useState } from 'react'
+import React, { useState } from "react";
 import invoice from ".././Images/profile/order/invoice.svg";
 import biman from ".././Images/profile/order/biman.svg";
 import orderdp from ".././Images/profile/order/orderdp.svg";
@@ -26,11 +26,10 @@ const steps = [
 export default function Orders() {
   const [collapase, setCollapse] = useState(false);
   return (
-    
     <>
-     <div className="w-100 ">
-         <div className="border-bottom px-5 pt-5 order-bg bg-light w-100">
-         <div className="w-100 d-flex  ">
+      <div className="w-100 ">
+        <div className="border-bottom px-5 pt-5 order-bg bg-light w-100">
+          <div className="w-100 d-flex  ">
             <div className="w-40 ">
               <div className="text-start border-end">
                 <div className="d-flex">
@@ -63,9 +62,9 @@ export default function Orders() {
                 </div>
               </div>
             </div>
-            <div className="w-60 ps-5 ">
-              <div className="w-100 d-flex">
-                <div className="w-60 text-start mt-5">
+            <div className="w-60 ps-md-5 ps-sm-3">
+              <div className="w-100 d-flex ">
+                <div className="w-60 text-start mt-4">
                   <p className="text-14 text-theme-gray mb-0">Order Date</p>
                   <p className="text-18">30 September, 2023</p>
                   <p className="text-14 text-theme-gray mb-0">
@@ -113,10 +112,10 @@ export default function Orders() {
             {collapase && (
               <div>
                 <Box sx={{ width: "100%" }} marginTop={10} marginBottom={8}>
-                  <Stepper activeStep={1} alternativeLabel >
+                  <Stepper activeStep={1} alternativeLabel>
                     {steps.map((label) => (
                       <Step key={label}>
-                        <StepLabel > {label} </StepLabel>
+                        <StepLabel> {label} </StepLabel>
                       </Step>
                     ))}
                   </Stepper>
@@ -261,9 +260,8 @@ export default function Orders() {
               )}
             </div>
           </div>
-         </div>
         </div>
-      
+      </div>
     </>
-  )
+  );
 }
