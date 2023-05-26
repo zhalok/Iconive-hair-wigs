@@ -5,13 +5,21 @@ import "./Profile.css";
 import pps from ".././Images/profile/pps.svg";
 import ppr from ".././Images/profile/ppr.svg";
 import prosvg from ".././Images/profile/prosvg.svg";
+import prosvgY from ".././Images/profile/proY.svg";
 import orderY from ".././Images/profile/orderY.svg";
+import order from ".././Images/profile/order.svg";
 import history from ".././Images/profile/history.svg";
+import historyY from ".././Images/profile/historyY.svg";
 import wish from ".././Images/profile/wish.svg";
+import wishY from ".././Images/profile/wishY.svg";
 import refundd from ".././Images/profile/refundd.svg";
+import refundY from ".././Images/profile/refundY.svg";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Orders from "./Orders";
 import Wishlist from "./Wishlist";
+import MyProfile from "./MyProfile";
+import OrderHistory from "./OrderHistory";
+import Refund from "./Refund";
 const sidebarItem = [
   { id: 1, name: "My Profile" },
   { id: 2, name: "Orders" },
@@ -21,8 +29,8 @@ const sidebarItem = [
 ];
 
 export default function Profile() {
-  const [sidebar, setSidebar] = useState(2);
-  const [activeBtn, setActiveBtn] = useState(2);
+  const [sidebar, setSidebar] = useState(1);
+  const [activeBtn, setActiveBtn] = useState(true);
 
   return (
     <div className="px60 bg-body">
@@ -51,68 +59,109 @@ export default function Profile() {
             <div className="px-5 pb-5">
               <div className="d-flex border-top border-bottom py-4">
                 <span className="my-auto ms-1">
-                  <img src={prosvg} alt="this is an image" className="" />
+                  {activeBtn === true && sidebar === 1 ? (
+                    <img src={prosvgY} alt="this is an image" className="" />
+                  ) : (
+                    <img src={prosvg} alt="this is an image" className="" />
+                  )}
                 </span>
                 <p
                   onClick={() => {
                     setSidebar(1);
+                    setActiveBtn(true);
                   }}
-                  className="my-auto text-18 ps-4 "
+                  className={`my-auto text-18 ps-4 ${
+                    activeBtn === true && sidebar === 1 && "text-theme"
+                  }`}
                 >
                   My Profile
                 </p>
               </div>
               <div className="d-flex border-bottom py-4">
                 <span className="my-auto ms-1">
-                  <img src={orderY} alt="this is an image" className="" />
+                  {activeBtn === true && sidebar === 2 ? (
+                    <img src={orderY} alt="this is an image" className="" />
+                  ) : (
+                    <img src={order} alt="this is an image" className="" />
+                  )}
                 </span>
                 <p
                   onClick={() => {
                     setSidebar(2);
+                    setActiveBtn(true);
                   }}
-                  className="my-auto text-18 text-theme ps-4"
+                  className={`my-auto text-18 ps-4 ${
+                    activeBtn === true && sidebar === 2 && "text-theme"
+                  }`}
                 >
                   Orders
-                </p>{" "}
-                <span className="ms-3 rounded-2 bg-theme-color text-light my-auto pt2px">
+                </p>
+                <span
+                  className={`ms-3 rounded-2  my-auto pt2px px-2 ${
+                    activeBtn === true && sidebar === 2
+                      ? "bg-theme-color text-light "
+                      : "bg-secondary  text-light"
+                  }`}
+                >
                   2
                 </span>
               </div>
               <div className="d-flex border-bottom py-4">
                 <span className="my-auto ms-1">
-                  <img src={history} alt="this is an image" className="" />
+                  {activeBtn === true && sidebar === 3 ? (
+                    <img src={historyY} alt="this is an image" className="" />
+                  ) : (
+                    <img src={history} alt="this is an image" className="" />
+                  )}
                 </span>
                 <p
                   onClick={() => {
                     setSidebar(3);
+                    setActiveBtn(true);
                   }}
-                  className="my-auto text-18 ps-4"
+                  className={`my-auto text-18 ps-4 ${
+                    activeBtn === true && sidebar === 3 && "text-theme"
+                  }`}
                 >
                   Order History
                 </p>
               </div>
               <div className="d-flex border-bottom py-4">
                 <span className="my-auto ms-1">
-                  <img src={wish} alt="this is an image" className="" />
+                  {activeBtn === true && sidebar === 4 ? (
+                    <img src={wishY} alt="this is an image" className="" />
+                  ) : (
+                    <img src={wish} alt="this is an image" className="" />
+                  )}
                 </span>
                 <p
                   onClick={() => {
                     setSidebar(4);
+                    setActiveBtn(true);
                   }}
-                  className="my-auto text-18 ps-4"
+                  className={`my-auto text-18 ps-4 ${
+                    activeBtn === true && sidebar === 4 && "text-theme"
+                  }`}
                 >
                   Wishlist
                 </p>
               </div>
               <div className="d-flex border-bottom py-4 mb-4">
                 <span className="my-auto ms-1">
-                  <img src={refundd} alt="this is an image" className="" />
+                  {activeBtn === true && sidebar === 5 ? (
+                    <img src={refundY} alt="this is an image" className="" />
+                  ) : (
+                    <img src={refundd} alt="this is an image" className="" />
+                  )}
                 </span>
                 <p
                   onClick={() => {
                     setSidebar(5);
+                    setActiveBtn(true);
                   }}
-                  className="my-auto text-18 ps-4"
+                  className={`my-auto text-18 ps-4 ${
+                    activeBtn === true && sidebar === 5 && "text-theme"
+                  }`}
                 >
                   Refund and Return
                 </p>
@@ -129,14 +178,24 @@ export default function Profile() {
               <Orders></Orders>
             </div>
           )}
-          {sidebar === 1 && <div>This is profie section</div>}
-          {sidebar === 3 && <div>This is Order History section</div>}
+          {sidebar === 1 && <MyProfile></MyProfile>}
+          {sidebar === 3 && (
+            <div className="d-flex flex-column gap-5 pb-5">
+              <OrderHistory></OrderHistory>
+              <OrderHistory></OrderHistory>
+              <OrderHistory></OrderHistory>
+            </div>
+          )}
           {sidebar === 4 && (
             <div className="overflow-auto">
               <Wishlist></Wishlist>
             </div>
           )}
-          {sidebar === 5 && <div>This is Refund and Return section</div>}
+          {sidebar === 5 && (
+            <div>
+              <Refund />
+            </div>
+          )}
         </div>
       </div>
     </div>

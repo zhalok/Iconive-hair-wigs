@@ -12,12 +12,12 @@ export default function OffCanvas() {
   return (
     <>
       <div
-        class="offcanvas offcanvas-end"
+        class="offcanvas offcanvas-end fff"
         tabindex="-1"
         id="offcanvasRight"
         aria-labelledby="offcanvasRightLabel"
       >
-        {[1, 2, 3].map((card, index) => (
+        {/* {[1, 2, 3].map((card, index) => (
           <div
             key={index}
             className="w-100 text-start py-4 border-bottom border-1"
@@ -81,7 +81,17 @@ export default function OffCanvas() {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">... asdfsdfsadf</div>
       </div>
     </>
   );
