@@ -70,7 +70,7 @@ export default function Profile() {
                     setSidebar(1);
                     setActiveBtn(true);
                   }}
-                  className={`my-auto text-18 ps-4 ${
+                  className={`my-auto text-18 ps-4 text-theme-gray sideItem ${
                     activeBtn === true && sidebar === 1 && "text-theme"
                   }`}
                 >
@@ -90,7 +90,7 @@ export default function Profile() {
                     setSidebar(2);
                     setActiveBtn(true);
                   }}
-                  className={`my-auto text-18 ps-4 ${
+                  className={`my-auto text-18 ps-4 text-theme-gray sideItem ${
                     activeBtn === true && sidebar === 2 && "text-theme"
                   }`}
                 >
@@ -119,7 +119,7 @@ export default function Profile() {
                     setSidebar(3);
                     setActiveBtn(true);
                   }}
-                  className={`my-auto text-18 ps-4 ${
+                  className={`my-auto text-18 ps-4 text-theme-gray sideItem ${
                     activeBtn === true && sidebar === 3 && "text-theme"
                   }`}
                 >
@@ -139,7 +139,7 @@ export default function Profile() {
                     setSidebar(4);
                     setActiveBtn(true);
                   }}
-                  className={`my-auto text-18 ps-4 ${
+                  className={`my-auto text-18 ps-4 sideItem text-theme-gray ${
                     activeBtn === true && sidebar === 4 && "text-theme"
                   }`}
                 >
@@ -159,11 +159,11 @@ export default function Profile() {
                     setSidebar(5);
                     setActiveBtn(true);
                   }}
-                  className={`my-auto text-18 ps-4 ${
+                  className={`my-auto text-18 ps-4 text-start text-theme-gray sideItem ${
                     activeBtn === true && sidebar === 5 && "text-theme"
                   }`}
                 >
-                  Refund and Return
+                  Refund & Return
                 </p>
               </div>
             </div>

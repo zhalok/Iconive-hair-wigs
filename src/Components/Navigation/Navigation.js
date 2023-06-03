@@ -10,10 +10,7 @@ import Rawhair from "./image/Rawhair.png";
 import Accessories from "./image/Accessories.png";
 import { Badge } from "@mui/material";
 import AuthContext from "../../Contexts/AuthContext";
-import LoginIcon from "@mui/icons-material/Login";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import CurrencySwitch from "../Switches/CurrencySwitch";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -24,8 +21,11 @@ import profile from "./image/profile.svg";
 import search from "./image/search.svg";
 import wish from "./image/wishj.svg";
 import cart from "./image/cart.svg";
-import { shadows } from "@mui/system";
-
+import malepro from "../Images/navbar/malenav.svg";
+import femalepro from "../Images/navbar/femalenav.svg";
+import accpro from "../Images/navbar/accnav.svg";
+import rawpro from "../Images/navbar/rawnav.svg";
+import "animate.css";
 export default function Navigation({ renderer, currency, setCurrency }) {
   const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
@@ -46,8 +46,8 @@ export default function Navigation({ renderer, currency, setCurrency }) {
     <div className="shadow">
       {/* offer div */}
       <div className="bg-top d-flex">
-        <p className="m-auto text-light text-14">
-          FREE INTERNATIONAL SHIPPING On Orders Over $200!
+        <p className="m-auto text-light text-14 animate__animated  animate__fadeInUp animate__slower	animate__infinite">
+          FREE INTERNATIONAL SHIPPING ON ORDER OVER $250!
         </p>
       </div>
       {/* 2nd section email and icons  */}
@@ -192,7 +192,7 @@ export default function Navigation({ renderer, currency, setCurrency }) {
         </div>
       </div> */}
       {/* title div */}
-      <div className="d-flex justify-contentx-between px115">
+      <div className="d-flex justify-contentx-between px115 sticky-top ">
         <div className="text-start">
           <a
             href="/home"
@@ -202,7 +202,7 @@ export default function Navigation({ renderer, currency, setCurrency }) {
           </a>
         </div>
         <div className="d-flex mx-auto">
-          <Navbar expand="lg m-auto ">
+          <Navbar expand="lg m-auto " className="">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto gap-4 d-flex mx-auto position-relative">
@@ -221,85 +221,84 @@ export default function Navigation({ renderer, currency, setCurrency }) {
                   SHOP
                 </Nav.Link>
                 {CollectionDropdown && (
-                  <div className=" w-100 container d-flex position-absolute z-100 mt-50 bg-white">
+                  <div className=" w-1200 container d-flex position-absolute z-100 mt-100 bg-white p-0 shadow-lg navOpen">
                     <a
                       href="/catagory"
-                      className="text-decoration-none w-25 drop"
+                      className="text-decoration-none w-25 drop p-4 border-end"
                     >
-                      <div className="w-100 p-4 border-end ">
-                        <div className="w-100 ">
+                      <div className="w-100 ">
+                        <div className="">
                           <img
-                            src={maleCollection}
+                            src={malepro}
                             alt="This is an Image"
                             className="w-100"
                           />
                         </div>
                         <a
                           href="/catagory"
-                          className="text-decoration-none text-dark fw-bold "
+                          className="text-decoration-none text-dark"
                         >
-                          <h6 className="mt-2 fw-bold ">Gents Wigs</h6>
+                          <p className="mt-3 text-18 nav-drop">Gents Wigs</p>
                         </a>
                       </div>
                     </a>
                     <a
                       href="/catagory"
-                      className="text-decoration-none w-25 drop"
+                      className="text-decoration-none w-25 drop p-4 border-end"
                     >
-                      <div className="w-100 p-4 border-end ">
+                      <div className="w-100  ">
                         <div className="w-100 ">
                           <img
-                            src={femaleCollection}
+                            src={femalepro}
                             alt="This is an Image"
                             className="w-100"
                           />
                         </div>
                         <a
                           href="/catagory"
-                          className="text-decoration-none text-dark fw-bold "
+                          className="text-decoration-none text-dark "
                         >
-                          {" "}
-                          <h6 className="mt-2 fw-bold ">Ladis Wigs</h6>
+                          <p className="mt-3 text-18 nav-drop">Ladis Wigs</p>
                         </a>
                       </div>
                     </a>
                     <a
                       href="/catagory"
-                      className="text-decoration-none w-25 drop"
+                      className="text-decoration-none w-25 drop p-4 border-end"
                     >
-                      <div className="w-100 p-4 border-end">
+                      <div className="w-100 ">
                         <div className="w-100 ">
                           <img
-                            src={Rawhair}
+                            src={rawpro}
                             alt="This is an Image"
                             className="w-100"
                           />
                         </div>
                         <a
                           href="/catagory"
-                          className="text-decoration-none text-dark fw-bold "
+                          className="text-decoration-none text-dark "
                         >
-                          <h6 className="mt-2 fw-bold ">Raw Hair</h6>
+                          <p className="mt-3 nav-drop text-18">Raw Hair</p>
                         </a>
                       </div>
                     </a>
                     <a
                       href="/catagory"
-                      className="text-decoration-none w-25 drop"
+                      className="text-decoration-none w-25 drop p-4"
                     >
-                      <div className="w-100 p-4 ">
+                      <div className="w-100">
                         <div className="w-100 ">
                           <img
-                            src={Accessories}
+                            src={accpro}
                             alt="This is an Image"
                             className="w-100"
                           />
                         </div>
                         <a
                           href="/catagory"
-                          className="text-decoration-none text-dark fw-bold "
+                          className="text-decoration-none text-dark "
                         >
-                          <h6 className="mt-2 fw-bold ">Accessories</h6>
+                          <p className="mt-3 text-18 nav-drop">Accessories</p>
                         </a>
                       </div>
                     </a>
@@ -312,7 +311,7 @@ export default function Navigation({ renderer, currency, setCurrency }) {
 
                 <Nav.Link
                   href="#home"
-                  className="text-black text-nav text-uppercase"
+                  className="text-black text-nav text-uppercase drop"
                 >
                   {" "}
                   Guide ME

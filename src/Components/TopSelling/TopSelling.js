@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
-
 import "./TopSelling.css";
 import card1 from "../Images/card/Mask1.svg";
 import cardicon1 from "../Images/card/cardicon1.svg";
@@ -30,16 +29,16 @@ export default function TopSelling() {
     <>
       <div className="container ps-r d-flex flex-column">
         <div className="w-100 pb-3 text-center ">
-          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 text-center text-uppercase ">
+          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 text-center text-uppercase animate__animated animate__fadeInDown ">
             Our Best Selling wigs
           </h2>
-          <p className="text-theme-gray text-18 animate__backInRight">
+          <p className="text-theme-gray text-18 	">
             Discover your unique look, Browse our selection of wigs for him and
             her
           </p>
         </div>
 
-        <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center">
+        <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center ">
           {cards.map((card, index) => (
             <div key={index} className="card-main border rounded-iconive w-25">
               <div className="img-card">

@@ -102,25 +102,25 @@ export default function CustomWigs() {
             <button className="btn text-theme-gray text-18">
               View custom medical Systems
             </button>
-            <KeyboardArrowDownIcon className="text-theme-gray m-auto mb-5"  />
+            <KeyboardArrowDownIcon className="text-theme-gray m-auto mb-5" />
           </div>
 
           <div className="container">
-          <div className="whychooseUs  pt-5 ms-auto px85 pb100 text-end">
-            <h2 className="fw-bold my-whole">WHY CHOOSE US</h2>
-            <img className="mb-3" src={icon1} alt="this is a picture" />
-            <p className="text-theme-gray ">Non-Surgical Hair Replacement</p>
-            <p className="text-theme-gray ">No harmful effect</p>
-            <p className="text-theme-gray ">Safe & easy to use</p>
-            <p className="text-theme-gray ">Loyal customer base</p>
-            <img className="mt-5 mb-3" src={icon2} alt="this is a picture" />
-            <p className="text-theme-gray ">Easy return policy</p>
-            <p className="text-theme-gray">Fast Worldwide Free Shipping</p>
-            <p className="text-theme-gray">24/7 Customer Service</p>
-            <p className="text-theme-gray pb-5">Regular Order Status Updates</p>
-
-
-          </div>
+            <div className="whychooseUs  pt-5 ms-auto px85 pb100 text-end">
+              <h2 className="fw-bold my-whole">WHY CHOOSE US</h2>
+              <img className="mb-3" src={icon1} alt="this is a picture" />
+              <p className="text-theme-gray ">Non-Surgical Hair Replacement</p>
+              <p className="text-theme-gray ">No harmful effect</p>
+              <p className="text-theme-gray ">Safe & easy to use</p>
+              <p className="text-theme-gray ">Loyal customer base</p>
+              <img className="mt-5 mb-3" src={icon2} alt="this is a picture" />
+              <p className="text-theme-gray ">Easy return policy</p>
+              <p className="text-theme-gray">Fast Worldwide Free Shipping</p>
+              <p className="text-theme-gray">24/7 Customer Service</p>
+              <p className="text-theme-gray pb-5">
+                Regular Order Status Updates
+              </p>
+            </div>
           </div>
         </div>
         {/* <img src={bg} alt="this is an picture" /> */}

@@ -67,24 +67,24 @@ export default function Category({ currency }) {
     <>
       <div>
         <div className=" py-4 border-bottom">
-          <div className="px120 text-start my-1 d-flex text-18">
+          <div className="px120 text-start mt-1 d-flex text-18">
             <a
               href="/home"
-              className="text-decoration-none  f-18 text-theme-gray text-uppercase"
+              className="text-decoration-none  text-1vw text-theme-gray text-uppercase"
             >
               Home
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
               href="/home"
-              className="text-decoration-none f-18 text-theme-gray text-uppercase"
+              className="text-decoration-none text-1vw text-theme-gray text-uppercase"
             >
               cATAGORIES
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
               href="/home"
-              className="text-decoration-none text-black f-18 text-uppercase "
+              className="text-decoration-none text-black text-1vw text-uppercase "
             >
               Gents wig
             </a>
@@ -188,7 +188,7 @@ export default function Category({ currency }) {
                               {category.subcategories?.map((subcategory) => {
                                 return (
                                   <div
-                                    className="ps-2  d-flex f-18"
+                                    className="ps-2  d-flex f-18 my-3"
                                     onClick={() => {
                                       setFilters((prev) => {
                                         prev["subCategory"] = subcategory._id;
@@ -196,33 +196,20 @@ export default function Category({ currency }) {
                                       });
                                     }}
                                   >
-                                    <p className="f-16 Chover">
+                                    {" "}
+                                    <input
+                                      class="form-check-input checkCatagory my-auto"
+                                      type="checkbox"
+                                      id="checkboxNoLabel"
+                                      value=""
+                                      aria-label="..."
+                                    />
+                                    <p className="text-14 text-start Chover ms-3 my-auto">
                                       {subcategory.name}
                                     </p>
                                   </div>
                                 );
                               })}
-
-                              <div className="ps-2  d-flex f-18">
-                                <p className="f-16 Chover">Lace Base</p>
-                              </div>
-                              <div className="ps-2 d-flex f-18">
-                                <p className="f-16 Chover">Silk Base</p>
-                              </div>
-                              <div className="ps-2 d-flex f-18">
-                                <p className="f-16 Chover">Skin Base</p>
-                              </div>
-                              <div className="ps-2 d-flex f-18">
-                                <p className="f-16 Chover">Mixed Base</p>
-                              </div>
-                              <div className="ps-2 d-flex f-18">
-                                <p className="f-16 Chover">Full Head Toupee</p>
-                              </div>
-                              <div className="ps-2 d-flex f-18">
-                                <p className="f-16 Chover">
-                                  African American Toupee
-                                </p>
-                              </div>
                             </div>
                           )}
                         </div>
@@ -362,11 +349,11 @@ export default function Category({ currency }) {
                     )}
                   </div> */}
                   </div>
-                  <div className="m-auto pt-2">
+                  <div className="m-auto pt-2 overFlow rounded-iconive">
                     <img
                       src={sidebarimg}
                       alt="this is an image "
-                      className="w-100 m-auto"
+                      className="w-100 m-auto sidebarImg"
                     />
                   </div>
                 </div>

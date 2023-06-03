@@ -1,82 +1,84 @@
-.bg-theme-blue{
-    background-color: #001c38;
-    
+.bg-theme-blue {
+  background-color: #001c38;
 }
-.text-black{
-    color: black !important;
+.text-black {
+  color: black !important;
 }
-.z-100{
-    z-index: 100;
+.z-100 {
+  z-index: 100;
 }
-.mt-50{
-    margin-top: 40px;
+.mt-50 {
+  margin-top: 40px;
 }
-.drop:hover{
-   
-    font-weight: 500;
-    border-bottom:#ECB30A ;
-    color:#ECB30A;
+.drop:hover {
+  font-weight: 600;
+  border-bottom: #ecb30a solid 2px;
+  color: #ecb30a !important;
 }
 
-.bg-gray{
-    background-color: #343a40;
+.bg-gray {
+  background-color: #343a40;
 }
-.btn-gray{
-    background-color: #343a40;
-}
-
-.bg-gray2{
-    background-color: #e9e9e956;
-    border-radius: 20px;
-}
-.w-33{
-    width: 33%;
-}
-.bg-gray3{
-    background-color: #130c0c;
-   
-}
-.text-20{
-    font-size: 20px;
-}
-.text-15{
-    font-size: 15px;
-}
-.text-14{
-    font-size: 14px;
-}
-.text-18{
-    font-size: 18px;
-}
-.text-theme-gray{
-    color: #666666;
-}
-.mt-100{
-    margin-top: 50px;
-}
-.text-nav{
-    font-size: 0.8vw;
-}
-.bg-wholeslae{
-    background-color: #f9f5f0e9;
-}
-.navtxt{
-    color: #020201;
+.btn-gray {
+  background-color: #343a40;
 }
 
-.px115{
-    padding: 0px 115px
+.bg-gray2 {
+  background-color: #e9e9e956;
+  border-radius: 20px;
 }
-.w-20{
-    width: 20%;
+.w-33 {
+  width: 33%;
+}
+.bg-gray3 {
+  background-color: #130c0c;
+}
+.text-20 {
+  font-size: 20px;
+}
+.text-15 {
+  font-size: 15px;
+}
+.text-14 {
+  font-size: 14px;
+}
+.text-18 {
+  font-size: 18px;
+}
+.text-theme-gray {
+  color: #666666;
+}
+.mt-100 {
+  margin-top: 50px;
+}
+.text-nav {
+  font-size: 1vw;
+  border-bottom: #ffffff solid 2px;
+}
+.bg-wholeslae {
+  background-color: #f9f5f0e9;
+}
+.navtxt {
+  color: #020201;
 }
 
-.text44{
-    font-size: 44px;
-    padding-top: 34px;
-    padding-bottom: 34px;
+.px115 {
+  padding: 0px 115px;
 }
-.bg-top{
-   background-color: #363636; 
-   height: 45px;
+.w-20 {
+  width: 20%;
+}
+
+.text44 {
+  font-size: 2.9vw;
+  padding-top: 34px;
+  padding-bottom: 34px;
+}
+.bg-top {
+  background-color: #363636;
+  height: 45px;
+}
+.sticky-top {
+  position: sticky;
+  top: 0;
 }
