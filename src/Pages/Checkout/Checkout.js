@@ -141,12 +141,15 @@ export default function Checkout(props) {
     }
 
     const token = Cookies.get("jwt");
+
     if (!token) {
+      // alert("")
       localStorage.setItem("billingInfo", JSON.stringify(billingInfo));
       navigate("/login?proceeedToCheckout=true");
       return;
     }
     const cart = localStorage.getItem("cart");
+
     if (cart) {
       const cartItems = JSON.parse(cart);
       console.log("Cart Items", cartItems);
@@ -175,7 +178,7 @@ export default function Checkout(props) {
         localStorage.removeItem("billingInfo");
         localStorage.removeItem("cart");
         const order = orderResponse.data;
-        window.location.reload();
+        // window.location.reload();
 
         const paymentResponse = await axios.post(
           `/payment/create/${order._id}`,
@@ -186,7 +189,8 @@ export default function Checkout(props) {
             },
           }
         );
-
+        // console.log(paymentResponse.data.payment_url);
+        // console.log(paymentResponse.data.payment_url);
         window.location.replace(paymentResponse.data.payment_url);
       } catch (e) {
         setLoading(false);

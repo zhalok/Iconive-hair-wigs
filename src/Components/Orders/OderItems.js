@@ -8,6 +8,7 @@ import discountCalculator from "../../utils/calculateDIscount";
 export default function OrderItem({ orderItemId }) {
   const [orderItem, setOrderItem] = useState({});
   const { currency, setCurrency } = useContext(CurrencyContext);
+  console.log("orderItem", orderItem);
 
   const getOrderItem = async () => {
     try {
@@ -35,13 +36,26 @@ export default function OrderItem({ orderItemId }) {
       <h2>Name: {orderItem?.product?.name}</h2>
       <div>Amount: {orderItem.amount}</div>
       <div>Color: {orderItem?.color?.name}</div>
+      <div>
+        Color Price: {currencyConverter(currency, orderItem?.color?.price)}{" "}
+      </div>
+      <div>
+        Product Price:{" "}
+        {currencyConverter(
+          currency,
+          discountCalculator(
+            orderItem.product?.price,
+            orderItem.product?.discount
+          )
+        )}{" "}
+      </div>
 
       <div>
         <Accordion defaultActiveKey={0}>
           <Accordion.Item eventKey="0">
             <Accordion.Header>Add Ons</Accordion.Header>
             <Accordion.Body>
-              {orderItem?.addOns?.map((addOn, index) => {
+              {orderItem.addOns?.map((addOn, index) => {
                 return (
                   <div key={index} style={{ marginTop: "10px" }}>
                     <div>Name: {addOn.name}</div>
