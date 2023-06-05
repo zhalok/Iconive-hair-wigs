@@ -19,9 +19,7 @@ hr{
 .bg-wh{
     background-color: rgb(255, 255, 255);
 }
-.card-main{
-    width: 23% !important;
-}
+
 .bg-gray{
     background-color: #343a40;
 }
@@ -49,4 +47,7 @@ hr{
 
 .rounded-iconive{
     border-radius: 8px;
+}
+.card-main{
+    width: 23% !important;
 }

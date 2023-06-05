@@ -1,6 +1,6 @@
 .bg-footer{
     background-color: #F5F5F5;
-
+    
 }
 
 .bg-outline-white{
@@ -19,4 +19,11 @@
 .containerpro{
     padding-left: 150px;
     padding-right: 150px;
+}
+.bg-black-pro{
+    background-color: #363636;
+    height: 50px;
+}
+.text-white-50{
+    color: #ffffff7a;
 }

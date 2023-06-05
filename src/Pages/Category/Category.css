@@ -1,174 +1,245 @@
 .titleTop {
-    font-size: 50px;
-    font-weight: 700;
-  }
-  
-  .p_x {
-    padding-left: 54px;
-    padding-right: 54px;
-  }
-  
-  .bg-this-page {
-    background-color: #232222;
-  }
-  
-  .gap50 {
-    padding-right: 50px;
-    font-weight: 700;
-  }
-  
-  .pb-55 {
-    padding-bottom: 55px;
-  }
-  
-  .sidebarBg {
-    background-color: #ffffff;
-    width: 300px !important;
-    min-height: 800px !important;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 45px;
-  }
-  
-  .-mbb {
-    margin-bottom: -7px !important;
-  }
-  
-  .f-18 {
-    font-size: 18px;
-  }
-  
-  .f-16 {
-    font-size: 16px;
-  }
-  
-  .card-434-h-334 {
-    width: 260px;
-    height: 280px;
-  }
-  
-  .card-240 {
-    height: 240px;
-  }
-  
-  .h-83 {
-    height: 73px;
-    width: 73px;
-    border-radius: 3px;
-  }
-  .-mt-2 {
-    margin-top: -20px;
-  }
-  
-  .-mt {
-    margin-top: -45px;
-  }
-  
-  .b-radios {
-    border-radius: 7%;
-    border: solid 0.5px gray;
-    overflow: hidden;
-  }
-  
-  .checkBox:checked {
-    background-color: #df4949;
-  }
-  
-  .fs-xs {
-    font-size: 10px;
-  }
-  
-  .roundedcustom {
-    border-radius: 2% !important;
-  }
-  
-  .butttonBGred {
-    background-color: #df4949;
-    border-radius: 14px;
-    color: white;
-  }
-  
-  .butttonBGred:hover {
-    background-color: white;
-    color: #df4949;
-  }
-  
-  .inputField {
-    width: 25%;
-    height: 46px;
-    background-color: #1d1b1b;
-    border: solid 0.5px gray;
-    border-radius: 5px;
-  }
-  
-  .inputField2 {
-    width: 40%;
-    height: 46px;
-    background-color: #1d1b1b;
-    border: solid 0.5px gray;
-    border-radius: 5px;
-  }
-  
-  .DropDownField {
-    width: 70px;
-    height: 46px;
-    border: solid 0.5px gray;
-    border-radius: 5px;
-  }
-  .ps-r{
-    position: relative;
-  }
-  .ps-a{
-   position: absolute;
-   left: 0;
-   top: 60px;
-   width: 150px;
-   padding: 2%;
-  }
-  .mt-2px{
-    margin-top: 5px;
-  }
-  .text-small{
-    font-size: 14px;
-  }
-  .liHover:hover{
-    background-color: #000000 !important;
-    color:whitesmoke ;
-    
-  }
-  .-mb{
-    margin-bottom: -20px;
-    z-index: 2;
+  font-size: 50px;
+  font-weight: 700;
 }
-.bg-wh{
-    background-color: rgb(255, 255, 255);
+
+.p_x {
+  padding-left: 54px;
+  padding-right: 54px;
 }
-.card-cat{
-    width: 31% !important;
+
+.bg-this-page {
+  background-color: #232222;
 }
-.bg-gray{
-    background-color: #343a40;
+
+.gap50 {
+  padding-right: 50px;
+  font-weight: 700;
 }
-.btn-gray{
-    background-color: #343a40;
+
+.pb-55 {
+  padding-bottom: 55px;
 }
-.bg-offwhite{
-  background-color: #f5f5f5;
+
+.sidebarBg {
+  background-color: #f6f6f6;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 45px;
+  border-radius: 10px;
 }
-.f-14{
+.sidebarwidth {
+  width: 20%;
+}
+.-mbb {
+  margin-bottom: -7px !important;
+}
+
+.f-18 {
+  font-size: 18px;
+}
+
+.f-16 {
+  font-size: 16px;
+}
+
+.card-434-h-334 {
+  width: 260px;
+  height: 280px;
+}
+
+.card-240 {
+  height: 240px;
+}
+
+.h-83 {
+  height: 73px;
+  width: 73px;
+  border-radius: 3px;
+}
+.-mt-2 {
+  margin-top: -20px;
+}
+
+.-mt {
+  margin-top: -45px;
+}
+
+.b-radios {
+  border-radius: 7%;
+  border: solid 0.5px gray;
+  overflow: hidden;
+}
+
+.checkBox:checked {
+  background-color: #df4949;
+}
+
+.fs-xs {
+  font-size: 10px;
+}
+
+.roundedcustom {
+  border-radius: 2% !important;
+}
+
+.butttonBGred {
+  background-color: #df4949;
+  border-radius: 14px;
+  color: white;
+}
+
+.butttonBGred:hover {
+  background-color: white;
+  color: #df4949;
+}
+
+.inputField {
+  width: 25%;
+  height: 46px;
+  background-color: #1d1b1b;
+  border: solid 0.5px gray;
+  border-radius: 5px;
+}
+
+.inputField2 {
+  width: 40%;
+  height: 46px;
+  background-color: #1d1b1b;
+  border: solid 0.5px gray;
+  border-radius: 5px;
+}
+
+.DropDownField {
+  width: 70px;
+  height: 46px;
+  border: solid 0.5px gray;
+  border-radius: 5px;
+}
+.ps-r {
+  position: relative;
+}
+.ps-a {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  width: 150px;
+  padding: 2%;
+}
+.mt-2px {
+  margin-top: 5px;
+}
+.text-small {
   font-size: 14px;
 }
-.Chover:hover{
+.liHover:hover {
+  background-color: #000000 !important;
+  color: whitesmoke;
+}
+.-mb {
+  margin-bottom: -20px;
+  z-index: 2;
+}
+.bg-wh {
+  background-color: rgb(255, 255, 255);
+}
+.card-cat {
+  width: 31% !important;
+}
+.bg-gray {
+  background-color: #343a40;
+}
+.btn-gray {
+  background-color: #343a40;
+}
+.bg-offwhite {
+  background-color: #f5f5f5;
+}
+.f-14 {
+  font-size: 14px;
+}
+.Chover:hover {
   background-color: bg-light;
   cursor: pointer;
   font-weight: 600;
   padding-left: 10px;
   transition: 0.5s;
 }
-.left-20{
-  left: 25%;
+.left-20 {
+  left: 33%;
 }
 
-.alink:hover{
+.alink:hover {
   font-weight: 600;
+}
+.w-33 {
+  width: 33%;
+}
+.bg-gray3 {
+  background-color: #130c0c;
+}
+.text-20 {
+  font-size: 20px;
+}
+.text-15 {
+  font-size: 15px;
+}
+.text-18 {
+  font-size: 18px;
+}
+.text-22 {
+  font-size: 22px;
+}
+.text-theme-gray {
+  color: #666666;
+}
+.mt-100 {
+  top: 38px;
+  left: -17%;
+}
+.px120 {
+  padding: 0px 120px;
+}
+.rounded-iconive {
+  border-radius: 8px;
+}
+.card-main {
+  width: 23% !important;
+}
+.btn-details {
+  background: #ecb30a;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+}
+.w-80 {
+  width: 80%;
+}
+.sidebarImg:hover {
+  transform: scale(1.05);
+  transition: all 1s;
+}
+.overFlow {
+  overflow: hidden;
+}
+.checkCatagory:checked {
+  background-color: #ecb30a !important;
+  border: #ecb30a 1px solid;
+}
+.text-1vw {
+  font-size: 1vw;
+}
+.sideItem:hover {
+  cursor: pointer;
+  color: #ecb30a;
+  font-weight: 600;
+}
+.w-1200 {
+  width: 1200px;
+}
+.nav-drop:hover {
+  color: #ecb30a !important;
+  font-weight: 600;
+}
+.navOpen {
+  transition: all 1s;
 }
