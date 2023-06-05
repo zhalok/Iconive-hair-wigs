@@ -86,11 +86,14 @@ export default function Checkout(props) {
 
     if (cart) {
       setCartItems(JSON.parse(cart));
+      console.log(cartItems);
     }
   }, []);
 
   useEffect(() => {
-    calculateTotal();
+    if (cartItems && Array.isArray(cartItems)) {
+      calculateTotal();
+    }
   }, [cartItems]);
 
   useEffect(() => {

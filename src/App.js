@@ -35,6 +35,7 @@ function App() {
       setUser(decoded);
     }
   }, []);
+
   return (
     <div className="App">
       <AuthContext.Provider value={{ user, setUser }}>

@@ -25,12 +25,16 @@ import malepro from "../Images/navbar/malenav.svg";
 import femalepro from "../Images/navbar/femalenav.svg";
 import accpro from "../Images/navbar/accnav.svg";
 import rawpro from "../Images/navbar/rawnav.svg";
+import CurrencySwitch from "../Switches/CurrencySwitch";
 import "animate.css";
-export default function Navigation({ renderer, currency, setCurrency }) {
+import CurrencyContext from "../../Contexts/CurrencyContext";
+export default function Navigation({ renderer }) {
   const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
   const [cartItems, setCartItems] = useState(0);
   const [showProfileSecton, setShowProfileSection] = useState(false);
+  const { currency, setCurrency } = useContext(CurrencyContext);
+  // console.log("currency", currency);
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -86,7 +90,7 @@ export default function Navigation({ renderer, currency, setCurrency }) {
             className="mx-1 text-secondary my-auto"
             href="https://www.facebook.com/profile.php?id=100087712010768"
           >
-            <YouTubeIcon />
+            <YouTubeIcon />{" "}
           </a>
           <a
             className="mx-1 text-secondary my-auto"
@@ -95,14 +99,14 @@ export default function Navigation({ renderer, currency, setCurrency }) {
             <LinkedInIcon />
           </a>
         </div>
+        <CurrencySwitch currency={currency} setCurrency={setCurrency} />
       </div>
+      <div></div>
 
       {/* login div */}
       {/* <div className="d-flex">
         <div className="d-flex ms-auto me-4">
-          <div>
-            <CurrencySwitch currency={currency} setCurrency={setCurrency} />
-          </div>
+         
           <div className="p-1 ">
             <AuthContext.Consumer>
               {(value) => {

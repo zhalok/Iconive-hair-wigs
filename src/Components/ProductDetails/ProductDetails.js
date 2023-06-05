@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import StarIcon from "@mui/icons-material/Star";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -20,8 +20,9 @@ import currencyConverter from "../../utils/CurrencyChanger";
 import discountCalculator from "../../utils/calculateDIscount";
 import { SipRounded } from "@mui/icons-material";
 import OffCanvas from "../../Pages/Checkout/OffCanvas";
+import CurrencyContext from "../../Contexts/CurrencyContext";
 
-export default function ProductDetails({ id, setCartRenderer, currency }) {
+export default function ProductDetails({ id, setCartRenderer }) {
   const navigate = useNavigate();
   const [productDetails, setProductDetails] = useState(null);
   const { product } = useParams();
@@ -31,7 +32,9 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedColorPrice, setSelectedColorPrice] = useState(0);
   const [sideCart, setSizeCart] = useState(false);
-  console.log("sidecart", sideCart);
+  const { currency, setCurrency } = useContext(CurrencyContext);
+  // console.log("currency", currency);
+  // console.log("sidecart", sideCart);
   const getProductDetails = async () => {
     try {
       const response = await axios.get(`/products/${product}`, {});
@@ -113,11 +116,12 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
             <div className="d-flex gap-3">
               {productDetails.discount != 0 && (
                 <p className="fw-bold my-auto text-danger text-decoration-line-through text-28">
-                  ${currencyConverter(currency, productDetails.price)}
+                  {currency == "USD" ? "$" : "৳"}
+                  {currencyConverter(currency, productDetails.price)}
                 </p>
               )}
               <p className="fw-bold my-auto text-28 ms-3">
-                $
+                {currency == "USD" ? "$" : "৳"}
                 {currencyConverter(
                   currency,
                   productDetails.price -

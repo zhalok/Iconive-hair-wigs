@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Collection from "./image/Collections.png";
 import maleCollection from "./image/malecollection.png";
@@ -22,15 +22,20 @@ import { Cookie } from "@mui/icons-material";
 import { useSearchParams } from "react-router-dom";
 import apiLayerAxios from "../../utils/apiLayerAxios";
 import CollectionCard from "../../Components/Collections/CollectionCard";
+import CurrencyContext from "../../Contexts/CurrencyContext";
+
 // import { useNavigate } from "react-router-dom";
 
-export default function Category({ currency }) {
+export default function Category({}) {
   const [topbanner, setTopBanner] = useState(0);
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({});
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
+  const { currency, setCurrency } = useContext(CurrencyContext);
+  const [currencyLoading, setCurrencyLoading] = useState(false);
 
+  // console.log(currency);
   const getCategories = async () => {
     try {
       const response = await axios.get("/category/getCategory");
@@ -366,19 +371,22 @@ export default function Category({ currency }) {
 
                   <div className="d-flex w-100 flex-wrap gap-4 mx-auto justify-content-center">
                     {products.map((product, index) => (
+                      <>
+                        <CollectionCard productId={product._id} index={index} />
+                      </>
                       // <div
                       //   onClick={() => {
                       //     handleClick(product._id);
                       //   }}
                       //   key={index}
-                      //   className="card-cat  shadow w-25 "
                       //   style={{
                       //     cursor: "pointer",
                       //   }}
+                      //   className="card-main border rounded-iconive w-25 d-flex flex-column"
                       // >
                       //   <div className="img-card position-relative">
                       //     <img
-                      //       className="w-100 h-100"
+                      //       className="w-100 h-100 rounded-iconive"
                       //       src={product.photo}
                       //       alt="This  is an  picture"
                       //     />
@@ -391,79 +399,43 @@ export default function Category({ currency }) {
                       //       }
                       //       // data-bs-target="#modalID"
                       //       // data-bs-toggle="modal"
-                      //       className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0"
+                      //       className="position-absolute top-50 left-20 d-flex btn btn-details px-3 py-1 f-14 text-light "
                       //     >
                       //       <ShoppingCartIcon className="pe-1 my-auto" />{" "}
-                      //       Details
+                      //       <p className="m-auto"> Details</p>
                       //     </button>
                       //   </div>
-                      //   <div className="text-center px-2">
-                      //     <h6 className="mt-4 mb-2 fw-bold">{product.name}</h6>
-                      //     {/* <p className="m-0">Coco Lee, coins are Kumis brown</p> */}
-                      //     <h5 className="mt-2 mb-3 fw-bold">{`$ ${product.price}`}</h5>
+                      //   <div className="text-start p-3 mt-auto">
+                      //     <p className=" fw-bold  ">{product.name}</p>
+                      //     <p className="m-0 py-0 text-12 text-theme-gray">
+                      //       Be confident with any style you like to own from a
+                      //       large variety of styles.
+                      //     </p>
+                      //     <div className="d-flex justify-content-between mt-4">
+                      //       <p className="text-20 fw-bold text-dark my-auto pt-1">
+                      //         {product.price}
+                      //       </p>
+                      //       <div className="d-flex">
+                      //         <button className="btn px-0 mt-1">
+                      //           {" "}
+                      //           <img
+                      //             src={cardicon2}
+                      //             className=""
+                      //             alt="this is an icon"
+                      //           />
+                      //         </button>
+                      //         <button className="btn ps-2 my-auto">
+                      //           {" "}
+                      //           <img
+                      //             src={cardicon1}
+                      //             className="w-100 "
+                      //             alt="this is an icon"
+                      //           />
+                      //         </button>
+                      //       </div>
+                      //     </div>
                       //   </div>
                       // </div>
-
-                      <div
-                        onClick={() => {
-                          handleClick(product._id);
-                        }}
-                        key={index}
-                        style={{
-                          cursor: "pointer",
-                        }}
-                        className="card-main border rounded-iconive w-25 d-flex flex-column"
-                      >
-                        <div className="img-card position-relative">
-                          <img
-                            className="w-100 h-100 rounded-iconive"
-                            src={product.photo}
-                            alt="This  is an  picture"
-                          />
-                          <button
-                            onClick={
-                              () => {}
-                              // setShowModal((pre) => {
-                              //   return !pre;
-                              // })
-                            }
-                            // data-bs-target="#modalID"
-                            // data-bs-toggle="modal"
-                            className="position-absolute top-50 left-20 d-flex btn btn-details px-3 py-1 f-14 text-light "
-                          >
-                            <ShoppingCartIcon className="pe-1 my-auto" />{" "}
-                            <p className="m-auto"> Details</p>
-                          </button>
-                        </div>
-                        <div className="text-start p-3 mt-auto">
-                          <p className=" fw-bold  ">{product.name}</p>
-                          <p className="m-0 py-0 text-12 text-theme-gray">
-                            Be confident with any style you like to own from a
-                            large variety of styles.
-                          </p>
-                          <div className="d-flex justify-content-between mt-4">
-                            <p className="text-20 fw-bold text-dark my-auto pt-1">{`$ ${product.price}`}</p>
-                            <div className="d-flex">
-                              <button className="btn px-0 mt-1">
-                                {" "}
-                                <img
-                                  src={cardicon2}
-                                  className=""
-                                  alt="this is an icon"
-                                />
-                              </button>
-                              <button className="btn ps-2 my-auto">
-                                {" "}
-                                <img
-                                  src={cardicon1}
-                                  className="w-100 "
-                                  alt="this is an icon"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     ))}
                   </div>
                 </div>
