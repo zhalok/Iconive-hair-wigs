@@ -52,7 +52,6 @@ export default function CartItem({
       const cart = localStorage.getItem("cart");
       if (cart) {
         let cartItems = JSON.parse(cart);
-        // console.log(cartItems);
       }
     }
   }, [product]);
@@ -60,6 +59,7 @@ export default function CartItem({
     if (quantity) setAmount(quantity);
     if (addOns) setAddons(addOns);
   }, [quantity, addOns]);
+
   return (
     <div className="w-100 text-start py-4 border-bottom border-1">
       <div className="d-flex">
