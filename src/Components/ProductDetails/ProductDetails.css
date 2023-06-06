@@ -50,6 +50,9 @@
 .rounded-6 {
   border-radius: 6px !important;
 }
+.rounded-10 {
+  border-radius: 10px !important;
+}
 
 .btn-dark {
   background-color: #666666 !important;
@@ -58,4 +61,10 @@
 }
 .btn-lightpro {
   border: #1e1e1e 2 px solid !important;
+}
+.btn-chek {
+  width: 100%;
+
+  background: #ecb30a;
+  border-radius: 10px;
 }

@@ -370,6 +370,91 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                   aria-label="Close"
                 ></button>
               </div>
+              <div class="offcanvas-body">
+                {[1, 2, 3].map((card, index) => (
+                  <div
+                    key={index}
+                    className="w-100 text-start p-3 border-bottom border-1"
+                  >
+                    <div className="d-flex">
+                      <div className="w-s100 w-15 ">
+                        <img
+                          className="w-100 h-100"
+                          src={checkimg}
+                          alt="this is an icon"
+                        />
+                      </div>
+                      <div className="d-flex w-85 ms-3">
+                        <p className="fw-bold my-auto">
+                          8.5"x9" Blake | Silk Part Remy Human Hair Topper With
+                        </p>
+                      </div>
+                    </div>
+                    <p className="mt-2">
+                      <small>Color : Natural Black With Brown Shades,</small>
+                    </p>
+                    <div className="d-flex justify-content-between">
+                      <p className="fw-bold my-auto">$ {501 * amount}</p>
+                      <div>
+                        <ButtonGroup size="sm">
+                          <Button
+                            onClick={() => {
+                              if (amount === 0) return;
+                              else
+                                setAmount((prevs) => {
+                                  return prevs - 1;
+                                });
+                            }}
+                            className="btn-light rounded-0 border"
+                          >
+                            <RemoveIcon />
+                          </Button>
+                          <Button className="btn-light rounded-0 border px-4">
+                            {amount}
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setAmount((prevs) => {
+                                return prevs + 1;
+                              });
+                            }}
+                            className="btn-light rounded-0 border "
+                          >
+                            <AddIcon />
+                          </Button>
+                        </ButtonGroup>
+                      </div>
+                      <div>
+                        <button size="sm" className="btn  py-0 me-3">
+                          <DeleteIcon className="text-danger" />{" "}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <div className="mt-5">
+                  <div className="d-flex justify-content-between fw-bold px-3">
+                    <p>Grand Total :</p>
+                    <p>$1200</p>
+                  </div>
+                  <p className="text-14 ps-3">
+                    Taxes and shipping calculated at checkout
+                  </p>
+
+                  <div className="d-flex px-3 gap-3">
+                    <a href="/checkout" className="w-50">
+                      <button className="btn btn-chek w-100 text-light py-2">
+                        CHECK OUT
+                      </button>
+                    </a>
+                    <a className="w-50 h-100" href="/catagory">
+                      <button className="w-100 h-100 btn btn-secondary rounded-10 py-2">
+                        ADD MORE
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -627,7 +712,6 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
           </div>
         </div>
       </div>
-      {sideCart && <OffCanvas>hello</OffCanvas>}
     </>
   );
 }
