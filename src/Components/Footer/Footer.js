@@ -111,10 +111,10 @@ export default function Footer() {
 
     
     </div>
-      <div className="bg-black text-light">
-        <p className=" border-dark py-3 m-0">
-          <small className="text-secondary">
-            All Rights Reserved by{" "}
+      <div className="bg-black-pro text-light m-0 py-3">
+        <p className=" border-dark  m-0">
+          <small className="text-white-50">
+          &#9400;  All Rights Reserved by{" "}
             <span className="text-light"> Iconve Hair Wigs</span>
           </small>
         </p>

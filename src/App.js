@@ -10,11 +10,12 @@ import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
 import CartContext from "./Contexts/CartContext";
+import Profile from "./Components/Profile/Profile";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import AuthContext from "./Contexts/AuthContext";
 import AuthDispatcherContext from "./Contexts/AuthDIspatcherContext";
-import Profile from "./Pages/Orders";
+// import Orders from "./Pages/Orders";
 import CurrencyContext from "./Contexts/CurrencyContext";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
       setUser(decoded);
     }
   }, []);
+
   return (
     <div className="App">
       <AuthContext.Provider value={{ user, setUser }}>
@@ -49,32 +51,20 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
-                <Route
-                  path="/catagory"
-                  element={<Category currency={currency} />}
-                />
-                <Route
-                  path="/checkout"
-                  element={
-                    <Checkout
-                      currency={currency}
-                      setCartRenderer={setCartRenderer}
-                    />
-                  }
-                />
+                <Route path="/catagory" element={<Category />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route
                   path="/ProductDetails/:product"
                   element={
-                    <ProductDetails
-                      setCartRenderer={setCartRenderer}
-                      currency={currency}
-                    />
+                    // <CartContext.Provider value={cartRenderer}>
+                    <ProductDetails setCartRenderer={setCartRenderer} />
+                    // </CartContext.Provider>
                   }
                 />
                 <Route path="/aboutus" element={<Home />} />
-                <Route path="/login" element={<Login setUser={setUser} />} />
-                <Route path="/signup" element={<Signup setUser={setUser} />} />
-                <Route path="/orders/" element={<Profile />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/profile" element={<Profile />} />
               </Routes>
 
               <Footer></Footer>
