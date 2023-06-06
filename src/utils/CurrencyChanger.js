@@ -1,7 +1,8 @@
 const currencyConverter = (currency, amount) => {
   // console.log("amount", amount);
 
-  if (currency == "USD") return (amount / 106).toFixed(2);
+  if (currency == "USD")
+    return (amount / process.env.REACT_APP_FX_RATE).toFixed(2);
   else return amount;
 };
 

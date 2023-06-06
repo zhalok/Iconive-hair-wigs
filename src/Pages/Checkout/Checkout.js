@@ -128,7 +128,7 @@ export default function Checkout(props) {
       country: Country.getCountryByCode(selectedCountry).name,
       city: selectedCity,
       state: selectedState,
-      postalCode,
+      postalCode: "123",
     };
     if (
       !name ||
@@ -136,8 +136,7 @@ export default function Checkout(props) {
       !address ||
       !email ||
       !selectedCity ||
-      !selectedCountry ||
-      !postalCode
+      !selectedCountry
     ) {
       alert("FIll necessary informations");
       return;
@@ -192,8 +191,7 @@ export default function Checkout(props) {
             },
           }
         );
-        // console.log(paymentResponse.data.payment_url);
-        // console.log(paymentResponse.data.payment_url);
+
         window.location.replace(paymentResponse.data.payment_url);
       } catch (e) {
         setLoading(false);

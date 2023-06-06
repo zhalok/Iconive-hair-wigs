@@ -13,7 +13,12 @@ export default function MyProfile() {
           <div className="w-100 d-flex border-bottom ">
             <div className="w-20 ">
               <span className="w-100">
-                <img src={pps} alt="this is an image" />
+                <img
+                  src={"/Image/user.jpg"}
+                  height={"200px"}
+                  width={"200px"}
+                  alt="this is an image"
+                />
               </span>
               <p className="text-start text-theme-gray ps-4">Change Photo </p>
             </div>

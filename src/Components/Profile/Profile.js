@@ -178,7 +178,7 @@ export default function Profile() {
               <Orders></Orders>
             </div>
           )}
-          {sidebar === 1 && <MyProfile></MyProfile>}
+          {sidebar === 1 && <MyProfile />}
           {sidebar === 3 && (
             <div className="d-flex flex-column gap-5 pb-5">
               <OrderHistory></OrderHistory>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "../../utils/axios";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -9,6 +9,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import currencyConverter from "../../utils/CurrencyChanger";
+import CurrencyContext from "../../Contexts/CurrencyContext";
+
 export default function CartItem({
   id,
   addOns,
@@ -16,7 +18,7 @@ export default function CartItem({
   discardCartItem,
   setCartItems,
   setProductTotal,
-  currency,
+
   price,
 }) {
   // console.log("currency", currency);
@@ -27,7 +29,7 @@ export default function CartItem({
   const [amount, setAmount] = useState(0);
   // const [price, setPrice] = useState(0);
   const [addons, setAddons] = useState([]);
-
+  const { currency, setCurrency } = useContext(CurrencyContext);
   //   const sum =
   //   console.log(sum);
   const getProduct = async () => {
@@ -105,9 +107,7 @@ export default function CartItem({
                 console.log(amount);
                 if (amount <= 1) {
                   return;
-                }
-                // setAmount((prevs) => {
-                else {
+                } else {
                   setAmount((prevs) => prevs - 1);
                   console.log("hello");
                   setCartItems((prevCart) => {

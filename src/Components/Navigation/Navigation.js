@@ -8,6 +8,7 @@ import maleCollection from "./image/malecollection.png";
 import femaleCollection from "./image/femaleCollections.png";
 import Rawhair from "./image/Rawhair.png";
 import Accessories from "./image/Accessories.png";
+import { Login } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -28,12 +29,14 @@ import rawpro from "../Images/navbar/rawnav.svg";
 import CurrencySwitch from "../Switches/CurrencySwitch";
 import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
+
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
   const [cartItems, setCartItems] = useState(0);
   const [showProfileSecton, setShowProfileSection] = useState(false);
   const { currency, setCurrency } = useContext(CurrencyContext);
+  const { user, setUser } = useContext(AuthContext);
   // console.log("currency", currency);
 
   useEffect(() => {
@@ -365,13 +368,24 @@ export default function Navigation({ renderer }) {
             </a>
           </div>
           <div className="m-auto">
-            <a href="/profile">
+            {user ? (
+              <a href="/profile">
+                <img
+                  src={profile}
+                  className="shadow-lg rounded-circle"
+                  alt="this is an icon"
+                />
+              </a>
+            ) : (
+              <Login />
+            )}
+            {/* <a href="/profile">
               <img
                 src={profile}
                 className="shadow-lg rounded-circle"
                 alt="this is an icon"
               />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
