@@ -133,7 +133,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
                   (productDetails.price * productDetails.discount) / 100) !==
                 0 && (
                 <p className="fw-bold my-auto text-28 text-theme-gray">
-                  + $
+                  + {currency == "USD" ? "$" : "৳"}
                   {currencyConverter(
                     currency,
                     amount -

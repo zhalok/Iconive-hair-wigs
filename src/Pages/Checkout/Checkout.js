@@ -8,6 +8,7 @@ import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
 import AuthContext from "../../Contexts/AuthContext";
 import currencyConverter from "../../utils/CurrencyChanger";
+import CurrencyContext from "../../Contexts/CurrencyContext";
 
 export default function Checkout(props) {
   const [cartItems, setCartItems] = useState(null);
@@ -25,11 +26,11 @@ export default function Checkout(props) {
   const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState();
   const [postalCode, setPostalCode] = useState("");
-  const [currency, setCurrency] = useState("USD");
 
   const auth = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
+  const { currency, setCurrency } = useContext(CurrencyContext);
 
   const discardCartItem = (product) => {
     const cart = localStorage.getItem("cart");
@@ -55,9 +56,9 @@ export default function Checkout(props) {
     setProductTotal(total);
   };
 
-  useEffect(() => {
-    setCurrency(props.currency);
-  }, [props?.currency]);
+  // useEffect(() => {
+  //   setCurrency(props.currency);
+  // }, [props?.currency]);
 
   useEffect(() => {
     if (selectedCountry) {
@@ -167,7 +168,7 @@ export default function Checkout(props) {
           {
             billingInfo,
             cartItems,
-            currency: props.currency,
+            currency,
           },
           {
             headers: {

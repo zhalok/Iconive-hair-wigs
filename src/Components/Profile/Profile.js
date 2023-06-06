@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import pps from ".././Images/profile/pps.svg";
 import ppr from ".././Images/profile/ppr.svg";
@@ -15,11 +15,14 @@ import wishY from ".././Images/profile/wishY.svg";
 import refundd from ".././Images/profile/refundd.svg";
 import refundY from ".././Images/profile/refundY.svg";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import Orders from "./Orders";
+import Order from "./Order";
 import Wishlist from "./Wishlist";
 import MyProfile from "./MyProfile";
 import OrderHistory from "./OrderHistory";
 import Refund from "./Refund";
+import axios from "../../utils/axios";
+import Cookies from "js-cookie";
+
 const sidebarItem = [
   { id: 1, name: "My Profile" },
   { id: 2, name: "Orders" },
@@ -31,6 +34,25 @@ const sidebarItem = [
 export default function Profile() {
   const [sidebar, setSidebar] = useState(1);
   const [activeBtn, setActiveBtn] = useState(true);
+  const [orders, setOrders] = useState([]);
+
+  const getOrders = async () => {
+    try {
+      const response = await axios.get("/order/getAllByUser", {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      });
+      // console.log(orders.data);
+      setOrders(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getOrders();
+  }, []);
 
   return (
     <div className="px60 bg-body">
@@ -173,9 +195,11 @@ export default function Profile() {
         <div className="w-80 d-flex flex-column ">
           {sidebar === 2 && (
             <div className="d-flex flex-column gap-5 pb-5">
-              <Orders></Orders>
-              <Orders></Orders>
-              <Orders></Orders>
+              {orders.map((order, index) => {
+                return (
+                  <Order order={order} index={index} getOrders={getOrders} />
+                );
+              })}
             </div>
           )}
           {sidebar === 1 && <MyProfile />}

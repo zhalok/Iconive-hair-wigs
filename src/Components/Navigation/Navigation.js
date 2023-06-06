@@ -377,7 +377,9 @@ export default function Navigation({ renderer }) {
                 />
               </a>
             ) : (
-              <Login />
+              <a href="/login">
+                <Login />
+              </a>
             )}
             {/* <a href="/profile">
               <img

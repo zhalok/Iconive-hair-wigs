@@ -82,3 +82,7 @@
   position: sticky;
   top: 0;
 }
+
+.m-auto {
+  cursor: pointer;
+}
