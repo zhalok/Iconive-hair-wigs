@@ -21,6 +21,7 @@ import discountCalculator from "../../utils/calculateDIscount";
 import { SipRounded } from "@mui/icons-material";
 import OffCanvas from "../../Pages/Checkout/OffCanvas";
 import CurrencyContext from "../../Contexts/CurrencyContext";
+import CartItem from "../CartItem/CartItem";
 
 export default function ProductDetails({ id, setCartRenderer }) {
   const navigate = useNavigate();
@@ -33,8 +34,48 @@ export default function ProductDetails({ id, setCartRenderer }) {
   const [selectedColorPrice, setSelectedColorPrice] = useState(0);
   const [sideCart, setSizeCart] = useState(false);
   const { currency, setCurrency } = useContext(CurrencyContext);
-  // console.log("currency", currency);
-  // console.log("sidecart", sideCart);
+  const [cartItems, setCartItems] = useState([]);
+  const [productTotal, setProductTotal] = useState(0);
+  const [showOffCanvas, setShowOffCanvas] = useState(false);
+
+  const discardCartItem = (product) => {
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      const _cartItems = JSON.parse(cart);
+      const idx = _cartItems.map((e) => e.product).indexOf(product);
+
+      const _product = cartItems[idx];
+
+      if (idx != -1) _cartItems.splice(idx, 1);
+
+      localStorage.setItem("cart", JSON.stringify(_cartItems));
+      setProductTotal((prev) => prev - _product.price * _product.amount);
+      setCartItems(_cartItems);
+      setCartRenderer({});
+    }
+  };
+
+  const calculateTotal = async () => {
+    const total = cartItems.reduce((acc, item) => {
+      return acc + item.price * item.amount;
+    }, 0);
+    setProductTotal(total);
+  };
+
+  useEffect(() => {
+    const cart = localStorage.getItem("cart");
+    console.log(cart);
+    if (cart) {
+      setCartItems(JSON.parse(cart));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cartItems && Array.isArray(cartItems)) {
+      calculateTotal();
+    }
+  }, [cartItems]);
+
   const getProductDetails = async () => {
     try {
       const response = await axios.get(`/products/${product}`, {});
@@ -299,13 +340,14 @@ export default function ProductDetails({ id, setCartRenderer }) {
             <div className="w-100">
               <button
                 className="btn btn-add py-2 px-5 me-4 fw-bold"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight"
-                aria-controls="offcanvasRight"
+                // data-bs-toggle="offcanvas"
+                // data-bs-target="#offcanvasRight"
+                // aria-controls="offcanvasRight"
                 onClick={() => {
                   setSizeCart((prevs) => {
                     return !prevs;
                   });
+
                   let cartItems = localStorage.getItem("cart");
                   if (!cartItems) {
                     cartItems = [];
@@ -338,10 +380,16 @@ export default function ProductDetails({ id, setCartRenderer }) {
                       );
                     }
                   }
+                  setCartItems(cartItems);
                   cartItems = JSON.stringify(cartItems);
                   localStorage.setItem("cart", cartItems);
+                  // console.log("cartItems", typeof cartItems);
+                  // setCartItems(cartItems);
                   setCartRenderer({});
                   setCartAdded((prev) => !prev);
+                  setShowOffCanvas((prev) => {
+                    return !prev;
+                  });
                 }}
               >
                 <ShoppingCartIcon className="me-2" />{" "}
@@ -359,107 +407,67 @@ export default function ProductDetails({ id, setCartRenderer }) {
                 + WISH LIST
               </button>
             </div>
-            <div
-              class="offcanvas offcanvas-end"
-              tabindex="-1"
-              id="offcanvasRight"
-              aria-labelledby="offcanvasRightLabel"
-            >
-              <div class="offcanvas-header">
-                <h5 id="offcanvasRightLabel">Shopping Cart</h5>
-                <button
-                  type="button"
-                  class="btn-close text-reset"
-                  data-bs-dismiss="offcanvas"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="offcanvas-body">
-                {[1, 2, 3].map((card, index) => (
-                  <div
-                    key={index}
-                    className="w-100 text-start p-3 border-bottom border-1"
-                  >
-                    <div className="d-flex">
-                      <div className="w-s100 w-15 ">
-                        <img
-                          className="w-100 h-100"
-                          src={checkimg}
-                          alt="this is an icon"
+            {/* off canvas */}
+            {showOffCanvas && (
+              <div
+                // class="offcanvas offcanvas-end"
+                // tabindex="-1"
+                id="offcanvasRight"
+                aria-labelledby="offcanvasRightLabel"
+              >
+                <div class="offcanvas-header">
+                  <h5 id="offcanvasRightLabel">Shopping Cart</h5>
+                  <button
+                    type="button"
+                    class="btn-close text-reset"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                  ></button>
+                </div>
+
+                <div class="offcanvas-body">
+                  {cartItems &&
+                    cartItems.map((cartItem, index) => (
+                      <div
+                        key={index}
+                        className="w-100 text-start p-3 border-bottom border-1"
+                      >
+                        <CartItem
+                          id={cartItem.product}
+                          addOns={cartItem.addons}
+                          quantity={cartItem.amount}
+                          discardCartItem={discardCartItem}
+                          setCartItems={setCartItems}
+                          setProductTotal={setProductTotal}
+                          price={cartItem.price}
                         />
                       </div>
-                      <div className="d-flex w-85 ms-3">
-                        <p className="fw-bold my-auto">
-                          8.5"x9" Blake | Silk Part Remy Human Hair Topper With
-                        </p>
-                      </div>
+                    ))}
+                  <div className="mt-5">
+                    <div className="d-flex justify-content-between fw-bold px-3">
+                      <p>Grand Total :</p>
+                      <p>$1200</p>
                     </div>
-                    <p className="mt-2">
-                      <small>Color : Natural Black With Brown Shades,</small>
+                    <p className="text-14 ps-3">
+                      Taxes and shipping calculated at checkout
                     </p>
-                    <div className="d-flex justify-content-between">
-                      <p className="fw-bold my-auto">$ {501 * amount}</p>
-                      <div>
-                        <ButtonGroup size="sm">
-                          <Button
-                            onClick={() => {
-                              if (amount === 0) return;
-                              else
-                                setAmount((prevs) => {
-                                  return prevs - 1;
-                                });
-                            }}
-                            className="btn-light rounded-0 border"
-                          >
-                            <RemoveIcon />
-                          </Button>
-                          <Button className="btn-light rounded-0 border px-4">
-                            {amount}
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              setAmount((prevs) => {
-                                return prevs + 1;
-                              });
-                            }}
-                            className="btn-light rounded-0 border "
-                          >
-                            <AddIcon />
-                          </Button>
-                        </ButtonGroup>
-                      </div>
-                      <div>
-                        <button size="sm" className="btn  py-0 me-3">
-                          <DeleteIcon className="text-danger" />{" "}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-                <div className="mt-5">
-                  <div className="d-flex justify-content-between fw-bold px-3">
-                    <p>Grand Total :</p>
-                    <p>$1200</p>
-                  </div>
-                  <p className="text-14 ps-3">
-                    Taxes and shipping calculated at checkout
-                  </p>
 
-                  <div className="d-flex px-3 gap-3">
-                    <a href="/checkout" className="w-50">
-                      <button className="btn btn-chek w-100 text-light py-2">
-                        CHECK OUT
-                      </button>
-                    </a>
-                    <a className="w-50 h-100" href="/catagory">
-                      <button className="w-100 h-100 btn btn-secondary rounded-10 py-2">
-                        ADD MORE
-                      </button>
-                    </a>
+                    <div className="d-flex px-3 gap-3">
+                      <a href="/checkout" className="w-50">
+                        <button className="btn btn-chek w-100 text-light py-2">
+                          CHECK OUT
+                        </button>
+                      </a>
+                      <a className="w-50 h-100" href="/catagory">
+                        <button className="w-100 h-100 btn btn-secondary rounded-10 py-2">
+                          ADD MORE
+                        </button>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

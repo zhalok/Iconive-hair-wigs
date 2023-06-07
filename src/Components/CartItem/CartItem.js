@@ -10,6 +10,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import currencyConverter from "../../utils/CurrencyChanger";
 import CurrencyContext from "../../Contexts/CurrencyContext";
+import { PulseLoader } from "react-spinners";
 
 export default function CartItem({
   id,
@@ -21,6 +22,7 @@ export default function CartItem({
 
   price,
 }) {
+  console.log("product", id);
   // console.log("currency", currency);
   // console.log("hello");
   // console.log(setProductTotal);
@@ -30,10 +32,12 @@ export default function CartItem({
   // const [price, setPrice] = useState(0);
   const [addons, setAddons] = useState([]);
   const { currency, setCurrency } = useContext(CurrencyContext);
+  const [loading, setLoading] = useState(false);
   //   const sum =
   //   console.log(sum);
   const getProduct = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`/products/${id}`);
       //   console.log("cart item", response.data);
       setProduct(response.data);
@@ -42,7 +46,9 @@ export default function CartItem({
       //   const discount = response.data.discount;
       //   return price - (price * discount) / 100;
       // });
+      setLoading(false);
     } catch (e) {
+      setLoading(false);
       console.log(e);
     }
   };
@@ -61,6 +67,8 @@ export default function CartItem({
     if (quantity) setAmount(quantity);
     if (addOns) setAddons(addOns);
   }, [quantity, addOns]);
+
+  if (loading) return <PulseLoader />;
 
   return (
     <div className="w-100 text-start py-4 border-bottom border-1">
