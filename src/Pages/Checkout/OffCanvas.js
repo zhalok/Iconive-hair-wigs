@@ -7,15 +7,15 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export default function OffCanvas() {
+export default function OffCanvas({ tabindex, id, arialabelledby }) {
   const [amount, setAmount] = useState(0);
   return (
     <>
       <div
-        class="offcanvas offcanvas-end fff"
-        tabindex="-1"
-        id="offcanvasRight"
-        aria-labelledby="offcanvasRightLabel"
+        class="offcanvas offcanvas-end show"
+        tabindex={tabindex}
+        id={id}
+        aria-labelledby={arialabelledby}
       >
         {/* {[1, 2, 3].map((card, index) => (
           <div

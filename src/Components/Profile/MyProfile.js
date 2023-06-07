@@ -11,18 +11,7 @@ export default function MyProfile() {
       <div className="w-100 ">
         <div className="border-bottom px-5 pt-5 order-bg bg-light w-100">
           <div className="w-100 d-flex border-bottom ">
-            <div className="w-20 ">
-              <span className="w-100">
-                <img
-                  src={"/Image/user.jpg"}
-                  height={"200px"}
-                  width={"200px"}
-                  alt="this is an image"
-                />
-              </span>
-              <p className="text-start text-theme-gray ps-4">Change Photo </p>
-            </div>
-            <div className="w-40 text-start ps-md-4 ps-sm-2">
+            <div className="w-50 text-start ">
               <p className="text-20 text-theme-gray  mb-0">Client Name</p>
               <p className="text-30 fw-bold">Clint Eastwood</p>
 
@@ -39,7 +28,7 @@ export default function MyProfile() {
               </div>
               <p className="text-18">16 December, 1921</p>
             </div>
-            <div className="w-40 ps-2 text-start">
+            <div className="w-50 ps-2 text-start">
               <div className="d-flex pt-3">
                 <p className="text-16 mb-0 border-end pe-2">E-mail Address</p>
                 <img src={edit} className="ms-2" alt="this is an icon" />
