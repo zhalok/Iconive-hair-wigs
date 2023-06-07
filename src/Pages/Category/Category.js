@@ -70,21 +70,21 @@ export default function Category({ currency }) {
           <div className="px120 text-start mt-1 d-flex text-18">
             <a
               href="/home"
-              className="text-decoration-none  text-1vw text-theme-gray text-uppercase"
+              className="text-decoration-none f-16 text-theme-gray text-uppercase"
             >
               Home
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
               href="/home"
-              className="text-decoration-none text-1vw text-theme-gray text-uppercase"
+              className="text-decoration-none f-16  text-theme-gray text-uppercase"
             >
               cATAGORIES
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
               href="/home"
-              className="text-decoration-none text-black text-1vw text-uppercase "
+              className="text-decoration-none f-16 text-black  text-uppercase "
             >
               Gents wig
             </a>

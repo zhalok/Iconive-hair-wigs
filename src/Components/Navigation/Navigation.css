@@ -13,6 +13,9 @@
 .mt-50 {
   margin-top: 45px;
 }
+.w12 {
+  width: 12%;
+}
 .drop:hover {
   font-weight: 600;
   border-bottom: #ecb30a solid 2px;
@@ -73,9 +76,9 @@
 }
 
 .text44 {
-  font-size: 2.2vw;
+  font-size: 2.1vw;
   padding-top: 23px;
-  padding-bottom: 18px;
+  padding-bottom: 15px;
 }
 .bg-top {
   background-color: #363636;
