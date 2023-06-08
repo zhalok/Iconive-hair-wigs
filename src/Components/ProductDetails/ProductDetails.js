@@ -157,31 +157,32 @@ export default function ProductDetails({ id, setCartRenderer }) {
           <p className="text-start text-secondary">SKU: 2050</p>
           <div className="d-flex justify-content-between py-3 ">
             <div className="d-flex gap-3">
-              {productDetails.discount != 0 && (
+              {productDetails?.discount != 0 && (
                 <p className="fw-bold my-auto text-danger text-decoration-line-through text-28">
                   {currency == "USD" ? "$" : "৳"}
-                  {currencyConverter(currency, productDetails.price)}
+                  {currencyConverter(currency, productDetails?.price)}
                 </p>
               )}
               <p className="fw-bold my-auto text-28 ms-3">
                 {currency == "USD" ? "$" : "৳"}
                 {currencyConverter(
                   currency,
-                  productDetails.price -
-                    (productDetails.price * productDetails.discount) / 100
+                  productDetails?.price -
+                    (productDetails?.price * productDetails?.discount) / 100
                 )}
               </p>
               {amount -
-                (productDetails.price -
-                  (productDetails.price * productDetails.discount) / 100) !==
+                (productDetails?.price -
+                  (productDetails?.price * productDetails?.discount) / 100) !==
                 0 && (
                 <p className="fw-bold my-auto text-28 text-theme-gray">
                   + {currency == "USD" ? "$" : "৳"}
                   {currencyConverter(
                     currency,
                     amount -
-                      (productDetails.price -
-                        (productDetails.price * productDetails.discount) / 100)
+                      (productDetails?.price -
+                        (productDetails?.price * productDetails?.discount) /
+                          100)
                   )}
                 </p>
               )}
@@ -238,20 +239,20 @@ export default function ProductDetails({ id, setCartRenderer }) {
                         setSelectedColorPrice(0);
                         // setAmount((prev) => prev - e.price);
                       } else {
-                        setSelectedColor(e._id);
-                        setSelectedColorPrice(e.price);
+                        setSelectedColor(e?._id);
+                        setSelectedColorPrice(e?.price);
                         // setAmount((prev) => prev + e.price);
                       }
                     }}
                   >
                     <button
                       className="btn btn-dark rounded-circle px-3 py-3 text-dark fs-6"
-                      style={{ backgroundColor: e.color }}
+                      style={{ backgroundColor: e?.color }}
                     >
                       {/* {e.name} */}
                     </button>
                     <small className="my-auto" style={{ marginLeft: "10px" }}>
-                      {e.name}
+                      {e?.name}
                     </small>
                   </div>
                 );
