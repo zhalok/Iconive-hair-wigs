@@ -80,6 +80,8 @@ export default function ProductDetails({ id, setCartRenderer }) {
     try {
       const response = await axios.get(`/products/${product}`, {});
       setProductDetails(response.data);
+      // console.log("price", response.data.price);
+      console.log("price", productDetails.price);
       setAmount(
         discountCalculator(response.data.price, response.data.discount)
       );
