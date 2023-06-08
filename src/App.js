@@ -6,7 +6,7 @@ import Navigation from "./Components/Navigation/Navigation";
 import Category from "./Pages/Category/Category";
 import Footer from "./Components/Footer/Footer";
 import Checkout from "./Pages/Checkout/Checkout";
-import ProductDetails from "./Components/ProductDetails/ProductDetails";
+import ProductDetail from "./Components/ProductDetails/ProductDetails";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
 import CartContext from "./Contexts/CartContext";
@@ -57,7 +57,7 @@ function App() {
                   path="/ProductDetails/:product"
                   element={
                     // <CartContext.Provider value={cartRenderer}>
-                    <ProductDetails setCartRenderer={setCartRenderer} />
+                    <ProductDetail setCartRenderer={setCartRenderer} />
                     // </CartContext.Provider>
                   }
                 />

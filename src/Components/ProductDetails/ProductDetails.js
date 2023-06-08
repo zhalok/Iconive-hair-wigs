@@ -22,8 +22,9 @@ import { SipRounded } from "@mui/icons-material";
 import OffCanvas from "../../Pages/Checkout/OffCanvas";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartItem from "../CartItem/CartItem";
+import { PulseLoader } from "react-spinners";
 
-export default function ProductDetails({ id, setCartRenderer }) {
+export default function ProductDetail({ id, setCartRenderer }) {
   const navigate = useNavigate();
   const [productDetails, setProductDetails] = useState(null);
   const { product } = useParams();
@@ -81,7 +82,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
       const response = await axios.get(`/products/${product}`, {});
       setProductDetails(response.data);
       // console.log("price", response.data.price);
-      console.log("price", productDetails.price);
+      console.log("productDetails", productDetails);
       setAmount(
         discountCalculator(response.data.price, response.data.discount)
       );
@@ -96,6 +97,7 @@ export default function ProductDetails({ id, setCartRenderer }) {
 
   useEffect(() => {
     if (productDetails) {
+      console.log(productDetails);
       let cart = localStorage.getItem("cart");
 
       if (cart) {
@@ -132,6 +134,13 @@ export default function ProductDetails({ id, setCartRenderer }) {
   function handleClick() {
     navigate("/checkout");
   }
+
+  if (!productDetails)
+    return (
+      <>
+        <PulseLoader />
+      </>
+    );
 
   return (
     <>
