@@ -82,7 +82,7 @@ export default function ProductDetail({ id, setCartRenderer }) {
       const response = await axios.get(`/products/${product}`, {});
       setProductDetails(response.data);
       // console.log("price", response.data.price);
-      console.log("productDetails", productDetails);
+      // console.log("productDetails", productDetails);
       setAmount(
         discountCalculator(response.data.price, response.data.discount)
       );
@@ -92,12 +92,14 @@ export default function ProductDetail({ id, setCartRenderer }) {
   };
   // console.log(productDetails);
   useEffect(() => {
-    getProductDetails();
-  }, []);
+    if (product) {
+      getProductDetails();
+    }
+  }, [product]);
 
   useEffect(() => {
     if (productDetails) {
-      console.log(productDetails);
+      // console.log(productDetails);
       let cart = localStorage.getItem("cart");
 
       if (cart) {
@@ -180,6 +182,7 @@ export default function ProductDetail({ id, setCartRenderer }) {
                     (productDetails?.price * productDetails?.discount) / 100
                 )}
               </p>
+
               {amount -
                 (productDetails?.price -
                   (productDetails?.price * productDetails?.discount) / 100) !==
