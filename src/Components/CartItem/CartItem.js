@@ -19,7 +19,7 @@ export default function CartItem({
   discardCartItem,
   setCartItems,
   setProductTotal,
-
+  setCartAdded,
   price,
 }) {
   console.log("product", id);
@@ -182,6 +182,7 @@ export default function CartItem({
             className="btn  py-0 mx-3"
             onClick={() => {
               discardCartItem(product._id);
+              // setCartAdded((prev) => !prev);
             }}
           >
             <DeleteIcon className="text-danger" />{" "}

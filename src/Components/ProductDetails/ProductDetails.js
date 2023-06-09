@@ -24,7 +24,7 @@ import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartItem from "../CartItem/CartItem";
 import { PulseLoader } from "react-spinners";
 
-export default function ProductDetail({ id, setCartRenderer }) {
+export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const navigate = useNavigate();
   const [productDetails, setProductDetails] = useState(null);
   const { product } = useParams();
@@ -38,7 +38,7 @@ export default function ProductDetail({ id, setCartRenderer }) {
   const [cartItems, setCartItems] = useState([]);
   const [productTotal, setProductTotal] = useState(0);
   const [showOffCanvas, setShowOffCanvas] = useState(false);
-
+  // const [cart]
   const discardCartItem = (product) => {
     const cart = localStorage.getItem("cart");
     if (cart) {
@@ -52,6 +52,7 @@ export default function ProductDetail({ id, setCartRenderer }) {
       localStorage.setItem("cart", JSON.stringify(_cartItems));
       setProductTotal((prev) => prev - _product.price * _product.amount);
       setCartItems(_cartItems);
+      // setCartAdded
       setCartRenderer({});
     }
   };
@@ -81,8 +82,7 @@ export default function ProductDetail({ id, setCartRenderer }) {
     try {
       const response = await axios.get(`/products/${product}`, {});
       setProductDetails(response.data);
-      // console.log("price", response.data.price);
-      // console.log("productDetails", productDetails);
+
       setAmount(
         discountCalculator(response.data.price, response.data.discount)
       );
@@ -99,6 +99,7 @@ export default function ProductDetail({ id, setCartRenderer }) {
 
   useEffect(() => {
     if (productDetails) {
+      console.log("Hello");
       // console.log(productDetails);
       let cart = localStorage.getItem("cart");
 
@@ -106,9 +107,10 @@ export default function ProductDetail({ id, setCartRenderer }) {
         cart = JSON.parse(cart);
         if (cart.map((e) => e.product).includes(productDetails._id))
           setCartAdded(true);
+        else setCartAdded(false);
       }
     }
-  }, [productDetails]);
+  }, [productDetails, cartRenderer]);
 
   useEffect(() => {
     if (productDetails) {
@@ -403,7 +405,7 @@ export default function ProductDetail({ id, setCartRenderer }) {
                   setCartRenderer({});
                   setCartAdded((prev) => !prev);
                   setShowOffCanvas((prev) => {
-                    return !prev;
+                    return !cartAdded;
                   });
                 }}
               >
@@ -437,6 +439,9 @@ export default function ProductDetail({ id, setCartRenderer }) {
                     class="btn-close text-reset"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
+                    onClick={() => {
+                      setShowOffCanvas(false);
+                    }}
                   ></button>
                 </div>
 
@@ -455,6 +460,8 @@ export default function ProductDetail({ id, setCartRenderer }) {
                           setCartItems={setCartItems}
                           setProductTotal={setProductTotal}
                           price={cartItem.price}
+                          setCartAdded={setCartAdded}
+                          setCartRenderer={setCartRenderer}
                         />
                       </div>
                     ))}

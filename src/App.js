@@ -57,7 +57,10 @@ function App() {
                   path="/ProductDetails/:product"
                   element={
                     // <CartContext.Provider value={cartRenderer}>
-                    <ProductDetail setCartRenderer={setCartRenderer} />
+                    <ProductDetail
+                      setCartRenderer={setCartRenderer}
+                      cartRenderer={cartRenderer}
+                    />
                     // </CartContext.Provider>
                   }
                 />
