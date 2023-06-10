@@ -109,7 +109,7 @@ export default function CollectionCard({ productId, index }) {
         <div className="d-flex justify-content-between mt-4">
           <p className="text-20 fw-bold text-dark my-auto pt-1">
             {currency == "USD" ? "$" : "৳"}
-            {product.price}
+            {currencyConverter(currency, product.price)}
           </p>
           <div className="d-flex">
             <button className="btn px-0 mt-1">
