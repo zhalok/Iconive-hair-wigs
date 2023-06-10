@@ -23,10 +23,13 @@ function App() {
   const [user, setUser] = useState(null);
   const [currency, setCurrency] = useState("USD");
   const [exchangeRate, setExchangeRate] = useState(1);
-
+  // console.log("Hello from App");
   useEffect(() => {
-    !localStorage.getItem("currency") &&
+    if (localStorage.getItem("currency")) {
+      setCurrency(localStorage.getItem("currency"));
+    } else {
       localStorage.setItem("currency", "USD");
+    }
     localStorage.setItem("fxrate", JSON.stringify({ usd: 1, bdt: 106 }));
     const token = Cookies.get("jwt");
 

@@ -169,6 +169,7 @@ export default function Checkout(props) {
             billingInfo,
             cartItems,
             currency,
+            deliveryCharge,
           },
           {
             headers: {

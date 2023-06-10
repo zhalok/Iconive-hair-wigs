@@ -28,7 +28,7 @@ export default function CollectionCard({ productId, index }) {
         },
       });
       const data = response.data;
-      console.log(data);
+      // console.log(data);
       setProduct(data);
     } catch (e) {
       console.log(e);
