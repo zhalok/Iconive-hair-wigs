@@ -34,95 +34,93 @@ export default function CustomWigs() {
         </div>
       </div>
       {/* position-relative position-absolute */}
-      <div className="bg-custom-banner pt-5">
-        <div className=" bottom-0">
-          <div className="ps-r">
-            <h4 className="fw-bold fs-2  pt-5  w-100 mx-auto text-uppercase">
-              Custom medical wigs
-            </h4>
-            <p className="pt-4  text-18 text-theme-gray">
-              Our custom wigs cater to medical hair loss needs. Choose base
-              type, hair color, and length for a personalized fit. High-quality
-              materials <br /> ensure comfort and durability, and a fashionable
-              look. Ideal for chemotherapy or alopecia patients.
-            </p>
-          </div>
-          <div className="d-flex m-md-5 px-5">
-            <div className="d-flex gap-3 mx-auto ">
-              {/* card */}
-              <div className="mx-auto  wc-22 shadow">
-                <img
-                  className="w-100 h-100"
-                  src={card1}
-                  alt="This  is an  picture"
-                />
-              </div>
 
-              <div className="mx-auto  wc-22">
-                <img
-                  className="w-100 h-100"
-                  src={card2}
-                  alt="This  is an  picture"
-                />
-              </div>
-
-              <div className="mx-auto  wc-22">
-                <img
-                  className="w-100 h-100"
-                  src={card3}
-                  alt="This  is an  picture"
-                />
-              </div>
-
-              <div className="mx-auto  wc-22">
-                <img
-                  className="w-100 h-100"
-                  src={card4}
-                  alt="This  is an  picture "
-                />
-              </div>
-              <div className="mx-auto  wc-22">
-                <img
-                  className="w-100 h-100"
-                  src={card5}
-                  alt="This  is an  picture "
-                />
-              </div>
-              <div className="mx-auto  wc-22">
-                <img
-                  className="w-100 h-100"
-                  src={card6}
-                  alt="This  is an  picture "
-                />
-              </div>
+      <div className="bg-custom">
+        <div className="ps-r pt-5">
+          <h4 className="fw-bold fs-2  pt-5  w-100 mx-auto text-uppercase">
+            Custom medical wigs
+          </h4>
+          <p className="pt-4  text-18 text-theme-gray">
+            Our custom wigs cater to medical hair loss needs. Choose base type,
+            hair color, and length for a personalized fit. High-quality
+            materials <br /> ensure comfort and durability, and a fashionable
+            look. Ideal for chemotherapy or alopecia patients.
+          </p>
+        </div>
+        <div className="d-flex m-md-5 px-5">
+          <div className="d-flex gap-3 mx-auto ">
+            {/* card */}
+            <div className="mx-auto  wc-22 shadow">
+              <img
+                className="w-100 h-100"
+                src={card1}
+                alt="This  is an  picture"
+              />
             </div>
-          </div>
 
-          <div className="my-5 d-flex flex-column text-center">
-            <button className="btn text-theme-gray text-18">
-              View custom medical Systems
-            </button>
-            <KeyboardArrowDownIcon className="text-theme-gray m-auto mb-5" />
-          </div>
+            <div className="mx-auto  wc-22">
+              <img
+                className="w-100 h-100"
+                src={card2}
+                alt="This  is an  picture"
+              />
+            </div>
 
-          <div className="container">
-            <div className="whychooseUs  pt-5 ms-auto px85 pb100 text-end">
-              <h2 className="fw-bold my-whole">WHY CHOOSE US</h2>
-              <img className="mb-3" src={icon1} alt="this is a picture" />
-              <p className="text-theme-gray ">Non-Surgical Hair Replacement</p>
-              <p className="text-theme-gray ">No harmful effect</p>
-              <p className="text-theme-gray ">Safe & easy to use</p>
-              <p className="text-theme-gray ">Loyal customer base</p>
-              <img className="mt-5 mb-3" src={icon2} alt="this is a picture" />
-              <p className="text-theme-gray ">Easy return policy</p>
-              <p className="text-theme-gray">Fast Worldwide Free Shipping</p>
-              <p className="text-theme-gray">24/7 Customer Service</p>
-              <p className="text-theme-gray pb-5">
-                Regular Order Status Updates
-              </p>
+            <div className="mx-auto  wc-22">
+              <img
+                className="w-100 h-100"
+                src={card3}
+                alt="This  is an  picture"
+              />
+            </div>
+
+            <div className="mx-auto  wc-22">
+              <img
+                className="w-100 h-100"
+                src={card4}
+                alt="This  is an  picture "
+              />
+            </div>
+            <div className="mx-auto  wc-22">
+              <img
+                className="w-100 h-100"
+                src={card5}
+                alt="This  is an  picture "
+              />
+            </div>
+            <div className="mx-auto  wc-22">
+              <img
+                className="w-100 h-100"
+                src={card6}
+                alt="This  is an  picture "
+              />
             </div>
           </div>
         </div>
+        <div className="my-5 d-flex flex-column text-center">
+          <button className="btn text-theme-gray text-18">
+            View custom medical Systems
+          </button>
+          <KeyboardArrowDownIcon className="text-theme-gray m-auto " />
+        </div>{" "}
+      </div>
+      <div className=" pt-5 bg-custom-banner">
+        <div className="container ">
+          <div className="whychooseUs  pt-5 ms-auto px85 pb100 text-end">
+            <h2 className="fw-bold my-whole">WHY CHOOSE US</h2>
+            <img className="mb-3" src={icon1} alt="this is a picture" />
+            <p className="text-theme-gray ">Non-Surgical Hair Replacement</p>
+            <p className="text-theme-gray ">No harmful effect</p>
+            <p className="text-theme-gray ">Safe & easy to use</p>
+            <p className="text-theme-gray ">Loyal customer base</p>
+            <img className="mt-5 mb-3" src={icon2} alt="this is a picture" />
+            <p className="text-theme-gray ">Easy return policy</p>
+            <p className="text-theme-gray">Fast Worldwide Free Shipping</p>
+            <p className="text-theme-gray">24/7 Customer Service</p>
+            <p className="text-theme-gray pb-5">Regular Order Status Updates</p>
+          </div>
+        </div>
+
         {/* <img src={bg} alt="this is an picture" /> */}
       </div>
     </div>

@@ -93,7 +93,7 @@ hr {
   border-radius: 8px;
 }
 .bg-testimonial {
-  background-color: #f9f5f0;
+  background-color: #fbf2e6;
 }
 .py9060 {
   padding-top: 90px;
@@ -101,4 +101,9 @@ hr {
 }
 .bg-light-test {
   background-color: #ffffff9a;
+}
+.effecttest:hover {
+  background-color: #ffffff;
+  transform: scale(1.02);
+  transition: all 0.5s;
 }

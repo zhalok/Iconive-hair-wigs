@@ -203,9 +203,16 @@ export default function Navigation({ renderer, currency, setCurrency }) {
       <div className=" sticky-top bg-white shadow">
         <div className="d-flex mx-auto  justify-content-between px115">
           <div className="my-auto d-flex w12 text-start ">
-            <p className="my-auto text-18 px-3 py-1 rounded-3 shadow-lg">
-              USD <KeyboardArrowDownIcon className="my-auto" />
-            </p>
+            <div className="my-auto d-flex text-18 ps-5 pe-3 py-1 bg-light useBtn form-check form-switch">
+              <input
+                className="my-auto form-check-input ps-2 me-2 btnCheckUse"
+                type="checkbox"
+                id="flexSwitchCheckChecked"
+              />
+              <label class="form-check-label" for="flexSwitchCheckDefault">
+                USD
+              </label>
+            </div>
           </div>
           <Navbar expand="lg m-auto " className="">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -292,7 +299,7 @@ export default function Navigation({ renderer, currency, setCurrency }) {
           </div>
         </div>
         {CollectionDropdown && (
-          <div className=" w-100  d-flex position-absolute z-100 mt-50 bg-white p-0 shadow-lg navOpen">
+          <div className=" w-100  d-flex position-absolute z-100 bg-white p-0 shadow-lg navOpen">
             <a
               href="/catagory"
               className="text-decoration-none w-25 drop p-4 border-end"
