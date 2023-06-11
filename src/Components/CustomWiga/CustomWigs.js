@@ -24,7 +24,7 @@ export default function CustomWigs() {
       {/* our partners */}
       <div className="m-90">
         <h2 className="fw-bold text-uppercase">Our partners</h2>
-        <div className="d-flex justify-content-between container pt-5 px-5 ">
+        <div className="d-flex flex-wrap justify-content-between container pt-5 px-5 ">
           <img src={p1} alt="this is a picture" />
           <img src={p2} alt="this is a picture" />
           <img src={p3} alt="this is a picture" />

@@ -29,89 +29,121 @@ export default function Home() {
       <CarouselHome></CarouselHome>
 
       {/* free features section */}
-      <div className="container d-flex justify-content-between w-100 mt-100 py-4 ">
-        <div className="w-25 d-flex px-4 border-end feature-hover">
-          <div className="m-auto">
-            <img src={feature1} alt="this is a picture" className="" />
+      <div className="container d-flex ">
+        <div className=" row d-flex flex-column flex-lg-row w-100 mt-100  mx-0 px-0 justify-content-center">
+          <div className="d-flex col-12 col-lg-6 row">
+            <div className="d-flex row px-0 mx-0">
+              <div className="col-6 w-50 d-flex px-lg-4 p-1 border-end feature-hover">
+                <div className="my-auto w-25">
+                  <img
+                    src={feature1}
+                    alt="this is a picture"
+                    className="w-100"
+                  />
+                </div>
+                <div className="text-start my-auto p-lg-3 p-1 ps-2">
+                  <p className="f-16 py-0 my-0">Free Shipping</p>
+                  <p className="text-12 text-theme-gray">
+                    Free Shipping on order over $200
+                  </p>
+                </div>
+              </div>
+              <div className="col-6 w-50  d-flex p-1 px-lg-4 border-end feature-hover">
+                <div className="my-auto w-25">
+                  <img
+                    src={feature2}
+                    alt="this is a picture"
+                    className="w-100"
+                  />
+                </div>
+                <div className="text-start my-auto p-lg-3 p-1 ps-2">
+                  <p className="f-16 py-0 my-0">Secure Payment</p>
+                  <p className="text-12 text-theme-gray">
+                    All payments are done through Paystation.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="text-start p-3">
-            <p className="text-20 py-0 my-0">Free Shipping</p>
-            <p className="text-15 text-theme-gray">
-              Free Shipping on <br /> order over $200
-            </p>
-          </div>
-        </div>
-        <div className="w-25 d-flex px-4 border-end feature-hover">
-          <div className="m-auto">
-            <img src={feature2} alt="this is a picture" className="" />
-          </div>
-          <div className="text-start p-3">
-            <p className="text-20 py-0 my-0">Secure Payment</p>
-            <p className="text-15 text-theme-gray">
-              All payments are done <br /> through Paystation.
-            </p>
-          </div>
-        </div>
-        <div className="w-25 d-flex px-4 border-end feature-hover">
-          <div className="m-auto">
-            <img src={feature3} alt="this is a picture" className="" />
-          </div>
-          <div className="text-start p-3">
-            <p className="text-20 py-0 my-0">Support 24/7</p>
-            <p className="text-15 text-theme-gray">
-              Contact us 24 hours a <br />
-              day, 7 days a week
-            </p>
-          </div>
-        </div>
-        <div className="w-25 d-flex  px-4 feature-hover">
-          <div className="m-auto">
-            <img src={feature4} alt="this is a picture" className="" />
-          </div>
-          <div className="text-start p-3">
-            <p className="text-20 py-0 my-0">10 Days Return</p>
-            <p className="text-15 text-theme-gray">
-              Return it within <br /> 10 days for exchange
-            </p>
+          <div className="d-flex col-12 col-lg-6 row">
+            <div className="d-flex row px-0 mx-0">
+              <div className="col-6 w-50 d-flex px-lg-4 p-1 border-end feature-hover">
+                <div className="my-auto w-25">
+                  <img
+                    src={feature3}
+                    alt="this is a picture"
+                    className="w-100"
+                  />
+                </div>
+                <div className="text-start my-auto p-lg-3 p-1 ps-2">
+                  <p className="f-16 py-0 my-0">Support 24/7</p>
+                  <p className="text-12 text-theme-gray">
+                    Contact us 24 hours a day, 7 days a week
+                  </p>
+                </div>
+              </div>
+              <div className="col-6 w-50 d-flex px-lg-4 p-1  feature-hover">
+                <div className="my-auto w-25">
+                  <img
+                    src={feature4}
+                    alt="this is a picture"
+                    className="w-100"
+                  />
+                </div>
+                <div className="text-start my-auto p-lg-3 p-1 ps-2">
+                  <p className="f-20 py-0 my-0">10 Days Return</p>
+                  <p className="text-12 text-theme-gray">
+                    Return it within 10 days for exchange
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* choose style˚*/}
       <div className="mb-5 container">
-        <div className="container w-100 d-flex gap-5 ">
-          <div className="w-50 my-5 pb-4 ">
-            <div className="card-img cardMain">
-              <img
-                width="100%"
-                height="100%"
-                src={pola}
-                alt="this is a picture of girl"
-              />
-              <div className="overlay d-flex mx-auto w-100">
-                <h1 className="abs  text-light fw-bold p-50p mx-auto">GENTS</h1>
+        <div className="row  d-flex  flex-lg-row p-2 p-lg-0">
+          <div className="col-12 col-lg-6 my-5 pb-4 ">
+            <a href="/catagory">
+              <div className="card-img cardMain">
+                <img
+                  width="100%"
+                  height="100%"
+                  src={pola}
+                  alt="this is a picture of girl"
+                />
+                <div className="overlay d-flex mx-auto w-100">
+                  <h1 className="abs  text-light fw-bold p-50p mx-auto">
+                    GENTS
+                  </h1>
+                </div>
               </div>
-            </div>
+            </a>
             <h4 className="fw-bold pt-4 pb-3 ">GENTS</h4>
             <p className="px-3 text-theme-gray text-18">
               Be confident with any style you like to own from a <br />
               large variety of styles.
             </p>
           </div>
-          <div className="w-50 my-5 pb-4">
-            <div className="card-img cardMain">
-              <img
-                width="100%"
-                height="100%"
-                src={girl}
-                alt="this is a picture of girl"
-              />
-              <div className="overlay d-flex mx-auto w-100">
-                <h1 className="abs  text-light fw-bold p-50p  mx-auto">
-                  LADIES
-                </h1>
+
+          <div className="col-12 col-lg-6 my-5 pb-4">
+            <a href="/catagory">
+              <div className="card-img cardMain">
+                <img
+                  width="100%"
+                  height="100%"
+                  src={girl}
+                  alt="this is a picture of girl"
+                />
+                <div className="overlay d-flex mx-auto w-100">
+                  <h1 className="abs  text-light fw-bold p-50p  mx-auto">
+                    LADIES
+                  </h1>
+                </div>
               </div>
-            </div>
+            </a>
 
             <h4 className="fw-bold pt-4 pb-3">LADIES</h4>
             <p className="px-3 text-theme-gray text-18">
@@ -126,27 +158,29 @@ export default function Home() {
       <Trending></Trending>
       {/* wholesales */}
       <div className="container pb-5">
-        <div className="w-100 position-relative d-flex pb-5">
-          <div className="w-75 ms-auto">
+        <div className="row w-100 position-relative d-flex pb-5 px-0 ">
+          <div className=" col-12 col-lg-8 ms-lg-auto mx-0">
             <img src={wholesale} alt="this is a picture " className="w-100" />
           </div>
-          <div className="w-50 me-autos position-absolute bg-wholeslae text-start p-5 postion-wholesale shadow-lg ">
-            <h2 className="fw-bold">For Wholesellers</h2>
-            <p className="py-4 text-16 text-justify text-theme-gray ">
-              Shop wigs in bulk at discounted prices in our wholesale section.
-              Ideal for resellers or stocking up on your favorite styles,
-              explore a wide range of wig types, colors, and styles with
-              customization options, fast shipping, and dedicated support.
-              Minimum order quantities may apply, start saving on your wig
-              purchases now.
-            </p>
-            <a
-              className="text-theme-gray text-decoration-none border-2 border-bottom pb-2 "
-              href=""
-              target="_blank"
-            >
-              View Wholesale Shop
-            </a>
+          <div className="w-100 row px-0 me-autos position-absolute  text-start  postion-wholesale shadow-lg ">
+            <div className="col-12 col-lg-6 bg-wholeslae p-5 rounded-3">
+              <h2 className="fw-bold">For Wholesellers</h2>
+              <p className="py-4 text-16 text-justify text-theme-gray ">
+                Shop wigs in bulk at discounted prices in our wholesale section.
+                Ideal for resellers or stocking up on your favorite styles,
+                explore a wide range of wig types, colors, and styles with
+                customization options, fast shipping, and dedicated support.
+                Minimum order quantities may apply, start saving on your wig
+                purchases now.
+              </p>
+              <a
+                className="text-theme-gray text-decoration-none border-2 border-bottom pb-2 "
+                href=""
+                target="_blank"
+              >
+                View Wholesale Shop
+              </a>
+            </div>
           </div>
         </div>
       </div>

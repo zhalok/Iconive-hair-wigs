@@ -27,7 +27,7 @@ export default function TopSelling() {
   ];
   return (
     <>
-      <div className="container ps-r d-flex flex-column">
+      <div className="container d-flex flex-column">
         <div className="w-100 pb-3 text-center ">
           <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 text-center text-uppercase animate__animated animate__fadeInDown ">
             Our Best Selling wigs
@@ -38,39 +38,47 @@ export default function TopSelling() {
           </p>
         </div>
 
-        <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center ">
+        <div className="row  mt-5 mx-auto d-flex">
           {cards.map((card, index) => (
-            <div key={index} className="card-main border rounded-iconive w-25">
-              <div className="img-card">
-                <img
-                  className="w-100 h-100"
-                  src={card1}
-                  alt="This  is an  picture"
-                />
-              </div>
-              <div className="text-start p-3">
-                <p className=" fw-bold text-16 text-dark">
-                  SuperSkin - Ladies Blonde Wig
-                </p>
-                <p className="m-0 py-0 text-12 text-theme-gray">
-                  Be confident with any style you like to own from a large
-                  variety of styles.
-                </p>
-                <div className="d-flex justify-content-between mt-4">
-                  <p className="text-20 fw-bold text-dark my-auto pt-1">$500</p>
-                  <div className="d-flex">
-                    <button className="btn px-0 mt-1">
-                      {" "}
-                      <img src={cardicon2} className="" alt="this is an icon" />
-                    </button>
-                    <button className="btn ps-2 my-auto">
-                      {" "}
-                      <img
-                        src={cardicon1}
-                        className="w-100 "
-                        alt="this is an icon"
-                      />
-                    </button>
+            <div key={index} className="col-6 col-lg-3 pb-4">
+              <div className="border rounded-iconive">
+                <div className="img-card">
+                  <img
+                    className="w-100 h-100"
+                    src={card1}
+                    alt="This  is an  picture"
+                  />
+                </div>
+                <div className="text-start p-3">
+                  <p className=" fw-bold text-16 text-dark">
+                    SuperSkin - Ladies Blonde Wig
+                  </p>
+                  <p className="m-0 py-0 text-12 text-theme-gray">
+                    Be confident with any style you like to own from a large
+                    variety of styles.
+                  </p>
+                  <div className="d-flex justify-content-between mt-4">
+                    <p className="text-20 fw-bold text-dark my-auto pt-1">
+                      $500
+                    </p>
+                    <div className="d-flex">
+                      <button className="btn px-0 mt-1">
+                        {" "}
+                        <img
+                          src={cardicon2}
+                          className=""
+                          alt="this is an icon"
+                        />
+                      </button>
+                      <button className="btn ps-2 my-auto">
+                        {" "}
+                        <img
+                          src={cardicon1}
+                          className="w-100 "
+                          alt="this is an icon"
+                        />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
