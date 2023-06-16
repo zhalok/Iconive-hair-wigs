@@ -30,24 +30,6 @@ export default function Trending() {
     getNewArrivals();
   }, []);
 
-  const cards = [
-    {
-      id: 1,
-      name: "card1",
-    },
-    {
-      id: 2,
-      name: "card2",
-    },
-    {
-      id: 3,
-      name: "card3",
-    },
-    {
-      id: 4,
-      name: "card4",
-    },
-  ];
   return (
     <>
       <div className="container">
@@ -62,7 +44,14 @@ export default function Trending() {
         </div>
         <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center">
           {newArrivals.map((product, index) => (
-            <div key={index} className="card-main border rounded-iconive w-25">
+            <div
+              key={index}
+              className="card-main border rounded-iconive w-25"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                navigate(`/ProductDetails/${product._id}`);
+              }}
+            >
               <div className="img-card">
                 <img
                   className="w-100 h-100"

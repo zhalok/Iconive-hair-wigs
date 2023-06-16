@@ -62,7 +62,14 @@ export default function TopSelling() {
 
         <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center ">
           {mostSold.map((product, index) => (
-            <div key={index} className="card-main border rounded-iconive w-25">
+            <div
+              key={index}
+              className="card-main border rounded-iconive w-25"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                navigate(`/ProductDetails/${product._id}`);
+              }}
+            >
               <div className="img-card">
                 <img
                   className="w-100 h-100"
