@@ -35,6 +35,7 @@ export default function Profile() {
   const [sidebar, setSidebar] = useState(1);
   const [activeBtn, setActiveBtn] = useState(true);
   const [orders, setOrders] = useState([]);
+  const [wishListProducts, setWishListProducts] = useState([]);
 
   const getOrders = async () => {
     try {
