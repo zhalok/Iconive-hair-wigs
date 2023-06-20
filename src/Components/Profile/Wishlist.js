@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import cardicon1 from "../Images/card/cardicon1.svg";
 import cardicon2 from "../Images/card/cardicon2.svg";
@@ -7,8 +7,11 @@ import cardhero from "../Images/card/cardhero.svg";
 import Cookies from "js-cookie";
 import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
+import currencyConverter from "../../utils/CurrencyChanger";
+import CurrencyContext from "../../Contexts/CurrencyContext";
 export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
+  const { currency } = useContext(CurrencyContext);
 
   const navigate = useNavigate();
 
@@ -62,17 +65,19 @@ export default function Wishlist() {
                   className="position-absolute top-50 left-20 d-flex btn btn-details px-3 py-1 f-14 text-light "
                 >
                   <ShoppingCartIcon className="pe-1 my-auto" />{" "}
-                  <p className="m-auto"> Details</p>
+                  <p className="m-auto">Details</p>
                 </button>
               </div>
               <div className="text-start p-3 mt-auto">
-                <p className=" fw-bold  ">SuperSkin - Ladies Blonde Wig</p>
+                <p className=" fw-bold  ">{wish?.product?.name}</p>
                 <p className="m-0 py-0 text-12 text-theme-gray">
-                  Be confident with any style you like to own from a large
-                  variety of styles.
+                  {wish?.product?.description}
                 </p>
                 <div className="d-flex justify-content-between mt-4">
-                  <p className="text-20 fw-bold text-dark my-auto pt-1">$449</p>
+                  <p className="text-20 fw-bold text-dark my-auto pt-1">
+                    {currency == "USD" ? "$" : "৳"}{" "}
+                    {currencyConverter(currency, wish?.product?.price)}
+                  </p>
                   <div className="d-flex">
                     <button className="btn px-0 mt-1">
                       {" "}
