@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import LogoutIcon from "@mui/icons-material/Logout";
 import "./Profile.css";
 import pps from ".././Images/profile/pps.svg";
 import ppr from ".././Images/profile/ppr.svg";
@@ -22,6 +23,8 @@ import OrderHistory from "./OrderHistory";
 import Refund from "./Refund";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
+import AuthContext from "../../Contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const sidebarItem = [
   { id: 1, name: "My Profile" },
@@ -36,6 +39,14 @@ export default function Profile() {
   const [activeBtn, setActiveBtn] = useState(true);
   const [orders, setOrders] = useState([]);
   const [wishListProducts, setWishListProducts] = useState([]);
+  const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    Cookies.remove("jwt");
+    setUser(null);
+    navigate("/");
+  };
 
   const getOrders = async () => {
     try {
@@ -187,6 +198,20 @@ export default function Profile() {
                   }`}
                 >
                   Refund & Return
+                </p>
+              </div>
+
+              <div className="d-flex border-bottom py-4 mb-4">
+                <span className="my-auto ms-1">
+                  <LogoutIcon />
+                </span>
+                <p
+                  onClick={() => {
+                    logout();
+                  }}
+                  className={`my-auto text-18 ps-4 text-start text-theme-gray sideItem`}
+                >
+                  Logout
                 </p>
               </div>
             </div>
