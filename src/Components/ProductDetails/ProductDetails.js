@@ -23,6 +23,8 @@ import OffCanvas from "../../Pages/Checkout/OffCanvas";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartItem from "../CartItem/CartItem";
 import { PulseLoader } from "react-spinners";
+import AuthContext from "../../Contexts/AuthContext";
+import Cookies from "js-cookie";
 
 export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const navigate = useNavigate();
@@ -38,6 +40,68 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const [cartItems, setCartItems] = useState([]);
   const [productTotal, setProductTotal] = useState(0);
   const [showOffCanvas, setShowOffCanvas] = useState(false);
+  const [inWishList, setInWishList] = useState(false);
+  const [wishlistloading, setWishlistloading] = useState(false);
+  const { user } = useContext(AuthContext);
+
+  const checkWishList = async () => {
+    try {
+      setWishlistloading(true);
+      const response = await axios.get(`/wishlist/getProduct/${product}`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      });
+      // console.log(response.data);
+      if (response.data) {
+        setInWishList(true);
+      } else setInWishList(false);
+      setWishlistloading(false);
+    } catch (e) {
+      setWishlistloading(false);
+      console.log(e);
+    }
+  };
+
+  const addToWishlist = async () => {
+    try {
+      setWishlistloading(true);
+      const response = await axios.post(
+        "/wishlist/addProduct",
+        {
+          product: productDetails._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("jwt")}`,
+          },
+        }
+      );
+
+      checkWishList();
+      // setWishlistloading(false);
+    } catch (e) {
+      setWishlistloading(false);
+      console.log(e);
+    }
+  };
+
+  const removeFromWishlist = async () => {
+    try {
+      setWishlistloading(true);
+      const response = await axios.delete(`wishlist/removeProduct/${product}`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      });
+      checkWishList();
+      // setWishlistloading(false);
+    } catch (e) {
+      setWishlistloading(false);
+      console.log(e);
+    }
+  };
+
   // const [cart]
   const discardCartItem = (product) => {
     const cart = localStorage.getItem("cart");
@@ -94,12 +158,13 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   useEffect(() => {
     if (product) {
       getProductDetails();
+      checkWishList();
     }
   }, [product]);
 
   useEffect(() => {
     if (productDetails) {
-      console.log("Hello");
+      // console.log("Hello");
       // console.log(productDetails);
       let cart = localStorage.getItem("cart");
 
@@ -420,9 +485,23 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               >
                 Remove Add Ons
               </button>
-              <button className=" btn outline-wish py-2 px-4 ms-3">
-                + WISH LIST
-              </button>
+              {user && (
+                <>
+                  {" "}
+                  <button
+                    className=" btn outline-wish py-2 px-4 ms-3"
+                    onClick={() => {
+                      !inWishList ? addToWishlist() : removeFromWishlist();
+                    }}
+                  >
+                    {wishlistloading
+                      ? "Please wait"
+                      : !inWishList
+                      ? "+ WISH LIST"
+                      : "- REMOVE FROM WISHLIST"}
+                  </button>
+                </>
+              )}
             </div>
             {/* off canvas */}
             {showOffCanvas && (

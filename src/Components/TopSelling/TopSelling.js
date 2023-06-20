@@ -29,24 +29,7 @@ export default function TopSelling() {
   useEffect(() => {
     getMostSold();
   }, []);
-  const cards = [
-    {
-      id: 1,
-      name: "card1",
-    },
-    {
-      id: 2,
-      name: "card2",
-    },
-    {
-      id: 3,
-      name: "card3",
-    },
-    {
-      id: 4,
-      name: "card4",
-    },
-  ];
+
   return (
     <>
       <div className="container ps-r d-flex flex-column">
