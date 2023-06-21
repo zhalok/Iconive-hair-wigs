@@ -30,6 +30,7 @@ export default function Category({ currency }) {
   const [filters, setFilters] = useState({});
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
+  console.log(showSubCategory);
 
   const getCategories = async () => {
     try {
@@ -76,7 +77,7 @@ export default function Category({ currency }) {
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
-              href="/home"
+              href="/catagory"
               className="text-decoration-none f-16  text-theme-gray text-uppercase"
             >
               cATAGORIES
@@ -151,7 +152,7 @@ export default function Category({ currency }) {
                       </p>
                     </div>
                     {/* Gents Wig */}
-                    {categories.map((category) => {
+                    {categories.map((category, index) => {
                       return (
                         <div className="border-top border-1 border-secondary py-4">
                           <div className="text-black d-flex ">
@@ -177,9 +178,19 @@ export default function Category({ currency }) {
                               }}
                             >
                               {showSubCategory !== category._id ? (
-                                <ExpandMoreIcon className="my-auto" />
+                                <ExpandMoreIcon
+                                  onClick={() => {
+                                    setTopBanner(index + 1);
+                                  }}
+                                  className="my-auto"
+                                />
                               ) : (
-                                <KeyboardArrowUpIcon className="my-auto" />
+                                <KeyboardArrowUpIcon
+                                  onClick={() => {
+                                    setTopBanner(0);
+                                  }}
+                                  className="my-auto"
+                                />
                               )}
                             </p>
                           </div>
@@ -281,9 +292,9 @@ export default function Category({ currency }) {
                         }}
                         className="card-main border rounded-iconive w-25 d-flex flex-column"
                       >
-                        <div className="img-card position-relative">
+                        <div className="img-card position-relative overflow-hidden ">
                           <img
-                            className="w-100 h-100 rounded-iconive"
+                            className="w-100 h-100 rounded-iconive cardImg"
                             src={product.photo}
                             alt="This  is an  picture"
                           />

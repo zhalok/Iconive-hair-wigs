@@ -99,3 +99,12 @@
   color: #fff;
   border: #ecb30a 1px solid;
 }
+
+@media screen and (max-width: 480px) {
+  .px115 {
+    padding: 0px 10px;
+  }
+  .hide {
+    display: none;
+  }
+}

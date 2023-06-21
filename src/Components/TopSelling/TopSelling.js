@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./TopSelling.css";
 import card1 from "../Images/card/Mask1.svg";
 import cardicon1 from "../Images/card/cardicon1.svg";
@@ -7,6 +8,7 @@ import cardicon2 from "../Images/card/cardicon2.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "animate.css";
 export default function TopSelling() {
+  const navigate = useNavigate();
   const cards = [
     {
       id: 1,
@@ -29,7 +31,7 @@ export default function TopSelling() {
     <>
       <div className="container d-flex flex-column">
         <div className="w-100 pb-3 text-center ">
-          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 text-center text-uppercase animate__animated animate__fadeInDown ">
+          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 text-center text-uppercase headingHover ">
             Our Best Selling wigs
           </h2>
           <p className="text-theme-gray text-18 	">
@@ -41,10 +43,10 @@ export default function TopSelling() {
         <div className="row  mt-5 mx-auto d-flex">
           {cards.map((card, index) => (
             <div key={index} className="col-6 col-lg-3 pb-4">
-              <div className="border rounded-iconive">
-                <div className="img-card">
+              <div className="border rounded-iconive o">
+                <div className=" overflow-hidden">
                   <img
-                    className="w-100 h-100"
+                    className="w-100 h-100 cardImg"
                     src={card1}
                     alt="This  is an  picture"
                   />
@@ -63,7 +65,6 @@ export default function TopSelling() {
                     </p>
                     <div className="d-flex">
                       <button className="btn px-0 mt-1">
-                        {" "}
                         <img
                           src={cardicon2}
                           className=""
@@ -71,7 +72,6 @@ export default function TopSelling() {
                         />
                       </button>
                       <button className="btn ps-2 my-auto">
-                        {" "}
                         <img
                           src={cardicon1}
                           className="w-100 "
@@ -86,7 +86,14 @@ export default function TopSelling() {
           ))}
         </div>
         <div className="my-5 d-flex flex-column text-center">
-          <button className="btn text-theme-gray text-18">View Shop</button>
+          <button
+            onClick={() => {
+              navigate("/catagory");
+            }}
+            className="btn text-theme-gray text-18"
+          >
+            View Shop
+          </button>
           <KeyboardArrowDownIcon className="text-theme-gray m-auto mb-md-5" />
         </div>
       </div>

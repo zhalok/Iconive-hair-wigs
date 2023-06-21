@@ -50,3 +50,11 @@ hr {
 .card-main {
   width: 100% !important;
 }
+.headingHover:hover {
+  transform: scale(1.1);
+  transition: all 0.7s;
+}
+.cardImg:hover {
+  transform: scale(1.1);
+  transition: all 0.8s;
+}

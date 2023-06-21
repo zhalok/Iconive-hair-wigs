@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import "./CustomWigs.css";
+import { useNavigate } from "react-router-dom";
 import card1 from "../Images/custom/1.svg";
 import card2 from "../Images/custom/2.svg";
 import card3 from "../Images/custom/3.svg";
@@ -19,28 +20,46 @@ import icon2 from "../Images/custom/iconwhy1.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function CustomWigs() {
+  const navigate = useNavigate();
   return (
     <div>
       {/* our partners */}
       <div className="m-90">
-        <h2 className="fw-bold text-uppercase">Our partners</h2>
-        <div className="d-flex flex-wrap justify-content-between container pt-5 px-5 ">
-          <img src={p1} alt="this is a picture" />
-          <img src={p2} alt="this is a picture" />
+        <h2 className="fw-bold text-uppercase. headingHover">Our partners</h2>
+        <div className="d-flex flex-wrap justify-content-between container pt-5 row mx-auto g-3">
+          <div className="col  my-auto p-3 cardImg">
+            <img src={p1} alt="this is a picture" />
+          </div>
+          <div className="col  my-auto p-3 cardImg">
+            <img src={p2} alt="this is a picture" />
+          </div>
+          <div className="col  my-auto p-3 cardImg">
+            <img src={p3} alt="this is a picture" />
+          </div>
+          <div className="col  my-auto p-3 cardImg">
+            <img src={p4} alt="this is a picture" />
+          </div>
+          <div className="col  my-auto p-3 cardImg">
+            <img src={p5} alt="this is a picture" />
+          </div>
+          <div className="col  my-auto p-3 cardImg">
+            <img src={p6} alt="this is a picture" />
+          </div>
+          {/* <img src={p2} alt="this is a picture" />
           <img src={p3} alt="this is a picture" />
           <img src={p4} alt="this is a picture" />
           <img src={p5} alt="this is a picture" />
-          <img src={p6} alt="this is a picture" />
+          <img src={p6} alt="this is a picture" /> */}
         </div>
       </div>
       {/* position-relative position-absolute */}
 
       <div className="bg-custom">
-        <div className="ps-r pt-5">
-          <h4 className="fw-bold fs-2  pt-5  w-100 mx-auto text-uppercase">
+        <div className="p-3 p-lg-0 mt-5">
+          <h4 className="fw-bold fs-2  pt-5  w-100 mx-auto text-uppercase headingHover">
             Custom medical wigs
           </h4>
-          <p className="pt-4  text-18 text-theme-gray">
+          <p className="pt-4  f-16 text-theme-gray pb-4 pb-lg-0">
             Our custom wigs cater to medical hair loss needs. Choose base type,
             hair color, and length for a personalized fit. High-quality
             materials <br /> ensure comfort and durability, and a fashionable
@@ -48,49 +67,49 @@ export default function CustomWigs() {
           </p>
         </div>
         <div className="d-flex m-md-5 px-5">
-          <div className="d-flex gap-3 mx-auto ">
+          <div className="d-flex g-3 mx-auto row">
             {/* card */}
-            <div className="mx-auto  wc-22 shadow">
+            <div className="mx-auto   col-6 col-lg-2">
               <img
-                className="w-100 h-100"
+                className=" wc-22 w-100 h-100"
                 src={card1}
                 alt="This  is an  picture"
               />
             </div>
 
-            <div className="mx-auto  wc-22">
+            <div className="mx-auto  col-6 col-lg-2">
               <img
-                className="w-100 h-100"
+                className=" wc-22 w-100 h-100"
                 src={card2}
                 alt="This  is an  picture"
               />
             </div>
 
-            <div className="mx-auto  wc-22">
+            <div className="mx-auto  col-6 col-lg-2">
               <img
-                className="w-100 h-100"
+                className=" wc-22 w-100 h-100"
                 src={card3}
                 alt="This  is an  picture"
               />
             </div>
 
-            <div className="mx-auto  wc-22">
+            <div className="mx-auto  col-6 col-lg-2">
               <img
-                className="w-100 h-100"
+                className=" wc-22 w-100 h-100"
                 src={card4}
                 alt="This  is an  picture "
               />
             </div>
-            <div className="mx-auto  wc-22">
+            <div className="mx-auto col-6 col-lg-2">
               <img
-                className="w-100 h-100"
+                className=" wc-22 w-100 h-100"
                 src={card5}
                 alt="This  is an  picture "
               />
             </div>
-            <div className="mx-auto  wc-22">
+            <div className="mx-auto  col-6 col-lg-2">
               <img
-                className="w-100 h-100"
+                className="wc-22 w-100 h-100"
                 src={card6}
                 alt="This  is an  picture "
               />
@@ -98,7 +117,12 @@ export default function CustomWigs() {
           </div>
         </div>
         <div className="my-5 d-flex flex-column text-center">
-          <button className="btn text-theme-gray text-18">
+          <button
+            onClick={() => {
+              navigate("/catagory");
+            }}
+            className="btn text-theme-gray text-18"
+          >
             View custom medical Systems
           </button>
           <KeyboardArrowDownIcon className="text-theme-gray m-auto " />

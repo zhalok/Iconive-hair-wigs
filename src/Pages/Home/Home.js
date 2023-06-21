@@ -159,11 +159,15 @@ export default function Home() {
       {/* wholesales */}
       <div className="container pb-5">
         <div className="row w-100 position-relative d-flex pb-5 px-0 ">
-          <div className=" col-12 col-lg-8 ms-lg-auto mx-0">
-            <img src={wholesale} alt="this is a picture " className="w-100" />
+          <div className=" col-12 col-lg-8 ms-lg-auto mx-0 overflow-hidden">
+            <img
+              src={wholesale}
+              alt="this is a picture "
+              className="w-100 cardImg"
+            />
           </div>
           <div className="w-100 row px-0 me-autos position-absolute  text-start  postion-wholesale shadow-lg ">
-            <div className="col-12 col-lg-6 bg-wholeslae p-5 rounded-3">
+            <div className="col-12 col-lg-6 bg-wholeslae p-5 rounded-3 headingHover">
               <h2 className="fw-bold">For Wholesellers</h2>
               <p className="py-4 text-16 text-justify text-theme-gray ">
                 Shop wigs in bulk at discounted prices in our wholesale section.
@@ -188,11 +192,13 @@ export default function Home() {
       <CustomWigs></CustomWigs>
 
       {/* what people are sating */}
-      <div className="bg-testimonial p-md-5 p-sm-3 pt-md-5">
-        <h3 className="fw-bold py9060 text-dark">WHAT PEOPLE ARE SAYING</h3>
+      <div className="bg-testimonial   py-md-5 p-4 px-lg-0">
+        <h3 className="fw-bold py9060 text-dark headingHover">
+          WHAT PEOPLE ARE SAYING
+        </h3>
 
-        <div className="d-flex py-5 gap-4 mx-5 ">
-          <div className="w-33 d-flex flex-column p-5 shadow rounded-3 bg-light-test effecttest">
+        <div className="d-flex  row  mx-auto justify-content-center gap-4">
+          <div className=" d-flex flex-column  shadow rounded-3 bg-light-test effecttest col-12 col-lg-3 p-5">
             <p className="d-flex mx-auto text-warning">
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
             </p>
@@ -206,7 +212,7 @@ export default function Home() {
             </p>
             <p className="text-center fw-bold"> @ Ellen White</p>
           </div>
-          <div className="w-33 d-flex flex-column text-start  p-5 shadow rounded-3 bg-light-test effecttest ">
+          <div className="d-flex flex-column text-start  p-5 shadow rounded-3 bg-light-test effecttest col-12 col-lg-3 my-5 my-lg-0">
             <p className="d-flex mx-auto text-warning">
               {" "}
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
@@ -220,7 +226,7 @@ export default function Home() {
             </p>
             <p className="text-center fw-bold"> @ Abdul Kader Akash </p>
           </div>
-          <div className="w-33 d-flex flex-column  text-start  p-5 shadow rounded-3 bg-light-test effecttest">
+          <div className="d-flex flex-column  text-start  p-5 shadow rounded-3 bg-light-test effecttest col-12 col-lg-3">
             <p className="d-flex mx-auto text-warning">
               {" "}
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}

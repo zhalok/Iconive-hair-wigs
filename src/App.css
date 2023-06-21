@@ -1,8 +1,6 @@
-
-
 .App {
   text-align: center;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .App-logo {
@@ -15,11 +13,19 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-p{
-font-family: 'Poppins', sans-serif !important;
+p {
+  font-family: "Poppins", sans-serif !important;
 }
-h1,h2,h3,h4,h5,h6{
-font-family: 'Raleway', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway", sans-serif;
+}
+a:hover {
+  color: #ecb30a !important;
 }
 .App-header {
   background-color: #282c34;
@@ -45,10 +51,9 @@ font-family: 'Raleway', sans-serif;
   }
 }
 
-
-.bg-black{
+.bg-black {
   background-color: black;
 }
-.text-xs{
-  font-size:12px;
+.text-xs {
+  font-size: 12px;
 }

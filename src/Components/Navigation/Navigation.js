@@ -52,7 +52,7 @@ export default function Navigation({ renderer, currency, setCurrency }) {
         </p>
       </div>
       {/* 2nd section email and icons  */}
-      <div className="bg-light d-flex justify-content-between border-bottom px115">
+      <div className="bg-light d-flex justify-content-between border-bottom px115 hide">
         <div className="my-auto text-dark d-flex py-2">
           <MailOutlineIcon className="text-secondary me-1 my-auto" />
           <p className="text-14 navtxt my-auto">iconivehairwigs@gmail.com</p>

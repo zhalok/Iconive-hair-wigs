@@ -5,8 +5,10 @@ import card2 from "../Images/card/Mask2.svg";
 import cardicon1 from "../Images/card/cardicon1.svg";
 import cardicon2 from "../Images/card/cardicon2.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useNavigate } from "react-router-dom";
 
 export default function Trending() {
+  const navigate = useNavigate();
   const cards = [
     {
       id: 1,
@@ -29,7 +31,7 @@ export default function Trending() {
     <>
       <div className="container">
         <div className="w-100 mt-5 pb-3">
-          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 mx-auto text-uppercase">
+          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 mx-auto text-uppercase headingHover">
             New arrivals
           </h2>
           <p className="text-theme-gray text-18">
@@ -41,9 +43,9 @@ export default function Trending() {
           {cards.map((card, index) => (
             <div key={index} className="pb-4  col-6 col-lg-3">
               <div className="border rounded-iconive">
-                <div className="img-card">
+                <div className="overflow-hidden">
                   <img
-                    className="w-100 h-100"
+                    className="w-100 h-100 cardImg"
                     src={card2}
                     alt="This  is an  picture"
                   />
@@ -85,7 +87,14 @@ export default function Trending() {
           ))}
         </div>
         <div className="mb-5 mt-4 d-flex flex-column text-center">
-          <button className="btn text-theme-gray text-18">View Shop</button>
+          <button
+            onClick={() => {
+              navigate("/catagory");
+            }}
+            className="btn text-theme-gray text-18"
+          >
+            View Shop
+          </button>
           <KeyboardArrowDownIcon className="text-theme-gray m-auto mb-md-5" />
         </div>
       </div>
