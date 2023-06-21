@@ -31,7 +31,7 @@ export default function Navigation({ renderer, currency, setCurrency }) {
   const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
   const [cartItems, setCartItems] = useState(0);
-  const [showProfileSecton, setShowProfileSection] = useState(false);
+  const [usdCheck, setUsdCheck] = useState(false);
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -205,12 +205,22 @@ export default function Navigation({ renderer, currency, setCurrency }) {
           <div className="my-auto d-flex w12 text-start ">
             <div className="my-auto d-flex text-18 ps-5 pe-3 py-1 bg-light useBtn form-check form-switch">
               <input
-                className="my-auto form-check-input ps-2 me-2 btnCheckUse"
+                className="my-auto form-check-input ps-2 me-2 btnCheckUse "
                 type="checkbox"
                 id="flexSwitchCheckChecked"
+                onClick={() => {
+                  setUsdCheck((prevs) => {
+                    return !prevs;
+                  });
+                }}
               />
-              <label class="form-check-label" for="flexSwitchCheckDefault">
-                USD
+
+              <label class=" text-16 my-auto" for="flexSwitchCheckChecked">
+                {usdCheck ? (
+                  <p className="my-auto ms-1">BDT</p>
+                ) : (
+                  <p className="my-auto ms-1">USD</p>
+                )}
               </label>
             </div>
           </div>
@@ -287,13 +297,10 @@ export default function Navigation({ renderer, currency, setCurrency }) {
               </a>
             </div>
             <div className="m-auto">
-              <a href="/profile">
-                <img
-                  src={profile}
-                  width={"36"}
-                  className="shadow-lg rounded-circle"
-                  alt="this is an icon"
-                />
+              <a href="/profile" className="text-decoration-none">
+                <div className="shadow rounded-circle bg-themeYellow w-36px d-flex ">
+                  <h5 className=" m-auto fw-bold text-light">AB</h5>
+                </div>
               </a>
             </div>
           </div>
@@ -330,7 +337,7 @@ export default function Navigation({ renderer, currency, setCurrency }) {
                   />
                 </div>
                 <a href="/catagory" className="text-decoration-none text-dark ">
-                  <p className="mt-3 text-18 nav-drop">Ladis Wigs</p>
+                  <p className="mt-3 text-18 nav-drop">Ladies Wigs</p>
                 </a>
               </div>
             </a>

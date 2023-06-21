@@ -43,7 +43,7 @@ export default function Home() {
                 </div>
                 <div className="text-start my-auto p-lg-3 p-1 ps-2">
                   <p className="f-16 py-0 my-0">Free Shipping</p>
-                  <p className="text-12 text-theme-gray">
+                  <p className="text-13 text-theme-gray">
                     Free Shipping on order over $200
                   </p>
                 </div>
@@ -58,7 +58,7 @@ export default function Home() {
                 </div>
                 <div className="text-start my-auto p-lg-3 p-1 ps-2">
                   <p className="f-16 py-0 my-0">Secure Payment</p>
-                  <p className="text-12 text-theme-gray">
+                  <p className="text-13 text-theme-gray">
                     All payments are done through Paystation.
                   </p>
                 </div>
@@ -77,7 +77,7 @@ export default function Home() {
                 </div>
                 <div className="text-start my-auto p-lg-3 p-1 ps-2">
                   <p className="f-16 py-0 my-0">Support 24/7</p>
-                  <p className="text-12 text-theme-gray">
+                  <p className="text-13 text-theme-gray">
                     Contact us 24 hours a day, 7 days a week
                   </p>
                 </div>
@@ -92,7 +92,7 @@ export default function Home() {
                 </div>
                 <div className="text-start my-auto p-lg-3 p-1 ps-2">
                   <p className="f-20 py-0 my-0">10 Days Return</p>
-                  <p className="text-12 text-theme-gray">
+                  <p className="text-13 text-theme-gray">
                     Return it within 10 days for exchange
                   </p>
                 </div>

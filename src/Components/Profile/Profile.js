@@ -51,12 +51,12 @@ export default function Profile() {
       {/* side bar */}
       <div className="w-100 d-flex gap-5">
         <div className="w-20 ">
-          <div className=" profile-border bg-light">
-            <div className="w-100 pt-5 pb-2">
-              <img src={ppr} alt="this is an image" className="" />
+          <div className=" profile-border bg-light pt-5">
+            <div className="w-100px  bg-themeYellow rounded-circle d-flex mx-auto mb-4 shadow-lg">
+              <h1 className="m-auto text-light fw-bold">AB</h1>
             </div>
             <h4 className="fw-bold pb-4 dp-text">Clint Eastwood</h4>
-            <div className="px-5 pb-5">
+            <div className="px-5 pb-3">
               <div className="d-flex border-top border-bottom py-4">
                 <span className="my-auto ms-1">
                   {activeBtn === true && sidebar === 1 ? (
@@ -166,6 +166,11 @@ export default function Profile() {
                   Refund & Return
                 </p>
               </div>
+            </div>
+            <div className="w-100 pb-5 px-5">
+              <button className="w-100 bg-themeYellow btn text-light fw-bold">
+                LOG OUT
+              </button>
             </div>
           </div>
         </div>

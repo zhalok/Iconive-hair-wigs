@@ -135,10 +135,39 @@ export default function Category({ currency }) {
                   </p>
                   <img src={filter} alt="this is an image" />
                 </div>
+                <div className="w-50 ms-auto">
+                  <form class="d-flex w-75 ">
+                    <input
+                      class="form-control rounded-0"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                    <button
+                      class="btn btn-secondary rounded-0 py-1"
+                      type="submit"
+                    >
+                      Search
+                    </button>
+                  </form>
+                </div>
 
                 <div className="my-auto d-flex pe-5 gap-5">
-                  <p className="text-16 text-theme-gray">SORT BY</p>
-                  <p className="text-16 text-theme-gray">PRICE</p>
+                  <p className="text-16 text-theme-gray my-auto">SORT BY</p>
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-secondary btn-sm dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Price
+                    </button>
+                    <ul class="dropdown-menu p-2">
+                      <li>Price</li>
+                      <li>A to Z</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
