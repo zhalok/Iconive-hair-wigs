@@ -34,10 +34,10 @@ export default function TopSelling() {
           <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 text-center text-uppercase headingHover ">
             Our Best Selling wigs
           </h2>
-          <p className="text-theme-gray text-18 	">
+          {/* <p className="text-theme-gray text-18 	">
             Discover your unique look, Browse our selection of wigs for him and
             her
-          </p>
+          </p> */}
         </div>
 
         <div className="row  mt-5 mx-auto d-flex">

@@ -6,7 +6,7 @@ export default function Return() {
       <div class="">
         {/* return */}
         <h5 className="fw-bold text-secondary border-bottom  pb-2 pt-3">
-          Returns :{" "}
+          Returns :
         </h5>
         <p className="text-secondary pt-2">
           1 .

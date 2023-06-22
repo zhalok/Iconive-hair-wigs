@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Collection from "./image/Collections.png";
-import maleCollection from "./image/malecollection.png";
-import femaleCollection from "./image/femaleCollections.png";
-import Rawhair from "./image/Rawhair.png";
-import Accessories from "./image/Accessories.png";
+import Collection from "./image/Collections.jpg";
+import maleCollection from "./image/malecollection.jpg";
+import femaleCollection from "./image/femaleCollections.jpg";
+import Rawhair from "./image/Rawhair.jpg";
+import Accessories from "./image/Accessories.jpg";
 import down from "./icons/downArrow.svg";
 import card1 from "./image/cardh1.jpg";
 import "./Category.css";
@@ -344,10 +344,10 @@ export default function Category({ currency }) {
                         </div>
                         <div className="text-start p-3 mt-auto">
                           <p className=" fw-bold  ">{product.name}</p>
-                          <p className="m-0 py-0 text-12 text-theme-gray">
+                          {/* <p className="m-0 py-0 text-12 text-theme-gray">
                             Be confident with any style you like to own from a
                             large variety of styles.
-                          </p>
+                          </p> */}
                           <div className="d-flex justify-content-between mt-4">
                             <p className="text-20 fw-bold text-dark my-auto pt-1">{`$ ${product.price}`}</p>
                             <div className="d-flex">

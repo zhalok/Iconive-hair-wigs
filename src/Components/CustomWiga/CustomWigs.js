@@ -25,7 +25,7 @@ export default function CustomWigs() {
     <div>
       {/* our partners */}
       <div className="m-90">
-        <h2 className="fw-bold text-uppercase. headingHover">Our partners</h2>
+        <h2 className="fw-bold text-uppercase headingHover">Our partners</h2>
         <div className="d-flex flex-wrap justify-content-between container pt-5 row mx-auto g-3">
           <div className="col  my-auto p-3 cardImg">
             <img src={p1} alt="this is a picture" />

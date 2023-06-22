@@ -97,9 +97,7 @@
   border-radius: 10px;
   left: 3px;
 }
-.btnCheckUse {
-  background-color: #ecb30a;
-}
+
 .btnCheckUse:checked {
   background-color: #ecb30a;
   color: #fff;
