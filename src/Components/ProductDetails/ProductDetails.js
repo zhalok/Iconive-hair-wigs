@@ -632,112 +632,142 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
               >
                 Show More
               </button>
-              <div
-                class="modal fade"
-                id="refundandreturnpolicy"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5
-                        class="modal-title fw-bold text-dark"
-                        id="exampleModalLabel"
-                      >
-                        Return & Refund Policy
-                      </h5>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div class="modal-body">
-                      <h5 className="fw-bold  my-2">
-                        Thanks for shopping at Iconive. <br />
-                      </h5>
-                      <h5 className="fw-normal pb-3">
-                        If you are not entirely satisfied with your purchase,
-                        we're here to help.
-                      </h5>
-                      <p>
-                        1 .
-                        <small>
-                          {" "}
-                          All stock orders are processed within 24-48 hours of
-                          receiving payment, and are shipped out as soon as
-                          possible. However, If the product is not in stock or a
-                          customer places a custom order, it might take 10-30
-                          days to manufacture as these items are mostly
-                          hand-crafted.
-                        </small>
-                      </p>{" "}
-                      <p>
-                        2 .
-                        <small>
-                          {" "}
-                          We mainly Ship abroad via FedEx Logistics. We can also
-                          use DHL Supply Chain, UPS etc verified International
-                          Shipping Agents if needed. After the product is
-                          manufactured/ is ready to be shipped, we send real
-                          pictures or videos of that product to the following
-                          customer if he asks for it. After buyer’s
-                          confirmation, we will send the product to FedEx
-                          warehouses for delivery. After handing over the
-                          package to FedEx for the delivery, we will get a
-                          tracking code which we will send to our customer for
-                          his/her convenience. With this code, customers can
-                          easily find out the product's location & whereabouts.
-                        </small>
-                      </p>
-                      <p>
-                        3 .
-                        <small>
-                          {" "}
-                          Standard shipping usually takes between 5-12 business
-                          days to arrive as per FedEx delivery system. Please
-                          note that shipping times may vary depending on your
-                          location and shipping method. Any issue regarding
-                          product shipping is not our concern as this
-                          responsibility then transfers to FedEx. So any issue
-                          regarding product shipment after we handover the
-                          product to FedEx is not our responsibility to solve,
-                          therefore not on us. We offer free standard
-                          international shipping on all orders over $200 all
-                          over the world. For orders under $200, a shipping fee
-                          will be applied based on the weight and size of the
-                          package.Please note that international orders may be
-                          subject to additional customs fees and taxes, which
-                          are the responsibility of the customer.
-                        </small>
-                      </p>
-                      <p>
-                        4 .
-                        <small>
-                          {" "}
-                          If you have any questions or concerns about shipping,
-                          please don't hesitate to contact our customer service
-                          team. We're always here to help and ensure that you
-                          have the best shopping experience possible.
-                        </small>
-                      </p>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-dark"
-                        data-bs-dismiss="modal"
-                      >
-                        Close
-                      </button>
-                    </div>
+            </p>
+            <div
+              class="modal fade"
+              id="refundandreturnpolicy"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5
+                      class="modal-title fw-bold text-dark"
+                      id="exampleModalLabel"
+                    >
+                      Return & Refund Policy
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    {/* return */}
+                    <h6 className="fw-bold text-secondary border-bottom  pb-2 pt-3">
+                      Returns :{" "}
+                    </h6>
+                    <p className="text-secondary pt-2">
+                      1 .
+                      <small>
+                        You have 7 calendar days to return an item from the date
+                        you received it
+                      </small>
+                    </p>
+                    <p className="text-secondary">
+                      2 .
+                      <small>
+                        To be eligible for a return, your item must be unused
+                        and in the same condition that you received it. Also-{" "}
+                      </small>
+                      <ul>
+                        <li>
+                          <small>
+                            Your item must be in the original packaging.
+                          </small>
+                        </li>
+                        <li>
+                          <small>
+                            Your item needs to have the receipt or proof of
+                            purchase.
+                          </small>
+                        </li>
+                      </ul>
+                    </p>
+                    {/* refunds: */}
+                    <h6 className="fw-bold text-secondary border-bottom  pb-2 pt-4">
+                      Refunds :{" "}
+                    </h6>
+                    <p className="text-secondary">
+                      1 .
+                      <small>
+                        Once we receive your item, we will inspect it and notify
+                        you that we have received your returned item. We will
+                        immediately notify you on the status of your refund
+                        after inspecting the item.
+                      </small>
+                    </p>
+                    <p className="text-secondary">
+                      2 .
+                      <small>
+                        If your return is approved, we will initiate a refund to
+                        your credit/debit card.
+                      </small>
+                    </p>
+                    <p className="text-secondary">
+                      3 .
+                      <small>
+                        If you find there is a problem with your order or are
+                        unhappy with your hair system in any way when you
+                        receive it please contact us immediately. Do not cut,
+                        style, color or wash the hair or wear the hair system.
+                        Our customer service team will be happy to discuss any
+                        issue with you and will be able to replace your hair
+                        system with another one if required.
+                      </small>
+                    </p>
+                    <p className="text-secondary">
+                      4 .
+                      <small>
+                        Please note that, If your ordered items were not stock
+                        items, 25% amount of the full payment will be deducted
+                        as service fee & rest amount will be refunded. In order
+                        to cover labor and material costs, if you cancel an
+                        order before you receive it, you will only receive a 75%
+                        refund.
+                      </small>
+                    </p>
+                    <p className="text-secondary">
+                      5 .
+                      <small>
+                        If you order a wrong custom made hair system by mistake,
+                        the hair system cannot be returned for a refund. If you
+                        would like us to adjust it, extra cost will be charged
+                        accordingly.
+                      </small>
+                    </p>
+                    <p className="text-secondary">
+                      6 .
+                      <small>
+                        You will be responsible for the hair systems until they
+                        reach us.
+                      </small>
+                    </p>
+                    <p className="text-secondary">
+                      7 .
+                      <small>
+                        You will receive the credit within a certain amount
+                        (usually 15-20 workdays) of days, depending on your card
+                        issuer's policies.
+                      </small>
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-dark"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
                   </div>
                 </div>
               </div>
-            </p>
+            </div>
           </div>
           <div className="d-flex w-100 pb-5">
             <div className="w-100 ">

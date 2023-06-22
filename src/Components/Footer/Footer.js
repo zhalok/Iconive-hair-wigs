@@ -95,10 +95,19 @@ export default function Footer() {
           <div className=" px90 d-flex  border-secondary col-12 col-lg-4">
             <div className="text-start pe-4">
               <h6 className="fw-bold pb-3">Our Policies</h6>
-              <p className="text-16">Privacy Policy</p>
-              <p className="text-16">Terms & Conditions</p>
-              <p className="text-16">Return and Refund </p>
-              <p className="text-16">Shipping Policy</p>
+              <a href="/privacy" className="text-decoration-none">
+                <p className="text-16">Privacy Policy</p>
+              </a>
+              <a href="/terms" className="text-decoration-none">
+                <p className="text-16">Terms & Conditions</p>
+              </a>
+              <a href="/return" className="text-decoration-none">
+                <p className="text-16">Return and Refund </p>
+              </a>
+
+              <a href="/shipping" className="text-decoration-none">
+                <p className="text-16">Shipping Policy</p>
+              </a>
             </div>
             <div className="text-start">
               <h6 className="fw-bold pb-3">Our Profile</h6>

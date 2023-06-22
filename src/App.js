@@ -17,6 +17,10 @@ import AuthContext from "./Contexts/AuthContext";
 import AuthDispatcherContext from "./Contexts/AuthDIspatcherContext";
 // import Orders from "./Pages/Orders";
 import CurrencyContext from "./Contexts/CurrencyContext";
+import Privacy from "./Pages/PrivacyAndPolicy/Privacy";
+import Terms from "./Pages/TermsAndConds/Terms";
+import Return from "./Pages/ReturnAndRefund/Return";
+import Shipping from "./Pages/ShippingPolicy/Shipping";
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
@@ -60,6 +64,10 @@ function App() {
                     // </CartContext.Provider>
                   }
                 />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/return" element={<Return />} />
+                <Route path="/shipping" element={<Shipping />} />
                 <Route path="/aboutus" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
