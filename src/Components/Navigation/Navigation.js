@@ -8,7 +8,7 @@ import maleCollection from "./image/malecollection.jpg";
 import femaleCollection from "./image/femaleCollections.jpg";
 import Rawhair from "./image/Rawhair.jpg";
 import Accessories from "./image/Accessories.jpg";
-import { Login } from "@mui/icons-material";
+import { Login, LoginOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -39,6 +39,8 @@ export default function Navigation({ renderer }) {
   const { currency, setCurrency } = useContext(CurrencyContext);
   const { user, setUser } = useContext(AuthContext);
   // console.log("currency", currency);
+  // console.log(currency);
+  console.log(user);
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -103,102 +105,10 @@ export default function Navigation({ renderer }) {
             <LinkedInIcon />
           </a>
         </div>
-        <CurrencySwitch currency={currency} setCurrency={setCurrency} />
+        {/* <CurrencySwitch currency={currency} setCurrency={setCurrency} /> */}
       </div>
       <div></div>
 
-      {/* login div */}
-      {/* <div className="d-flex">
-        <div className="d-flex ms-auto me-4">
-         
-          <div className="p-1 ">
-            <AuthContext.Consumer>
-              {(value) => {
-                if (value?.user) {
-                  return (
-                    <>
-                      <div
-                        onClick={() => {
-                          setShowProfileSection((prev) => !prev);
-                        }}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <PersonIcon />
-                      </div>
-                      {showProfileSecton && (
-                        <div
-                          style={{ display: "flex", flexDirection: "column" }}
-                        >
-                          <div
-                            style={{ width: "100%", cursor: "pointer" }}
-                            onClick={() => {
-                              Cookies.remove("jwt");
-                              window.location.reload();
-                            }}
-                          >
-                            <small>Signout </small>{" "}
-                          </div>
-                          <div
-                            style={{ width: "100%", cursor: "pointer" }}
-                            onClick={() => {
-                              navigate("/orders");
-                            }}
-                          >
-                            <small>Orders</small>
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  );
-                } else {
-                  return (
-                    <>
-                      <div
-                        onClick={() => {
-                          setShowProfileSection((prev) => !prev);
-                        }}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <LoginIcon />
-                      </div>
-                      {showProfileSecton && (
-                        <div
-                          style={{ display: "flex", flexDirection: "column" }}
-                        >
-                          <div
-                            style={{ width: "100%", cursor: "pointer" }}
-                            onClick={() => {
-                              navigate("/login");
-                            }}
-                          >
-                            <small>Login </small>{" "}
-                          </div>
-                          <div
-                            style={{ width: "100%", cursor: "pointer" }}
-                            onClick={() => {
-                              navigate("/signup");
-                            }}
-                          >
-                            <small>Signup</small>
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  );
-                }
-              }}
-            </AuthContext.Consumer>
-          </div>
-
-          <div className="p-1 ">
-            <a href="/checkout">
-              <Badge badgeContent={cartItems} color="primary">
-                <LocalMallIcon className="text-black" />{" "}
-              </Badge>
-            </a>
-          </div>
-        </div>
-      </div> */}
       {/* title div */}
       <div className="  bg-white">
         <div className="d-flex justify-content-between px115">
@@ -216,18 +126,19 @@ export default function Navigation({ renderer }) {
                 type="checkbox"
                 id="flexSwitchCheckChecked"
                 onClick={() => {
-                  setUsdCheck((prevs) => {
-                    return !prevs;
+                  setCurrency((prevs) => {
+                    return prevs === "BDT" ? "USD" : "BDT";
                   });
                 }}
               />
 
               <label class=" text-16 my-auto" for="flexSwitchCheckChecked">
-                {usdCheck ? (
+                {/* {usdCheck ? (
                   <p className="my-auto ms-1">BDT</p>
                 ) : (
                   <p className="my-auto ms-1">USD</p>
-                )}
+                )} */}
+                <p className="my-auto ms-1">{currency}</p>
               </label>
             </div>
           </div>
@@ -303,13 +214,28 @@ export default function Navigation({ renderer }) {
                 </Badge>
               </a>
             </div>
-            <div className="m-auto">
-              <a href="/profile" className="text-decoration-none">
-                <div className="shadow rounded-circle bg-themeYellow w-36px d-flex ">
-                  <h5 className=" m-auto fw-bold text-light">AB</h5>
-                </div>
-              </a>
-            </div>
+            {user ? (
+              <div className="m-auto">
+                <a href="/profile" className="text-decoration-none">
+                  <div className="shadow rounded-circle bg-themeYellow w-36px d-flex ">
+                    <h5 className=" m-auto fw-bold text-light">
+                      {user.name[0].toUpperCase()}
+                    </h5>
+                  </div>
+                </a>
+              </div>
+            ) : (
+              <div
+                style={{
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                <LoginOutlined />
+              </div>
+            )}
           </div>
         </div>
         {CollectionDropdown && (

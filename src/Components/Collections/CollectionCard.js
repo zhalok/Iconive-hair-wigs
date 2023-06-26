@@ -7,14 +7,21 @@ import apiLayerAxios from "../../utils/apiLayerAxios";
 import currencyConverter from "../../utils/CurrencyChanger";
 import discountCalculator from "../../utils/calculateDIscount";
 import cardicon1 from "../../Pages/Category/image/cardicon1.svg";
-import cardicon2 from "../../Pages/Category/image/cardicon2.svg";
+
 import CurrencyContext from "../../Contexts/CurrencyContext";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Favorite } from "@mui/icons-material";
+
+import AuthContext from "../../Contexts/AuthContext";
+import Cookies from "js-cookie";
 
 export default function CollectionCard({ productId, index }) {
   const navigate = useNavigate();
-
+  const { user, setUser } = useContext(AuthContext);
   const [product, setProduct] = useState({});
-
+  const [inWishList, setInWishList] = useState(false);
+  const [wishlistloading, setWishlistloading] = useState(false);
+  console.log(inWishList);
   const [loading, setLoading] = useState(false);
 
   const { currency, setCurrency } = useContext(CurrencyContext);
@@ -31,6 +38,69 @@ export default function CollectionCard({ productId, index }) {
       // console.log(data);
       setProduct(data);
     } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const addToWishlist = async () => {
+    try {
+      setWishlistloading(true);
+      const response = await axios.post(
+        "/wishlist/addProduct",
+        {
+          product: productId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("jwt")}`,
+          },
+        }
+      );
+
+      // checkWishList();
+      setInWishList(true);
+      // setWishlistloading(false);
+    } catch (e) {
+      setWishlistloading(false);
+      console.log(e);
+    }
+  };
+
+  const removeFromWishlist = async () => {
+    try {
+      setWishlistloading(true);
+      const response = await axios.delete(
+        `wishlist/removeProduct/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("jwt")}`,
+          },
+        }
+      );
+      // checkWishList();
+      setInWishList(false);
+      // setWishlistloading(false);
+    } catch (e) {
+      setWishlistloading(false);
+      console.log(e);
+    }
+  };
+
+  const checkWishList = async () => {
+    try {
+      setWishlistloading(true);
+      const response = await axios.get(`/wishlist/getProduct/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      });
+      // console.log(response.data);
+      if (response.data) {
+        setInWishList(true);
+      } else setInWishList(false);
+      setWishlistloading(false);
+    } catch (e) {
+      setWishlistloading(false);
       console.log(e);
     }
   };
@@ -57,8 +127,9 @@ export default function CollectionCard({ productId, index }) {
   };
 
   useEffect(() => {
-    console.log(productId);
+    // console.log(productId);
     getProduct(productId);
+    checkWishList();
   }, [productId]);
 
   // useEffect(() => {
@@ -70,32 +141,24 @@ export default function CollectionCard({ productId, index }) {
 
   return (
     <div
-      onClick={() => {
-        handleClick(product._id);
-      }}
       key={index}
       style={{
         cursor: "pointer",
       }}
       className="card-main border rounded-iconive w-25 d-flex flex-column"
     >
-      <div className="img-card position-relative">
+      <div
+        className="img-card position-relative"
+        onClick={() => {
+          handleClick(product._id);
+        }}
+      >
         <img
           className="w-100 h-100 rounded-iconive"
           src={product.photo}
           alt="This  is an  picture"
         />
-        <button
-          onClick={
-            () => {}
-            // setShowModal((pre)productId => {
-            //   return !pre;
-            // })
-          }
-          // data-bs-target="#modalID"
-          // data-bs-toggle="modal"
-          className="position-absolute top-50 left-20 d-flex btn btn-details px-3 py-1 f-14 text-light "
-        >
+        <button className="position-absolute top-50 left-20 d-flex btn btn-details px-3 py-1 f-14 text-light ">
           <ShoppingCartIcon className="pe-1 my-auto" />{" "}
           <p className="m-auto"> Details</p>
         </button>
@@ -111,11 +174,31 @@ export default function CollectionCard({ productId, index }) {
             {currency == "USD" ? "$" : "৳"}
             {currencyConverter(currency, product.price)}
           </p>
-          <div className="d-flex">
-            <button className="btn px-0 mt-1">
-              {" "}
-              <img src={cardicon2} className="" alt="this is an icon" />
-            </button>
+          <div className="d-flex" style={{}}>
+            {user && (
+              <button
+                className="btn px-0 mt-1"
+                name="wishlist"
+                onClick={() => {
+                  inWishList ? removeFromWishlist() : addToWishlist();
+                }}
+              >
+                {" "}
+                {!inWishList ? (
+                  <FavoriteBorderIcon
+                    className="text-danger"
+                    sx={{ width: "29px", height: "25px" }}
+                  />
+                ) : (
+                  <Favorite
+                    className="text-danger"
+                    sx={{ width: "29px", height: "25px" }}
+                  />
+                )}
+              </button>
+            )}
+
+            {/* <Favorite className="text-danger" /> */}
             <button className="btn ps-2 my-auto">
               {" "}
               <img src={cardicon1} className="w-100 " alt="this is an icon" />

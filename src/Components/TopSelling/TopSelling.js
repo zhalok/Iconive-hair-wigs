@@ -10,7 +10,6 @@ import "animate.css";
 import axios from "../../utils/axios";
 import currencyConverter from "../../utils/CurrencyChanger";
 import CurrencyContext from "../../Contexts/CurrencyContext";
-import { useNavigate } from "react-router-dom";
 
 export default function TopSelling() {
   const navigate = useNavigate();
