@@ -12,7 +12,10 @@ export default function MyProfile() {
         <div className="border-bottom px-5 pt-5 order-bg bg-light w-100">
           <div className="w-100 d-flex border-bottom ">
             <div className="w-50 text-start ">
-              <p className="text-20 text-theme-gray  mb-0">Client Name</p>
+              <div className="d-flex pt-3">
+                <p className="text-16 mb-0 border-end pe-2">Client Name</p>
+                <img src={edit} className="ms-2" alt="this is an icon" />
+              </div>
               <p className="text-30 fw-bold">Clint Eastwood</p>
 
               <div className="d-flex pt-3">

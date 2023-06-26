@@ -34,7 +34,7 @@ export default function Trending() {
     <>
       <div className="container">
         <div className="w-100 mt-5 pb-3">
-          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 mx-auto text-uppercase">
+          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 mx-auto text-uppercase headingHover">
             New arrivals
           </h2>
           <p className="text-theme-gray text-18">
@@ -93,8 +93,15 @@ export default function Trending() {
             </div>
           ))}
         </div>
-        <div className="my-5 d-flex flex-column text-center">
-          <button className="btn text-theme-gray text-18">View Shop</button>
+        <div className="mb-5 mt-4 d-flex flex-column text-center">
+          <button
+            onClick={() => {
+              navigate("/catagory");
+            }}
+            className="btn text-theme-gray text-18"
+          >
+            View Shop
+          </button>
           <KeyboardArrowDownIcon className="text-theme-gray m-auto mb-md-5" />
         </div>
       </div>

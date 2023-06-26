@@ -68,3 +68,9 @@
   background: #ecb30a;
   border-radius: 10px;
 }
+.top-15p {
+  top: 25%;
+}
+.canvus {
+  transition: all 2s;
+}

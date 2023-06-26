@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./TopSelling.css";
 import card1 from "../Images/card/Mask1.svg";
 import cardicon1 from "../Images/card/cardicon1.svg";
@@ -32,15 +33,15 @@ export default function TopSelling() {
 
   return (
     <>
-      <div className="container ps-r d-flex flex-column">
+      <div className="container d-flex flex-column">
         <div className="w-100 pb-3 text-center ">
-          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 text-center text-uppercase animate__animated animate__fadeInDown ">
+          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 text-center text-uppercase headingHover ">
             Our Best Selling wigs
           </h2>
-          <p className="text-theme-gray text-18 	">
+          {/* <p className="text-theme-gray text-18 	">
             Discover your unique look, Browse our selection of wigs for him and
             her
-          </p>
+          </p> */}
         </div>
 
         <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center ">
@@ -95,7 +96,14 @@ export default function TopSelling() {
           ))}
         </div>
         <div className="my-5 d-flex flex-column text-center">
-          <button className="btn text-theme-gray text-18">View Shop</button>
+          <button
+            onClick={() => {
+              navigate("/catagory");
+            }}
+            className="btn text-theme-gray text-18"
+          >
+            View Shop
+          </button>
           <KeyboardArrowDownIcon className="text-theme-gray m-auto mb-md-5" />
         </div>
       </div>

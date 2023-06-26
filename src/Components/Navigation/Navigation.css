@@ -1,6 +1,9 @@
 .bg-theme-blue {
   background-color: #001c38;
 }
+.b-white {
+  background-color: #ffffff;
+}
 .text-black {
   color: black !important;
 }
@@ -8,7 +11,10 @@
   z-index: 100;
 }
 .mt-50 {
-  margin-top: 40px;
+  margin-top: 45px;
+}
+.w12 {
+  width: 12%;
 }
 .drop:hover {
   font-weight: 600;
@@ -42,6 +48,9 @@
 .text-14 {
   font-size: 14px;
 }
+.text-16 {
+  font-size: 16px;
+}
 .text-18 {
   font-size: 18px;
 }
@@ -53,7 +62,7 @@
 }
 .text-nav {
   font-size: 1vw;
-  border-bottom: #ffffff solid 2px;
+  border-bottom: #ffffff3c solid 2px;
 }
 .bg-wholeslae {
   background-color: #f9f5f0e9;
@@ -70,9 +79,9 @@
 }
 
 .text44 {
-  font-size: 2.9vw;
-  padding-top: 34px;
-  padding-bottom: 34px;
+  font-size: 2.1vw;
+  padding-top: 23px;
+  padding-bottom: 15px;
 }
 .bg-top {
   background-color: #363636;
@@ -81,6 +90,34 @@
 .sticky-top {
   position: sticky;
   top: 0;
+}
+.useBtn {
+  border: 1px solid #ffffff;
+  filter: drop-shadow(0px 6px 5px rgba(0, 0, 0, 0.12));
+  border-radius: 10px;
+  left: 3px;
+}
+
+.btnCheckUse:checked {
+  background-color: #ecb30a;
+  color: #fff;
+  border: #ecb30a 1px solid;
+}
+.w-36px {
+  width: 38px;
+  height: 38px;
+}
+@media screen and (max-width: 480px) {
+  .px115 {
+    padding: 0px 10px;
+  }
+  .hide {
+    display: none;
+  }
+}
+
+.m-auto {
+  cursor: pointer;
 }
 
 .m-auto {

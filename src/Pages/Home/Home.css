@@ -68,6 +68,15 @@ hr {
 .text-20 {
   font-size: 20px;
 }
+.text-12 {
+  font-size: 12px;
+}
+.text-13 {
+  font-size: 13px;
+}
+.text-16 {
+  font-size: 16px;
+}
 .text-15 {
   font-size: 15px;
 }
@@ -93,7 +102,7 @@ hr {
   border-radius: 8px;
 }
 .bg-testimonial {
-  background-color: #f9f5f0;
+  background-color: #fbf2e6;
 }
 .py9060 {
   padding-top: 90px;
@@ -101,4 +110,20 @@ hr {
 }
 .bg-light-test {
   background-color: #ffffff9a;
+}
+.effecttest:hover {
+  background-color: #ffffff;
+  transform: scale(1.02);
+  transition: all 0.5s;
+}
+.headingHover:hover {
+  transform: scale(1.1);
+  transition: all 0.7s;
+}
+.cardImg:hover {
+  transform: scale(1.1);
+  transition: all 0.8s;
+}
+
+@media screen and (max-width: 480px) {
 }

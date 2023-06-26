@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Collection from "./image/Collections.png";
-import maleCollection from "./image/malecollection.png";
-import femaleCollection from "./image/femaleCollections.png";
-import Rawhair from "./image/Rawhair.png";
-import Accessories from "./image/Accessories.png";
+import Collection from "./image/Collections.jpg";
+import maleCollection from "./image/malecollection.jpg";
+import femaleCollection from "./image/femaleCollections.jpg";
+import Rawhair from "./image/Rawhair.jpg";
+import Accessories from "./image/Accessories.jpg";
 import down from "./icons/downArrow.svg";
 import card1 from "./image/cardh1.jpg";
 import "./Category.css";
@@ -78,21 +78,21 @@ export default function Category({}) {
           <div className="px120 text-start mt-1 d-flex text-18">
             <a
               href="/home"
-              className="text-decoration-none  text-1vw text-theme-gray text-uppercase"
+              className="text-decoration-none f-16 text-theme-gray text-uppercase"
             >
               Home
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
-              href="/home"
-              className="text-decoration-none text-1vw text-theme-gray text-uppercase"
+              href="/catagory"
+              className="text-decoration-none f-16  text-theme-gray text-uppercase"
             >
               cATAGORIES
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
               href="/home"
-              className="text-decoration-none text-black text-1vw text-uppercase "
+              className="text-decoration-none f-16 text-black  text-uppercase "
             >
               Gents wig
             </a>
@@ -142,10 +142,39 @@ export default function Category({}) {
                   </p>
                   <img src={filter} alt="this is an image" />
                 </div>
+                <div className="w-50 ms-auto">
+                  <form class="d-flex w-75 ">
+                    <input
+                      class="form-control rounded-0"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                    <button
+                      class="btn btn-secondary rounded-0 py-1"
+                      type="submit"
+                    >
+                      Search
+                    </button>
+                  </form>
+                </div>
 
                 <div className="my-auto d-flex pe-5 gap-5">
-                  <p className="text-16 text-theme-gray">SORT BY</p>
-                  <p className="text-16 text-theme-gray">PRICE</p>
+                  <p className="text-16 text-theme-gray my-auto">SORT BY</p>
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-secondary btn-sm dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Price
+                    </button>
+                    <ul class="dropdown-menu p-2">
+                      <li>Price</li>
+                      <li>A to Z</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
@@ -159,7 +188,7 @@ export default function Category({}) {
                       </p>
                     </div>
                     {/* Gents Wig */}
-                    {categories.map((category) => {
+                    {categories.map((category, index) => {
                       return (
                         <div
                           className="border-top border-1 border-secondary py-4"
@@ -182,9 +211,19 @@ export default function Category({}) {
                               }}
                             >
                               {showSubCategory !== category._id ? (
-                                <ExpandMoreIcon className="my-auto" />
+                                <ExpandMoreIcon
+                                  onClick={() => {
+                                    setTopBanner(index + 1);
+                                  }}
+                                  className="my-auto"
+                                />
                               ) : (
-                                <KeyboardArrowUpIcon className="my-auto" />
+                                <KeyboardArrowUpIcon
+                                  onClick={() => {
+                                    setTopBanner(0);
+                                  }}
+                                  className="my-auto"
+                                />
                               )}
                             </p>
                           </div>

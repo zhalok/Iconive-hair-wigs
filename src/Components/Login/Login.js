@@ -12,7 +12,7 @@ import { PulseLoader } from "react-spinners";
 import { useSearchParams } from "react-router-dom";
 import flogo from "../Images/login/facebookicon.svg";
 import glogo from "../Images/login/gmailicon.svg";
-import logbanner from "../Images/login/login.svg";
+import logbanner from "../Images/login/login.jpg";
 // import {auth,provider} from './config.js'
 // import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
