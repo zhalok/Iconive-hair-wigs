@@ -163,8 +163,9 @@ export default function Category({ currency }) {
                     >
                       Price
                     </button>
-                    <ul class="dropdown-menu p-2">
-                      <li>Price</li>
+                    <ul class="dropdown-menu p-2 text-13 ">
+                      <li>Price (High to Low)</li>
+                      <li className="py-2">Price (Low to High)</li>
                       <li>A to Z</li>
                     </ul>
                   </div>

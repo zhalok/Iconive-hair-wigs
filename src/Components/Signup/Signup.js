@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import flogo from "../Images/login/facebookicon.svg";
 import glogo from "../Images/login/gmailicon.svg";
-import logbanner from "../Images/login/login.svg";
+import logbanner from "../Images/login/signup.png";
 import "../globalcss/style.css";
 import "./Signup.css";
 import { PulseLoader } from "react-spinners";

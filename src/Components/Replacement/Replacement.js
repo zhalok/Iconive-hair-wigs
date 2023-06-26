@@ -2,11 +2,11 @@
 import React from "react";
 import "./Replacement.css";
 import { useNavigate } from "react-router-dom";
-import card1 from "../Images/replace/1.svg";
-import card2 from "../Images/replace/2.svg";
-import card3 from "../Images/replace/3.svg";
-import card4 from "../Images/replace/4.svg";
-import card5 from "../Images/replace/5.svg";
+import card1 from "../Images/replace/1.png";
+import card2 from "../Images/replace/2.png";
+import card3 from "../Images/replace/3.png";
+import card4 from "../Images/replace/4.png";
+import card5 from "../Images/replace/5.png";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function Replacement() {
@@ -41,7 +41,7 @@ export default function Replacement() {
         </p>
       </div>
       <div className="bg-ch p-5">
-        <div className="d-flex py-4  mx-auto container marginTop row g-3">
+        <div className="d-flex py-4  mx-auto container marginTop row ">
           {/* card */}
           <div className="mx-auto  col-6 col-lg-2 p-0 ">
             <img
