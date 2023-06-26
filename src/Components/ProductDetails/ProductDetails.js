@@ -227,41 +227,42 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
           <div className="w-50 px-4 my-auto">
             <h3 className="text-start fw-bold">{productDetails.name}</h3>
 
-          <p className="text-start text-secondary">SKU: 2050</p>
-          <div className="d-flex justify-content-between py-3 ">
-            <div className="d-flex gap-3">
-              {productDetails?.discount != 0 && (
-                <p className="fw-bold my-auto text-danger text-decoration-line-through text-28">
-                  {currency == "USD" ? "$" : "৳"}
-                  {currencyConverter(currency, productDetails?.price)}
-                </p>
-              )}
-              <p className="fw-bold my-auto text-28 ms-3">
-                {currency == "USD" ? "$" : "৳"}
-                {currencyConverter(
-                  currency,
-                  productDetails?.price -
-                    (productDetails?.price * productDetails?.discount) / 100
+            <p className="text-start text-secondary">SKU: 2050</p>
+            <div className="d-flex justify-content-between py-3 ">
+              <div className="d-flex gap-3">
+                {productDetails?.discount != 0 && (
+                  <p className="fw-bold my-auto text-danger text-decoration-line-through text-28">
+                    {currency == "USD" ? "$" : "৳"}
+                    {currencyConverter(currency, productDetails?.price)}
+                  </p>
                 )}
-              </p>
-
-              {amount -
-                (productDetails?.price -
-                  (productDetails?.price * productDetails?.discount) / 100) !==
-                0 && (
-                <p className="fw-bold my-auto text-28 text-theme-gray">
-                  + {currency == "USD" ? "$" : "৳"}
+                <p className="fw-bold my-auto text-28 ms-3">
+                  {currency == "USD" ? "$" : "৳"}
                   {currencyConverter(
                     currency,
-                    amount -
-                      (productDetails?.price -
-                        (productDetails?.price * productDetails?.discount) /
-                          100)
+                    productDetails?.price -
+                      (productDetails?.price * productDetails?.discount) / 100
                   )}
                 </p>
-              )}
-            </div>
-            {/* <div className="d-flex gap-3">
+
+                {amount -
+                  (productDetails?.price -
+                    (productDetails?.price * productDetails?.discount) /
+                      100) !==
+                  0 && (
+                  <p className="fw-bold my-auto text-28 text-theme-gray">
+                    + {currency == "USD" ? "$" : "৳"}
+                    {currencyConverter(
+                      currency,
+                      amount -
+                        (productDetails?.price -
+                          (productDetails?.price * productDetails?.discount) /
+                            100)
+                    )}
+                  </p>
+                )}
+              </div>
+              {/* <div className="d-flex gap-3">
               <div className="d-flex flex-column gap-3">
                 <p className="fw-bold my-auto text-20">
                   Total: $
@@ -305,33 +306,33 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                         border: "1px solid black",
                         padding: "10px",
 
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      if (selectedColor == e._id) {
-                        setSelectedColor(null);
-                        setSelectedColorPrice(0);
-                        // setAmount((prev) => prev - e.price);
-                      } else {
-                        setSelectedColor(e?._id);
-                        setSelectedColorPrice(e?.price);
-                        // setAmount((prev) => prev + e.price);
-                      }
-                    }}
-                  >
-                    <button
-                      className="btn btn-dark rounded-circle px-3 py-3 text-dark fs-6"
-                      style={{ backgroundColor: e?.color }}
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        if (selectedColor == e._id) {
+                          setSelectedColor(null);
+                          setSelectedColorPrice(0);
+                          // setAmount((prev) => prev - e.price);
+                        } else {
+                          setSelectedColor(e?._id);
+                          setSelectedColorPrice(e?.price);
+                          // setAmount((prev) => prev + e.price);
+                        }
+                      }}
                     >
-                      {/* {e.name} */}
-                    </button>
-                    <small className="my-auto" style={{ marginLeft: "10px" }}>
-                      {e?.name}
-                    </small>
-                  </div>
-                );
-              })}
-            </div>
+                      <button
+                        className="btn btn-dark rounded-circle px-3 py-3 text-dark fs-6"
+                        style={{ backgroundColor: e?.color }}
+                      >
+                        {/* {e.name} */}
+                      </button>
+                      <small className="my-auto" style={{ marginLeft: "10px" }}>
+                        {e?.name}
+                      </small>
+                    </div>
+                  );
+                })}
+              </div>
 
               {/* length*/}
               <>
@@ -398,52 +399,38 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                   })}
               </>
 
-            <p className="mt-4 my-auto">
-              <AccessTimeIcon className="me-1 my-auto" />
-              <small className="text-theme-gray">
-                Processing Time:
-                <span className="text-secondary fw-bold ps-2">
-                  15-20 business days
-                </span>
-              </small>
-            </p>
-            <p className="pt-3">
-              <small className="text-theme-gray">
-                {" "}
-                Processing time does not include delivery time
-              </small>
-            </p>
-            <p className="fw-bold my-auto text-theme-gray text-20 mb-4">
-              Total : ${currencyConverter(currency, amount)}
-            </p>
-            <div className="w-100">
-              <button
-                className="btn btn-add py-2 px-5 me-4 fw-bold"
-                // data-bs-toggle="offcanvas"
-                // data-bs-target="#offcanvasRight"
-                // aria-controls="offcanvasRight"
-                onClick={() => {
-                  setSizeCart((prevs) => {
-                    return !prevs;
-                  });
-
-                  let cartItems = localStorage.getItem("cart");
-                  if (!cartItems) {
-                    cartItems = [];
-                    cartItems.push({
-                      product: productDetails._id,
-                      addons: selectedAddOns,
-                      amount: 1,
-                      price: amount,
-                      color: selectedColor,
+              <p className="mt-4 my-auto">
+                <AccessTimeIcon className="me-1 my-auto" />
+                <small className="text-theme-gray">
+                  Processing Time:
+                  <span className="text-secondary fw-bold ps-2">
+                    15-20 business days
+                  </span>
+                </small>
+              </p>
+              <p className="pt-3">
+                <small className="text-theme-gray">
+                  {" "}
+                  Processing time does not include delivery time
+                </small>
+              </p>
+              <p className="fw-bold my-auto text-theme-gray text-20 mb-4">
+                Total : ${currencyConverter(currency, amount)}
+              </p>
+              <div className="w-100">
+                <button
+                  className="btn btn-add py-2 px-5 me-4 fw-bold"
+                  // data-bs-toggle="offcanvas"
+                  // data-bs-target="#offcanvasRight"
+                  // aria-controls="offcanvasRight"
+                  onClick={() => {
+                    setSizeCart((prevs) => {
+                      return !prevs;
                     });
-                  } else {
-                    cartItems = JSON.parse(cartItems);
-                    if (
-                      !cartItems
-                        .map((e) => e.product)
-                        .includes(productDetails._id)
-                    ) {
+
+                    let cartItems = localStorage.getItem("cart");
+                    if (!cartItems) {
+                      cartItems = [];
                       cartItems.push({
                         product: productDetails._id,
                         addons: selectedAddOns,
@@ -452,252 +439,269 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                         color: selectedColor,
                       });
                     } else {
-                      cartItems.splice(
-                        cartItems
+                      cartItems = JSON.parse(cartItems);
+                      if (
+                        !cartItems
                           .map((e) => e.product)
-                          .indexOf(productDetails._id)
-                      );
+                          .includes(productDetails._id)
+                      ) {
+                        cartItems.push({
+                          product: productDetails._id,
+                          addons: selectedAddOns,
+                          amount: 1,
+                          price: amount,
+                          color: selectedColor,
+                        });
+                      } else {
+                        cartItems.splice(
+                          cartItems
+                            .map((e) => e.product)
+                            .indexOf(productDetails._id)
+                        );
+                      }
                     }
-                  }
-                  setCartItems(cartItems);
-                  cartItems = JSON.stringify(cartItems);
-                  localStorage.setItem("cart", cartItems);
-                  // console.log("cartItems", typeof cartItems);
-                  // setCartItems(cartItems);
-                  setCartRenderer({});
-                  setCartAdded((prev) => !prev);
-                  setShowOffCanvas((prev) => {
-                    return !cartAdded;
-                  });
-                }}
-              >
-                <ShoppingCartIcon className="me-2" />{" "}
-                {!cartAdded ? "ADD TO CART" : "REMOVE FROM CART"}
-              </button>
-              <button
-                className={`btn outline-wish px-5 py-2 fs-6 `}
-                onClick={() => {
-                  setSelectedAddons([]);
-                }}
-              >
-                Remove Add Ons
-              </button>
-              {user && (
-                <>
-                  {" "}
-                  <button
-                    className=" btn outline-wish py-2 px-4 ms-3"
-                    onClick={() => {
-                      !inWishList ? addToWishlist() : removeFromWishlist();
-                    }}
-                  >
-                    {wishlistloading
-                      ? "Please wait"
-                      : !inWishList
-                      ? "+ WISH LIST"
-                      : "- REMOVE FROM WISHLIST"}
-                  </button>
-                </>
-              )}
-            </div>
-            {/* off canvas */}
-            {showOffCanvas && (
-              <div
-                // class="offcanvas offcanvas-end"
-                // tabindex="-1"
-                id="offcanvasRight"
-                aria-labelledby="offcanvasRightLabel"
-              >
-                <div class="offcanvas-header">
-                  <h5 id="offcanvasRightLabel">Shopping Cart</h5>
-                  <button
-                    type="button"
-                    class="btn-close text-reset"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"
-                    onClick={() => {
-                      setShowOffCanvas(false);
-                    }}
-                  ></button>
-                </div>
-
-                <div class="offcanvas-body">
-                  {cartItems &&
-                    cartItems.map((cartItem, index) => (
-                      <div
-                        key={index}
-                        className="w-100 text-start p-3 border-bottom border-1"
-                      >
-                        <CartItem
-                          id={cartItem.product}
-                          addOns={cartItem.addons}
-                          quantity={cartItem.amount}
-                          discardCartItem={discardCartItem}
-                          setCartItems={setCartItems}
-                          setProductTotal={setProductTotal}
-                          price={cartItem.price}
-                          setCartAdded={setCartAdded}
-                          setCartRenderer={setCartRenderer}
-                        />
-                      </div>
-                    ))}
-                  <div className="mt-5">
-                    <div className="d-flex justify-content-between fw-bold px-3">
-                      <p>Grand Total :</p>
-                      <p>$1200</p>
-                    </div>
-                    <p className="text-14 ps-3">
-                      Taxes and shipping calculated at checkout
-                    </p>
-
-                    <div className="d-flex px-3 gap-3">
-                      <a href="/checkout" className="w-50">
-                        <button className="btn btn-chek w-100 text-light py-2">
-                          CHECK OUT
-                        </button>
-                      </a>
-                      <a className="w-50 h-100" href="/catagory">
-                        <button className="w-100 h-100 btn btn-secondary rounded-10 py-2">
-                          ADD MORE
-                        </button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                    setCartItems(cartItems);
+                    cartItems = JSON.stringify(cartItems);
+                    localStorage.setItem("cart", cartItems);
+                    // console.log("cartItems", typeof cartItems);
+                    // setCartItems(cartItems);
+                    setCartRenderer({});
+                    setCartAdded((prev) => !prev);
+                    setShowOffCanvas((prev) => {
+                      return !cartAdded;
+                    });
+                  }}
+                >
+                  <ShoppingCartIcon className="me-2" />{" "}
+                  {!cartAdded ? "ADD TO CART" : "REMOVE FROM CART"}
+                </button>
+                <button
+                  className={`btn outline-wish px-5 py-2 fs-6 `}
+                  onClick={() => {
+                    setSelectedAddons([]);
+                  }}
+                >
+                  Remove Add Ons
+                </button>
+                {user && (
+                  <>
+                    {" "}
+                    <button
+                      className=" btn outline-wish py-2 px-4 ms-3"
+                      onClick={() => {
+                        !inWishList ? addToWishlist() : removeFromWishlist();
+                      }}
+                    >
+                      {wishlistloading
+                        ? "Please wait"
+                        : !inWishList
+                        ? "+ WISH LIST"
+                        : "- REMOVE FROM WISHLIST"}
+                    </button>
+                  </>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-      </div>
-      <div className="px120 border-top ">
-        <div className="w-100 text-start py-3 pt-5">
-          <h5 className=" pb-2 fs-4 fw-bold">Description :</h5>
-          <p className="pb-0 text-16 text-theme-gray">
-            Welcome to Iconive, your one-stop destination for premium quality
-            wigs. We're a team of passionate hair enthusiasts dedicated to
-            providing our customers with the very best in hair products and
-            customer service. Our exquisite collection of wigs is designed to
-            cater to the needs of every individual, regardless of age or gender.
-            We understand that choosing the perfect wig can be overwhelming,
-            which is why we strive to make your shopping experience seamless and
-            enjoyable.
-          </p>
-        </div>
-        <div className="w-100 text-start py-2">
-          <h5 className=" pb-2 fs-4 fw-bold">Shipping policy :</h5>
-          <p className="pb-0 text-16 text-theme-gray">
-            At Iconive, we understand how important it is for you to receive
-            your products in a timely and efficient manner. That's why we offer
-            fast and reliable shipping to ensure that your order arrives as
-            quickly as possible.
-            <button
-              type="button"
-              class="btn btn-outline-secondary text-14 py-0 mx-2"
-              data-bs-toggle="modal"
-              data-bs-target="#shippingModal"
-            >
-              Show More
-            </button>
-            <div
-              class="modal fade"
-              id="shippingModal"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                      <SendIcon /> Shipping policy
-                    </h5>
+              {/* off canvas */}
+              {showOffCanvas && (
+                <div
+                  // class="offcanvas offcanvas-end"
+                  // tabindex="-1"
+                  id="offcanvasRight"
+                  aria-labelledby="offcanvasRightLabel"
+                >
+                  <div class="offcanvas-header">
+                    <h5 id="offcanvasRightLabel">Shopping Cart</h5>
                     <button
                       type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
+                      class="btn-close text-reset"
+                      data-bs-dismiss="offcanvas"
                       aria-label="Close"
+                      onClick={() => {
+                        setShowOffCanvas(false);
+                      }}
                     ></button>
                   </div>
-                  <div class="modal-body">
-                    <p>
-                      1 .
-                      <small>
-                        {" "}
-                        All stock orders are processed within 24-48 hours of
-                        receiving payment, and are shipped out as soon as
-                        possible. However, If the product is not in stock or a
-                        customer places a custom order, it might take 10-30 days
-                        to manufacture as these items are mostly hand-crafted.
-                      </small>
-                    </p>{" "}
-                    <p>
-                      2 .
-                      <small>
-                        {" "}
-                        We mainly Ship abroad via FedEx Logistics. We can also
-                        use DHL Supply Chain, UPS etc verified International
-                        Shipping Agents if needed. After the product is
-                        manufactured/ is ready to be shipped, we send real
-                        pictures or videos of that product to the following
-                        customer if he asks for it. After buyer’s confirmation,
-                        we will send the product to FedEx warehouses for
-                        delivery. After handing over the package to FedEx for
-                        the delivery, we will get a tracking code which we will
-                        send to our customer for his/her convenience. With this
-                        code, customers can easily find out the product's
-                        location & whereabouts.
-                      </small>
-                    </p>
-                    <p>
-                      3 .
-                      <small>
-                        {" "}
-                        Standard shipping usually takes between 5-12 business
-                        days to arrive as per FedEx delivery system. Please note
-                        that shipping times may vary depending on your location
-                        and shipping method. Any issue regarding product
-                        shipping is not our concern as this responsibility then
-                        transfers to FedEx. So any issue regarding product
-                        shipment after we handover the product to FedEx is not
-                        our responsibility to solve, therefore not on us. We
-                        offer free standard international shipping on all orders
-                        over $200 all over the world. For orders under $200, a
-                        shipping fee will be applied based on the weight and
-                        size of the package.Please note that international
-                        orders may be subject to additional customs fees and
-                        taxes, which are the responsibility of the customer.
-                      </small>
-                    </p>
-                    <p>
-                      4 .
-                      <small>
-                        {" "}
-                        If you have any questions or concerns about shipping,
-                        please don't hesitate to contact our customer service
-                        team. We're always here to help and ensure that you have
-                        the best shopping experience possible.
-                      </small>
-                    </p>
+
+                  <div class="offcanvas-body">
+                    {cartItems &&
+                      cartItems.map((cartItem, index) => (
+                        <div
+                          key={index}
+                          className="w-100 text-start p-3 border-bottom border-1"
+                        >
+                          <CartItem
+                            id={cartItem.product}
+                            addOns={cartItem.addons}
+                            quantity={cartItem.amount}
+                            discardCartItem={discardCartItem}
+                            setCartItems={setCartItems}
+                            setProductTotal={setProductTotal}
+                            price={cartItem.price}
+                            setCartAdded={setCartAdded}
+                            setCartRenderer={setCartRenderer}
+                          />
+                        </div>
+                      ))}
+                    <div className="mt-5">
+                      <div className="d-flex justify-content-between fw-bold px-3">
+                        <p>Grand Total :</p>
+                        <p>$1200</p>
+                      </div>
+                      <p className="text-14 ps-3">
+                        Taxes and shipping calculated at checkout
+                      </p>
+
+                      <div className="d-flex px-3 gap-3">
+                        <a href="/checkout" className="w-50">
+                          <button className="btn btn-chek w-100 text-light py-2">
+                            CHECK OUT
+                          </button>
+                        </a>
+                        <a className="w-50 h-100" href="/catagory">
+                          <button className="w-100 h-100 btn btn-secondary rounded-10 py-2">
+                            ADD MORE
+                          </button>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-dark"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="px120 border-top ">
+          <div className="w-100 text-start py-3 pt-5">
+            <h5 className=" pb-2 fs-4 fw-bold">Description :</h5>
+            <p className="pb-0 text-16 text-theme-gray">
+              Welcome to Iconive, your one-stop destination for premium quality
+              wigs. We're a team of passionate hair enthusiasts dedicated to
+              providing our customers with the very best in hair products and
+              customer service. Our exquisite collection of wigs is designed to
+              cater to the needs of every individual, regardless of age or
+              gender. We understand that choosing the perfect wig can be
+              overwhelming, which is why we strive to make your shopping
+              experience seamless and enjoyable.
+            </p>
+          </div>
+          <div className="w-100 text-start py-2">
+            <h5 className=" pb-2 fs-4 fw-bold">Shipping policy :</h5>
+            <p className="pb-0 text-16 text-theme-gray">
+              At Iconive, we understand how important it is for you to receive
+              your products in a timely and efficient manner. That's why we
+              offer fast and reliable shipping to ensure that your order arrives
+              as quickly as possible.
+              <button
+                type="button"
+                class="btn btn-outline-secondary text-14 py-0 mx-2"
+                data-bs-toggle="modal"
+                data-bs-target="#shippingModal"
+              >
+                Show More
+              </button>
+              <div
+                class="modal fade"
+                id="shippingModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        <SendIcon /> Shipping policy
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>
+                        1 .
+                        <small>
+                          {" "}
+                          All stock orders are processed within 24-48 hours of
+                          receiving payment, and are shipped out as soon as
+                          possible. However, If the product is not in stock or a
+                          customer places a custom order, it might take 10-30
+                          days to manufacture as these items are mostly
+                          hand-crafted.
+                        </small>
+                      </p>{" "}
+                      <p>
+                        2 .
+                        <small>
+                          {" "}
+                          We mainly Ship abroad via FedEx Logistics. We can also
+                          use DHL Supply Chain, UPS etc verified International
+                          Shipping Agents if needed. After the product is
+                          manufactured/ is ready to be shipped, we send real
+                          pictures or videos of that product to the following
+                          customer if he asks for it. After buyer’s
+                          confirmation, we will send the product to FedEx
+                          warehouses for delivery. After handing over the
+                          package to FedEx for the delivery, we will get a
+                          tracking code which we will send to our customer for
+                          his/her convenience. With this code, customers can
+                          easily find out the product's location & whereabouts.
+                        </small>
+                      </p>
+                      <p>
+                        3 .
+                        <small>
+                          {" "}
+                          Standard shipping usually takes between 5-12 business
+                          days to arrive as per FedEx delivery system. Please
+                          note that shipping times may vary depending on your
+                          location and shipping method. Any issue regarding
+                          product shipping is not our concern as this
+                          responsibility then transfers to FedEx. So any issue
+                          regarding product shipment after we handover the
+                          product to FedEx is not our responsibility to solve,
+                          therefore not on us. We offer free standard
+                          international shipping on all orders over $200 all
+                          over the world. For orders under $200, a shipping fee
+                          will be applied based on the weight and size of the
+                          package.Please note that international orders may be
+                          subject to additional customs fees and taxes, which
+                          are the responsibility of the customer.
+                        </small>
+                      </p>
+                      <p>
+                        4 .
+                        <small>
+                          {" "}
+                          If you have any questions or concerns about shipping,
+                          please don't hesitate to contact our customer service
+                          team. We're always here to help and ensure that you
+                          have the best shopping experience possible.
+                        </small>
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-dark"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </p>
-        </div>
-        <div className="w-100 text-start py-3 pb-5">
-          <h5 className=" pb-2 fs-4 fw-bold">Return & Refund policy :</h5>
-          <p className="pb-0 text-theme-gray text-16">
-            Welcome to Iconive, your one-stop destination for premium quality
-            wigs.
+            </p>
+          </div>
+          <div className="w-100 text-start py-3 pb-5">
+            <h5 className=" pb-2 fs-4 fw-bold">Return & Refund policy :</h5>
+            <p className="pb-0 text-theme-gray text-16">
+              Welcome to Iconive, your one-stop destination for premium quality
+              wigs.
+            </p>
             <button
               type="button"
               class="btn btn-outline-secondary py-0 mx-2 text-14"
