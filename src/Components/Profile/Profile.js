@@ -68,7 +68,7 @@ export default function Profile() {
 
   return (
     <div className="px60 bg-body">
-      <div className="d-flex my-4 px60">
+      {/* <div className="d-flex my-4 px60">
         <a href="#" className="text-decoration-none text-theme-gray my-auto">
           HOME
         </a>
@@ -80,7 +80,7 @@ export default function Profile() {
         <a href="#" className="text-decoration-none text-dark  my-auto">
           MY PROFILE
         </a>
-      </div>
+      </div> */}
 
       {/* side bar */}
       <div className="w-100 d-flex gap-5">
@@ -180,7 +180,7 @@ export default function Profile() {
                   Wishlist
                 </p>
               </div>
-              <div className="d-flex border-bottom py-4 mb-4">
+              <div className="d-flex border-bottom py-4">
                 <span className="my-auto ms-1">
                   {activeBtn === true && sidebar === 5 ? (
                     <img src={refundY} alt="this is an image" className="" />
@@ -201,6 +201,27 @@ export default function Profile() {
                 </p>
               </div>
 
+              {/* <div className="d-flex border-bottom py-4 mb-4">
+                <span className="my-auto ms-1">
+                  {activeBtn === true && sidebar === 5 ? (
+                    <img src={refundY} alt="this is an image" className="" />
+                  ) : (
+                    <img src={refundd} alt="this is an image" className="" />
+                  )}
+                </span>
+                <p
+                  onClick={() => {
+                    setSidebar(5);
+                    setActiveBtn(true);
+                  }}
+                  className={`my-auto text-18 ps-4 text-start text-theme-gray sideItem ${
+                    activeBtn === true && sidebar === 5 && "text-theme"
+                  }`}
+                >
+                  Refund & Return
+                </p>
+              </div> */}
+
               <div className="d-flex border-bottom py-4 mb-4">
                 <span className="my-auto ms-1">
                   <LogoutIcon />
@@ -215,11 +236,11 @@ export default function Profile() {
                 </p>
               </div>
             </div>
-            <div className="w-100 pb-5 px-5">
+            {/* <div className="w-100 pb-5 px-5">
               <button className="w-100 bg-themeYellow btn text-light fw-bold">
                 LOG OUT
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 
