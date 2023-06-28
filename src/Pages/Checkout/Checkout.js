@@ -8,6 +8,7 @@ import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
 import AuthContext from "../../Contexts/AuthContext";
 import currencyConverter from "../../utils/CurrencyChanger";
+import CurrencyContext from "../../Contexts/CurrencyContext";
 
 export default function Checkout(props) {
   const [cartItems, setCartItems] = useState(null);
@@ -25,11 +26,11 @@ export default function Checkout(props) {
   const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState();
   const [postalCode, setPostalCode] = useState("");
-  const [currency, setCurrency] = useState("USD");
 
   const auth = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
+  const { currency, setCurrency } = useContext(CurrencyContext);
 
   const discardCartItem = (product) => {
     const cart = localStorage.getItem("cart");
@@ -55,9 +56,9 @@ export default function Checkout(props) {
     setProductTotal(total);
   };
 
-  useEffect(() => {
-    setCurrency(props.currency);
-  }, [props?.currency]);
+  // useEffect(() => {
+  //   setCurrency(props.currency);
+  // }, [props?.currency]);
 
   useEffect(() => {
     if (selectedCountry) {
@@ -86,11 +87,14 @@ export default function Checkout(props) {
 
     if (cart) {
       setCartItems(JSON.parse(cart));
+      console.log(cartItems);
     }
   }, []);
 
   useEffect(() => {
-    calculateTotal();
+    if (cartItems && Array.isArray(cartItems)) {
+      calculateTotal();
+    }
   }, [cartItems]);
 
   useEffect(() => {
@@ -125,7 +129,7 @@ export default function Checkout(props) {
       country: Country.getCountryByCode(selectedCountry).name,
       city: selectedCity,
       state: selectedState,
-      postalCode,
+      postalCode: "123",
     };
     if (
       !name ||
@@ -133,20 +137,22 @@ export default function Checkout(props) {
       !address ||
       !email ||
       !selectedCity ||
-      !selectedCountry ||
-      !postalCode
+      !selectedCountry
     ) {
       alert("FIll necessary informations");
       return;
     }
 
     const token = Cookies.get("jwt");
+
     if (!token) {
+      // alert("")
       localStorage.setItem("billingInfo", JSON.stringify(billingInfo));
       navigate("/login?proceeedToCheckout=true");
       return;
     }
     const cart = localStorage.getItem("cart");
+
     if (cart) {
       const cartItems = JSON.parse(cart);
       console.log("Cart Items", cartItems);
@@ -162,7 +168,8 @@ export default function Checkout(props) {
           {
             billingInfo,
             cartItems,
-            currency: props.currency,
+            currency,
+            deliveryCharge,
           },
           {
             headers: {
@@ -175,19 +182,19 @@ export default function Checkout(props) {
         localStorage.removeItem("billingInfo");
         localStorage.removeItem("cart");
         const order = orderResponse.data;
-        window.location.reload();
+        // window.location.reload();
 
-        // const paymentResponse = await axios.post(
-        //   `/payment/create/${order._id}`,
-        //   {},
-        //   {
-        //     headers: {
-        //       Authorization: `Bearer ${Cookies.get("jwt")}`,
-        //     },
-        //   }
-        // );
+        const paymentResponse = await axios.post(
+          `/payment/create/${order._id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get("jwt")}`,
+            },
+          }
+        );
 
-        // window.location.replace(paymentResponse.data.payment_url);
+        window.location.replace(paymentResponse.data.payment_url);
       } catch (e) {
         setLoading(false);
         console.log(e);

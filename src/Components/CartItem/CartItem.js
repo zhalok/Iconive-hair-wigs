@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "../../utils/axios";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -9,6 +9,9 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import currencyConverter from "../../utils/CurrencyChanger";
+import CurrencyContext from "../../Contexts/CurrencyContext";
+import { PulseLoader } from "react-spinners";
+
 export default function CartItem({
   id,
   addOns,
@@ -16,9 +19,10 @@ export default function CartItem({
   discardCartItem,
   setCartItems,
   setProductTotal,
-  currency,
+  setCartAdded,
   price,
 }) {
+  console.log("product", id);
   // console.log("currency", currency);
   // console.log("hello");
   // console.log(setProductTotal);
@@ -27,11 +31,13 @@ export default function CartItem({
   const [amount, setAmount] = useState(0);
   // const [price, setPrice] = useState(0);
   const [addons, setAddons] = useState([]);
-
+  const { currency, setCurrency } = useContext(CurrencyContext);
+  const [loading, setLoading] = useState(false);
   //   const sum =
   //   console.log(sum);
   const getProduct = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`/products/${id}`);
       //   console.log("cart item", response.data);
       setProduct(response.data);
@@ -40,7 +46,9 @@ export default function CartItem({
       //   const discount = response.data.discount;
       //   return price - (price * discount) / 100;
       // });
+      setLoading(false);
     } catch (e) {
+      setLoading(false);
       console.log(e);
     }
   };
@@ -52,7 +60,6 @@ export default function CartItem({
       const cart = localStorage.getItem("cart");
       if (cart) {
         let cartItems = JSON.parse(cart);
-        // console.log(cartItems);
       }
     }
   }, [product]);
@@ -60,6 +67,9 @@ export default function CartItem({
     if (quantity) setAmount(quantity);
     if (addOns) setAddons(addOns);
   }, [quantity, addOns]);
+
+  if (loading) return <PulseLoader />;
+
   return (
     <div className="w-100 text-start py-4 border-bottom border-1">
       <div className="d-flex">
@@ -105,9 +115,7 @@ export default function CartItem({
                 console.log(amount);
                 if (amount <= 1) {
                   return;
-                }
-                // setAmount((prevs) => {
-                else {
+                } else {
                   setAmount((prevs) => prevs - 1);
                   console.log("hello");
                   setCartItems((prevCart) => {
@@ -174,6 +182,7 @@ export default function CartItem({
             className="btn  py-0 mx-3"
             onClick={() => {
               discardCartItem(product._id);
+              // setCartAdded((prev) => !prev);
             }}
           >
             <DeleteIcon className="text-danger" />{" "}

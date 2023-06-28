@@ -8,6 +8,7 @@ import discountCalculator from "../../utils/calculateDIscount";
 export default function OrderItem({ orderItemId }) {
   const [orderItem, setOrderItem] = useState({});
   const { currency, setCurrency } = useContext(CurrencyContext);
+  // console.log("orderItem", orderItem);
 
   const getOrderItem = async () => {
     try {
@@ -24,52 +25,28 @@ export default function OrderItem({ orderItemId }) {
     getOrderItem();
   }, []);
   return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        rowGap: "10px",
-      }}
-    >
-      <h2>Name: {orderItem?.product?.name}</h2>
-      <div>Amount: {orderItem.amount}</div>
-      <div>Color: {orderItem?.color?.name}</div>
-      <div>
-        Product Price:{" "}
-        {currencyConverter(
-          currency,
-          discountCalculator(
-            orderItem.product.price,
-            orderItem.product.discount
-          )
-        )}{" "}
+    <div className="d-flex mb-3">
+      <span className="my-auto w-90px rounded-3 overflow-hidden ">
+        <img
+          src={orderItem?.product?.photo}
+          alt="this is a picture"
+          className="w-100 rounded-3"
+        />
+      </span>
+      <div className="text-start ps-3 my-auto">
+        <p className="text-18 mb-1">SuperSkin - Ladies Blonde Wig</p>
+        <p className="text-theme-gray text-14 mb-0">
+          Women’s Thin Skin Hair System with 110% density and Knotless V-Looped
+          hair at front
+        </p>
       </div>
-
-      <div>
-        <Accordion defaultActiveKey={0}>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Add Ons</Accordion.Header>
-            <Accordion.Body>
-              {orderItem?.addOns?.map((addOn, index) => {
-                return (
-                  <div key={index} style={{ marginTop: "10px" }}>
-                    <div>Name: {addOn.name}</div>
-                    <div>Value: {addOn.value}</div>
-                    <div>
-                      Price: {currencyConverter(currency, addOn.price)}{" "}
-                      {currency}
-                    </div>
-                  </div>
-                );
-              })}
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
-      </div>
-      <div>
-        Total Price: {currencyConverter(currency, orderItem.totalPrice)}{" "}
-        {currency}
+      <div className="text-end my-auto ms-auto">
+        <p className="text-18 mb-2">
+          {" "}
+          {currency == "USD" ? "$" : "৳"}{" "}
+          {currencyConverter(currency, orderItem.totalPrice)}{" "}
+        </p>
+        <p className="text-theme-gray text-14">QTY: {orderItem.amount}</p>
       </div>
     </div>
   );

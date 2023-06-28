@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import LogoutIcon from "@mui/icons-material/Logout";
 import "./Profile.css";
 import pps from ".././Images/profile/pps.svg";
 import ppr from ".././Images/profile/ppr.svg";
@@ -15,11 +16,16 @@ import wishY from ".././Images/profile/wishY.svg";
 import refundd from ".././Images/profile/refundd.svg";
 import refundY from ".././Images/profile/refundY.svg";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import Orders from "./Orders";
+import Order from "./Order";
 import Wishlist from "./Wishlist";
 import MyProfile from "./MyProfile";
 import OrderHistory from "./OrderHistory";
 import Refund from "./Refund";
+import axios from "../../utils/axios";
+import Cookies from "js-cookie";
+import AuthContext from "../../Contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 const sidebarItem = [
   { id: 1, name: "My Profile" },
   { id: 2, name: "Orders" },
@@ -31,10 +37,38 @@ const sidebarItem = [
 export default function Profile() {
   const [sidebar, setSidebar] = useState(1);
   const [activeBtn, setActiveBtn] = useState(true);
+  const [orders, setOrders] = useState([]);
+  const [wishListProducts, setWishListProducts] = useState([]);
+  const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    Cookies.remove("jwt");
+    setUser(null);
+    navigate("/");
+  };
+
+  const getOrders = async () => {
+    try {
+      const response = await axios.get("/order/getAllByUser", {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      });
+      // console.log(orders.data);
+      setOrders(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getOrders();
+  }, []);
 
   return (
     <div className="px60 bg-body">
-      <div className="d-flex my-4 px60">
+      {/* <div className="d-flex my-4 px60">
         <a href="#" className="text-decoration-none text-theme-gray my-auto">
           HOME
         </a>
@@ -46,10 +80,10 @@ export default function Profile() {
         <a href="#" className="text-decoration-none text-dark  my-auto">
           MY PROFILE
         </a>
-      </div>
+      </div> */}
 
       {/* side bar */}
-      <div className="w-100 d-flex gap-5">
+      <div className="w-100 d-flex gap-5 pt-5">
         <div className="w-20 ">
           <div className=" profile-border bg-light pt-5">
             <div className="w-100px  bg-themeYellow rounded-circle d-flex mx-auto mb-4 shadow-lg">
@@ -146,7 +180,7 @@ export default function Profile() {
                   Wishlist
                 </p>
               </div>
-              <div className="d-flex border-bottom py-4 mb-4">
+              <div className="d-flex border-bottom py-4">
                 <span className="my-auto ms-1">
                   {activeBtn === true && sidebar === 5 ? (
                     <img src={refundY} alt="this is an image" className="" />
@@ -166,24 +200,61 @@ export default function Profile() {
                   Refund & Return
                 </p>
               </div>
+
+              {/* <div className="d-flex border-bottom py-4 mb-4">
+                <span className="my-auto ms-1">
+                  {activeBtn === true && sidebar === 5 ? (
+                    <img src={refundY} alt="this is an image" className="" />
+                  ) : (
+                    <img src={refundd} alt="this is an image" className="" />
+                  )}
+                </span>
+                <p
+                  onClick={() => {
+                    setSidebar(5);
+                    setActiveBtn(true);
+                  }}
+                  className={`my-auto text-18 ps-4 text-start text-theme-gray sideItem ${
+                    activeBtn === true && sidebar === 5 && "text-theme"
+                  }`}
+                >
+                  Refund & Return
+                </p>
+              </div> */}
+
+              <div className="d-flex border-bottom py-4 mb-4">
+                <span className="my-auto ms-1">
+                  <LogoutIcon />
+                </span>
+                <p
+                  onClick={() => {
+                    logout();
+                  }}
+                  className={`my-auto text-18 ps-4 text-start text-theme-gray sideItem`}
+                >
+                  Logout
+                </p>
+              </div>
             </div>
-            <div className="w-100 pb-5 px-5">
+            {/* <div className="w-100 pb-5 px-5">
               <button className="w-100 bg-themeYellow btn text-light fw-bold">
                 LOG OUT
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 
         <div className="w-80 d-flex flex-column ">
           {sidebar === 2 && (
             <div className="d-flex flex-column gap-5 pb-5">
-              <Orders></Orders>
-              <Orders></Orders>
-              <Orders></Orders>
+              {orders.map((order, index) => {
+                return (
+                  <Order order={order} index={index} getOrders={getOrders} />
+                );
+              })}
             </div>
           )}
-          {sidebar === 1 && <MyProfile></MyProfile>}
+          {sidebar === 1 && <MyProfile />}
           {sidebar === 3 && (
             <div className="d-flex flex-column gap-5 pb-5">
               <OrderHistory></OrderHistory>

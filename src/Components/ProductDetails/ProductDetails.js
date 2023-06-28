@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import StarIcon from "@mui/icons-material/Star";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -20,8 +20,13 @@ import currencyConverter from "../../utils/CurrencyChanger";
 import discountCalculator from "../../utils/calculateDIscount";
 import { SipRounded } from "@mui/icons-material";
 import OffCanvas from "../../Pages/Checkout/OffCanvas";
+import CurrencyContext from "../../Contexts/CurrencyContext";
+import CartItem from "../CartItem/CartItem";
+import { PulseLoader } from "react-spinners";
+import AuthContext from "../../Contexts/AuthContext";
+import Cookies from "js-cookie";
 
-export default function ProductDetails({ id, setCartRenderer, currency }) {
+export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const navigate = useNavigate();
   const [productDetails, setProductDetails] = useState(null);
   const { product } = useParams();
@@ -32,11 +37,117 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
   const [selectedColorPrice, setSelectedColorPrice] = useState(0);
   const [sideCart, setSizeCart] = useState(false);
   const [canvus, setCanvas] = useState(false);
-  console.log("sidecart", sideCart);
+  const { currency, setCurrency } = useContext(CurrencyContext);
+  const [cartItems, setCartItems] = useState([]);
+  const [productTotal, setProductTotal] = useState(0);
+  const [showOffCanvas, setShowOffCanvas] = useState(false);
+  const [inWishList, setInWishList] = useState(false);
+  const [wishlistloading, setWishlistloading] = useState(false);
+  const { user } = useContext(AuthContext);
+
+  const checkWishList = async () => {
+    try {
+      setWishlistloading(true);
+      const response = await axios.get(`/wishlist/getProduct/${product}`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      });
+      // console.log(response.data);
+      if (response.data) {
+        setInWishList(true);
+      } else setInWishList(false);
+      setWishlistloading(false);
+    } catch (e) {
+      setWishlistloading(false);
+      console.log(e);
+    }
+  };
+
+  const addToWishlist = async () => {
+    try {
+      setWishlistloading(true);
+      const response = await axios.post(
+        "/wishlist/addProduct",
+        {
+          product: productDetails._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("jwt")}`,
+          },
+        }
+      );
+
+      checkWishList();
+      // setWishlistloading(false);
+    } catch (e) {
+      setWishlistloading(false);
+      console.log(e);
+    }
+  };
+
+  const removeFromWishlist = async () => {
+    try {
+      setWishlistloading(true);
+      const response = await axios.delete(`wishlist/removeProduct/${product}`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      });
+      checkWishList();
+      // setWishlistloading(false);
+    } catch (e) {
+      setWishlistloading(false);
+      console.log(e);
+    }
+  };
+
+  // const [cart]
+  const discardCartItem = (product) => {
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      const _cartItems = JSON.parse(cart);
+      const idx = _cartItems.map((e) => e.product).indexOf(product);
+
+      const _product = cartItems[idx];
+
+      if (idx != -1) _cartItems.splice(idx, 1);
+
+      localStorage.setItem("cart", JSON.stringify(_cartItems));
+      setProductTotal((prev) => prev - _product.price * _product.amount);
+      setCartItems(_cartItems);
+      // setCartAdded
+      setCartRenderer({});
+    }
+  };
+
+  const calculateTotal = async () => {
+    const total = cartItems.reduce((acc, item) => {
+      return acc + item.price * item.amount;
+    }, 0);
+    setProductTotal(total);
+  };
+
+  useEffect(() => {
+    const cart = localStorage.getItem("cart");
+    console.log(cart);
+    if (cart) {
+      setCartItems(JSON.parse(cart));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cartItems && Array.isArray(cartItems)) {
+      calculateTotal();
+    }
+  }, [cartItems]);
+
   const getProductDetails = async () => {
     try {
       const response = await axios.get(`/products/${product}`, {});
       setProductDetails(response.data);
+
       setAmount(
         discountCalculator(response.data.price, response.data.discount)
       );
@@ -46,20 +157,26 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
   };
   // console.log(productDetails);
   useEffect(() => {
-    getProductDetails();
-  }, []);
+    if (product) {
+      getProductDetails();
+      checkWishList();
+    }
+  }, [product]);
 
   useEffect(() => {
     if (productDetails) {
+      // console.log("Hello");
+      // console.log(productDetails);
       let cart = localStorage.getItem("cart");
 
       if (cart) {
         cart = JSON.parse(cart);
         if (cart.map((e) => e.product).includes(productDetails._id))
           setCartAdded(true);
+        else setCartAdded(false);
       }
     }
-  }, [productDetails]);
+  }, [productDetails, cartRenderer]);
 
   useEffect(() => {
     if (productDetails) {
@@ -113,30 +230,33 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
             <p className="text-start text-secondary">SKU: 2050</p>
             <div className="d-flex justify-content-between py-3 ">
               <div className="d-flex gap-3">
-                {productDetails.discount != 0 && (
+                {productDetails?.discount != 0 && (
                   <p className="fw-bold my-auto text-danger text-decoration-line-through text-28">
-                    ${currencyConverter(currency, productDetails.price)}
+                    {currency == "USD" ? "$" : "৳"}
+                    {currencyConverter(currency, productDetails?.price)}
                   </p>
                 )}
                 <p className="fw-bold my-auto text-28 ms-3">
-                  $
+                  {currency == "USD" ? "$" : "৳"}
                   {currencyConverter(
                     currency,
-                    productDetails.price -
-                      (productDetails.price * productDetails.discount) / 100
+                    productDetails?.price -
+                      (productDetails?.price * productDetails?.discount) / 100
                   )}
                 </p>
+
                 {amount -
-                  (productDetails.price -
-                    (productDetails.price * productDetails.discount) / 100) !==
+                  (productDetails?.price -
+                    (productDetails?.price * productDetails?.discount) /
+                      100) !==
                   0 && (
                   <p className="fw-bold my-auto text-28 text-theme-gray">
-                    + $
+                    + {currency == "USD" ? "$" : "৳"}
                     {currencyConverter(
                       currency,
                       amount -
-                        (productDetails.price -
-                          (productDetails.price * productDetails.discount) /
+                        (productDetails?.price -
+                          (productDetails?.price * productDetails?.discount) /
                             100)
                     )}
                   </p>
@@ -194,20 +314,20 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                           setSelectedColorPrice(0);
                           // setAmount((prev) => prev - e.price);
                         } else {
-                          setSelectedColor(e._id);
-                          setSelectedColorPrice(e.price);
+                          setSelectedColor(e?._id);
+                          setSelectedColorPrice(e?.price);
                           // setAmount((prev) => prev + e.price);
                         }
                       }}
                     >
                       <button
                         className="btn btn-dark rounded-circle px-3 py-3 text-dark fs-6"
-                        style={{ backgroundColor: e.color }}
+                        style={{ backgroundColor: e?.color }}
                       >
                         {/* {e.name} */}
                       </button>
                       <small className="my-auto" style={{ marginLeft: "10px" }}>
-                        {e.name}
+                        {e?.name}
                       </small>
                     </div>
                   );
@@ -297,9 +417,9 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
               <p className="fw-bold my-auto text-theme-gray text-20 mb-4">
                 Total : ${currencyConverter(currency, amount)}
               </p>
-              <div className="w-100  gap-3">
+              <div className="w-100">
                 <button
-                  className="btn btn-add py-2 px-4 fw-bold"
+                  className="btn btn-add py-2 px-5 me-4 fw-bold"
                   // data-bs-toggle="offcanvas"
                   // data-bs-target="#offcanvasRight"
                   // aria-controls="offcanvasRight"
@@ -307,9 +427,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                     setSizeCart((prevs) => {
                       return !prevs;
                     });
-                    setCanvas((prevs) => {
-                      return !prevs;
-                    });
+
                     let cartItems = localStorage.getItem("cart");
                     if (!cartItems) {
                       cartItems = [];
@@ -342,129 +460,113 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                         );
                       }
                     }
+                    setCartItems(cartItems);
                     cartItems = JSON.stringify(cartItems);
                     localStorage.setItem("cart", cartItems);
+                    // console.log("cartItems", typeof cartItems);
+                    // setCartItems(cartItems);
                     setCartRenderer({});
                     setCartAdded((prev) => !prev);
+                    setShowOffCanvas((prev) => {
+                      return !cartAdded;
+                    });
                   }}
                 >
                   <ShoppingCartIcon className="me-2" />{" "}
                   {!cartAdded ? "ADD TO CART" : "REMOVE FROM CART"}
                 </button>
                 <button
-                  className={`btn outline-wish px-4 py-2 fs-6 mx-3`}
+                  className={`btn outline-wish px-5 py-2 fs-6 `}
                   onClick={() => {
                     setSelectedAddons([]);
                   }}
                 >
                   Remove Add Ons
                 </button>
-                <button className=" btn outline-wish py-2 px-4 ">
-                  + WISH LIST
-                </button>
-              </div>
-              <div
-                class="offcanvas offcanvas-end"
-                tabindex="-1"
-                id="offcanvasRight"
-                aria-labelledby="offcanvasRightLabel"
-              >
-                <div class="offcanvas-header">
-                  <h5 id="offcanvasRightLabel">Shopping Cart</h5>
-                  <button
-                    type="button"
-                    class="btn-close text-reset"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="offcanvas-body">
-                  {[1, 2, 3].map((card, index) => (
-                    <div
-                      key={index}
-                      className="w-100 text-start p-3 border-bottom border-1"
+                {user && (
+                  <>
+                    {" "}
+                    <button
+                      className=" btn outline-wish py-2 px-4 ms-3"
+                      onClick={() => {
+                        !inWishList ? addToWishlist() : removeFromWishlist();
+                      }}
                     >
-                      <div className="d-flex">
-                        <div className="w-s100 w-15 ">
-                          <img
-                            className="w-100 h-100"
-                            src={checkimg}
-                            alt="this is an icon"
+                      {wishlistloading
+                        ? "Please wait"
+                        : !inWishList
+                        ? "+ WISH LIST"
+                        : "- REMOVE FROM WISHLIST"}
+                    </button>
+                  </>
+                )}
+              </div>
+              {/* off canvas */}
+              {showOffCanvas && (
+                <div
+                  // class="offcanvas offcanvas-end"
+                  // tabindex="-1"
+                  id="offcanvasRight"
+                  aria-labelledby="offcanvasRightLabel"
+                >
+                  <div class="offcanvas-header">
+                    <h5 id="offcanvasRightLabel">Shopping Cart</h5>
+                    <button
+                      type="button"
+                      class="btn-close text-reset"
+                      data-bs-dismiss="offcanvas"
+                      aria-label="Close"
+                      onClick={() => {
+                        setShowOffCanvas(false);
+                      }}
+                    ></button>
+                  </div>
+
+                  <div class="offcanvas-body">
+                    {cartItems &&
+                      cartItems.map((cartItem, index) => (
+                        <div
+                          key={index}
+                          className="w-100 text-start p-3 border-bottom border-1"
+                        >
+                          <CartItem
+                            id={cartItem.product}
+                            addOns={cartItem.addons}
+                            quantity={cartItem.amount}
+                            discardCartItem={discardCartItem}
+                            setCartItems={setCartItems}
+                            setProductTotal={setProductTotal}
+                            price={cartItem.price}
+                            setCartAdded={setCartAdded}
+                            setCartRenderer={setCartRenderer}
                           />
                         </div>
-                        <div className="d-flex w-85 ms-3">
-                          <p className="fw-bold my-auto">
-                            8.5"x9" Blake | Silk Part Remy Human Hair Topper
-                            With
-                          </p>
-                        </div>
+                      ))}
+                    <div className="mt-5">
+                      <div className="d-flex justify-content-between fw-bold px-3">
+                        <p>Grand Total :</p>
+                        <p>$1200</p>
                       </div>
-                      <p className="mt-2">
-                        <small>Color : Natural Black With Brown Shades,</small>
+                      <p className="text-14 ps-3">
+                        Taxes and shipping calculated at checkout
                       </p>
-                      <div className="d-flex justify-content-between">
-                        <p className="fw-bold my-auto">$ {501 * amount}</p>
-                        <div>
-                          <ButtonGroup size="sm">
-                            <Button
-                              onClick={() => {
-                                if (amount === 0) return;
-                                else
-                                  setAmount((prevs) => {
-                                    return prevs - 1;
-                                  });
-                              }}
-                              className="btn-light rounded-0 border"
-                            >
-                              <RemoveIcon />
-                            </Button>
-                            <Button className="btn-light rounded-0 border px-4">
-                              {amount}
-                            </Button>
-                            <Button
-                              onClick={() => {
-                                setAmount((prevs) => {
-                                  return prevs + 1;
-                                });
-                              }}
-                              className="btn-light rounded-0 border "
-                            >
-                              <AddIcon />
-                            </Button>
-                          </ButtonGroup>
-                        </div>
-                        <div>
-                          <button size="sm" className="btn  py-0 me-3">
-                            <DeleteIcon className="text-danger" />{" "}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  <div className="mt-5">
-                    <div className="d-flex justify-content-between fw-bold px-3">
-                      <p>Grand Total :</p>
-                      <p>$1200</p>
-                    </div>
-                    <p className="text-14 ps-3">
-                      Taxes and shipping calculated at checkout
-                    </p>
 
-                    <div className="d-flex px-3 gap-3">
-                      <a href="/checkout" className="w-50">
-                        <button className="btn btn-chek w-100 text-light py-2">
-                          CHECK OUT
-                        </button>
-                      </a>
-                      <a className="w-50 h-100" href="/catagory">
-                        <button className="w-100 h-100 btn btn-secondary rounded-10 py-2">
-                          ADD MORE
-                        </button>
-                      </a>
+                      <div className="d-flex px-3 gap-3">
+                        <a href="/checkout" className="w-50">
+                          <button className="btn btn-chek w-100 text-light py-2">
+                            CHECK OUT
+                          </button>
+                        </a>
+                        <a className="w-50 h-100" href="/catagory">
+                          <button className="w-100 h-100 btn btn-secondary rounded-10 py-2">
+                            ADD MORE
+                          </button>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -507,10 +609,7 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5
-                        class="modal-title text-dark fw-bold"
-                        id="exampleModalLabel"
-                      >
+                      <h5 class="modal-title" id="exampleModalLabel">
                         <SendIcon /> Shipping policy
                       </h5>
                       <button
@@ -525,17 +624,6 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                         1 .
                         <small>
                           {" "}
-                          At Iconive, we understand how important it is for you
-                          to receive your products in a timely and efficient
-                          manner. That's why we offer fast and reliable shipping
-                          to ensure that your order arrives as quickly as
-                          possible.
-                        </small>
-                      </p>{" "}
-                      <p>
-                        2 .
-                        <small>
-                          {" "}
                           All stock orders are processed within 24-48 hours of
                           receiving payment, and are shipped out as soon as
                           possible. However, If the product is not in stock or a
@@ -543,33 +631,29 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                           days to manufacture as these items are mostly
                           hand-crafted.
                         </small>
-                      </p>
+                      </p>{" "}
                       <p>
-                        3 .
+                        2 .
                         <small>
                           {" "}
                           We mainly Ship abroad via FedEx Logistics. We can also
                           use DHL Supply Chain, UPS etc verified International
-                          Shipping Agents if needed.
-                        </small>
-                      </p>
-                      <p>
-                        4 .
-                        <small>
-                          After the product is manufactured/ is ready to be
-                          shipped, we send real pictures or videos of that
-                          product to the following customer if he asks for it.
-                          After buyer’s confirmation, we will send the product
-                          to FedEx warehouses for delivery. After handing over
-                          the package to FedEx for the delivery, we will get a
+                          Shipping Agents if needed. After the product is
+                          manufactured/ is ready to be shipped, we send real
+                          pictures or videos of that product to the following
+                          customer if he asks for it. After buyer’s
+                          confirmation, we will send the product to FedEx
+                          warehouses for delivery. After handing over the
+                          package to FedEx for the delivery, we will get a
                           tracking code which we will send to our customer for
                           his/her convenience. With this code, customers can
                           easily find out the product's location & whereabouts.
                         </small>
                       </p>
                       <p>
-                        5 .
+                        3 .
                         <small>
+                          {" "}
                           Standard shipping usually takes between 5-12 business
                           days to arrive as per FedEx delivery system. Please
                           note that shipping times may vary depending on your
@@ -578,24 +662,19 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
                           responsibility then transfers to FedEx. So any issue
                           regarding product shipment after we handover the
                           product to FedEx is not our responsibility to solve,
-                          therefore not on us.
+                          therefore not on us. We offer free standard
+                          international shipping on all orders over $200 all
+                          over the world. For orders under $200, a shipping fee
+                          will be applied based on the weight and size of the
+                          package.Please note that international orders may be
+                          subject to additional customs fees and taxes, which
+                          are the responsibility of the customer.
                         </small>
                       </p>
                       <p>
-                        6 .
+                        4 .
                         <small>
-                          We offer free standard international shipping on all
-                          orders over $200 all over the world. For orders under
-                          $200, a shipping fee will be applied based on the
-                          weight and size of the package.Please note that
-                          international orders may be subject to additional
-                          customs fees and taxes, which are the responsibility
-                          of the customer.
-                        </small>
-                      </p>
-                      <p>
-                        7 .
-                        <small>
+                          {" "}
                           If you have any questions or concerns about shipping,
                           please don't hesitate to contact our customer service
                           team. We're always here to help and ensure that you
@@ -618,21 +697,19 @@ export default function ProductDetails({ id, setCartRenderer, currency }) {
             </p>
           </div>
           <div className="w-100 text-start py-3 pb-5">
-            <h5 className=" pb-2 fs-4 fw-bold text-dark">
-              Return & Refund policy :
-            </h5>
+            <h5 className=" pb-2 fs-4 fw-bold">Return & Refund policy :</h5>
             <p className="pb-0 text-theme-gray text-16">
               Welcome to Iconive, your one-stop destination for premium quality
               wigs.
-              <button
-                type="button"
-                class="btn btn-outline-secondary py-0 mx-2 text-14"
-                data-bs-toggle="modal"
-                data-bs-target="#refundandreturnpolicy"
-              >
-                Show More
-              </button>
             </p>
+            <button
+              type="button"
+              class="btn btn-outline-secondary py-0 mx-2 text-14"
+              data-bs-toggle="modal"
+              data-bs-target="#refundandreturnpolicy"
+            >
+              Show More
+            </button>
             <div
               class="modal fade"
               id="refundandreturnpolicy"

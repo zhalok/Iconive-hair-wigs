@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Collection from "./image/Collections.jpg";
 import maleCollection from "./image/malecollection.jpg";
@@ -22,16 +22,21 @@ import { Cookie } from "@mui/icons-material";
 import { useSearchParams } from "react-router-dom";
 import apiLayerAxios from "../../utils/apiLayerAxios";
 import CollectionCard from "../../Components/Collections/CollectionCard";
+import CurrencyContext from "../../Contexts/CurrencyContext";
+
 // import { useNavigate } from "react-router-dom";
 
-export default function Category({ currency }) {
+export default function Category({}) {
   const [topbanner, setTopBanner] = useState(0);
   const [products, setProducts] = useState([]);
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
-  console.log(showSubCategory);
+  const { currency, setCurrency } = useContext(CurrencyContext);
+  const [currencyLoading, setCurrencyLoading] = useState(false);
+  // const [filters, setFilters] = useState({});
 
+  // console.log(currency);
   const getCategories = async () => {
     try {
       const response = await axios.get("/category/getCategory");
@@ -44,7 +49,7 @@ export default function Category({ currency }) {
   const getProducts = async () => {
     try {
       const response = await axios.get("/products", {
-        params: filters,
+        params: { filters: filters },
       });
 
       setProducts(response.data);
@@ -53,7 +58,9 @@ export default function Category({ currency }) {
 
   useEffect(() => {
     getProducts();
+    console.log(filters);
   }, [filters]);
+
   useEffect(() => {
     getCategories();
   }, []);
@@ -67,7 +74,7 @@ export default function Category({ currency }) {
   return (
     <>
       <div>
-        <div className=" py-4 border-bottom">
+        {/* <div className=" py-4 border-bottom">
           <div className="px120 text-start mt-1 d-flex text-18">
             <a
               href="/home"
@@ -90,7 +97,7 @@ export default function Category({ currency }) {
               Gents wig
             </a>
           </div>
-        </div>
+        </div> */}
 
         <div className="w-100 ">
           <div className="d-flex">
@@ -184,7 +191,12 @@ export default function Category({ currency }) {
                     {/* Gents Wig */}
                     {categories.map((category, index) => {
                       return (
-                        <div className="border-top border-1 border-secondary py-4">
+                        <div
+                          className="border-top border-1 border-secondary py-4"
+                          // onClick={() => {
+                          //   console.log("hello world");
+                          // }}
+                        >
                           <div className="text-black d-flex ">
                             <p className="text-18 text-start text-theme-gray mb-0 pt-1">
                               {category.name}
@@ -193,14 +205,6 @@ export default function Category({ currency }) {
                               className="ms-auto my-auto"
                               onClick={() => {
                                 setShowSubCategory((prevState) => {
-                                  if (prevState != category._id) {
-                                    setFilters({
-                                      category: category._id,
-                                    });
-                                  } else {
-                                    setFilters({});
-                                  }
-
                                   return prevState != category._id
                                     ? category._id
                                     : "";
@@ -232,8 +236,37 @@ export default function Category({ currency }) {
                                     className="ps-2  d-flex f-18 my-3"
                                     onClick={() => {
                                       setFilters((prev) => {
-                                        prev["subCategory"] = subcategory._id;
-                                        return { ...prev };
+                                        const uniq =
+                                          category._id + " " + subcategory._id;
+                                        if (prev.includes(uniq)) {
+                                          return prev.filter((item) => {
+                                            return item !== uniq;
+                                          });
+                                        } else {
+                                          return [...prev, uniq];
+                                        }
+                                        // console.log("prevstate", prev);
+
+                                        // if (
+                                        //   prev.includes({
+                                        //     category: category._id,
+                                        //     subcategory: subcategory._id,
+                                        //   })
+                                        // ) {
+                                        //   prev.filter((item) => {
+                                        //     return (
+                                        //       item.category !== category._id &&
+                                        //       item.subcategory !==
+                                        //         subcategory._id
+                                        //     );
+                                        //   });
+                                        // } else {
+                                        //   prev.push({
+                                        //     category: category._id,
+                                        //     subcategory: subcategory._id,
+                                        //   });
+                                        // }
+                                        return [...prev];
                                       });
                                     }}
                                   >
@@ -242,7 +275,9 @@ export default function Category({ currency }) {
                                       class="form-check-input checkCatagory my-auto"
                                       type="checkbox"
                                       id="checkboxNoLabel"
-                                      value=""
+                                      // value={filters.subCategory.includes(
+                                      //   subcategory._id
+                                      // )}
                                       aria-label="..."
                                     />
                                     <p className="text-14 text-start Chover ms-3 my-auto">
@@ -267,117 +302,15 @@ export default function Category({ currency }) {
                 </div>
 
                 <div className="w-80 ps-5 text-center">
-                  {/* <div>
-                    <h5 className=" fw-bolder">Collections</h5>
-                    <p className="pt-2 fw-lighter"></p>
-                  </div> */}
-
                   <div className="d-flex w-100 flex-wrap gap-4 mx-auto justify-content-center">
                     {products.map((product, index) => (
-                      // <div
-                      //   onClick={() => {
-                      //     handleClick(product._id);
-                      //   }}
-                      //   key={index}
-                      //   className="card-cat  shadow w-25 "
-                      //   style={{
-                      //     cursor: "pointer",
-                      //   }}
-                      // >
-                      //   <div className="img-card position-relative">
-                      //     <img
-                      //       className="w-100 h-100"
-                      //       src={product.photo}
-                      //       alt="This  is an  picture"
-                      //     />
-                      //     <button
-                      //       onClick={
-                      //         () => {}
-                      //         // setShowModal((pre) => {
-                      //         //   return !pre;
-                      //         // })
-                      //       }
-                      //       // data-bs-target="#modalID"
-                      //       // data-bs-toggle="modal"
-                      //       className="position-absolute top-50 left-20 d-flex btn btn-dark shodow px-3 py-1 f-14 rounded-0"
-                      //     >
-                      //       <ShoppingCartIcon className="pe-1 my-auto" />{" "}
-                      //       Details
-                      //     </button>
-                      //   </div>
-                      //   <div className="text-center px-2">
-                      //     <h6 className="mt-4 mb-2 fw-bold">{product.name}</h6>
-                      //     {/* <p className="m-0">Coco Lee, coins are Kumis brown</p> */}
-                      //     <h5 className="mt-2 mb-3 fw-bold">{`$ ${product.price}`}</h5>
-                      //   </div>
-                      // </div>
-
-                      <div
-                        onClick={() => {
-                          handleClick(product._id);
-                        }}
-                        key={index}
-                        style={{
-                          cursor: "pointer",
-                        }}
-                        className="card-main border rounded-iconive w-25 d-flex flex-column"
-                      >
-                        <div className="img-card position-relative overflow-hidden ">
-                          <img
-                            className="w-100 h-100 rounded-iconive cardImg"
-                            src={product.photo}
-                            alt="This  is an  picture"
-                          />
-                          <button
-                            onClick={
-                              () => {}
-                              // setShowModal((pre) => {
-                              //   return !pre;
-                              // })
-                            }
-                            // data-bs-target="#modalID"
-                            // data-bs-toggle="modal"
-                            className="position-absolute top-50 left-20 d-flex btn btn-details px-3 py-1 f-14 text-light "
-                          >
-                            <ShoppingCartIcon className="pe-1 my-auto" />{" "}
-                            <p className="m-auto"> Details</p>
-                          </button>
-                        </div>
-                        <div className="text-start p-3 mt-auto">
-                          <p className=" fw-bold  ">{product.name}</p>
-                          {/* <p className="m-0 py-0 text-12 text-theme-gray">
-                            Be confident with any style you like to own from a
-                            large variety of styles.
-                          </p> */}
-                          <div className="d-flex justify-content-between mt-4">
-                            <p className="text-20 fw-bold text-dark my-auto pt-1">{`$ ${product.price}`}</p>
-                            <div className="d-flex">
-                              <button className="btn px-0 mt-1">
-                                {" "}
-                                <img
-                                  src={cardicon2}
-                                  className=""
-                                  alt="this is an icon"
-                                />
-                              </button>
-                              <button className="btn ps-2 my-auto">
-                                {" "}
-                                <img
-                                  src={cardicon1}
-                                  className="w-100 "
-                                  alt="this is an icon"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <>
+                        <CollectionCard productId={product._id} index={index} />
+                      </>
                     ))}
                   </div>
                 </div>
               </div>
-
-              {/* <ProductModal id="modalID"></ProductModal> */}
             </div>
           </div>
         </div>

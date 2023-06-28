@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import CarouselHome from "../../Components/CarouselHome/CarouselHome";
 import "./Home.css";
 import girl from "../ImagesPage/girl.png";
@@ -20,9 +20,26 @@ import StarIcon from "@mui/icons-material/Star";
 import CustomWigs from "../../Components/CustomWiga/CustomWigs";
 import Subscription from "../../Components/Subscription/Subscription";
 import "animate.css";
+import axios from "../../utils/axios";
 
 export default function Home() {
   const [show, setShow] = useState(false);
+  // const [mostSold, setMostSold] = useState([]);
+  const [newArrivals, setNewArrivals] = useState([]);
+
+  // const getMostSold = async () => {
+  //   try {
+  //     const response = await axios.get("/filterProducts/mostSold");
+  //     console.log(response.data);
+  //     setMostSold(response.data);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getMostSold();
+  // }, []);
 
   return (
     <div>

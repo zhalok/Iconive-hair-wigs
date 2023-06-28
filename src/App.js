@@ -6,7 +6,7 @@ import Navigation from "./Components/Navigation/Navigation";
 import Category from "./Pages/Category/Category";
 import Footer from "./Components/Footer/Footer";
 import Checkout from "./Pages/Checkout/Checkout";
-import ProductDetails from "./Components/ProductDetails/ProductDetails";
+import ProductDetail from "./Components/ProductDetails/ProductDetails";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
 import CartContext from "./Contexts/CartContext";
@@ -21,16 +21,21 @@ import Privacy from "./Pages/PrivacyAndPolicy/Privacy";
 import Terms from "./Pages/TermsAndConds/Terms";
 import Return from "./Pages/ReturnAndRefund/Return";
 import Shipping from "./Pages/ShippingPolicy/Shipping";
+import Wholesale from "./Pages/Wholesale/Wholesale";
+import Joinus from "./Pages/Joinus/Joinus";
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
   const [user, setUser] = useState(null);
   const [currency, setCurrency] = useState("USD");
   const [exchangeRate, setExchangeRate] = useState(1);
-
+  // console.log("Hello from App");
   useEffect(() => {
-    !localStorage.getItem("currency") &&
+    if (localStorage.getItem("currency")) {
+      setCurrency(localStorage.getItem("currency"));
+    } else {
       localStorage.setItem("currency", "USD");
+    }
     localStorage.setItem("fxrate", JSON.stringify({ usd: 1, bdt: 106 }));
     const token = Cookies.get("jwt");
 
@@ -39,6 +44,7 @@ function App() {
       setUser(decoded);
     }
   }, []);
+
   return (
     <div className="App">
       <AuthContext.Provider value={{ user, setUser }}>
@@ -60,10 +66,15 @@ function App() {
                   path="/ProductDetails/:product"
                   element={
                     // <CartContext.Provider value={cartRenderer}>
-                    <ProductDetails setCartRenderer={setCartRenderer} />
+                    <ProductDetail
+                      setCartRenderer={setCartRenderer}
+                      cartRenderer={cartRenderer}
+                    />
                     // </CartContext.Provider>
                   }
                 />
+                <Route path="/joinus" element={<Joinus />} />
+                <Route path="/wholesale" element={<Wholesale />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/return" element={<Return />} />
