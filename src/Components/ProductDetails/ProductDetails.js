@@ -699,8 +699,8 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
           <div className="w-100 text-start py-3 pb-5">
             <h5 className=" pb-2 fs-4 fw-bold">Return & Refund policy :</h5>
             <p className="pb-0 text-theme-gray text-16">
-              Welcome to Iconive, your one-stop destination for premium quality
-              wigs.
+              You have 7 calendar days to return an item from the date you
+              received it
             </p>
             <button
               type="button"
