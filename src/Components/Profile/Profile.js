@@ -40,6 +40,12 @@ export default function Profile() {
   const [orders, setOrders] = useState([]);
   const [wishListProducts, setWishListProducts] = useState([]);
   const { user, setUser } = useContext(AuthContext);
+  const { reRender, setRerender } = useState({});
+  const [name, setName] = useState({
+    value: "",
+    editable: false,
+  });
+
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -87,9 +93,11 @@ export default function Profile() {
         <div className="w-20 ">
           <div className=" profile-border bg-light pt-5">
             <div className="w-100px  bg-themeYellow rounded-circle d-flex mx-auto mb-4 shadow-lg">
-              <h1 className="m-auto text-light fw-bold">AB</h1>
+              <h1 className="m-auto text-light fw-bold">
+                {name?.value && name.value[0].toUpperCase()}
+              </h1>
             </div>
-            <h4 className="fw-bold pb-4 dp-text">Clint Eastwood</h4>
+            <h4 className="fw-bold pb-4 dp-text">{name.value}</h4>
             <div className="px-5 pb-3">
               <div className="d-flex border-top border-bottom py-4">
                 <span className="my-auto ms-1">
@@ -254,7 +262,7 @@ export default function Profile() {
               })}
             </div>
           )}
-          {sidebar === 1 && <MyProfile />}
+          {sidebar === 1 && <MyProfile name={name} setName={setName} />}
           {sidebar === 3 && (
             <div className="d-flex flex-column gap-5 pb-5">
               <OrderHistory></OrderHistory>
