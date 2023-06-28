@@ -111,10 +111,18 @@ export default function Footer() {
             </div>
             <div className="text-start">
               <h6 className="fw-bold pb-3">Our Profile</h6>
-              <p className="text-16">About Us</p>
-              <p className="text-16">Our Shipping Partners</p>
-              <p className="text-16">Payment methods </p>
-              <p className="text-16">FAQ</p>
+              <a href="/about" className="text-decoration-none">
+                <p className="text-16">About Us</p>
+              </a>
+              <a href="/shippingPartner" className="text-decoration-none">
+                <p className="text-16">Our Shipping Partners</p>
+              </a>
+              <a href="/paymentMethod" className="text-decoration-none">
+                <p className="text-16">Payment methods</p>
+              </a>
+              <a href="/faq" className="text-decoration-none">
+                <p className="text-16">FAQ</p>
+              </a>
             </div>
           </div>
         </div>

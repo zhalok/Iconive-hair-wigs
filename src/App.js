@@ -23,6 +23,10 @@ import Return from "./Pages/ReturnAndRefund/Return";
 import Shipping from "./Pages/ShippingPolicy/Shipping";
 import Wholesale from "./Pages/Wholesale/Wholesale";
 import Joinus from "./Pages/Joinus/Joinus";
+import FAQ from "./Pages/FooterPages/FAQ";
+import ShippingPartners from "./Pages/FooterPages/ShippingPartners";
+import PaymentMethod from "./Pages/FooterPages/PaymentMethod";
+import About from "./Pages/FooterPages/About";
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
@@ -73,6 +77,10 @@ function App() {
                     // </CartContext.Provider>
                   }
                 />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/paymentMethod" element={<PaymentMethod />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/shippingPartner" element={<ShippingPartners />} />
                 <Route path="/joinus" element={<Joinus />} />
                 <Route path="/wholesale" element={<Wholesale />} />
                 <Route path="/privacy" element={<Privacy />} />

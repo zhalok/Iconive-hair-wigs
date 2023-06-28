@@ -108,7 +108,7 @@ export default function Wholesale() {
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <div
-            class="tab-pane fade show active border"
+            class="tab-pane fade show active border p-4"
             id="nav-home"
             role="tabpanel"
             aria-labelledby="nav-home-tab"
@@ -230,7 +230,7 @@ export default function Wholesale() {
             </div>
           </div>
           <div
-            class="tab-pane fade border"
+            class="tab-pane fade border p-4"
             id="nav-profile"
             role="tabpanel"
             aria-labelledby="nav-profile-tab"
@@ -356,7 +356,7 @@ export default function Wholesale() {
             </div>
           </div>
           <div
-            class="tab-pane fade border"
+            class="tab-pane fade border p-4"
             id="nav-contact"
             role="tabpanel"
             aria-labelledby="nav-contact-tab"
