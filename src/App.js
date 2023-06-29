@@ -60,12 +60,12 @@ function App() {
                   setCurrency={setCurrency}
                   // setShowCartDrawer={setShowCartDrawer}
                 />
-                {/* <CartDrawer
+                <CartDrawer
                   opened={showCartDrawer}
                   close={() => {
                     setShowCartDrawer(false);
                   }}
-                /> */}
+                />
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/home" element={<Home />} />

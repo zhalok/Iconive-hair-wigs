@@ -209,12 +209,6 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
 
   return (
     <>
-      <CartDrawer
-        opened={showCartDrawer}
-        close={() => {
-          setShowCartDrawer(false);
-        }}
-      />
       <div className="positon-relative">
         <div className="px120 d-flex my-5">
           <div className=" w-50 px-4">
