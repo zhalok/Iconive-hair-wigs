@@ -39,11 +39,11 @@ export default function CartDrawer({ opened, close }) {
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
-    // console.log(cart);
+    console.log("cart", cart);
     if (cart) {
       setCartItems(JSON.parse(cart));
     }
-  }, []);
+  }, [opened]);
 
   useEffect(() => {
     if (cartItems && Array.isArray(cartItems)) {
