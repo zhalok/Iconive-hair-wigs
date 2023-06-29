@@ -138,15 +138,6 @@ export default function Profile() {
                 >
                   Orders
                 </p>
-                <span
-                  className={`ms-3 rounded-2  my-auto pt2px px-2 ${
-                    activeBtn === true && sidebar === 2
-                      ? "bg-theme-color text-light "
-                      : "bg-secondary  text-light"
-                  }`}
-                >
-                  2
-                </span>
               </div>
               <div className="d-flex border-bottom py-4">
                 <span className="my-auto ms-1">
@@ -265,9 +256,9 @@ export default function Profile() {
           {sidebar === 1 && <MyProfile name={name} setName={setName} />}
           {sidebar === 3 && (
             <div className="d-flex flex-column gap-5 pb-5">
+              {/* <OrderHistory></OrderHistory>
               <OrderHistory></OrderHistory>
-              <OrderHistory></OrderHistory>
-              <OrderHistory></OrderHistory>
+              <OrderHistory></OrderHistory> */}
             </div>
           )}
           {sidebar === 4 && (

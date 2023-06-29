@@ -25,6 +25,7 @@ import CartItem from "../CartItem/CartItem";
 import { PulseLoader } from "react-spinners";
 import AuthContext from "../../Contexts/AuthContext";
 import Cookies from "js-cookie";
+import CartDrawer from "../Drawer/CartDrawer";
 
 export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const [inWishList, setInWishList] = useState(false);
   const [wishlistloading, setWishlistloading] = useState(false);
   const { user } = useContext(AuthContext);
+  const { showCartDrawer, setShowCartDrawer } = useContext(CartContext);
 
   const checkWishList = async () => {
     try {
@@ -207,6 +209,12 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
 
   return (
     <>
+      <CartDrawer
+        opened={showCartDrawer}
+        close={() => {
+          setShowCartDrawer(false);
+        }}
+      />
       <div className="positon-relative">
         <div className="px120 d-flex my-5">
           <div className=" w-50 px-4">
