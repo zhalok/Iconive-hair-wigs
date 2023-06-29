@@ -299,7 +299,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
             <div className="text-start">
               {/* color */}
               <p className="text-secondary pt-3 ">Color :</p>
-              <div className="d-flex gap-2">
+              <div className="row row-cols-4 gap-2">
                 {productDetails.colors.map((e) => {
                   return (
                     <div
