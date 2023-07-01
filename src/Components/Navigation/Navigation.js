@@ -30,6 +30,7 @@ import CurrencySwitch from "../Switches/CurrencySwitch";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
+import CartContext from "../../Contexts/CartContext";
 
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
@@ -38,9 +39,10 @@ export default function Navigation({ renderer }) {
   const [usdCheck, setUsdCheck] = useState(false);
   const { currency, setCurrency } = useContext(CurrencyContext);
   const { user, setUser } = useContext(AuthContext);
+  const { setShowCartDrawer } = useContext(CartContext);
   // console.log("currency", currency);
   // console.log(currency);
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -50,7 +52,7 @@ export default function Navigation({ renderer }) {
     }
   }, [renderer]);
 
-  const authContext = useContext(AuthContext);
+  // const authContext = useContext(AuthContext);
 
   return (
     <>
@@ -117,7 +119,14 @@ export default function Navigation({ renderer }) {
           </a>
         </div>
       </div>
-      <div className=" sticky-top bg-white shadow">
+      <div
+        className="bg-white shadow bg-body-tertiary"
+        style={{
+          position: "sticky",
+          top: "0",
+          zIndex: "50",
+        }}
+      >
         <div className="d-flex mx-auto  justify-content-between px115">
           <div className="my-auto d-flex w12 text-start ">
             <div className="my-auto d-flex text-18 ps-5 pe-3 py-1 bg-light useBtn form-check form-switch">
@@ -211,11 +220,18 @@ export default function Navigation({ renderer }) {
               <img width={"27"} src={wish} alt="this is an icon" />
             </div>
             <div className="m-auto">
-              <a href="/checkout">
-                <Badge badgeContent={cartItems} color="primary">
-                  <img width={"25"} src={cart} alt="this is an icon" />
-                </Badge>
-              </a>
+              {/* <a href="/checkout"> */}
+              <Badge badgeContent={cartItems} color="primary">
+                <img
+                  width={"25"}
+                  src={cart}
+                  alt="this is an icon"
+                  onClick={() => {
+                    setShowCartDrawer((prev) => !prev);
+                  }}
+                />
+              </Badge>
+              {/* </a> */}
             </div>
             {user ? (
               <div className="m-auto">

@@ -8,12 +8,8 @@ import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import { PulseLoader } from "react-spinners";
 
-export default function MyProfile() {
+export default function MyProfile({ name, setName }) {
   // const [updateInfo, setUpdateInfo] = useState({});
-  const [name, setName] = useState({
-    value: "",
-    editable: false,
-  });
   const [email, setEmail] = useState({
     value: "",
     editable: false,
@@ -22,7 +18,6 @@ export default function MyProfile() {
     value: "",
     editable: false,
   });
-
   const [showUpdateButton, setShowUpdateButton] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -77,6 +72,7 @@ export default function MyProfile() {
       });
 
       setLoading(false);
+      setShowUpdateButton(false);
     } catch (e) {
       setLoading(false);
       console.log(e);
@@ -95,7 +91,7 @@ export default function MyProfile() {
     <div>
       <div className="w-100 ">
         <div className="border-bottom px-5 pt-5 order-bg bg-light w-100">
-          <div className="w-100 d-flex border-bottom ">
+          <div className="w-100 d-flex border-bottom mb-5">
             <div className="w-50 text-start ">
               <>
                 <div className="d-flex pt-3">
