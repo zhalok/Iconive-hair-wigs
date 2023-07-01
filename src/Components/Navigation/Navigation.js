@@ -162,7 +162,7 @@ export default function Navigation({ renderer }) {
                 </Nav.Link>
 
                 <Nav.Link
-                  href="#home"
+                  href="/guideme"
                   className="text-black text-nav text-uppercase drop"
                 >
                   {" "}
@@ -170,13 +170,13 @@ export default function Navigation({ renderer }) {
                 </Nav.Link>
 
                 <Nav.Link
-                  href="#home"
+                  href="/customize"
                   className="text-black text-nav text-uppercase drop"
                 >
                   customIZE
                 </Nav.Link>
                 <Nav.Link
-                  href="#home"
+                  href="/offers"
                   className="text-black text-nav text-uppercase drop"
                 >
                   Offers
@@ -188,10 +188,9 @@ export default function Navigation({ renderer }) {
                   JOIN US
                 </Nav.Link>
                 <Nav.Link
-                  href="#home"
+                  href="/blog"
                   className="text-black text-nav text-uppercase drop"
                 >
-                  {" "}
                   BLOG
                 </Nav.Link>
                 <Nav.Link

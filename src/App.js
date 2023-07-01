@@ -27,6 +27,7 @@ import FAQ from "./Pages/FooterPages/FAQ";
 import ShippingPartners from "./Pages/FooterPages/ShippingPartners";
 import PaymentMethod from "./Pages/FooterPages/PaymentMethod";
 import About from "./Pages/FooterPages/About";
+import Customize from "./Pages/Customize/Customize";
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
@@ -82,6 +83,10 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/shippingPartner" element={<ShippingPartners />} />
                 <Route path="/joinus" element={<Joinus />} />
+                <Route path="/blog" element={<Customize />} />
+                <Route path="/guideme" element={<Customize />} />
+                <Route path="/offers" element={<Customize />} />
+                <Route path="/customize" element={<Customize />} />
                 <Route path="/wholesale" element={<Wholesale />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
