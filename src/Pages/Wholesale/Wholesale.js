@@ -2,13 +2,40 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import "./Wholesale.css";
-import tab11 from "../../.././src/Components/Images/wholesale/tab11.png";
+import T1 from "../../.././src/Components/Images/wholesale/section1/Group (1).png";
+import T2 from "../../.././src/Components/Images/wholesale/section1/Group (8).png";
+import T3 from "../../.././src/Components/Images/wholesale/section1/Group (2).png";
+import T4 from "../../.././src/Components/Images/wholesale/section1/Group (3).png";
+import T5 from "../../.././src/Components/Images/wholesale/section1/Group (4).png";
+import T6 from "../../.././src/Components/Images/wholesale/section1/Group (5).png";
+import T7 from "../../.././src/Components/Images/wholesale/section1/Group (6).png";
+import T8 from "../../.././src/Components/Images/wholesale/section1/Group (7).png";
+import TT1 from "../../.././src/Components/Images/wholesale/section2/Group (1).png";
+import TT8 from "../../.././src/Components/Images/wholesale/section2/Group (8).png";
+import TT2 from "../../.././src/Components/Images/wholesale/section2/Group (2).png";
+import TT3 from "../../.././src/Components/Images/wholesale/section2/Group (3).png";
+import TT4 from "../../.././src/Components/Images/wholesale/section2/Group (4).png";
+import TT5 from "../../.././src/Components/Images/wholesale/section2/Group (5).png";
+import TT6 from "../../.././src/Components/Images/wholesale/section2/Group (6).png";
+import TT7 from "../../.././src/Components/Images/wholesale/section2/Group (7).png";
+import TTT1 from "../../.././src/Components/Images/wholesale/section3/Group (1).png";
+import TTT8 from "../../.././src/Components/Images/wholesale/section3/Group (8).png";
+import TTT2 from "../../.././src/Components/Images/wholesale/section3/Group (2).png";
+import TTT3 from "../../.././src/Components/Images/wholesale/section3/Group (3).png";
+import TTT4 from "../../.././src/Components/Images/wholesale/section3/Group (4).png";
+import TTT5 from "../../.././src/Components/Images/wholesale/section3/Group (5).png";
+import TTT6 from "../../.././src/Components/Images/wholesale/section3/Group (6).png";
+import TTT7 from "../../.././src/Components/Images/wholesale/section3/Group (7).png";
 import Subscription from "../../Components/Subscription/Subscription";
 import BackupIcon from "@mui/icons-material/Backup";
+import banner from "../../.././src/Components/Images/joinus/joinusBanner.png";
 
 export default function Wholesale() {
   return (
     <>
+      <div className="w-100">
+        <img src={banner} className="w-100" alt="this is a banner" />
+      </div>
       <div className="container my-5 bg-wholesale">
         <div className="w-50   rounded-theme11 m-auto ">
           <div className=" w-100 text-center">
@@ -69,7 +96,7 @@ export default function Wholesale() {
             role="tablist"
           >
             <button
-              class="nav-link active"
+              class="nav-link active text-black"
               id="nav-home-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-home"
@@ -81,7 +108,7 @@ export default function Wholesale() {
               Wholesaler and Distributor
             </button>
             <button
-              class="nav-link"
+              class="nav-link text-black"
               id="nav-profile-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-profile"
@@ -93,7 +120,7 @@ export default function Wholesale() {
               Online Retailer
             </button>
             <button
-              class="nav-link"
+              class="nav-link text-black"
               id="nav-contact-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-contact"
@@ -116,7 +143,7 @@ export default function Wholesale() {
             <div className="row">
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={T1} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">
                   Extremely Competitive SVIP Wholesale Price
@@ -132,7 +159,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={T2} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">
                   Special Discount for Sample Orders
@@ -148,7 +175,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={T3} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Consistent Top Product Quality</p>
                 <p className="text-16 text-just">
@@ -161,7 +188,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={T4} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Exceptional Production Capacity</p>
                 <p className="text-16 text-just">
@@ -174,7 +201,7 @@ export default function Wholesale() {
             <div className="row">
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={T5} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">
                   24/7 Highly Specialized Client Service Team
@@ -191,7 +218,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={T6} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">30-Day Free Return Policy</p>
                 <p className="text-16 text-just">
@@ -205,7 +232,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={T7} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Large Amount of Stock Available</p>
                 <p className="text-16 text-just">
@@ -218,7 +245,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={T8} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Exclusive Customization Service</p>
                 <p className="text-16 text-just">
@@ -238,7 +265,7 @@ export default function Wholesale() {
             <div className="row">
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TT1} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">
                   Special Discount for Sample Orders
@@ -254,7 +281,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TT2} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Drop Shipping Service</p>
                 <p className="text-16 text-just">
@@ -269,7 +296,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TT3} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Large Amount of Stock Available</p>
                 <p className="text-16 text-just">
@@ -284,7 +311,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TT4} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">OEM/ODM</p>
                 <p className="text-16 text-just">
@@ -299,7 +326,7 @@ export default function Wholesale() {
             <div className="row">
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TT5} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">30-Day Free Return Policy</p>
                 <p className="text-16 text-just">
@@ -315,7 +342,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TT6} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Fast delivery within 3-5 days</p>
                 <p className="text-16 text-just">
@@ -327,7 +354,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TT7} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">
                   24/7 Highly Specialized Client Service Team
@@ -342,7 +369,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TT8} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Easy and Quick Online Purchase</p>
                 <p className="text-16 text-just">
@@ -364,7 +391,7 @@ export default function Wholesale() {
             <div className="row">
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TTT1} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Hair System Free Trial</p>
                 <p className="text-16 text-just">
@@ -378,7 +405,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TTT2} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Huge Amount of Stock Available</p>
                 <p className="text-16 text-just">
@@ -391,7 +418,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TTT3} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Premium Start-up Packages</p>
                 <p className="text-16 text-just">
@@ -403,7 +430,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TTT4} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">
                   Highly Professional Customization Service
@@ -419,7 +446,7 @@ export default function Wholesale() {
             <div className="row">
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TTT5} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">
                   24/7 Highly Specialized Client Service Team
@@ -436,7 +463,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TTT6} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">30-Day Free Return Guarantee</p>
                 <p className="text-16 text-just">
@@ -448,7 +475,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TTT7} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Easy and Quick Online Purchase</p>
                 <p className="text-16 text-just">
@@ -463,7 +490,7 @@ export default function Wholesale() {
 
               <div className="col-md-3 col-12 text-center p-4">
                 <span className="mx-auto w-88 d-flex my-3">
-                  <img src={tab11} className="w-50 m-auto" />
+                  <img src={TTT8} className="w-50 m-auto" />
                 </span>
                 <p className="py-2 fw-bold">Professional Business Guidance</p>
                 <p className="text-16 text-just">
