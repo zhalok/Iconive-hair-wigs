@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import GoogleIcon from "@mui/icons-material/Google";
-import logo from "../Images/logogold.png";
+import flogo from "../Images/login/facebookicon.svg";
+import glogo from "../Images/login/gmailicon.svg";
+import logbanner from "../Images/login/signup.png";
 import "../globalcss/style.css";
+import "./Signup.css";
 import { PulseLoader } from "react-spinners";
 import axios from "../../utils/axios";
 // import { auth, provider } from "../Login/config.js";
@@ -98,30 +101,55 @@ export default function Signup() {
         user&&<><h2>Sign up successfully log in</h2> <button className="btn btn-info rounded-pill"><a className="text-decoration-none text-light px-3" href="/login">Now</a></button></>
       } */}
       <div className="text-center d-flex ">
-        <div className="d-flex shadow-lg mx-auto my-5 marginTopBot">
-          <div className="w-50 d-flex mx-4">
-            <img src={logo} alt="login img" className="m-auto" width="50%" />
+        <div className="d-flex shadow-theme-sign mx-auto my-5 marginTopBot bg-signup">
+          <div className="w-50 d-flex">
+            <img
+              src={logbanner}
+              alt="login img"
+              className="m-auto"
+              width="100%"
+            />
           </div>
-          <div className="w-50">
-            <Container className="border-start w-100   p-5">
-              <h4 className="pt-5 pb-3 text-theme-dark border-theme mx-auto fw-bold">
-                Sign-Up
-              </h4>
-              <div className="py-5 ">
+          <div className="w-50 my-auto rounded-theme11">
+            <Container className="border-start w-100 text-start">
+              <p className="pt-5 ps-5 pb-0 mb-0 text-theme-dark  text-28 mx-auto ">
+                Create Your Account
+              </p>
+              <p className="ps-5">
+                Already a member?{" "}
+                <Link
+                  to="/login"
+                  className="text-dark pb-1 border-bottom border-dark text-decoration-none pb-1 ms-2 text-shadow"
+                >
+                  Login Here
+                </Link>
+              </p>
+              <div className="p-5 text-center">
                 <form>
-                  <input
-                    type="text"
-                    className="form-control mx-auto"
-                    placeholder="Enter Name"
-                    value={name}
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                  />
+                  <div className="w-100 d-flex gap-2">
+                    <input
+                      type="text"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
+                      placeholder="First Name"
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                    />
+                    <input
+                      type="text"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
+                      placeholder="Last Name"
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                    />
+                  </div>
                   <br />
                   <input
                     type="email"
-                    className="form-control  mx-auto"
+                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none   mx-auto"
                     placeholder="Enter Email"
                     value={email}
                     onChange={handleEmailchange}
@@ -129,7 +157,7 @@ export default function Signup() {
                   <br />
                   <input
                     type="password"
-                    className="form-control mx-auto"
+                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none  mx-auto"
                     placeholder="Password"
                     value={pass}
                     onChange={handlePassChange}
@@ -137,7 +165,7 @@ export default function Signup() {
                   <br />
                   <input
                     type="password"
-                    className="form-control mx-auto"
+                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none  mx-auto"
                     placeholder="Confirm Password"
                     value={confirmPass}
                     onChange={(e) => {
@@ -145,12 +173,21 @@ export default function Signup() {
                     }}
                   />
                   <br />
+                  <p className="my-3 pb-2 text-14 text-theme-gray ">
+                    <input
+                      class="form-check-input me-2 bg-theme-check"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    I accept terms and conditions and privacy policy.
+                  </p>
                   {loading ? (
                     <PulseLoader />
                   ) : (
                     <button
                       type="submit"
-                      className="btn btn-dark text-light px-5 py-2 btn rounded-0"
+                      className=" btn-theme-up btn  text-light px-5 py-2 mb-3 "
                       value="Sign Up"
                       // onClick={handleSignup}
                       onClick={(e) => {
@@ -164,20 +201,18 @@ export default function Signup() {
                   <small className="text-success">{message}</small>
                   <small className="text-danger">{error}</small>
                 </form>
-                <p className="my-3 ">
-                  Already register ?
-                  <Link to="/login" className="ms-2">
-                    {" "}
-                    Log In
-                  </Link>
+                <p className="my-3 text-14 text-theme-gray pb-2 ">
+                  Or, sign up using
                 </p>
-                <button
-                  // onClick={handleGoogleLogin}
-                  className="btn-light my-2 px-5 py-2 btn shadow"
-                >
-                  <GoogleIcon />
-                  Sign in with Google
-                </button>
+                <div className="d-flex mx-auto text-center">
+                  <span
+                    // onClick={handleGoogleLogin}
+                    className="mx-auto"
+                  >
+                    <img src={glogo} className="me-2" />
+                    <img src={flogo} className="" />
+                  </span>
+                </div>
               </div>
             </Container>
           </div>

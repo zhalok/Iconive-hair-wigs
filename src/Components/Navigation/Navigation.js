@@ -1,23 +1,17 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useContext, useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import logo from "../Images/logoblack.png";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import "./Navigation.css";
-import SearchIcon from "@mui/icons-material/Search";
-import PersonIcon from "@mui/icons-material/Person";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
-import maleCollection from "./image/malecollection.png";
-import femaleCollection from "./image/femaleCollections.png";
-import Rawhair from "./image/Rawhair.png";
-import Accessories from "./image/Accessories.png";
+import maleCollection from "./image/malecollection.jpg";
+import femaleCollection from "./image/femaleCollections.jpg";
+import Rawhair from "./image/Rawhair.jpg";
+import Accessories from "./image/Accessories.jpg";
+import { Login, LoginOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import AuthContext from "../../Contexts/AuthContext";
-import LoginIcon from "@mui/icons-material/Login";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import CurrencySwitch from "../Switches/CurrencySwitch";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -28,13 +22,25 @@ import profile from "./image/profile.svg";
 import search from "./image/search.svg";
 import wish from "./image/wishj.svg";
 import cart from "./image/cart.svg";
-import { shadows } from "@mui/system";
+import malepro from "../Images/navbar/malenav.svg";
+import femalepro from "../Images/navbar/femalenav.svg";
+import accpro from "../Images/navbar/accnav.svg";
+import rawpro from "../Images/navbar/rawnav.svg";
+import CurrencySwitch from "../Switches/CurrencySwitch";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import "animate.css";
+import CurrencyContext from "../../Contexts/CurrencyContext";
 
-export default function Navigation({ renderer, currency, setCurrency }) {
+export default function Navigation({ renderer }) {
   const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
   const [cartItems, setCartItems] = useState(0);
-  const [showProfileSecton, setShowProfileSection] = useState(false);
+  const [usdCheck, setUsdCheck] = useState(false);
+  const { currency, setCurrency } = useContext(CurrencyContext);
+  const { user, setUser } = useContext(AuthContext);
+  // console.log("currency", currency);
+  // console.log(currency);
+  console.log(user);
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -47,15 +53,15 @@ export default function Navigation({ renderer, currency, setCurrency }) {
   const authContext = useContext(AuthContext);
 
   return (
-    <div className="shadow">
+    <>
       {/* offer div */}
       <div className="bg-top d-flex">
-        <p className="m-auto text-light text-14">
-          FREE INTERNATIONAL SHIPPING On Orders Over $200!
+        <p className="m-auto text-light text-14 animate__animated  animate__fadeInUp animate__slower	animate__infinite">
+          FREE INTERNATIONAL SHIPPING ON ORDER OVER $250!
         </p>
       </div>
       {/* 2nd section email and icons  */}
-      <div className="bg-light d-flex justify-content-between border-bottom px115">
+      <div className="bg-light d-flex justify-content-between border-bottom px115 hide">
         <div className="my-auto text-dark d-flex py-2">
           <MailOutlineIcon className="text-secondary me-1 my-auto" />
           <p className="text-14 navtxt my-auto">iconivehairwigs@gmail.com</p>
@@ -90,7 +96,7 @@ export default function Navigation({ renderer, currency, setCurrency }) {
             className="mx-1 text-secondary my-auto"
             href="https://www.facebook.com/profile.php?id=100087712010768"
           >
-            <YouTubeIcon />
+            <YouTubeIcon />{" "}
           </a>
           <a
             className="mx-1 text-secondary my-auto"
@@ -99,245 +105,65 @@ export default function Navigation({ renderer, currency, setCurrency }) {
             <LinkedInIcon />
           </a>
         </div>
+        {/* <CurrencySwitch currency={currency} setCurrency={setCurrency} /> */}
       </div>
+      <div></div>
 
-      {/* login div */}
-      {/* <div className="d-flex">
-        <div className="d-flex ms-auto me-4">
-          <div>
-            <CurrencySwitch currency={currency} setCurrency={setCurrency} />
-          </div>
-          <div className="p-1 ">
-            <AuthContext.Consumer>
-              {(value) => {
-                if (value?.user) {
-                  return (
-                    <>
-                      <div
-                        onClick={() => {
-                          setShowProfileSection((prev) => !prev);
-                        }}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <PersonIcon />
-                      </div>
-                      {showProfileSecton && (
-                        <div
-                          style={{ display: "flex", flexDirection: "column" }}
-                        >
-                          <div
-                            style={{ width: "100%", cursor: "pointer" }}
-                            onClick={() => {
-                              Cookies.remove("jwt");
-                              window.location.reload();
-                            }}
-                          >
-                            <small>Signout </small>{" "}
-                          </div>
-                          <div
-                            style={{ width: "100%", cursor: "pointer" }}
-                            onClick={() => {
-                              navigate("/orders");
-                            }}
-                          >
-                            <small>Orders</small>
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  );
-                } else {
-                  return (
-                    <>
-                      <div
-                        onClick={() => {
-                          setShowProfileSection((prev) => !prev);
-                        }}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <LoginIcon />
-                      </div>
-                      {showProfileSecton && (
-                        <div
-                          style={{ display: "flex", flexDirection: "column" }}
-                        >
-                          <div
-                            style={{ width: "100%", cursor: "pointer" }}
-                            onClick={() => {
-                              navigate("/login");
-                            }}
-                          >
-                            <small>Login </small>{" "}
-                          </div>
-                          <div
-                            style={{ width: "100%", cursor: "pointer" }}
-                            onClick={() => {
-                              navigate("/signup");
-                            }}
-                          >
-                            <small>Signup</small>
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  );
-                }
-              }}
-            </AuthContext.Consumer>
-          </div>
-
-          <div className="p-1 ">
-            <a href="/checkout">
-              <Badge badgeContent={cartItems} color="primary">
-                <LocalMallIcon className="text-black" />{" "}
-              </Badge>
-            </a>
-          </div>
-        </div>
-      </div> */}
       {/* title div */}
-      <div className="d-flex justify-contentx-between px115">
-        <div className="text-start">
-          <a
-            href="/home"
-            className="text-decoration-none text-start text-black"
-          >
+      <div className="  bg-white">
+        <div className="d-flex justify-content-between px115">
+          <a href="/home" className="text-decoration-none text-black mx-auto">
             <h1 className="fw-bold text44 ps-1">ICONIVE</h1>
           </a>
         </div>
-        <div className="w-50 d-flex">
-          <a href="/home" className="text-decoration-none mx-auto text-black">
-            <h1 className="fw-bold pe-5 mb-auto mx-auto w-50">ICONIVE</h1>
-          </a>
-        </div>
-
-        <div className="w-25 d-flex py-4 justify-end">
-          <div class="d-flex border rounded-3 ms-auto overflow-hidden">
-            <input
-              class="border-0 my-auto  me-2 py-1"
-              type="search"
-              placeholder=" Search wigs"
-              aria-label="Search"
-            />
-            <SearchIcon className="text-black me-2 my-auto" />
-          </div>
-          <div className="my-auto me-4 h-100">
-            <button className="btn h-100 ms-2 btn-warning px-3 py-1 rounded-3 text-light my-auto">
-              Wholesale
-            </button>
-          </div>
-        </div>
       </div>
-      <Navbar bg="light" expand="lg py-0">
-        <Container className="h-100">
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto gap-4 d-flex mx-auto position-relative">
-              <Nav.Link href="/home" className="text-black drop">
-                Home
-              </Nav.Link>
-              <Nav.Link href="#home" className="text-black drop">
-                Hair Solution
-              </Nav.Link>
-              <Nav.Link
+      <div className=" sticky-top bg-white shadow">
+        <div className="d-flex mx-auto  justify-content-between px115">
+          <div className="my-auto d-flex w12 text-start ">
+            <div className="my-auto d-flex text-18 ps-5 pe-3 py-1 bg-light useBtn form-check form-switch">
+              <input
+                className="my-auto form-check-input ps-2 me-2 btnCheckUse "
+                type="checkbox"
+                id="flexSwitchCheckChecked"
                 onClick={() => {
-                  setCollectionDropdown((prevs) => {
-                    return !prevs;
+                  setCurrency((prevs) => {
+                    return prevs === "BDT" ? "USD" : "BDT";
                   });
                 }}
-                className="text-black drop"
-              >
-                Collections
-              </Nav.Link>
-              {CollectionDropdown && (
-                <div className=" w-100 container d-flex position-absolute z-100 mt-50 bg-white">
-                  <a
-                    href="/catagory"
-                    className="text-decoration-none w-25 drop"
-                  >
-                    <div className="w-100 p-4 border-end ">
-                      <div className="w-100 ">
-                        <img
-                          src={maleCollection}
-                          alt="This is an Image"
-                          className="w-100"
-                        />
-                      </div>
-                      <a
-                        href="/catagory"
-                        className="text-decoration-none text-dark fw-bold "
-                      >
-                        <h6 className="mt-2 fw-bold ">Gents Wigs</h6>
-                      </a>
-                    </div>
-                  </a>
-                  <a
-                    href="/catagory"
-                    className="text-decoration-none w-25 drop"
-                  >
-                    <div className="w-100 p-4 border-end ">
-                      <div className="w-100 ">
-                        <img
-                          src={femaleCollection}
-                          alt="This is an Image"
-                          className="w-100"
-                        />
-                      </div>
-                      <a
-                        href="/catagory"
-                        className="text-decoration-none text-dark fw-bold "
-                      >
-                        {" "}
-                        <h6 className="mt-2 fw-bold ">Ladis Wigs</h6>
-                      </a>
-                    </div>
-                  </a>
-                  <a
-                    href="/catagory"
-                    className="text-decoration-none w-25 drop"
-                  >
-                    <div className="w-100 p-4 border-end">
-                      <div className="w-100 ">
-                        <img
-                          src={Rawhair}
-                          alt="This is an Image"
-                          className="w-100"
-                        />
-                      </div>
-                      <a
-                        href="/catagory"
-                        className="text-decoration-none text-dark fw-bold "
-                      >
-                        <h6 className="mt-2 fw-bold ">Raw Hair</h6>
-                      </a>
-                    </div>
-                  </a>
-                  <a
-                    href="/catagory"
-                    className="text-decoration-none w-25 drop"
-                  >
-                    <div className="w-100 p-4 ">
-                      <div className="w-100 ">
-                        <img
-                          src={Accessories}
-                          alt="This is an Image"
-                          className="w-100"
-                        />
-                      </div>
-                      <a
-                        href="/catagory"
-                        className="text-decoration-none text-dark fw-bold "
-                      >
-                        <h6 className="mt-2 fw-bold ">Accessories</h6>
-                      </a>
-                    </div>
-                  </a>
-                </div>
-              )}
+              />
+
+              <label class=" text-16 my-auto" for="flexSwitchCheckChecked">
+                {/* {usdCheck ? (
+                  <p className="my-auto ms-1">BDT</p>
+                ) : (
+                  <p className="my-auto ms-1">USD</p>
+                )} */}
+                <p className="my-auto ms-1">{currency}</p>
+              </label>
+            </div>
+          </div>
+          <Navbar expand="lg m-auto " className="">
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto gap-4 d-flex mx-auto position-relative">
+                <Nav.Link href="/home" className="text-black text-nav  drop">
+                  HOME
+                </Nav.Link>
+
+                <Nav.Link
+                  onClick={() => {
+                    setCollectionDropdown((prevs) => {
+                      return !prevs;
+                    });
+                  }}
+                  className="text-black drop  text-nav"
+                >
+                  SHOP
+                </Nav.Link>
 
                 <Nav.Link
                   href="#home"
-                  className="text-black text-nav text-uppercase"
+                  className="text-black text-nav text-uppercase drop"
                 >
                   {" "}
                   Guide ME
@@ -356,13 +182,20 @@ export default function Navigation({ renderer, currency, setCurrency }) {
                   Offers
                 </Nav.Link>
                 <Nav.Link
-                  href="#home"
+                  href="/joinus"
                   className="text-black text-nav text-uppercase drop"
                 >
                   JOIN US
                 </Nav.Link>
                 <Nav.Link
                   href="#home"
+                  className="text-black text-nav text-uppercase drop"
+                >
+                  {" "}
+                  BLOG
+                </Nav.Link>
+                <Nav.Link
+                  href="/wholesale"
                   className="text-warning text-nav text-uppercase drop"
                 >
                   Wholesale
@@ -370,33 +203,110 @@ export default function Navigation({ renderer, currency, setCurrency }) {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
+          <div className="d-flex  my-auto gap-1 w12 justify-content-end">
+            <div className="m-auto  ">
+              <img width={"20"} src={search} alt="this is an icon" />
+            </div>
+            <div className="m-auto ">
+              <img width={"27"} src={wish} alt="this is an icon" />
+            </div>
+            <div className="m-auto">
+              <a href="/checkout">
+                <Badge badgeContent={cartItems} color="primary">
+                  <img width={"25"} src={cart} alt="this is an icon" />
+                </Badge>
+              </a>
+            </div>
+            {user ? (
+              <div className="m-auto">
+                <a href="/profile" className="text-decoration-none">
+                  <div className="shadow rounded-circle bg-themeYellow w-36px d-flex ">
+                    <h5 className=" m-auto fw-bold text-light">
+                      {user.name[0].toUpperCase()}
+                    </h5>
+                  </div>
+                </a>
+              </div>
+            ) : (
+              <div
+                style={{
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                <LoginOutlined />
+              </div>
+            )}
+          </div>
         </div>
-
-        <div className="d-flex  my-auto gap-3">
-          <div className="m-auto  ">
-            <img src={search} alt="this is an icon" />
-          </div>
-          <div className="m-auto ">
-            <img src={wish} alt="this is an icon" />
-          </div>
-          <div className="m-auto">
-            <a href="/checkout">
-              <Badge badgeContent={cartItems} color="primary">
-                <img src={cart} alt="this is an icon" />
-              </Badge>
+        {CollectionDropdown && (
+          <div className=" w-100  d-flex position-absolute z-100 bg-white p-0 shadow-lg navOpen">
+            <a
+              href="/catagory"
+              className="text-decoration-none w-25 drop p-4 border-end"
+            >
+              <div className="w-100 ">
+                <div className="">
+                  <img
+                    src={maleCollection}
+                    alt="This is an Image"
+                    className="w-100"
+                  />
+                </div>
+                <a href="/catagory" className="text-decoration-none text-dark">
+                  <p className="mt-3 text-18 nav-drop">Gents Wigs</p>
+                </a>
+              </div>
+            </a>
+            <a
+              href="/catagory"
+              className="text-decoration-none w-25 drop p-4 border-end"
+            >
+              <div className="w-100  ">
+                <div className="w-100 ">
+                  <img
+                    src={femaleCollection}
+                    alt="This is an Image"
+                    className="w-100"
+                  />
+                </div>
+                <a href="/catagory" className="text-decoration-none text-dark ">
+                  <p className="mt-3 text-18 nav-drop">Ladies Wigs</p>
+                </a>
+              </div>
+            </a>
+            <a
+              href="/catagory"
+              className="text-decoration-none w-25 drop p-4 border-end"
+            >
+              <div className="w-100 ">
+                <div className="w-100 ">
+                  <img src={Rawhair} alt="This is an Image" className="w-100" />
+                </div>
+                <a href="/catagory" className="text-decoration-none text-dark ">
+                  <p className="mt-3 nav-drop text-18">Raw Hair</p>
+                </a>
+              </div>
+            </a>
+            <a href="/catagory" className="text-decoration-none w-25 drop p-4">
+              <div className="w-100">
+                <div className="w-100 ">
+                  <img
+                    src={Accessories}
+                    alt="This is an Image"
+                    className="w-100"
+                  />
+                </div>
+                <a href="/catagory" className="text-decoration-none text-dark ">
+                  <p className="mt-3 text-18 nav-drop">Accessories</p>
+                </a>
+              </div>
             </a>
           </div>
-          <div className="m-auto">
-            <a href="/profile">
-              <img
-                src={profile}
-                className="shadow-lg rounded-circle"
-                alt="this is an icon"
-              />
-            </a>
-          </div>
-        </div>
+        )}
       </div>
-    </div>
+    </>
   );
 }

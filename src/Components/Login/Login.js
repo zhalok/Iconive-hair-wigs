@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useContext, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
@@ -9,6 +10,9 @@ import Cookies from "js-cookie";
 import AuthContext from "../../Contexts/AuthContext";
 import { PulseLoader } from "react-spinners";
 import { useSearchParams } from "react-router-dom";
+import flogo from "../Images/login/facebookicon.svg";
+import glogo from "../Images/login/gmailicon.svg";
+import logbanner from "../Images/login/login.png";
 // import {auth,provider} from './config.js'
 // import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
@@ -79,20 +83,34 @@ const Login = () => {
   return (
     <>
       <div className="text-center d-flex ">
-        <div className="d-flex shadow-lg mx-auto my-5 marginTopBot">
-          <div className="w-50 d-flex mx-4">
-            <img src={logo} alt="login img" className="m-auto" width="50%" />
+        <div className="w-50 d-flex shadow-theme-sign mx-auto my-5 bg-signup marginTopBot">
+          <div className="w-50 d-flex">
+            <img
+              src={logbanner}
+              alt="login img"
+              className="m-auto"
+              width="100%"
+            />
           </div>
-          <div className="w-50">
-            <Container className="border-start p-5">
-              <h4 className="pt-5 pb-3 text-theme-dark border-theme mx-auto">
-                Log-In
-              </h4>
-              <div className="my-5 ">
+          <div className="w-50 w-50  rounded-theme11 my-auto ">
+            <Container className="border-start w-100 text-start">
+              <p className="pt-5 ps-5 pb-0 mb-0 text-theme-dark  text-28 mx-auto ">
+                Login Here
+              </p>
+              <p className="ps-5 pt-1">
+                New to Iconive ?
+                <Link
+                  to="/signup"
+                  className="text-dark pb-1 border-bottom border-dark text-decoration-none pb-1 ms-2 text-shadow"
+                >
+                  Sign Up
+                </Link>
+              </p>
+              <div className="text-center p-5 ">
                 <form>
                   <input
                     type="email"
-                    className="form-control mx-auto"
+                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
                     placeholder="Email"
                     value={email}
                     onChange={handleEmailchange}
@@ -100,8 +118,8 @@ const Login = () => {
                   <br />
                   <input
                     type="password"
-                    className="form-control mx-auto"
                     placeholder="Password"
+                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
                     value={pass}
                     onChange={handlePassChange}
                   />
@@ -111,7 +129,7 @@ const Login = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="btn btn-dark px-5 py-2 text-light rounded-0"
+                      className="btn btn-theme-up px-5 py-2 my-4 text-light "
                       value="Login"
                       // onClick={handleLogin}
                       onClick={() => {
@@ -123,19 +141,16 @@ const Login = () => {
                   )}
                 </form>
                 <small className="text-danger">{error}</small>
-                <p className="my-4 ">
-                  New to Iconive ?
-                  <Link to="/signup" className="ms-2">
-                    Sign Up
-                  </Link>
-                </p>
-                <button
-                  // onClick={handleGoogleLogin}
-                  className="btn-light my-2 px-5 py-2 btn shadow mb-5"
-                >
-                  <GoogleIcon />
-                  Continue with Google
-                </button>
+
+                <div className="d-flex mx-auto text-center">
+                  <span
+                    // onClick={handleGoogleLogin}
+                    className="mx-auto"
+                  >
+                    <img src={glogo} className="me-2" />
+                    <img src={flogo} className="" />
+                  </span>
+                </div>
               </div>
             </Container>
           </div>

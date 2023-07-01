@@ -8,6 +8,7 @@ import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
 import AuthContext from "../../Contexts/AuthContext";
 import currencyConverter from "../../utils/CurrencyChanger";
+import CurrencyContext from "../../Contexts/CurrencyContext";
 
 export default function Checkout(props) {
   const [cartItems, setCartItems] = useState(null);
@@ -25,11 +26,11 @@ export default function Checkout(props) {
   const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState();
   const [postalCode, setPostalCode] = useState("");
-  const [currency, setCurrency] = useState("USD");
 
   const auth = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
+  const { currency, setCurrency } = useContext(CurrencyContext);
 
   const discardCartItem = (product) => {
     const cart = localStorage.getItem("cart");
@@ -55,9 +56,9 @@ export default function Checkout(props) {
     setProductTotal(total);
   };
 
-  useEffect(() => {
-    setCurrency(props.currency);
-  }, [props?.currency]);
+  // useEffect(() => {
+  //   setCurrency(props.currency);
+  // }, [props?.currency]);
 
   useEffect(() => {
     if (selectedCountry) {
@@ -86,11 +87,14 @@ export default function Checkout(props) {
 
     if (cart) {
       setCartItems(JSON.parse(cart));
+      console.log(cartItems);
     }
   }, []);
 
   useEffect(() => {
-    calculateTotal();
+    if (cartItems && Array.isArray(cartItems)) {
+      calculateTotal();
+    }
   }, [cartItems]);
 
   useEffect(() => {
@@ -125,7 +129,7 @@ export default function Checkout(props) {
       country: Country.getCountryByCode(selectedCountry).name,
       city: selectedCity,
       state: selectedState,
-      postalCode,
+      postalCode: "123",
     };
     if (
       !name ||
@@ -133,20 +137,22 @@ export default function Checkout(props) {
       !address ||
       !email ||
       !selectedCity ||
-      !selectedCountry ||
-      !postalCode
+      !selectedCountry
     ) {
       alert("FIll necessary informations");
       return;
     }
 
     const token = Cookies.get("jwt");
+
     if (!token) {
+      // alert("")
       localStorage.setItem("billingInfo", JSON.stringify(billingInfo));
       navigate("/login?proceeedToCheckout=true");
       return;
     }
     const cart = localStorage.getItem("cart");
+
     if (cart) {
       const cartItems = JSON.parse(cart);
       console.log("Cart Items", cartItems);
@@ -162,7 +168,8 @@ export default function Checkout(props) {
           {
             billingInfo,
             cartItems,
-            currency: props.currency,
+            currency,
+            deliveryCharge,
           },
           {
             headers: {
@@ -175,7 +182,7 @@ export default function Checkout(props) {
         localStorage.removeItem("billingInfo");
         localStorage.removeItem("cart");
         const order = orderResponse.data;
-        window.location.reload();
+        // window.location.reload();
 
         const paymentResponse = await axios.post(
           `/payment/create/${order._id}`,
@@ -204,7 +211,7 @@ export default function Checkout(props) {
         <div className="top-banner ">
           <div className="xyauto">
             <h3 className="big-txt text-dark">Checkout</h3>
-            <p className="">Home / Checkout</p>
+            <p className="text-theme-gray">Home / Checkout</p>
           </div>
         </div>
 
@@ -212,17 +219,23 @@ export default function Checkout(props) {
         <div className="container py-5 ">
           <div className="row  shadow">
             <div className="col-8 p-4 ">
-              {!auth && (
-                <div className="text-start mb-5">
-                  <h4 className="mb-3">Already registered?</h4>
-                  <button className="btn btn-theme border-0 text-light rounded-3 px-4 fs-6">
-                    <small>CLICK HERE TO LOGIN</small>
-                  </button>
-                </div>
-              )}
-              <h4 className="text-theme text-start ">Delivery Address</h4>
+              {/* {!auth && ( */}
+              <div className="text-start my-4  d-flex">
+                <h5 className="">Already registered?</h5>
+
+                <h5>
+                  <a
+                    className="text-decoration-none border-bottom border-dark pb-0 text-dark fw-bold ms-2"
+                    href="/signup"
+                  >
+                    Login Here
+                  </a>
+                </h5>
+              </div>
+              {/* )} */}
+              <h4 className="text-dark text-start fw-bold">Delivery Address</h4>
               <form action="" className="text-center pe-4">
-                <div className="d-flex pt-4">
+                <div className="d-flex py-4">
                   <div className="w-50 pe-lg-4">
                     <p className="text-start mb-1">Name</p>
                     <input
@@ -252,7 +265,7 @@ export default function Checkout(props) {
                     />
                   </div>
                 </div>
-                <div className="d-flex pt-4">
+                <div className="d-flex py-3">
                   <div className="w-50 pe-lg-4">
                     <p className="text-start mb-1 d-flex">
                       Email <span className="spanRed"> *</span>
@@ -278,11 +291,11 @@ export default function Checkout(props) {
                       onChange={(e) => {
                         setAltPhone(e.target.value);
                       }}
-                      className="w-100 h-75  px-2 rounded-0 border-1"
+                      className="w-100 h-75  px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
                 </div>
-                <div className="d-flex pt-4 ">
+                <div className="d-flex py-3 ">
                   <div className="w-50 pe-lg-4">
                     <p className="text-start mb-1">
                       Address<span className="spanRed">*</span>
@@ -291,7 +304,7 @@ export default function Checkout(props) {
                       type="text"
                       name="contactName"
                       id=""
-                      className="w-100 h-75 px-2 rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                       value={address}
                       onChange={(e) => {
                         setAddress(e.target.value);
@@ -318,7 +331,7 @@ export default function Checkout(props) {
                   </div>
                 </div>
 
-                <div className="d-flex pt-4 ">
+                <div className="d-flex pt-4 pb-2 ">
                   <div className="w-50 pe-lg-4">
                     <p className="text-start mb-1">
                       City<span className="spanRed">*</span>
@@ -337,13 +350,13 @@ export default function Checkout(props) {
                     </select>
                   </div>
 
-                  <div className="w-50 pe-lg-4">
+                  <div className="w-50">
                     <p className="text-start mb-1">
                       State<span className="spanRed">*</span>
                     </p>
 
                     <select
-                      className="w-100 h-75 px-2rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                       value={selectedState}
                       onChange={(e) => {
                         setSelectedState(e.target.value);
@@ -356,7 +369,7 @@ export default function Checkout(props) {
                   </div>
                 </div>
 
-                <div className="d-flex pt-4">
+                {/* <div className="d-flex pt-4">
                   <div className="w-50 ">
                     <p className="text-start mb-1 mr-auto">
                       Postal Code<span className="spanRed">*</span>
@@ -369,10 +382,10 @@ export default function Checkout(props) {
                       onChange={(e) => {
                         setPostalCode(e.target.value);
                       }}
-                      className="w-100 h-75 px-2 rounded-0 border-1"
+                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="d-flex pt-4">
                   <div className="w-50 "></div>
@@ -384,8 +397,8 @@ export default function Checkout(props) {
                 ) : (
                   <input
                     type="submit"
-                    value="CHECKOUT"
-                    className="border-0 btn-dark text-white px-5 py-3 my-5 w-100 pe-4"
+                    value="CHECK OUT"
+                    className="border-0 btn-theme-check text-white mx-auto my-4 w-50 pe-4"
                     onClick={(e) => {
                       e.preventDefault();
                       // console.log(cartItems);
@@ -427,14 +440,12 @@ export default function Checkout(props) {
                 </div>
                 <div className="d-flex justify-content-between my-2 border-bottom">
                   <h6 className="fw-bold">Products </h6>
-                  {currency != undefined ? (
+                  {
                     <p>
                       {currency == "USD" ? "$" : "৳"}
                       {currencyConverter(currency, productTotal)}
                     </p>
-                  ) : (
-                    <PulseLoader />
-                  )}
+                  }
                 </div>
                 <div className="d-flex justify-content-between  my-2 border-2 border-bottom">
                   <h6 className="fw-bold">Subtotal </h6>

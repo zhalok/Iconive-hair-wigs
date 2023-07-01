@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Collection from "./image/Collections.png";
-import maleCollection from "./image/malecollection.png";
-import femaleCollection from "./image/femaleCollections.png";
-import Rawhair from "./image/Rawhair.png";
-import Accessories from "./image/Accessories.png";
+import Collection from "./image/Collections.jpg";
+import maleCollection from "./image/malecollection.jpg";
+import femaleCollection from "./image/femaleCollections.jpg";
+import Rawhair from "./image/Rawhair.jpg";
+import Accessories from "./image/Accessories.jpg";
 import down from "./icons/downArrow.svg";
 import card1 from "./image/cardh1.jpg";
 import "./Category.css";
@@ -22,15 +22,21 @@ import { Cookie } from "@mui/icons-material";
 import { useSearchParams } from "react-router-dom";
 import apiLayerAxios from "../../utils/apiLayerAxios";
 import CollectionCard from "../../Components/Collections/CollectionCard";
+import CurrencyContext from "../../Contexts/CurrencyContext";
+
 // import { useNavigate } from "react-router-dom";
 
-export default function Category({ currency }) {
+export default function Category({}) {
   const [topbanner, setTopBanner] = useState(0);
   const [products, setProducts] = useState([]);
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
+  const { currency, setCurrency } = useContext(CurrencyContext);
+  const [currencyLoading, setCurrencyLoading] = useState(false);
+  // const [filters, setFilters] = useState({});
 
+  // console.log(currency);
   const getCategories = async () => {
     try {
       const response = await axios.get("/category/getCategory");
@@ -43,7 +49,7 @@ export default function Category({ currency }) {
   const getProducts = async () => {
     try {
       const response = await axios.get("/products", {
-        params: filters,
+        params: { filters: filters },
       });
 
       setProducts(response.data);
@@ -52,7 +58,9 @@ export default function Category({ currency }) {
 
   useEffect(() => {
     getProducts();
+    console.log(filters);
   }, [filters]);
+
   useEffect(() => {
     getCategories();
   }, []);
@@ -66,30 +74,30 @@ export default function Category({ currency }) {
   return (
     <>
       <div>
-        <div className=" py-4 border-bottom">
-          <div className="px120 text-start my-1 d-flex text-18">
+        {/* <div className=" py-4 border-bottom">
+          <div className="px120 text-start mt-1 d-flex text-18">
             <a
               href="/home"
-              className="text-decoration-none  f-18 text-theme-gray text-uppercase"
+              className="text-decoration-none f-16 text-theme-gray text-uppercase"
             >
               Home
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
-              href="/home"
-              className="text-decoration-none f-18 text-theme-gray text-uppercase"
+              href="/catagory"
+              className="text-decoration-none f-16  text-theme-gray text-uppercase"
             >
               cATAGORIES
             </a>
             <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
             <a
               href="/home"
-              className="text-decoration-none text-black f-18 text-uppercase "
+              className="text-decoration-none f-16 text-black  text-uppercase "
             >
               Gents wig
             </a>
           </div>
-        </div>
+        </div> */}
 
         <div className="w-100 ">
           <div className="d-flex">
@@ -134,10 +142,40 @@ export default function Category({ currency }) {
                   </p>
                   <img src={filter} alt="this is an image" />
                 </div>
+                <div className="w-50 ms-auto">
+                  <form class="d-flex w-75 ">
+                    <input
+                      class="form-control rounded-0"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                    <button
+                      class="btn btn-secondary rounded-0 py-1"
+                      type="submit"
+                    >
+                      Search
+                    </button>
+                  </form>
+                </div>
 
                 <div className="my-auto d-flex pe-5 gap-5">
-                  <p className="text-16 text-theme-gray">SORT BY</p>
-                  <p className="text-16 text-theme-gray">PRICE</p>
+                  <p className="text-16 text-theme-gray my-auto">SORT BY</p>
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-secondary btn-sm dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Price
+                    </button>
+                    <ul class="dropdown-menu p-2 text-13 ">
+                      <li>Price (High to Low)</li>
+                      <li className="py-2">Price (Low to High)</li>
+                      <li>A to Z</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
@@ -151,9 +189,14 @@ export default function Category({ currency }) {
                       </p>
                     </div>
                     {/* Gents Wig */}
-                    {categories.map((category) => {
+                    {categories.map((category, index) => {
                       return (
-                        <div className="border-top border-1 border-secondary py-4">
+                        <div
+                          className="border-top border-1 border-secondary py-4"
+                          // onClick={() => {
+                          //   console.log("hello world");
+                          // }}
+                        >
                           <div className="text-black d-flex ">
                             <p className="text-18 text-start text-theme-gray mb-0 pt-1">
                               {category.name}
@@ -162,71 +205,112 @@ export default function Category({ currency }) {
                               className="ms-auto my-auto"
                               onClick={() => {
                                 setShowSubCategory((prevState) => {
-                                  if (prevState != category._id) {
-                                    setFilters({
-                                      category: category._id,
-                                    });
-                                  } else {
-                                    setFilters({});
-                                  }
-
-                                return prevState != category._id
-                                  ? category._id
-                                  : "";
-                              });
-                            }}
-                          >
-                            {showSubCategory !== category._id ? (
-                              <ExpandMoreIcon className="my-auto" />
-                            ) : (
-                              <KeyboardArrowUpIcon className="my-auto" />
-                            )}
-                          </p>
-                        </div>
-                        {showSubCategory === category._id && (
-                          <div className=" text-black border-top pt-2">
-                            {category.subcategories?.map((subcategory) => {
-                              return (
-                                <div
-                                  className="ps-2  d-flex f-18"
+                                  return prevState != category._id
+                                    ? category._id
+                                    : "";
+                                });
+                              }}
+                            >
+                              {showSubCategory !== category._id ? (
+                                <ExpandMoreIcon
                                   onClick={() => {
-                                    setFilters((prev) => {
-                                      prev["subCategory"] = subcategory._id;
-                                      return { ...prev };
-                                    });
+                                    setTopBanner(index + 1);
                                   }}
-                                >
-                                  <p className="f-16 Chover">
-                                    {subcategory.name}
-                                  </p>
-                                </div>
-                              );
-                            })}
+                                  className="my-auto"
+                                />
+                              ) : (
+                                <KeyboardArrowUpIcon
+                                  onClick={() => {
+                                    setTopBanner(0);
+                                  }}
+                                  className="my-auto"
+                                />
+                              )}
+                            </p>
                           </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                          {showSubCategory === category._id && (
+                            <div className=" text-theme-gray  pt-2">
+                              {category.subcategories?.map((subcategory) => {
+                                return (
+                                  <div
+                                    className="ps-2  d-flex f-18 my-3"
+                                    onClick={() => {
+                                      setFilters((prev) => {
+                                        const uniq =
+                                          category._id + " " + subcategory._id;
+                                        if (prev.includes(uniq)) {
+                                          return prev.filter((item) => {
+                                            return item !== uniq;
+                                          });
+                                        } else {
+                                          return [...prev, uniq];
+                                        }
+                                        // console.log("prevstate", prev);
+
+                                        // if (
+                                        //   prev.includes({
+                                        //     category: category._id,
+                                        //     subcategory: subcategory._id,
+                                        //   })
+                                        // ) {
+                                        //   prev.filter((item) => {
+                                        //     return (
+                                        //       item.category !== category._id &&
+                                        //       item.subcategory !==
+                                        //         subcategory._id
+                                        //     );
+                                        //   });
+                                        // } else {
+                                        //   prev.push({
+                                        //     category: category._id,
+                                        //     subcategory: subcategory._id,
+                                        //   });
+                                        // }
+                                        return [...prev];
+                                      });
+                                    }}
+                                  >
+                                    {" "}
+                                    <input
+                                      class="form-check-input checkCatagory my-auto"
+                                      type="checkbox"
+                                      id="checkboxNoLabel"
+                                      // value={filters.subCategory.includes(
+                                      //   subcategory._id
+                                      // )}
+                                      aria-label="..."
+                                    />
+                                    <p className="text-14 text-start Chover ms-3 my-auto">
+                                      {subcategory.name}
+                                    </p>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="m-auto pt-2 overFlow rounded-iconive">
+                    <img
+                      src={sidebarimg}
+                      alt="this is an image "
+                      className="w-100 m-auto sidebarImg"
+                    />
+                  </div>
                 </div>
 
                 <div className="w-80 ps-5 text-center">
-                  {/* <div>
-                    <h5 className=" fw-bolder">Collections</h5>
-                    <p className="pt-2 fw-lighter"></p>
-                  </div> */}
-
                   <div className="d-flex w-100 flex-wrap gap-4 mx-auto justify-content-center">
                     {products.map((product, index) => (
-                      <CollectionCard
-                        productId={product._id}
-                        currency={currency}
-                      />
+                      <>
+                        <CollectionCard productId={product._id} index={index} />
+                      </>
                     ))}
                   </div>
                 </div>
               </div>
-
-              {/* <ProductModal id="modalID"></ProductModal> */}
             </div>
           </div>
         </div>
