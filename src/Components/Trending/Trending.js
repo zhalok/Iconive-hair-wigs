@@ -9,6 +9,7 @@ import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import currencyConverter from "../../utils/CurrencyChanger";
+import CollectionCard from "../Collections/CollectionCard";
 
 export default function Trending() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Trending() {
   const getNewArrivals = async () => {
     try {
       const response = await axios.get("/filterProducts/newArrivals");
-      console.log(response.data);
+      console.log("Latest", response.data);
       setNewArrivals(response.data);
     } catch (e) {
       console.log(e);
@@ -43,55 +44,10 @@ export default function Trending() {
           </p>
         </div>
         <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center">
-          {newArrivals.map((product, index) => (
-            <div
-              key={index}
-              className="card-main border rounded-iconive w-25"
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                navigate(`/ProductDetails/${product._id}`);
-              }}
-            >
-              <div className="img-card">
-                <img
-                  className="w-100 h-100"
-                  src={product.photo}
-                  alt="This  is an  picture"
-                />
-              </div>
-              <div className="text-start p-3">
-                <p className=" fw-bold text-16 text-dark">{product.name}</p>
-                <p className="m-0 py-0 text-12 text-theme-gray">
-                  {product.description}
-                </p>
-                <div className="d-flex justify-content-between mt-4">
-                  <p className="text-20 fw-bold text-dark my-auto pt-1">
-                    {currency == "USD" ? "$" : "৳"}
-                    {currencyConverter(currency, product.price)}
-                  </p>
-                  <div className="d-flex">
-                    <button className="btn px-0 mt-1">
-                      {" "}
-                      <img src={cardicon2} className="" alt="this is an icon" />
-                    </button>
-                    <button
-                      className="btn ps-2 my-auto"
-                      onClick={() => {
-                        navigate(`/ProductDetails/${product._id}`);
-                      }}
-                    >
-                      {" "}
-                      <img
-                        src={cardicon1}
-                        className="w-100 "
-                        alt="this is an icon"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+          {newArrivals.map((product, index) => {
+            // console.log(product._id);
+            return <CollectionCard productId={product._id} index={index} />;
+          })}
         </div>
         <div className="mb-5 mt-4 d-flex flex-column text-center">
           <button

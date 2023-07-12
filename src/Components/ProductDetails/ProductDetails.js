@@ -25,6 +25,7 @@ import CartItem from "../CartItem/CartItem";
 import { PulseLoader } from "react-spinners";
 import AuthContext from "../../Contexts/AuthContext";
 import Cookies from "js-cookie";
+import CartDrawer from "../Drawer/CartDrawer";
 
 export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const [inWishList, setInWishList] = useState(false);
   const [wishlistloading, setWishlistloading] = useState(false);
   const { user } = useContext(AuthContext);
+  const { showCartDrawer, setShowCartDrawer } = useContext(CartContext);
 
   const checkWishList = async () => {
     try {
@@ -131,7 +133,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
-    console.log(cart);
+    // console.log(cart);
     if (cart) {
       setCartItems(JSON.parse(cart));
     }
@@ -297,7 +299,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
             <div className="text-start">
               {/* color */}
               <p className="text-secondary pt-3 ">Color :</p>
-              <div className="d-flex gap-2">
+              <div className="row row-cols-4 gap-2">
                 {productDetails.colors.map((e) => {
                   return (
                     <div
@@ -323,6 +325,9 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                       <button
                         className="btn btn-dark rounded-circle px-3 py-3 text-dark fs-6"
                         style={{ backgroundColor: e?.color }}
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        title="Tooltip on bottom"
                       >
                         {/* {e.name} */}
                       </button>
@@ -502,71 +507,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                 )}
               </div>
               {/* off canvas */}
-              {showOffCanvas && (
-                <div
-                  // class="offcanvas offcanvas-end"
-                  // tabindex="-1"
-                  id="offcanvasRight"
-                  aria-labelledby="offcanvasRightLabel"
-                >
-                  <div class="offcanvas-header">
-                    <h5 id="offcanvasRightLabel">Shopping Cart</h5>
-                    <button
-                      type="button"
-                      class="btn-close text-reset"
-                      data-bs-dismiss="offcanvas"
-                      aria-label="Close"
-                      onClick={() => {
-                        setShowOffCanvas(false);
-                      }}
-                    ></button>
-                  </div>
-
-                  <div class="offcanvas-body">
-                    {cartItems &&
-                      cartItems.map((cartItem, index) => (
-                        <div
-                          key={index}
-                          className="w-100 text-start p-3 border-bottom border-1"
-                        >
-                          <CartItem
-                            id={cartItem.product}
-                            addOns={cartItem.addons}
-                            quantity={cartItem.amount}
-                            discardCartItem={discardCartItem}
-                            setCartItems={setCartItems}
-                            setProductTotal={setProductTotal}
-                            price={cartItem.price}
-                            setCartAdded={setCartAdded}
-                            setCartRenderer={setCartRenderer}
-                          />
-                        </div>
-                      ))}
-                    <div className="mt-5">
-                      <div className="d-flex justify-content-between fw-bold px-3">
-                        <p>Grand Total :</p>
-                        <p>$1200</p>
-                      </div>
-                      <p className="text-14 ps-3">
-                        Taxes and shipping calculated at checkout
-                      </p>
-
-                      <div className="d-flex px-3 gap-3">
-                        <a href="/checkout" className="w-50">
-                          <button className="btn btn-chek w-100 text-light py-2">
-                            CHECK OUT
-                          </button>
-                        </a>
-                        <a className="w-50 h-100" href="/catagory">
-                          <button className="w-100 h-100 btn btn-secondary rounded-10 py-2">
-                            ADD MORE
-                          </button>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
+              {showOffCanvas && <></>}
             </div>
           </div>
         </div>

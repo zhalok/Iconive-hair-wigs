@@ -19,7 +19,7 @@ export default function TopSelling() {
   const getMostSold = async () => {
     try {
       const response = await axios.get("/filterProducts/mostSold");
-      console.log(response.data);
+      console.log("Top Selling", response.data);
       setMostSold(response.data);
     } catch (e) {
       console.log(e);

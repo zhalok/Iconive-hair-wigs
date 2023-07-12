@@ -33,9 +33,23 @@
   border: 1px dashed #0000004b;
   border-radius: 2px;
 }
-.h-333 {
-  height: 233px;
+.text-gray {
+  color: #00000060;
 }
-.text-black {
-  color: #000 !important;
+.text-16 {
+  font-size: 16px;
+}
+.drop:hover {
+  font-weight: 600;
+  border-bottom: #ecb30a solid 2px;
+  color: #ecb30a !important;
+  cursor: pointer;
+}
+
+.text-themeY {
+  color: #ecb30a;
+  border-bottom: #ecb30a solid 2px;
+}
+.unclick {
+  border-bottom: #ffffff solid 2px;
 }
