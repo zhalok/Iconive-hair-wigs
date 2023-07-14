@@ -41,7 +41,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className=" d-flex border-start border-end flex-column my-autocol-12 col-lg-4">
+          <div className=" d-flex border-start-end flex-column my-autocol-12 col-lg-4">
             <h3 className="text-theme-gray fw-bold ">ICONIVE</h3>
             <div className="mt-4 text-dark d-flex gap-2 mx-auto">
               <a

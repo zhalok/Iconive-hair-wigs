@@ -216,7 +216,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               <div className="w-100 position-relative">
                 <img src={productDetails.photo} alt="wigs" className="w-100" />
                 {productDetails.discount !== 0 && (
-                  <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-3 rounded-circle m-3">
+                  <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-2 rounded-circle m-3">
                     <p className="fw-bold mb-0 mt-2 text-28">
                       {productDetails.discount}%
                     </p>
@@ -641,151 +641,151 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
             <h5 className=" pb-2 fs-4 fw-bold">Return & Refund policy :</h5>
             <p className="pb-0 text-theme-gray text-16">
               You have 7 calendar days to return an item from the date you
-              received it
-            </p>
-            <button
-              type="button"
-              class="btn btn-outline-secondary py-0 mx-2 text-14"
-              data-bs-toggle="modal"
-              data-bs-target="#refundandreturnpolicy"
-            >
-              Show More
-            </button>
-            <div
-              class="modal fade"
-              id="refundandreturnpolicy"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5
-                      class="modal-title fw-bold text-dark"
-                      id="exampleModalLabel"
-                    >
-                      Return & Refund Policy
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    {/* return */}
-                    <h6 className="fw-bold text-secondary border-bottom  pb-2 pt-3">
-                      Returns :{" "}
-                    </h6>
-                    <p className="text-secondary pt-2">
-                      1 .
-                      <small>
-                        You have 7 calendar days to return an item from the date
-                        you received it
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      2 .
-                      <small>
-                        To be eligible for a return, your item must be unused
-                        and in the same condition that you received it. Also-{" "}
-                      </small>
-                      <ul>
-                        <li>
-                          <small>
-                            Your item must be in the original packaging.
-                          </small>
-                        </li>
-                        <li>
-                          <small>
-                            Your item needs to have the receipt or proof of
-                            purchase.
-                          </small>
-                        </li>
-                      </ul>
-                    </p>
-                    {/* refunds: */}
-                    <h6 className="fw-bold text-secondary border-bottom  pb-2 pt-4">
-                      Refunds :{" "}
-                    </h6>
-                    <p className="text-secondary">
-                      1 .
-                      <small>
-                        Once we receive your item, we will inspect it and notify
-                        you that we have received your returned item. We will
-                        immediately notify you on the status of your refund
-                        after inspecting the item.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      2 .
-                      <small>
-                        If your return is approved, we will initiate a refund to
-                        your credit/debit card.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      3 .
-                      <small>
-                        If you find there is a problem with your order or are
-                        unhappy with your hair system in any way when you
-                        receive it please contact us immediately. Do not cut,
-                        style, color or wash the hair or wear the hair system.
-                        Our customer service team will be happy to discuss any
-                        issue with you and will be able to replace your hair
-                        system with another one if required.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      4 .
-                      <small>
-                        Please note that, If your ordered items were not stock
-                        items, 25% amount of the full payment will be deducted
-                        as service fee & rest amount will be refunded. In order
-                        to cover labor and material costs, if you cancel an
-                        order before you receive it, you will only receive a 75%
-                        refund.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      5 .
-                      <small>
-                        If you order a wrong custom made hair system by mistake,
-                        the hair system cannot be returned for a refund. If you
-                        would like us to adjust it, extra cost will be charged
-                        accordingly.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      6 .
-                      <small>
-                        You will be responsible for the hair systems until they
-                        reach us.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      7 .
-                      <small>
-                        You will receive the credit within a certain amount
-                        (usually 15-20 workdays) of days, depending on your card
-                        issuer's policies.
-                      </small>
-                    </p>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-dark"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
+              received it.
+              <button
+                type="button"
+                class="btn btn-outline-secondary py-0 mx-2 text-14"
+                data-bs-toggle="modal"
+                data-bs-target="#refundandreturnpolicy"
+              >
+                Show More
+              </button>
+              <div
+                class="modal fade"
+                id="refundandreturnpolicy"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5
+                        class="modal-title fw-bold text-dark"
+                        id="exampleModalLabel"
+                      >
+                        Return & Refund Policy
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      {/* return */}
+                      <h6 className="fw-bold text-secondary border-bottom  pb-2 pt-3">
+                        Returns :{" "}
+                      </h6>
+                      <p className="text-secondary pt-2">
+                        1 .
+                        <small>
+                          You have 7 calendar days to return an item from the
+                          date you received it
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        2 .
+                        <small>
+                          To be eligible for a return, your item must be unused
+                          and in the same condition that you received it. Also-{" "}
+                        </small>
+                        <ul>
+                          <li>
+                            <small>
+                              Your item must be in the original packaging.
+                            </small>
+                          </li>
+                          <li>
+                            <small>
+                              Your item needs to have the receipt or proof of
+                              purchase.
+                            </small>
+                          </li>
+                        </ul>
+                      </p>
+                      {/* refunds: */}
+                      <h6 className="fw-bold text-secondary border-bottom  pb-2 pt-4">
+                        Refunds :{" "}
+                      </h6>
+                      <p className="text-secondary">
+                        1 .
+                        <small>
+                          Once we receive your item, we will inspect it and
+                          notify you that we have received your returned item.
+                          We will immediately notify you on the status of your
+                          refund after inspecting the item.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        2 .
+                        <small>
+                          If your return is approved, we will initiate a refund
+                          to your credit/debit card.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        3 .
+                        <small>
+                          If you find there is a problem with your order or are
+                          unhappy with your hair system in any way when you
+                          receive it please contact us immediately. Do not cut,
+                          style, color or wash the hair or wear the hair system.
+                          Our customer service team will be happy to discuss any
+                          issue with you and will be able to replace your hair
+                          system with another one if required.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        4 .
+                        <small>
+                          Please note that, If your ordered items were not stock
+                          items, 25% amount of the full payment will be deducted
+                          as service fee & rest amount will be refunded. In
+                          order to cover labor and material costs, if you cancel
+                          an order before you receive it, you will only receive
+                          a 75% refund.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        5 .
+                        <small>
+                          If you order a wrong custom made hair system by
+                          mistake, the hair system cannot be returned for a
+                          refund. If you would like us to adjust it, extra cost
+                          will be charged accordingly.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        6 .
+                        <small>
+                          You will be responsible for the hair systems until
+                          they reach us.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        7 .
+                        <small>
+                          You will receive the credit within a certain amount
+                          (usually 15-20 workdays) of days, depending on your
+                          card issuer's policies.
+                        </small>
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-dark"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </p>
           </div>
           <div className="d-flex w-100 pb-5">
             <div className="w-100 ">

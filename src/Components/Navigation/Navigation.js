@@ -22,6 +22,7 @@ import profile from "./image/profile.svg";
 import search from "./image/search.svg";
 import wish from "./image/wishj.svg";
 import cart from "./image/cart.svg";
+import usericon from "./image/picon.png";
 import malepro from "../Images/navbar/malenav.svg";
 import femalepro from "../Images/navbar/femalenav.svg";
 import accpro from "../Images/navbar/accnav.svg";
@@ -66,7 +67,9 @@ export default function Navigation({ renderer }) {
       <div className="bg-light d-flex justify-content-between border-bottom px115 hide">
         <div className="my-auto text-dark d-flex py-2">
           <MailOutlineIcon className="text-secondary me-1 my-auto" />
-          <p className="text-14 navtxt my-auto">iconivehairwigs@gmail.com</p>
+          <p className="text-14 navtxt my-auto text-secondary">
+            info@iconivewigs.com
+          </p>
         </div>
         <div className=" text-dark d-flex gap-2">
           <a
@@ -251,7 +254,12 @@ export default function Navigation({ renderer }) {
                   navigate("/login");
                 }}
               >
-                <LoginOutlined />
+                <img
+                  width={"35"}
+                  src={usericon}
+                  alt="this is an icon"
+                  onClick={() => {}}
+                />
               </div>
             )}
           </div>
