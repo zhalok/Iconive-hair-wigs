@@ -264,27 +264,6 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                   </p>
                 )}
               </div>
-              {/* <div className="d-flex gap-3">
-              <div className="d-flex flex-column gap-3">
-                <p className="fw-bold my-auto text-20">
-                  Total: $
-                  {currencyConverter(
-                    currency,
-                    amount -
-                      (productDetails.price -
-                        (productDetails.price * productDetails.discount) / 100)
-                  )}
-                </p>
-                <button
-                  className={`btn btn-dark rounded-0 fs-6`}
-                  onClick={() => {
-                    setSelectedAddons([]);
-                  }}
-                >
-                  Remove All Add ons
-                </button>
-              </div>
-            </div> */}
             </div>
             {productDetails.rating && (
               <div className="d-flex ">
@@ -300,7 +279,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               {/* color */}
               <p className="text-secondary pt-3 ">Color :</p>
               <div className="row row-cols-4 gap-2">
-                {productDetails.colors.map((e) => {
+                {productDetails?.colors.map((e) => {
                   return (
                     <div
                       style={{
@@ -322,13 +301,26 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                         }
                       }}
                     >
-                      <button
-                        className="btn btn-dark rounded-circle px-3 py-3 text-dark fs-6"
+                      {/* <button
+                        className="btn rounded-circle px-3 py-3 text-dark fs-6"
                         style={{ backgroundColor: e?.color }}
+                      ></button> */}
+                      <img
+                        src={e.photo}
+                        height={50}
+                        width={50}
+                        style={{
+                          borderRadius: "100%",
+                          border: "1px solid black",
+                          // padding: "10px",
+                        }}
+                      />
+                      <small
+                        className="my-auto"
+                        style={{
+                          marginLeft: "10px",
+                        }}
                       >
-                        {/* {e.name} */}
-                      </button>
-                      <small className="my-auto" style={{ marginLeft: "10px" }}>
                         {e?.name}
                       </small>
                     </div>
