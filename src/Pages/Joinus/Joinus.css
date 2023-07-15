@@ -1,0 +1,24 @@
+.bg-join {
+  background: #f9f5f0;
+}
+.btn-join {
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  color: black;
+}
+.w-60 {
+  background-color: #fffbe0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.w-88 {
+  background-color: #fffbe0;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+}
+.text-komola {
+  color: #b8662a;
+}

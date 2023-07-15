@@ -74,7 +74,7 @@ export default function Category({}) {
   return (
     <>
       <div>
-        <div className=" py-4 border-bottom">
+        {/* <div className=" py-4 border-bottom">
           <div className="px120 text-start mt-1 d-flex text-18">
             <a
               href="/home"
@@ -97,7 +97,7 @@ export default function Category({}) {
               Gents wig
             </a>
           </div>
-        </div>
+        </div> */}
 
         <div className="w-100 ">
           <div className="d-flex">
@@ -170,8 +170,9 @@ export default function Category({}) {
                     >
                       Price
                     </button>
-                    <ul class="dropdown-menu p-2">
-                      <li>Price</li>
+                    <ul class="dropdown-menu p-2 text-13 ">
+                      <li>Price (High to Low)</li>
+                      <li className="py-2">Price (Low to High)</li>
                       <li>A to Z</li>
                     </ul>
                   </div>

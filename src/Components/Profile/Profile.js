@@ -89,7 +89,7 @@ export default function Profile() {
       </div> */}
 
       {/* side bar */}
-      <div className="w-100 d-flex gap-5">
+      <div className="w-100 d-flex gap-5 pt-5">
         <div className="w-20 ">
           <div className=" profile-border bg-light pt-5">
             <div className="w-100px  bg-themeYellow rounded-circle d-flex mx-auto mb-4 shadow-lg">

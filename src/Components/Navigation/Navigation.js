@@ -170,10 +170,6 @@ export default function Navigation({ renderer }) {
                   SHOP
                 </Nav.Link>
 
-                <Nav.Link href="#home" className="text-black drop text-nav">
-                  HAIR SOLUTION
-                </Nav.Link>
-
                 <Nav.Link
                   href="#home"
                   className="text-black text-nav text-uppercase drop"
@@ -195,13 +191,20 @@ export default function Navigation({ renderer }) {
                   Offers
                 </Nav.Link>
                 <Nav.Link
-                  href="#home"
+                  href="/joinus"
                   className="text-black text-nav text-uppercase drop"
                 >
                   JOIN US
                 </Nav.Link>
                 <Nav.Link
                   href="#home"
+                  className="text-black text-nav text-uppercase drop"
+                >
+                  {" "}
+                  BLOG
+                </Nav.Link>
+                <Nav.Link
+                  href="/wholesale"
                   className="text-warning text-nav text-uppercase drop"
                 >
                   Wholesale
