@@ -71,21 +71,23 @@ export default function CartItem({
   if (loading) return <PulseLoader />;
 
   return (
-    <div className="w-100 text-start py-4 border-bottom border-1">
-      <div className="d-flex">
-        <div className="w-s100 w-15 ">
+    <div className="w-100 text-start py-4 border-bottom border-1 d-flex ">
+      <div className="d-flex w-25">
+        <div className="w-100 rounded-6 ">
           <img
-            className="w-100 h-100"
+            className="w-100 h-100 "
             src={product.photo}
             alt="this is an icon"
           />
         </div>
-        <div className=" w-85 ms-2">
+      </div>
+      <div className="w-75 ps-1">
+        <div>
           <Link
             className="text-dark text-decoration-none text-uppercase "
             to={`/productDetails/${product._id}`}
           >
-            <h6 className="fw-bold my-auto ">{product.name}</h6>
+            <h6 className="fw-bold my-auto mt-2 mb-0">{product.name}</h6>
           </Link>
           <p className="mt-1 ">
             {/* */}
@@ -101,92 +103,92 @@ export default function CartItem({
             })}
           </p>
         </div>
-      </div>
-
-      <div className="d-flex justify-content-between">
-        <h5 className="fw-bold my-auto ps-3">
-          {currency == "USD" ? "$" : "৳"}{" "}
-          {currencyConverter(currency, price * amount)}
-        </h5>
-        <div>
-          <ButtonGroup size="sm">
-            <Button
-              onClick={() => {
-                console.log(amount);
-                if (amount <= 1) {
-                  return;
-                } else {
-                  setAmount((prevs) => prevs - 1);
-                  console.log("hello");
+        <div className="d-flex justify-content-between ">
+          <p className="fw-bold my-auto text-18">
+            {currency == "USD" ? "$" : "৳"}{" "}
+            {currencyConverter(currency, price * amount)}
+          </p>
+          <div className="ps-1">
+            <ButtonGroup size="sm " className="btn-group-sm">
+              <Button
+                onClick={() => {
+                  console.log(amount);
+                  if (amount <= 1) {
+                    return;
+                  } else {
+                    setAmount((prevs) => prevs - 1);
+                    console.log("hello");
+                    setCartItems((prevCart) => {
+                      const newCart = [...prevCart];
+                      const idx = newCart
+                        .map((e) => e.product)
+                        .indexOf(product._id);
+                      if (idx != -1)
+                        newCart[idx].amount = Math.max(
+                          0,
+                          newCart[idx].amount - 1
+                        );
+                      return [...newCart];
+                    });
+                    setProductTotal((prev) => prev - product.price);
+                    let cart = localStorage.getItem("cart");
+                    if (cart) {
+                      cart = JSON.parse(cart);
+                      const idx = cart
+                        .map((e) => e.product)
+                        .indexOf(product._id);
+                      cart[idx].amount--;
+                      localStorage.setItem("cart", JSON.stringify(cart));
+                    }
+                  }
+                }}
+                className="btn-light rounded-0 border"
+              >
+                <RemoveIcon />
+              </Button>
+              <Button className="btn-light rounded-0 border px-4">
+                <h5>{amount}</h5>
+              </Button>
+              <Button
+                onClick={() => {
+                  setAmount((prevs) => prevs + 1);
                   setCartItems((prevCart) => {
                     const newCart = [...prevCart];
                     const idx = newCart
                       .map((e) => e.product)
                       .indexOf(product._id);
-                    if (idx != -1)
-                      newCart[idx].amount = Math.max(
-                        0,
-                        newCart[idx].amount - 1
-                      );
+                    if (idx != -1) newCart[idx].amount += 1;
                     return [...newCart];
                   });
-                  setProductTotal((prev) => prev - product.price);
+
+                  setProductTotal((prev) => prev + product.price);
                   let cart = localStorage.getItem("cart");
                   if (cart) {
                     cart = JSON.parse(cart);
                     const idx = cart.map((e) => e.product).indexOf(product._id);
-                    cart[idx].amount--;
+                    cart[idx].amount++;
                     localStorage.setItem("cart", JSON.stringify(cart));
                   }
-                }
-              }}
-              className="btn-light rounded-0 border"
-            >
-              <RemoveIcon />
-            </Button>
-            <Button className="btn-light rounded-0 border px-4">
-              <h5>{amount}</h5>
-            </Button>
-            <Button
+
+                  // });
+                }}
+                className="btn-light rounded-0 border "
+              >
+                <AddIcon />
+              </Button>
+            </ButtonGroup>
+          </div>
+          <div className="my-auto">
+            <button
+              className="btn  py-0 "
               onClick={() => {
-                setAmount((prevs) => prevs + 1);
-                setCartItems((prevCart) => {
-                  const newCart = [...prevCart];
-                  const idx = newCart
-                    .map((e) => e.product)
-                    .indexOf(product._id);
-                  if (idx != -1) newCart[idx].amount += 1;
-                  return [...newCart];
-                });
-
-                setProductTotal((prev) => prev + product.price);
-                let cart = localStorage.getItem("cart");
-                if (cart) {
-                  cart = JSON.parse(cart);
-                  const idx = cart.map((e) => e.product).indexOf(product._id);
-                  cart[idx].amount++;
-                  localStorage.setItem("cart", JSON.stringify(cart));
-                }
-
-                // });
+                discardCartItem(product._id);
+                // setCartAdded((prev) => !prev);
               }}
-              className="btn-light rounded-0 border "
             >
-              <AddIcon />
-            </Button>
-          </ButtonGroup>
-        </div>
-        <div>
-          <button
-            size="sm"
-            className="btn  py-0 mx-3"
-            onClick={() => {
-              discardCartItem(product._id);
-              // setCartAdded((prev) => !prev);
-            }}
-          >
-            <DeleteIcon className="text-danger" />{" "}
-          </button>
+              <DeleteIcon className="text-danger" />{" "}
+            </button>
+          </div>
         </div>
       </div>
     </div>

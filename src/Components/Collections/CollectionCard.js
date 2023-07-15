@@ -148,18 +148,18 @@ export default function CollectionCard({ productId, index }) {
       className="card-main border rounded-iconive w-25 d-flex flex-column"
     >
       <div
-        className="img-card position-relative cardMain"
+        className="img-card position-relative cardMain overflow-hidden porda"
         onClick={() => {
           handleClick(product._id);
         }}
       >
         <img
-          className="w-100 h-100 rounded-iconive"
+          className="w-100 h-100 rounded-iconive card-img2"
           src={product.photo}
           alt="This  is an  picture"
         />
-        <div className="overlay d-flex mx-auto ">
-          <button className="position-absolute  d-flex btn btn-details px-3 py-1 f-14 text-light overlaycard">
+        <div className=" d-flex mx-auto ">
+          <button className="position-absolute  d-flex btn btn-details mt-m5 px-3 py-1 f-14 text-light overlay2">
             <ShoppingCartIcon className="pe-1 my-auto" />{" "}
             <p className="m-auto"> Details</p>
           </button>
