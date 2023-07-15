@@ -67,7 +67,7 @@ export default function Navigation({ renderer }) {
       <div className="bg-light d-flex justify-content-between border-bottom px115 hide">
         <div className="my-auto text-dark d-flex py-2">
           <MailOutlineIcon className="text-secondary me-1 my-auto" />
-          <p className="text-14 navtxt my-auto text-secondary">
+          <p className="text-14 navtxt my-auto text-secondary fw-600">
             info@iconivewigs.com
           </p>
         </div>
@@ -238,7 +238,7 @@ export default function Navigation({ renderer }) {
             {user ? (
               <div className="m-auto">
                 <a href="/profile" className="text-decoration-none">
-                  <div className="shadow rounded-circle bg-themeYellow w-36px d-flex ">
+                  <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
                     <h5 className=" m-auto fw-bold text-light">
                       {user.name[0].toUpperCase()}
                     </h5>
