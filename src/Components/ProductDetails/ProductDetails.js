@@ -51,16 +51,18 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
 
   // console.log(selectedFamily);
   // console.log(productDetails.colors);
-  useEffect(() => {
-    if (productDetails) {
-      setColors(
-        productDetails.colors.filter(
-          (e) => e.family.toLowerCase() == selectedFamily
-        )
-      );
-    }
-  }, [selectedFamily, productDetails]);
-  console.log(colors);
+  // useEffect(() => {
+  //   if (productDetails) {
+  //     setColors(
+  //       productDetails.colors.filter(
+  //         (e) => e.family.toLowerCase() == selectedFamily
+  //       )
+  //     );
+  //   }
+  // }, [selectedFamily, productDetails]);
+  // console.log(colors);
+
+  console.log("product Details", productDetails);
 
   // console.log(
   //   productDetails.colors.filter(
