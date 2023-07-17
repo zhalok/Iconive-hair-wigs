@@ -352,24 +352,6 @@ export default function Checkout(props) {
                   </div>
                 </div>
 
-                {/* <div className="d-flex pt-4">
-                  <div className="w-50 ">
-                    <p className="text-start mb-1 mr-auto">
-                      Postal Code<span className="spanRed">*</span>
-                    </p>
-                    <input
-                      type="text"
-                      name="contactName"
-                      id=""
-                      value={postalCode}
-                      onChange={(e) => {
-                        setPostalCode(e.target.value);
-                      }}
-                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
-                    />
-                  </div>
-                </div> */}
-
                 <div className="d-flex pt-4">
                   <div className="w-50 "></div>
                   <div className="w-50"></div>
@@ -433,7 +415,7 @@ export default function Checkout(props) {
                   }
                 </div>
                 <div className="d-flex justify-content-between  my-2 border-2 border-bottom">
-                  <h6 className="fw-bold">Subtotal </h6>
+                  <h6 className="fw-bold">Delivery Charge </h6>
                   <p>
                     {currency == "USD" ? "$" : "৳"}
                     {currencyConverter(currency, deliveryCharge)}
