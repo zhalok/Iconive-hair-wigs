@@ -20,6 +20,8 @@ export default function CartItem({
   setCartItems,
   setProductTotal,
   setCartAdded,
+  setCartRenderer,
+  setUpdate,
   price,
 }) {
   console.log("product", id);
@@ -33,6 +35,8 @@ export default function CartItem({
   const [addons, setAddons] = useState([]);
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [loading, setLoading] = useState(false);
+  const [stateChanger, setStateChanger] = useState({});
+  // const [cart, setCart] = useState({});
   //   const sum =
   //   console.log(sum);
   const getProduct = async () => {
@@ -52,17 +56,21 @@ export default function CartItem({
       console.log(e);
     }
   };
+
   useEffect(() => {
     getProduct();
   }, [id]);
-  useEffect(() => {
-    if (product) {
-      const cart = localStorage.getItem("cart");
-      if (cart) {
-        let cartItems = JSON.parse(cart);
-      }
-    }
-  }, [product]);
+
+  // useEffect(() => {
+  //   if (product) {
+  //     const cart_ = localStorage.getItem("cart");
+  //     if (cart) {
+  //       let cartItems = JSON.parse(cart_);
+  //       setCart(cartItems);
+  //     }
+  //   }
+  // }, [product, stateChanger]);
+
   useEffect(() => {
     if (quantity) setAmount(quantity);
     if (addOns) setAddons(addOns);
@@ -112,33 +120,23 @@ export default function CartItem({
             <ButtonGroup size="sm " className="btn-group-sm">
               <Button
                 onClick={() => {
-                  console.log(amount);
+                  // console.log(amount);
                   if (amount <= 1) {
                     return;
                   } else {
-                    setAmount((prevs) => prevs - 1);
-                    console.log("hello");
-                    setCartItems((prevCart) => {
-                      const newCart = [...prevCart];
-                      const idx = newCart
-                        .map((e) => e.product)
-                        .indexOf(product._id);
-                      if (idx != -1)
-                        newCart[idx].amount = Math.max(
-                          0,
-                          newCart[idx].amount - 1
-                        );
-                      return [...newCart];
-                    });
-                    setProductTotal((prev) => prev - product.price);
                     let cart = localStorage.getItem("cart");
                     if (cart) {
                       cart = JSON.parse(cart);
                       const idx = cart
                         .map((e) => e.product)
                         .indexOf(product._id);
-                      cart[idx].amount--;
-                      localStorage.setItem("cart", JSON.stringify(cart));
+                      if (cart[idx].amount > 1) {
+                        cart[idx].amount--;
+                        localStorage.setItem("cart", JSON.stringify(cart));
+                        // setStateChanger({});
+                        // setCartRenderer({});
+                        setUpdate({});
+                      }
                     }
                   }
                 }}
@@ -151,23 +149,27 @@ export default function CartItem({
               </Button>
               <Button
                 onClick={() => {
-                  setAmount((prevs) => prevs + 1);
-                  setCartItems((prevCart) => {
-                    const newCart = [...prevCart];
-                    const idx = newCart
-                      .map((e) => e.product)
-                      .indexOf(product._id);
-                    if (idx != -1) newCart[idx].amount += 1;
-                    return [...newCart];
-                  });
+                  // setAmount((prevs) => prevs + 1);
+                  // setCartItems((prevCart) => {
+                  //   const newCart = [...prevCart];
+                  //   const idx = newCart
+                  //     .map((e) => e.product)
+                  //     .indexOf(product._id);
+                  //   if (idx != -1) newCart[idx].amount += 1;
+                  //   return [...newCart];
+                  // });
 
-                  setProductTotal((prev) => prev + product.price);
+                  // setProductTotal((prev) => prev + product.price);
                   let cart = localStorage.getItem("cart");
                   if (cart) {
                     cart = JSON.parse(cart);
                     const idx = cart.map((e) => e.product).indexOf(product._id);
                     cart[idx].amount++;
                     localStorage.setItem("cart", JSON.stringify(cart));
+                    // setStateChanger({});
+                    // setCartRenderer({});
+                    setUpdate({});
+                    // setCar;
                   }
 
                   // });
