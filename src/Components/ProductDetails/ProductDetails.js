@@ -354,10 +354,10 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                             aria-controls="nav-profile"
                             aria-selected={selectedFamily == "blond"}
                             onClick={() => {
-                              setSelectedFamily("blond");
+                              setSelectedFamily("blonde");
                             }}
                           >
-                            Blond
+                            Blonde
                           </button>
                           <button
                             class="nav-link text-black"
