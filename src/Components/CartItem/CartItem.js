@@ -11,45 +11,33 @@ import { Link } from "react-router-dom";
 import currencyConverter from "../../utils/CurrencyChanger";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import { PulseLoader } from "react-spinners";
+import CartContext from "../../Contexts/CartContext";
 
 export default function CartItem({
   id,
   addOns,
   quantity,
   discardCartItem,
-  setCartItems,
-  setProductTotal,
-  setCartAdded,
-  setCartRenderer,
-  setUpdate,
   price,
 }) {
   console.log("product", id);
-  // console.log("currency", currency);
-  // console.log("hello");
-  // console.log(setProductTotal);
-  //   console.log("addons", addOns);
+  const { setCartRenderer } = useContext(CartContext);
+
   const [product, setProduct] = useState({});
   const [amount, setAmount] = useState(0);
-  // const [price, setPrice] = useState(0);
+
   const [addons, setAddons] = useState([]);
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [loading, setLoading] = useState(false);
   const [stateChanger, setStateChanger] = useState({});
-  // const [cart, setCart] = useState({});
-  //   const sum =
-  //   console.log(sum);
+
   const getProduct = async () => {
     try {
       setLoading(true);
       const response = await axios.get(`/products/${id}`);
-      //   console.log("cart item", response.data);
+
       setProduct(response.data);
-      // setPrice(() => {
-      //   const price = response.data.price;
-      //   const discount = response.data.discount;
-      //   return price - (price * discount) / 100;
-      // });
+
       setLoading(false);
     } catch (e) {
       setLoading(false);
@@ -60,16 +48,6 @@ export default function CartItem({
   useEffect(() => {
     getProduct();
   }, [id]);
-
-  // useEffect(() => {
-  //   if (product) {
-  //     const cart_ = localStorage.getItem("cart");
-  //     if (cart) {
-  //       let cartItems = JSON.parse(cart_);
-  //       setCart(cartItems);
-  //     }
-  //   }
-  // }, [product, stateChanger]);
 
   useEffect(() => {
     if (quantity) setAmount(quantity);
@@ -134,8 +112,8 @@ export default function CartItem({
                         cart[idx].amount--;
                         localStorage.setItem("cart", JSON.stringify(cart));
                         // setStateChanger({});
-                        // setCartRenderer({});
-                        setUpdate({});
+                        setCartRenderer({});
+                        // setUpdate({});
                       }
                     }
                   }
@@ -149,27 +127,14 @@ export default function CartItem({
               </Button>
               <Button
                 onClick={() => {
-                  // setAmount((prevs) => prevs + 1);
-                  // setCartItems((prevCart) => {
-                  //   const newCart = [...prevCart];
-                  //   const idx = newCart
-                  //     .map((e) => e.product)
-                  //     .indexOf(product._id);
-                  //   if (idx != -1) newCart[idx].amount += 1;
-                  //   return [...newCart];
-                  // });
-
-                  // setProductTotal((prev) => prev + product.price);
                   let cart = localStorage.getItem("cart");
                   if (cart) {
                     cart = JSON.parse(cart);
                     const idx = cart.map((e) => e.product).indexOf(product._id);
                     cart[idx].amount++;
                     localStorage.setItem("cart", JSON.stringify(cart));
-                    // setStateChanger({});
-                    // setCartRenderer({});
-                    setUpdate({});
-                    // setCar;
+
+                    setCartRenderer({});
                   }
 
                   // });
@@ -185,7 +150,6 @@ export default function CartItem({
               className="btn  py-0 "
               onClick={() => {
                 discardCartItem(product._id);
-                // setCartAdded((prev) => !prev);
               }}
             >
               <DeleteIcon className="text-danger" />{" "}

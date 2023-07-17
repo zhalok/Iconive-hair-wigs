@@ -57,7 +57,12 @@ function App() {
   return (
     <div className="App">
       <CartContext.Provider
-        value={{ setShowCartDrawer, showCartDrawer, setCartRenderer }}
+        value={{
+          setShowCartDrawer,
+          showCartDrawer,
+          setCartRenderer,
+          cartRenderer,
+        }}
       >
         <AuthContext.Provider value={{ user, setUser }}>
           <AuthDispatcherContext.Provider value={setUser}>
