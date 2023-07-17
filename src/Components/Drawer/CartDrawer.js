@@ -12,7 +12,7 @@ export default function CartDrawer({ opened, close }) {
   const [productTotal, setProductTotal] = useState(0);
   const [cartAdded, setCartAdded] = useState(false);
   const { currency, setCurrency } = useContext(CurrencyContext);
-  const { setCartRenderer } = useContext(CartContext);
+  const { cartRenderer, setCartRenderer } = useContext(CartContext);
 
   const [update, setUpdate] = useState({});
 
@@ -29,7 +29,7 @@ export default function CartDrawer({ opened, close }) {
       localStorage.setItem("cart", JSON.stringify(_cartItems));
       setProductTotal((prev) => prev - _product.price * _product.amount);
       setCartItems(_cartItems);
-      // setCartAdded
+
       setCartRenderer({});
     }
   };
@@ -46,7 +46,7 @@ export default function CartDrawer({ opened, close }) {
     if (cart) {
       setCartItems(JSON.parse(cart));
     }
-  }, [opened, update]);
+  }, [opened, cartRenderer]);
 
   useEffect(() => {
     if (cartItems && Array.isArray(cartItems)) {
@@ -70,7 +70,7 @@ export default function CartDrawer({ opened, close }) {
         // tabindex="-1"
         >
           <div>
-            {productTotal > 250 ? (
+            {productTotal > 250 * parseFloat(process.env.REACT_APP_FX_RATE) ? (
               <p className="text-16 fw-bold mt-4 ms-3">
                 <span className="text-theme">Congratulations! </span> you’ve got
                 free shipping!
@@ -98,9 +98,9 @@ export default function CartDrawer({ opened, close }) {
                     setProductTotal={setProductTotal}
                     price={cartItem.price}
                     setCartAdded={setCartAdded}
-                    setCartRenderer={setCartRenderer}
-                    update={update}
-                    setUpdate={setUpdate}
+                    // setCartRenderer={setCartRenderer}
+                    // update={update}
+                    // setUpdate={setUpdate}
                   />
                 </div>
               ))}
