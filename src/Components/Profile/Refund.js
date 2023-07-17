@@ -31,8 +31,8 @@ export default function Refund() {
               </div>
             </div>
             <div className="w-80 ps-md-5 ps-sm-3 border-start">
-              <div className="w-100 d-flex ">
-                <div className="w-60 text-start mt-auto">
+              <div className="w-100 d-flex justify-content-between">
+                <div className="w-60p text-start mt-auto">
                   <p className="text-14 text-theme-gray mb-0">
                     Estimated Refund Date
                   </p>
@@ -85,8 +85,8 @@ export default function Refund() {
               </div>
             </div>
             <div className="w-80 ps-md-5 ps-sm-3 border-start">
-              <div className="w-100 d-flex ">
-                <div className="w-60 text-start mt-auto">
+              <div className="w-100 d-flex justify-content-between">
+                <div className="w-60p text-start mt-auto">
                   <p className="text-14 text-theme-gray mb-0">Refund Date</p>
                   <div className="d-flex">
                     <p className="text-invoice my-auto pe-2 text-theme">

@@ -56,7 +56,7 @@ export default function CartDrawer({ opened, close }) {
       <Drawer
         opened={opened}
         onClose={close}
-        title="Cart"
+        title="  Shopping Cart"
         zIndex={1000}
         withOverlay={true}
         position={"right"}
@@ -66,12 +66,25 @@ export default function CartDrawer({ opened, close }) {
         // class="offcanvas offcanvas-end"
         // tabindex="-1"
         >
-          <div class="offcanvas-body">
+          <div>
+            {productTotal > 250 ? (
+              <p className="text-16 fw-bold mt-4 ms-3">
+                <span className="text-theme">Congratulations! </span> you’ve got
+                free shipping!
+              </p>
+            ) : (
+              <p className="text-16 fw-bold mt-4 ms-3">
+                spend <span className="text-theme"> 250$ </span> to get free
+                shipping
+              </p>
+            )}
+          </div>
+          <div class="offcanvas-body p-0">
             {cartItems &&
               cartItems.map((cartItem, index) => (
                 <div
                   key={index}
-                  className="w-100 text-start p-3 border-bottom border-1"
+                  className="w-100 text-start border-bottom border-top border-1"
                 >
                   <CartItem
                     id={cartItem.product}
@@ -94,8 +107,13 @@ export default function CartDrawer({ opened, close }) {
                   {currencyConverter(currency, productTotal)}
                 </p>
               </div>
-              <p className="text-14 ps-3">
+              <p className="text-16 ps-3 text-black">
                 Taxes and shipping calculated at checkout
+              </p>
+
+              <p className="text-theme-gray border-top p-3 text-16">
+                While the contents of your cart are currently displayed in USD,
+                the checkout will use BDT at the latest exchange rate.
               </p>
 
               <div className="d-flex px-3 gap-3">

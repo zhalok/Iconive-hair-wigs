@@ -55,16 +55,14 @@ export default function TopSelling() {
             >
               <div className="img-card">
                 <img
-                  className="w-100 h-100"
+                  className="w-100 h-100 rounded-iconive"
                   src={product.photo}
                   alt="This  is an  picture"
                 />
               </div>
               <div className="text-start p-3">
                 <p className=" fw-bold text-16 text-dark">{product.name}</p>
-                <p className="m-0 py-0 text-12 text-theme-gray">
-                  {product.description}
-                </p>
+
                 <div className="d-flex justify-content-between mt-4">
                   <p className="text-20 fw-bold text-dark my-auto pt-1">
                     {currency == "USD" ? "$" : "৳"}

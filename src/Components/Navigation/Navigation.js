@@ -22,6 +22,7 @@ import profile from "./image/profile.svg";
 import search from "./image/search.svg";
 import wish from "./image/wishj.svg";
 import cart from "./image/cart.svg";
+import usericon from "./image/picon.png";
 import malepro from "../Images/navbar/malenav.svg";
 import femalepro from "../Images/navbar/femalenav.svg";
 import accpro from "../Images/navbar/accnav.svg";
@@ -66,7 +67,9 @@ export default function Navigation({ renderer }) {
       <div className="bg-light d-flex justify-content-between border-bottom px115 hide">
         <div className="my-auto text-dark d-flex py-2">
           <MailOutlineIcon className="text-secondary me-1 my-auto" />
-          <p className="text-14 navtxt my-auto">iconivehairwigs@gmail.com</p>
+          <p className="text-14 navtxt my-auto text-secondary fw-600">
+            info@iconivewigs.com
+          </p>
         </div>
         <div className=" text-dark d-flex gap-2">
           <a
@@ -171,7 +174,7 @@ export default function Navigation({ renderer }) {
                 </Nav.Link>
 
                 <Nav.Link
-                  href="#home"
+                  href="/guideme"
                   className="text-black text-nav text-uppercase drop"
                 >
                   {" "}
@@ -179,13 +182,13 @@ export default function Navigation({ renderer }) {
                 </Nav.Link>
 
                 <Nav.Link
-                  href="#home"
+                  href="/customize"
                   className="text-black text-nav text-uppercase drop"
                 >
                   customIZE
                 </Nav.Link>
                 <Nav.Link
-                  href="#home"
+                  href="/offers"
                   className="text-black text-nav text-uppercase drop"
                 >
                   Offers
@@ -197,10 +200,9 @@ export default function Navigation({ renderer }) {
                   JOIN US
                 </Nav.Link>
                 <Nav.Link
-                  href="#home"
+                  href="/blog"
                   className="text-black text-nav text-uppercase drop"
                 >
-                  {" "}
                   BLOG
                 </Nav.Link>
                 <Nav.Link
@@ -236,7 +238,7 @@ export default function Navigation({ renderer }) {
             {user ? (
               <div className="m-auto">
                 <a href="/profile" className="text-decoration-none">
-                  <div className="shadow rounded-circle bg-themeYellow w-36px d-flex ">
+                  <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
                     <h5 className=" m-auto fw-bold text-light">
                       {user.name[0].toUpperCase()}
                     </h5>
@@ -252,7 +254,12 @@ export default function Navigation({ renderer }) {
                   navigate("/login");
                 }}
               >
-                <LoginOutlined />
+                <img
+                  width={"35"}
+                  src={usericon}
+                  alt="this is an icon"
+                  onClick={() => {}}
+                />
               </div>
             )}
           </div>

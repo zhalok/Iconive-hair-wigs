@@ -123,3 +123,6 @@
 .m-auto {
   cursor: pointer;
 }
+.fw-600 {
+  font-weight: 600;
+}

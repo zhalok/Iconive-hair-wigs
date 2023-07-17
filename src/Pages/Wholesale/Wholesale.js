@@ -89,9 +89,9 @@ export default function Wholesale() {
 
       {/* tabs */}
       <div className="mx-auto my-5 container">
-        <nav className="mx-auto pt-5 d-flex ">
+        <nav className="w-100 pt-5 d-flex ">
           <div
-            class="nav nav-tabs mx-auto border-bottom"
+            class="nav nav-tabs w-100 d-flex justify-content-center"
             id="nav-tab"
             role="tablist"
           >
@@ -133,9 +133,12 @@ export default function Wholesale() {
             </button>
           </div>
         </nav>
-        <div class="tab-content" id="nav-tabContent">
+        <div
+          class="tab-content border-start border-end border-bottom"
+          id="nav-tabContent"
+        >
           <div
-            class="tab-pane fade show active border p-4"
+            class="tab-pane fade show active  p-4"
             id="nav-home"
             role="tabpanel"
             aria-labelledby="nav-home-tab"
@@ -257,7 +260,7 @@ export default function Wholesale() {
             </div>
           </div>
           <div
-            class="tab-pane fade border p-4"
+            class="tab-pane fade  p-4"
             id="nav-profile"
             role="tabpanel"
             aria-labelledby="nav-profile-tab"
@@ -383,7 +386,7 @@ export default function Wholesale() {
             </div>
           </div>
           <div
-            class="tab-pane fade border p-4"
+            class="tab-pane fade p-4"
             id="nav-contact"
             role="tabpanel"
             aria-labelledby="nav-contact-tab"

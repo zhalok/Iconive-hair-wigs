@@ -11,7 +11,7 @@ import cardicon1 from "../../Pages/Category/image/cardicon1.svg";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Favorite } from "@mui/icons-material";
-
+import "./CollectionCard.css";
 import AuthContext from "../../Contexts/AuthContext";
 import Cookies from "js-cookie";
 
@@ -148,20 +148,22 @@ export default function CollectionCard({ productId, index }) {
       className="card-main border rounded-iconive w-25 d-flex flex-column"
     >
       <div
-        className="img-card position-relative"
+        className="img-card position-relative cardMain overflow-hidden porda"
         onClick={() => {
           handleClick(product._id);
         }}
       >
         <img
-          className="w-100 h-100 rounded-iconive"
+          className="w-100 h-100 rounded-iconive card-img2"
           src={product.photo}
           alt="This  is an  picture"
         />
-        <button className="position-absolute top-50 left-20 d-flex btn btn-details px-3 py-1 f-14 text-light ">
-          <ShoppingCartIcon className="pe-1 my-auto" />{" "}
-          <p className="m-auto"> Details</p>
-        </button>
+        <div className=" d-flex mx-auto ">
+          <button className="position-absolute  d-flex btn btn-details mt-m5 px-3 py-1 f-14 text-light overlay2">
+            <ShoppingCartIcon className="pe-1 my-auto" />{" "}
+            <p className="m-auto"> Details</p>
+          </button>
+        </div>
       </div>
       <div className="text-start p-3 mt-auto">
         <p className=" fw-bold  ">{product.name}</p>
@@ -186,12 +188,12 @@ export default function CollectionCard({ productId, index }) {
                 {" "}
                 {!inWishList ? (
                   <FavoriteBorderIcon
-                    className="text-danger"
+                    className="text-theme-icon"
                     sx={{ width: "29px", height: "25px" }}
                   />
                 ) : (
                   <Favorite
-                    className="text-danger"
+                    className="text-theme-icon"
                     sx={{ width: "29px", height: "25px" }}
                   />
                 )}

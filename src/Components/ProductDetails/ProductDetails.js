@@ -46,6 +46,28 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const [wishlistloading, setWishlistloading] = useState(false);
   const { user } = useContext(AuthContext);
   const { showCartDrawer, setShowCartDrawer } = useContext(CartContext);
+  const [selectedFamily, setSelectedFamily] = useState("black");
+  const [colors, setColors] = useState("");
+
+  // console.log(selectedFamily);
+  // console.log(productDetails.colors);
+  useEffect(() => {
+    if (productDetails) {
+      setColors(
+        productDetails.colors.filter(
+          (e) => e.family.toLowerCase() == selectedFamily
+        )
+      );
+    }
+  }, [selectedFamily, productDetails]);
+  console.log(colors);
+
+  // console.log(
+  //   productDetails.colors.filter(
+  //     (e) => e.family.toLowerCase() == selectedFamily
+  //   )
+  // );
+  console.log(selectedFamily);
 
   const checkWishList = async () => {
     try {
@@ -157,7 +179,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
       console.log(e);
     }
   };
-  // console.log(productDetails);
+  // console.log("akash" + productDetails);
   useEffect(() => {
     if (product) {
       getProductDetails();
@@ -216,7 +238,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               <div className="w-100 position-relative">
                 <img src={productDetails.photo} alt="wigs" className="w-100" />
                 {productDetails.discount !== 0 && (
-                  <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-3 rounded-circle m-3">
+                  <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-2 rounded-circle m-3">
                     <p className="fw-bold mb-0 mt-2 text-28">
                       {productDetails.discount}%
                     </p>
@@ -277,55 +299,149 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
             )}
             <div className="text-start">
               {/* color */}
-              <p className="text-secondary pt-3 ">Color :</p>
-              <div className="row row-cols-4 gap-2">
-                {productDetails?.colors.map((e) => {
-                  return (
-                    <div
-                      style={{
-                        opacity: selectedColor == e._id ? "1" : ".5",
-                        border: "1px solid black",
-                        padding: "10px",
-
-                        cursor: "pointer",
-                      }}
-                      onClick={() => {
-                        if (selectedColor == e._id) {
-                          setSelectedColor(null);
-                          setSelectedColorPrice(0);
-                          // setAmount((prev) => prev - e.price);
-                        } else {
-                          setSelectedColor(e?._id);
-                          setSelectedColorPrice(e?.price);
-                          // setAmount((prev) => prev + e.price);
-                        }
-                      }}
+              <div
+                class="accordion accordion-flush w-50"
+                id="accordionFlushExample"
+              >
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingOne">
+                    <button
+                      class="accordion-button collapsed border my-2 py-0 rounded-6 border-secondary"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseOne"
+                      aria-expanded="false"
+                      aria-controls="flush-collapseOne"
                     >
-                      {/* <button
-                        className="btn rounded-circle px-3 py-3 text-dark fs-6"
-                        style={{ backgroundColor: e?.color }}
-                      ></button> */}
-                      <img
-                        src={e.photo}
-                        height={50}
-                        width={50}
-                        style={{
-                          borderRadius: "100%",
-                          border: "1px solid black",
-                          // padding: "10px",
-                        }}
-                      />
-                      <small
-                        className="my-auto"
-                        style={{
-                          marginLeft: "10px",
-                        }}
-                      >
-                        {e?.name}
-                      </small>
+                      <p className="text-secondary pt-3 ms-0 ps-0">Colors :</p>
+                    </button>
+                  </h2>
+                  <div
+                    id="flush-collapseOne"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample"
+                  >
+                    <div class="accordion-body p-2 border  m-0">
+                      <nav className="d-flex justify-content-center">
+                        <div
+                          class="nav nav-tabs w-100 mx-auto d-flex justify-content-center"
+                          id="nav-tab"
+                          role="tablist"
+                        >
+                          <button
+                            class="nav-link active text-black"
+                            id="nav-home-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#nav-home"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-home"
+                            aria-selected={selectedFamily == "black"}
+                            onClick={() => {
+                              setSelectedFamily("black");
+                            }}
+                          >
+                            Black
+                          </button>
+                          <button
+                            class="nav-link text-black"
+                            id="nav-profile-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#nav-profile"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-profile"
+                            aria-selected={selectedFamily == "blond"}
+                            onClick={() => {
+                              setSelectedFamily("blond");
+                            }}
+                          >
+                            Blond
+                          </button>
+                          <button
+                            class="nav-link text-black"
+                            id="nav-contact-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#nav-contact"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-contact"
+                            aria-selected={selectedFamily == "brown"}
+                            onClick={() => {
+                              setSelectedFamily("brown");
+                            }}
+                          >
+                            Brown
+                          </button>
+                        </div>
+                      </nav>
+
+                      <div class="tab-content" id="nav-tabContent">
+                        <div
+                          class="tab-pane fade show active"
+                          id="nav-home"
+                          role="tabpanel"
+                          aria-labelledby="nav-home-tab"
+                        >
+                          <div className="row row-cols-6 gap-2 p-2">
+                            {productDetails?.colors
+                              .filter(
+                                (e) => e.family.toLowerCase() == selectedFamily
+                              )
+                              .map((e) => {
+                                return (
+                                  <div
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title={e.name}
+                                    style={{
+                                      opacity:
+                                        selectedColor == e._id ? "1" : ".5",
+                                      // border: "1px solid black",
+                                      padding: "10px",
+
+                                      cursor: "pointer",
+                                    }}
+                                    onClick={() => {
+                                      if (selectedColor == e._id) {
+                                        setSelectedColor(null);
+                                        setSelectedColorPrice(0);
+                                        // setAmount((prev) => prev - e.price);
+                                      } else {
+                                        setSelectedColor(e?._id);
+                                        setSelectedColorPrice(e?.price);
+                                        // setAmount((prev) => prev + e.price);
+                                      }
+                                    }}
+                                  >
+                                    <img
+                                      src={e.photo}
+                                      height={50}
+                                      width={50}
+                                      style={{
+                                        borderRadius: "100%",
+                                        border: "1px solid black",
+                                        // padding: "10px",
+                                      }}
+                                    />
+                                    <small
+                                      className="my-auto"
+                                      style={{
+                                        marginLeft: "10px",
+                                      }}
+                                    >
+                                      {/* {e?.name} */}
+                                    </small>
+                                  </div>
+                                );
+                              })}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  );
-                })}
+                  </div>
+                </div>
               </div>
 
               {/* length*/}
@@ -392,7 +508,6 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                     );
                   })}
               </>
-
               <p className="mt-4 my-auto">
                 <AccessTimeIcon className="me-1 my-auto" />
                 <small className="text-theme-gray">
@@ -630,151 +745,151 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
             <h5 className=" pb-2 fs-4 fw-bold">Return & Refund policy :</h5>
             <p className="pb-0 text-theme-gray text-16">
               You have 7 calendar days to return an item from the date you
-              received it
-            </p>
-            <button
-              type="button"
-              class="btn btn-outline-secondary py-0 mx-2 text-14"
-              data-bs-toggle="modal"
-              data-bs-target="#refundandreturnpolicy"
-            >
-              Show More
-            </button>
-            <div
-              class="modal fade"
-              id="refundandreturnpolicy"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5
-                      class="modal-title fw-bold text-dark"
-                      id="exampleModalLabel"
-                    >
-                      Return & Refund Policy
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    {/* return */}
-                    <h6 className="fw-bold text-secondary border-bottom  pb-2 pt-3">
-                      Returns :{" "}
-                    </h6>
-                    <p className="text-secondary pt-2">
-                      1 .
-                      <small>
-                        You have 7 calendar days to return an item from the date
-                        you received it
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      2 .
-                      <small>
-                        To be eligible for a return, your item must be unused
-                        and in the same condition that you received it. Also-{" "}
-                      </small>
-                      <ul>
-                        <li>
-                          <small>
-                            Your item must be in the original packaging.
-                          </small>
-                        </li>
-                        <li>
-                          <small>
-                            Your item needs to have the receipt or proof of
-                            purchase.
-                          </small>
-                        </li>
-                      </ul>
-                    </p>
-                    {/* refunds: */}
-                    <h6 className="fw-bold text-secondary border-bottom  pb-2 pt-4">
-                      Refunds :{" "}
-                    </h6>
-                    <p className="text-secondary">
-                      1 .
-                      <small>
-                        Once we receive your item, we will inspect it and notify
-                        you that we have received your returned item. We will
-                        immediately notify you on the status of your refund
-                        after inspecting the item.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      2 .
-                      <small>
-                        If your return is approved, we will initiate a refund to
-                        your credit/debit card.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      3 .
-                      <small>
-                        If you find there is a problem with your order or are
-                        unhappy with your hair system in any way when you
-                        receive it please contact us immediately. Do not cut,
-                        style, color or wash the hair or wear the hair system.
-                        Our customer service team will be happy to discuss any
-                        issue with you and will be able to replace your hair
-                        system with another one if required.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      4 .
-                      <small>
-                        Please note that, If your ordered items were not stock
-                        items, 25% amount of the full payment will be deducted
-                        as service fee & rest amount will be refunded. In order
-                        to cover labor and material costs, if you cancel an
-                        order before you receive it, you will only receive a 75%
-                        refund.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      5 .
-                      <small>
-                        If you order a wrong custom made hair system by mistake,
-                        the hair system cannot be returned for a refund. If you
-                        would like us to adjust it, extra cost will be charged
-                        accordingly.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      6 .
-                      <small>
-                        You will be responsible for the hair systems until they
-                        reach us.
-                      </small>
-                    </p>
-                    <p className="text-secondary">
-                      7 .
-                      <small>
-                        You will receive the credit within a certain amount
-                        (usually 15-20 workdays) of days, depending on your card
-                        issuer's policies.
-                      </small>
-                    </p>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-dark"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
+              received it.
+              <button
+                type="button"
+                class="btn btn-outline-secondary py-0 mx-2 text-14"
+                data-bs-toggle="modal"
+                data-bs-target="#refundandreturnpolicy"
+              >
+                Show More
+              </button>
+              <div
+                class="modal fade"
+                id="refundandreturnpolicy"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5
+                        class="modal-title fw-bold text-dark"
+                        id="exampleModalLabel"
+                      >
+                        Return & Refund Policy
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      {/* return */}
+                      <h6 className="fw-bold text-secondary border-bottom  pb-2 pt-3">
+                        Returns :{" "}
+                      </h6>
+                      <p className="text-secondary pt-2">
+                        1 .
+                        <small>
+                          You have 7 calendar days to return an item from the
+                          date you received it
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        2 .
+                        <small>
+                          To be eligible for a return, your item must be unused
+                          and in the same condition that you received it. Also-{" "}
+                        </small>
+                        <ul>
+                          <li>
+                            <small>
+                              Your item must be in the original packaging.
+                            </small>
+                          </li>
+                          <li>
+                            <small>
+                              Your item needs to have the receipt or proof of
+                              purchase.
+                            </small>
+                          </li>
+                        </ul>
+                      </p>
+                      {/* refunds: */}
+                      <h6 className="fw-bold text-secondary border-bottom  pb-2 pt-4">
+                        Refunds :{" "}
+                      </h6>
+                      <p className="text-secondary">
+                        1 .
+                        <small>
+                          Once we receive your item, we will inspect it and
+                          notify you that we have received your returned item.
+                          We will immediately notify you on the status of your
+                          refund after inspecting the item.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        2 .
+                        <small>
+                          If your return is approved, we will initiate a refund
+                          to your credit/debit card.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        3 .
+                        <small>
+                          If you find there is a problem with your order or are
+                          unhappy with your hair system in any way when you
+                          receive it please contact us immediately. Do not cut,
+                          style, color or wash the hair or wear the hair system.
+                          Our customer service team will be happy to discuss any
+                          issue with you and will be able to replace your hair
+                          system with another one if required.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        4 .
+                        <small>
+                          Please note that, If your ordered items were not stock
+                          items, 25% amount of the full payment will be deducted
+                          as service fee & rest amount will be refunded. In
+                          order to cover labor and material costs, if you cancel
+                          an order before you receive it, you will only receive
+                          a 75% refund.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        5 .
+                        <small>
+                          If you order a wrong custom made hair system by
+                          mistake, the hair system cannot be returned for a
+                          refund. If you would like us to adjust it, extra cost
+                          will be charged accordingly.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        6 .
+                        <small>
+                          You will be responsible for the hair systems until
+                          they reach us.
+                        </small>
+                      </p>
+                      <p className="text-secondary">
+                        7 .
+                        <small>
+                          You will receive the credit within a certain amount
+                          (usually 15-20 workdays) of days, depending on your
+                          card issuer's policies.
+                        </small>
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-dark"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </p>
           </div>
           <div className="d-flex w-100 pb-5">
             <div className="w-100 ">
