@@ -312,6 +312,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                         style={{
                           borderRadius: "100%",
                           border: "1px solid black",
+                          clip: "rect(0, 100px, 200px, 0)",
                           // padding: "10px",
                         }}
                       />
