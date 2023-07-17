@@ -13,6 +13,9 @@ export default function CartDrawer({ opened, close }) {
   const [cartAdded, setCartAdded] = useState(false);
   const { currency, setCurrency } = useContext(CurrencyContext);
   const { setCartRenderer } = useContext(CartContext);
+
+  const [update, setUpdate] = useState({});
+
   const discardCartItem = (product) => {
     const cart = localStorage.getItem("cart");
     if (cart) {
@@ -43,7 +46,7 @@ export default function CartDrawer({ opened, close }) {
     if (cart) {
       setCartItems(JSON.parse(cart));
     }
-  }, [opened]);
+  }, [opened, update]);
 
   useEffect(() => {
     if (cartItems && Array.isArray(cartItems)) {
@@ -96,6 +99,8 @@ export default function CartDrawer({ opened, close }) {
                     price={cartItem.price}
                     setCartAdded={setCartAdded}
                     setCartRenderer={setCartRenderer}
+                    update={update}
+                    setUpdate={setUpdate}
                   />
                 </div>
               ))}
