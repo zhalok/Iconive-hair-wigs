@@ -119,9 +119,9 @@ export default function Order({ order, index, getOrders }) {
                 </p>
               </div>
             </div>
-            <div className="w-60 ps-md-5 ps-sm-3">
+            <div className="w-60p ps-md-5 ps-sm-3">
               <div className="w-100 d-flex ">
-                <div className="w-60 text-start mt-4">
+                <div className="w-60p text-start mt-4">
                   <p className="text-14 text-theme-gray mb-0">Order Date</p>
                   <p className="text-18">{`${new Date(
                     order.createdAt
