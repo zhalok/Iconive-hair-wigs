@@ -157,7 +157,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
       console.log(e);
     }
   };
-  console.log("akash" + productDetails);
+
   useEffect(() => {
     if (product) {
       getProductDetails();
