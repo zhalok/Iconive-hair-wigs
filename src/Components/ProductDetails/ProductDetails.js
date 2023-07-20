@@ -621,14 +621,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
           <div className="w-100 text-start py-3 pt-5">
             <h5 className=" pb-2 fs-4 fw-bold">Description :</h5>
             <p className="pb-0 text-16 text-theme-gray">
-              Welcome to Iconive, your one-stop destination for premium quality
-              wigs. We're a team of passionate hair enthusiasts dedicated to
-              providing our customers with the very best in hair products and
-              customer service. Our exquisite collection of wigs is designed to
-              cater to the needs of every individual, regardless of age or
-              gender. We understand that choosing the perfect wig can be
-              overwhelming, which is why we strive to make your shopping
-              experience seamless and enjoyable.
+              {productDetails.description}
             </p>
           </div>
           <div className="w-100 text-start py-2">
