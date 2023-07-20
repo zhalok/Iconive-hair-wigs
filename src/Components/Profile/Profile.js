@@ -241,9 +241,7 @@ export default function Profile() {
           {sidebar === 1 && <MyProfile name={name} setName={setName} />}
           {sidebar === 3 && (
             <div className="d-flex flex-column gap-5 pb-5">
-              <OrderHistory></OrderHistory>
-              <OrderHistory></OrderHistory>
-              <OrderHistory></OrderHistory>
+              <OrderHistory />
             </div>
           )}
           {sidebar === 4 && (
