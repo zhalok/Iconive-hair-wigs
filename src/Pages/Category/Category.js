@@ -34,10 +34,8 @@ export default function Category({}) {
   const [showSubCategory, setShowSubCategory] = useState("");
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [currencyLoading, setCurrencyLoading] = useState(false);
-  // const [filters, setFilters] = useState({});
-  const { category } = useParams();
-  console.log(category);
-  // console.log(currency);
+  const [category, setCategory] = useState("");
+
   const getCategories = async () => {
     try {
       const response = await axios.get("/category/getCategory");
@@ -59,11 +57,20 @@ export default function Category({}) {
 
   useEffect(() => {
     getProducts();
-    console.log(filters);
-  }, [filters]);
+    // console.log(filters);
+  }, []);
 
   useEffect(() => {
     getCategories();
+  }, []);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const category = searchParams.get("category");
+
+    if (category) {
+      setShowSubCategory(category);
+    }
   }, []);
 
   const navigate = useNavigate();
@@ -221,27 +228,7 @@ export default function Category({}) {
                                         } else {
                                           return [...prev, uniq];
                                         }
-                                        // console.log("prevstate", prev);
 
-                                        // if (
-                                        //   prev.includes({
-                                        //     category: category._id,
-                                        //     subcategory: subcategory._id,
-                                        //   })
-                                        // ) {
-                                        //   prev.filter((item) => {
-                                        //     return (
-                                        //       item.category !== category._id &&
-                                        //       item.subcategory !==
-                                        //         subcategory._id
-                                        //     );
-                                        //   });
-                                        // } else {
-                                        //   prev.push({
-                                        //     category: category._id,
-                                        //     subcategory: subcategory._id,
-                                        //   });
-                                        // }
                                         return [...prev];
                                       });
                                     }}

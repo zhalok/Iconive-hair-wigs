@@ -158,19 +158,10 @@ export default function CollectionCard({ productId, index }) {
           src={product.photo}
           alt="This  is an  picture"
         />
-        {/* <div className=" d-flex mx-auto ">
-          <button className="position-absolute  d-flex btn btn-details mt-m5 px-3 py-1 f-14 text-light overlay2">
-            <ShoppingCartIcon className="pe-1 my-auto" />{" "}
-            <p className="m-auto"> Details</p>
-          </button>
-        </div> */}
       </div>
       <div className="text-start p-3 mt-auto">
         <p className=" fw-bold  ">{product.name}</p>
-        {/* <p className="m-0 py-0 text-12 text-theme-gray">
-          Be confident with any style you like to own from a large variety of
-          styles.
-        </p> */}
+
         <div className="d-flex justify-content-between mt-4">
           <p className="text-20 fw-bold text-dark my-auto pt-1">
             {currency == "USD" ? "$" : "৳"}
