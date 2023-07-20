@@ -271,7 +271,7 @@ export default function Navigation({ renderer }) {
         {CollectionDropdown && (
           <div className=" w-100  d-flex position-absolute z-100 bg-white p-0 shadow-lg navOpen">
             <a
-              href="/catagory"
+              href="/catagory?category=6432a3f8bc1e9c4115b67db5"
               className="text-decoration-none w-25 drop p-4 border-end"
             >
               <div className="w-100 ">
@@ -282,16 +282,12 @@ export default function Navigation({ renderer }) {
                     className="w-100"
                   />
                 </div>
-                <a
-                  href="/catagory?category=Gents Wigs"
-                  className="text-decoration-none text-dark"
-                >
-                  <p className="mt-3 text-18 nav-drop">Gents Wigs</p>
-                </a>
+
+                <p className="mt-3 text-18 nav-drop">Gents Wigs</p>
               </div>
             </a>
             <a
-              href="/catagory"
+              href="/catagory?category=6432eb5a9e5f9a8abde960e0"
               className="text-decoration-none w-25 drop p-4 border-end"
             >
               <div className="w-100  ">
@@ -302,25 +298,26 @@ export default function Navigation({ renderer }) {
                     className="w-100"
                   />
                 </div>
-                <a href="/catagory" className="text-decoration-none text-dark ">
-                  <p className="mt-3 text-18 nav-drop">Ladies Wigs</p>
-                </a>
+
+                <p className="mt-3 text-18 nav-drop">Ladies Wigs</p>
               </div>
             </a>
             <a
-              href="/catagory"
+              href="/catagory?category=64343a704fb336001b129958"
               className="text-decoration-none w-25 drop p-4 border-end"
             >
               <div className="w-100 ">
                 <div className="w-100 ">
                   <img src={Rawhair} alt="This is an Image" className="w-100" />
                 </div>
-                <a href="/catagory" className="text-decoration-none text-dark ">
-                  <p className="mt-3 nav-drop text-18">Raw Hair</p>
-                </a>
+
+                <p className="mt-3 nav-drop text-18">Raw Hair</p>
               </div>
             </a>
-            <a href="/catagory" className="text-decoration-none w-25 drop p-4">
+            <a
+              href="/catagory?category=64343aaf4fb336001b12995c"
+              className="text-decoration-none w-25 drop p-4"
+            >
               <div className="w-100">
                 <div className="w-100 ">
                   <img
@@ -329,9 +326,7 @@ export default function Navigation({ renderer }) {
                     className="w-100"
                   />
                 </div>
-                <a href="/catagory" className="text-decoration-none text-dark ">
-                  <p className="mt-3 text-18 nav-drop">Accessories</p>
-                </a>
+                <p className="mt-3 text-18 nav-drop">Accessories</p>
               </div>
             </a>
           </div>
