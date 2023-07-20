@@ -32,6 +32,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
+import { useSearchParams } from "react-router-dom";
 
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
@@ -41,6 +42,9 @@ export default function Navigation({ renderer }) {
   const { currency, setCurrency } = useContext(CurrencyContext);
   const { user, setUser } = useContext(AuthContext);
   const { setShowCartDrawer } = useContext(CartContext);
+  const [searchParam, setSearchParam] = useSearchParams();
+  // console.log(searchParam.get("category"));
+
   // console.log("currency", currency);
   // console.log(currency);
   // console.log(user);
@@ -278,7 +282,10 @@ export default function Navigation({ renderer }) {
                     className="w-100"
                   />
                 </div>
-                <a href="/catagory" className="text-decoration-none text-dark">
+                <a
+                  href="/catagory?category=Gents Wigs"
+                  className="text-decoration-none text-dark"
+                >
                   <p className="mt-3 text-18 nav-drop">Gents Wigs</p>
                 </a>
               </div>

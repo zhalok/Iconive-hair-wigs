@@ -74,21 +74,6 @@ export default function Profile() {
 
   return (
     <div className="px60 bg-body">
-      {/* <div className="d-flex my-4 px60">
-        <a href="#" className="text-decoration-none text-theme-gray my-auto">
-          HOME
-        </a>
-        <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
-        <a href="#" className="text-decoration-none text-theme-gray  my-auto">
-          PROFILE
-        </a>
-        <KeyboardArrowRightIcon className="text-theme-gray mx-4 fs-3" />
-        <a href="#" className="text-decoration-none text-dark  my-auto">
-          MY PROFILE
-        </a>
-      </div> */}
-
-      {/* side bar */}
       <div className="w-100 d-flex gap-5 pt-5">
         <div className="w-20 ">
           <div className=" profile-border bg-light pt-5">

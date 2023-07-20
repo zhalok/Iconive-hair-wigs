@@ -17,6 +17,7 @@ import OrderItem from "../Orders/OderItems";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
+import { PulseLoader } from "react-spinners";
 
 const percentage = 66;
 const steps = [
@@ -198,12 +199,16 @@ export default function Order({ order, index, getOrders }) {
                   <button className="btn btn-theme-hover btn-theme-order border-bottom text-uppercase pb-1">
                     Download Invoice{" "}
                   </button>
-                  <button
-                    className="btn btn-theme-hover btn-theme-order border-bottom pb-1"
-                    onClick={cancelOrder}
-                  >
-                    Cancel Order{" "}
-                  </button>
+                  {loading ? (
+                    <PulseLoader />
+                  ) : (
+                    <button
+                      className="btn btn-theme-hover btn-theme-order border-bottom pb-1"
+                      onClick={cancelOrder}
+                    >
+                      Cancel Order{" "}
+                    </button>
+                  )}
                   <button className="btn btn-theme-hover btn-theme-order border-bottom pb-1">
                     Queries <HelpOutlineOutlinedIcon className="" />
                   </button>
