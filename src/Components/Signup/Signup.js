@@ -13,7 +13,8 @@ import axios from "../../utils/axios";
 // import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 export default function Signup() {
   const [googlelog, setGooglelog] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setemail] = useState("");
   const [pass, setpass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
@@ -62,13 +63,13 @@ export default function Signup() {
     window.location.reload();
   };
   const signup = async () => {
-    if (!name || !email || !pass || !confirmPass) {
+    if (!firstName || !lastName || !email || !pass || !confirmPass) {
       alert("Please fill all necessary informations");
       return;
     }
 
     const signupInfo = {
-      name,
+      name: firstName + " " + lastName,
       email,
       password: pass,
       passwordConfirm: confirmPass,
@@ -129,20 +130,20 @@ export default function Signup() {
                   <div className="w-100 d-flex gap-2">
                     <input
                       type="text"
-                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-100"
                       placeholder="First Name"
-                      value={name}
+                      value={firstName}
                       onChange={(e) => {
-                        setName(e.target.value);
+                        setFirstName(e.target.value);
                       }}
                     />
                     <input
                       type="text"
                       className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
                       placeholder="Last Name"
-                      value={name}
+                      value={lastName}
                       onChange={(e) => {
-                        setName(e.target.value);
+                        setLastName(e.target.value);
                       }}
                     />
                   </div>
@@ -198,8 +199,10 @@ export default function Signup() {
                       Sign Up
                     </button>
                   )}
-                  <small className="text-success">{message}</small>
-                  <small className="text-danger">{error}</small>
+                  <div>
+                    <small className="text-success">{message}</small>
+                    <small className="text-danger">{error}</small>
+                  </div>
                 </form>
                 <p className="my-3 text-14 text-theme-gray pb-2 ">
                   Or, sign up using

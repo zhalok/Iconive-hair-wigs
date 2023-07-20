@@ -9,10 +9,11 @@ import { PulseLoader } from "react-spinners";
 import AuthContext from "../../Contexts/AuthContext";
 import currencyConverter from "../../utils/CurrencyChanger";
 import CurrencyContext from "../../Contexts/CurrencyContext";
+import CartContext from "../../Contexts/CartContext";
 
 export default function Checkout(props) {
   const [cartItems, setCartItems] = useState(null);
-  const [deliveryCharge, setDeliveryCharge] = useState(20);
+  const [deliveryCharge, setDeliveryCharge] = useState(2650);
   const [productTotal, setProductTotal] = useState(0);
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState();
@@ -26,28 +27,13 @@ export default function Checkout(props) {
   const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState();
   const [postalCode, setPostalCode] = useState("");
+  const [update, setUpdate] = useState({});
+  const { cartRenderer, setCartRenderer } = useContext(CartContext);
 
   const auth = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
   const { currency, setCurrency } = useContext(CurrencyContext);
-
-  const discardCartItem = (product) => {
-    const cart = localStorage.getItem("cart");
-    if (cart) {
-      const _cartItems = JSON.parse(cart);
-      const idx = _cartItems.map((e) => e.product).indexOf(product);
-
-      const _product = cartItems[idx];
-
-      if (idx != -1) _cartItems.splice(idx, 1);
-
-      localStorage.setItem("cart", JSON.stringify(_cartItems));
-      setProductTotal((prev) => prev - _product.price * _product.amount);
-      setCartItems(_cartItems);
-      props.setCartRenderer({});
-    }
-  };
 
   const calculateTotal = async () => {
     const total = cartItems.reduce((acc, item) => {
@@ -55,10 +41,6 @@ export default function Checkout(props) {
     }, 0);
     setProductTotal(total);
   };
-
-  // useEffect(() => {
-  //   setCurrency(props.currency);
-  // }, [props?.currency]);
 
   useEffect(() => {
     if (selectedCountry) {
@@ -89,16 +71,17 @@ export default function Checkout(props) {
       setCartItems(JSON.parse(cart));
       console.log(cartItems);
     }
-  }, []);
+  }, [cartRenderer]);
 
   useEffect(() => {
     if (cartItems && Array.isArray(cartItems)) {
       calculateTotal();
     }
-  }, [cartItems]);
+  }, [cartItems, cartRenderer]);
 
   useEffect(() => {
-    if (productTotal > 200) setDeliveryCharge(0);
+    if (productTotal > 250 * parseFloat(process.env.REACT_APP_FX_RATE))
+      setDeliveryCharge(0);
   }, [productTotal]);
 
   useEffect(() => {
@@ -369,24 +352,6 @@ export default function Checkout(props) {
                   </div>
                 </div>
 
-                {/* <div className="d-flex pt-4">
-                  <div className="w-50 ">
-                    <p className="text-start mb-1 mr-auto">
-                      Postal Code<span className="spanRed">*</span>
-                    </p>
-                    <input
-                      type="text"
-                      name="contactName"
-                      id=""
-                      value={postalCode}
-                      onChange={(e) => {
-                        setPostalCode(e.target.value);
-                      }}
-                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
-                    />
-                  </div>
-                </div> */}
-
                 <div className="d-flex pt-4">
                   <div className="w-50 "></div>
                   <div className="w-50"></div>
@@ -411,7 +376,7 @@ export default function Checkout(props) {
             </div>
             <div className="col-4 border-start p-4 ">
               <div>
-                {cartItems &&
+                {/* {cartItems &&
                   cartItems.map((card, index) => (
                     <CartItem
                       id={card.product}
@@ -420,10 +385,12 @@ export default function Checkout(props) {
                       discardCartItem={discardCartItem}
                       setCartItems={setCartItems}
                       setProductTotal={setProductTotal}
-                      currency={currency}
+                      // currency={currency}
                       price={card.price}
+                      setUpdate={setUpdate}
+                      setCartRenderer={setCartRenderer}
                     />
-                  ))}
+                  ))} */}
               </div>
               <div>
                 <div className="w-100 hc-50 d-flex my-4">
@@ -448,7 +415,7 @@ export default function Checkout(props) {
                   }
                 </div>
                 <div className="d-flex justify-content-between  my-2 border-2 border-bottom">
-                  <h6 className="fw-bold">Subtotal </h6>
+                  <h6 className="fw-bold">Delivery Charge </h6>
                   <p>
                     {currency == "USD" ? "$" : "৳"}
                     {currencyConverter(currency, deliveryCharge)}
@@ -471,20 +438,20 @@ export default function Checkout(props) {
                         return !prevState;
                       });
                     }}
-                    className={` form-check-input ps-3 fs-5 mt-1 checked ${
+                    className={` form-check-input ps-3 fs-5  checked btnCheckUse ${
                       checkRefund && " "
                     }`}
                     type="checkbox"
                     id="flexSwitchCheckChecked"
                   />
                   <label
-                    className="form-check-label text-start my-auto"
+                    className="form-check-label text-start my-auto "
                     for="flexSwitchCheckChecked"
                   >
                     I have read and agree to all the terms of{" "}
                     <a
-                      className="text-decoration-none text-primary"
-                      href="/returnpolicy"
+                      className="text-decoration-none hoverBold text-theme-yellow"
+                      href="/return"
                     >
                       RETURN POLICY
                     </a>

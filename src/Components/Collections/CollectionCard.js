@@ -158,12 +158,12 @@ export default function CollectionCard({ productId, index }) {
           src={product.photo}
           alt="This  is an  picture"
         />
-        <div className=" d-flex mx-auto ">
+        {/* <div className=" d-flex mx-auto ">
           <button className="position-absolute  d-flex btn btn-details mt-m5 px-3 py-1 f-14 text-light overlay2">
             <ShoppingCartIcon className="pe-1 my-auto" />{" "}
             <p className="m-auto"> Details</p>
           </button>
-        </div>
+        </div> */}
       </div>
       <div className="text-start p-3 mt-auto">
         <p className=" fw-bold  ">{product.name}</p>

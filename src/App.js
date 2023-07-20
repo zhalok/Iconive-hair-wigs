@@ -31,6 +31,7 @@ import CartDrawer from "./Components/Drawer/CartDrawer";
 import Customize from "./Pages/Customize/Customize";
 import Blog from "./Pages/Blog/Blog";
 import Repair from "./Pages/Repair/Repair";
+import UnderConst from "./Pages/Underconst/UnderConst";
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
@@ -57,7 +58,12 @@ function App() {
   return (
     <div className="App">
       <CartContext.Provider
-        value={{ setShowCartDrawer, showCartDrawer, setCartRenderer }}
+        value={{
+          setShowCartDrawer,
+          showCartDrawer,
+          setCartRenderer,
+          cartRenderer,
+        }}
       >
         <AuthContext.Provider value={{ user, setUser }}>
           <AuthDispatcherContext.Provider value={setUser}>
@@ -101,8 +107,8 @@ function App() {
                   <Route path="/joinus" element={<Joinus />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/repair" element={<Repair />} />
-                  <Route path="/guideme" element={<Customize />} />
-                  <Route path="/offers" element={<Customize />} />
+                  <Route path="/guideme" element={<UnderConst />} />
+                  <Route path="/offers" element={<UnderConst />} />
                   <Route path="/customize" element={<Customize />} />
                   <Route path="/wholesale" element={<Wholesale />} />
                   <Route path="/privacy" element={<Privacy />} />

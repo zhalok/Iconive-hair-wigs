@@ -74,3 +74,9 @@
 .canvus {
   transition: all 2s;
 }
+.text-theme-yellow {
+  color: #ecb30a;
+}
+.hoverBold:hover {
+  font-weight: 600;
+}
