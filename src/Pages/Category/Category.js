@@ -58,7 +58,7 @@ export default function Category({}) {
   useEffect(() => {
     getProducts();
     // console.log(filters);
-  }, []);
+  }, [filters]);
 
   useEffect(() => {
     getCategories();
