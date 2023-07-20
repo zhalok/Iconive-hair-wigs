@@ -82,11 +82,19 @@ export default function RefundOrder({ order, index }) {
                   </span>
                 </div>
               </div>
-              <div className="w-40 text-center">
-                <p className="text-75 text-theme mb-0">{remainingDays}</p>
+              {order.status != "Refunded" ? (
+                <div className="w-40 text-center">
+                  <p className="text-75 text-theme mb-0">{remainingDays}</p>
 
-                <p className="text-18 mb-0">Days Remaining</p>
-              </div>
+                  <p className="text-18 mb-0">Days Remaining</p>
+                </div>
+              ) : (
+                <div className="w-40 text-center">
+                  <img src={bluetick} alt="this is an icon" />
+
+                  <p className="text-18 mb-0 mt-3">Refund Successful</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
