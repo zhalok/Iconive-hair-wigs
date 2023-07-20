@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Collection from "./image/Collections.jpg";
 import maleCollection from "./image/malecollection.jpg";
 import femaleCollection from "./image/femaleCollections.jpg";
@@ -35,7 +35,8 @@ export default function Category({}) {
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [currencyLoading, setCurrencyLoading] = useState(false);
   // const [filters, setFilters] = useState({});
-
+  const { category } = useParams();
+  console.log(category);
   // console.log(currency);
   const getCategories = async () => {
     try {
