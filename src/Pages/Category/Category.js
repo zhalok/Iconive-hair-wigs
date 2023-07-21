@@ -27,7 +27,7 @@ import CurrencyContext from "../../Contexts/CurrencyContext";
 // import { useNavigate } from "react-router-dom";
 
 export default function Category({}) {
-  const [topbanner, setTopBanner] = useState(0);
+  const [topbanner, setTopBanner] = useState(1);
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -35,6 +35,8 @@ export default function Category({}) {
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [currencyLoading, setCurrencyLoading] = useState(false);
   const [category, setCategory] = useState("");
+
+  console.log("Top Banner", topbanner);
 
   const getCategories = async () => {
     try {
@@ -67,9 +69,13 @@ export default function Category({}) {
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const category = searchParams.get("category");
+    const banner = searchParams.get("topbanner");
 
     if (category) {
       setShowSubCategory(category);
+    }
+    if (banner) {
+      setTopBanner(parseInt(banner));
     }
   }, []);
 

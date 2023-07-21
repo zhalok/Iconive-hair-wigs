@@ -271,7 +271,7 @@ export default function Navigation({ renderer }) {
         {CollectionDropdown && (
           <div className=" w-100  d-flex position-absolute z-100 bg-white p-0 shadow-lg navOpen">
             <a
-              href="/catagory?category=6432a3f8bc1e9c4115b67db5"
+              href="/catagory?category=6432a3f8bc1e9c4115b67db5?topbanner=1"
               className="text-decoration-none w-25 drop p-4 border-end"
             >
               <div className="w-100 ">
@@ -287,7 +287,7 @@ export default function Navigation({ renderer }) {
               </div>
             </a>
             <a
-              href="/catagory?category=6432eb5a9e5f9a8abde960e0"
+              href="/catagory?category=6432eb5a9e5f9a8abde960e0&topbanner=2"
               className="text-decoration-none w-25 drop p-4 border-end"
             >
               <div className="w-100  ">
@@ -303,7 +303,7 @@ export default function Navigation({ renderer }) {
               </div>
             </a>
             <a
-              href="/catagory?category=64343a704fb336001b129958"
+              href="/catagory?category=64343a704fb336001b129958&topbanner=3"
               className="text-decoration-none w-25 drop p-4 border-end"
             >
               <div className="w-100 ">
@@ -315,7 +315,7 @@ export default function Navigation({ renderer }) {
               </div>
             </a>
             <a
-              href="/catagory?category=64343aaf4fb336001b12995c"
+              href="/catagory?category=64343aaf4fb336001b12995c&topbanner=4"
               className="text-decoration-none w-25 drop p-4"
             >
               <div className="w-100">
