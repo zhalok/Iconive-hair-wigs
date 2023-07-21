@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState, useContext } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import StarIcon from "@mui/icons-material/Star";
@@ -181,7 +183,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
       console.log(e);
     }
   };
-  // console.log("akash" + productDetails);
+
   useEffect(() => {
     if (product) {
       getProductDetails();
@@ -301,148 +303,131 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
             )}
             <div className="text-start">
               {/* color */}
-              <div
-                class="accordion accordion-flush w-50"
-                id="accordionFlushExample"
-              >
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="flush-headingOne">
-                    <button
-                      class="accordion-button collapsed border my-2 py-0 rounded-6 border-secondary"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#flush-collapseOne"
-                      aria-expanded="false"
-                      aria-controls="flush-collapseOne"
+              <p className="text-secondary pt-2"> Colors : </p>
+              <div class=" w-50 " id="accordionFlushExample">
+                <div class=" p-0 m-0">
+                  <nav className="d-flex justify-content-center">
+                    <div
+                      class="nav nav-tabs w-100 mx-auto d-flex justify-content-center"
+                      id="nav-tab"
+                      role="tablist"
                     >
-                      <p className="text-secondary pt-3 ms-0 ps-0">Colors :</p>
-                    </button>
-                  </h2>
-                  <div
-                    id="flush-collapseOne"
-                    class="accordion-collapse collapse"
-                    aria-labelledby="flush-headingOne"
-                    data-bs-parent="#accordionFlushExample"
-                  >
-                    <div class="accordion-body p-2 border  m-0">
-                      <nav className="d-flex justify-content-center">
-                        <div
-                          class="nav nav-tabs w-100 mx-auto d-flex justify-content-center"
-                          id="nav-tab"
-                          role="tablist"
-                        >
-                          <button
-                            class="nav-link active text-black"
-                            id="nav-home-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#nav-home"
-                            type="button"
-                            role="tab"
-                            aria-controls="nav-home"
-                            aria-selected={selectedFamily == "black"}
-                            onClick={() => {
-                              setSelectedFamily("black");
-                            }}
-                          >
-                            Black
-                          </button>
-                          <button
-                            class="nav-link text-black"
-                            id="nav-profile-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#nav-profile"
-                            type="button"
-                            role="tab"
-                            aria-controls="nav-profile"
-                            aria-selected={selectedFamily == "blond"}
-                            onClick={() => {
-                              setSelectedFamily("blonde");
-                            }}
-                          >
-                            Blonde
-                          </button>
-                          <button
-                            class="nav-link text-black"
-                            id="nav-contact-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#nav-contact"
-                            type="button"
-                            role="tab"
-                            aria-controls="nav-contact"
-                            aria-selected={selectedFamily == "brown"}
-                            onClick={() => {
-                              setSelectedFamily("brown");
-                            }}
-                          >
-                            Brown
-                          </button>
-                        </div>
-                      </nav>
+                      <button
+                        class="nav-link active text-black"
+                        id="nav-home-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#nav-home"
+                        type="button"
+                        role="tab"
+                        aria-controls="nav-home"
+                        aria-selected={selectedFamily == "black"}
+                        onClick={() => {
+                          setSelectedFamily("black");
+                        }}
+                      >
+                        Black
+                      </button>
+                      <button
+                        class="nav-link text-black"
+                        id="nav-profile-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#nav-profile"
+                        type="button"
+                        role="tab"
+                        aria-controls="nav-profile"
+                        aria-selected={selectedFamily == "blond"}
+                        onClick={() => {
+                          setSelectedFamily("blonde");
+                        }}
+                      >
+                        Blonde
+                      </button>
+                      <button
+                        class="nav-link text-black"
+                        id="nav-contact-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#nav-contact"
+                        type="button"
+                        role="tab"
+                        aria-controls="nav-contact"
+                        aria-selected={selectedFamily == "brown"}
+                        onClick={() => {
+                          setSelectedFamily("brown");
+                        }}
+                      >
+                        Brown
+                      </button>
+                    </div>
+                  </nav>
 
-                      <div class="tab-content" id="nav-tabContent">
-                        <div
-                          class="tab-pane fade show active"
-                          id="nav-home"
-                          role="tabpanel"
-                          aria-labelledby="nav-home-tab"
-                        >
-                          <div className="row row-cols-6 gap-2 p-2">
-                            {productDetails?.colors
-                              .filter(
-                                (e) => e.family.toLowerCase() == selectedFamily
-                              )
-                              .map((e) => {
-                                return (
-                                  <div
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title={e.name}
-                                    style={{
-                                      opacity:
-                                        selectedColor == e._id ? "1" : ".5",
-                                      // border: "1px solid black",
-                                      padding: "10px",
+                  <div class="tab-content" id="nav-tabContent">
+                    <div
+                      class="tab-pane fade show active"
+                      id="nav-home"
+                      role="tabpanel"
+                      aria-labelledby="nav-home-tab"
+                    >
+                      <div className="row row-cols-6">
+                        {productDetails?.colors
+                          .filter(
+                            (e) => e.family.toLowerCase() == selectedFamily
+                          )
+                          .map((e) => {
+                            return (
+                              <div
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title={e.name}
+                                style={{
+                                  // opacity: selectedColor == e._id ? "1" : ".5",
+                                  // border: "1px solid black",
+                                  padding: "10px",
 
-                                      cursor: "pointer",
-                                    }}
-                                    onClick={() => {
-                                      if (selectedColor == e._id) {
-                                        setSelectedColor(null);
-                                        setSelectedColorPrice(0);
-                                        // setAmount((prev) => prev - e.price);
-                                      } else {
-                                        setSelectedColor(e?._id);
-                                        setSelectedColorPrice(e?.price);
-                                        // setAmount((prev) => prev + e.price);
-                                      }
-                                    }}
-                                  >
-                                    <img
-                                      src={e.photo}
-                                      height={50}
-                                      width={50}
-                                      style={{
-                                        borderRadius: "100%",
-                                        border: "1px solid black",
-                                        // padding: "10px",
-                                      }}
-                                    />
-                                    <small
-                                      className="my-auto"
-                                      style={{
-                                        marginLeft: "10px",
-                                      }}
-                                    >
-                                      {/* {e?.name} */}
-                                    </small>
-                                  </div>
-                                );
-                              })}
-                          </div>
-                        </div>
+                                  cursor: "pointer",
+                                }}
+                                onClick={() => {
+                                  if (selectedColor == e._id) {
+                                    setSelectedColor(null);
+                                    setSelectedColorPrice(0);
+                                    // setAmount((prev) => prev - e.price);
+                                  } else {
+                                    setSelectedColor(e?._id);
+                                    setSelectedColorPrice(e?.price);
+                                    // setAmount((prev) => prev + e.price);
+                                  }
+                                }}
+                              >
+                                <img
+                                  src={e.photo}
+                                  height={50}
+                                  width={50}
+                                  style={{
+                                    borderRadius: "100%",
+                                    border: "1px solid #00000060",
+                                    transform: "scale(1)",
+                                    // padding: "10px",
+                                  }}
+                                  className={` ${
+                                    selectedColor == e._id
+                                      ? "border-2 border-warning"
+                                      : "border-1 "
+                                  }`}
+                                />
+                              </div>
+                            );
+                          })}
                       </div>
                     </div>
                   </div>
+                  <p className="mt-3 text-14 text-secondary">
+                    For detailed & clear color guide{" "}
+                    <a
+                      href="/blog"
+                      className="text-decoration-none text-theme-yellow hoverBold"
+                    >
+                      Click here
+                    </a>
+                  </p>
                 </div>
               </div>
 
@@ -586,19 +571,19 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                   <ShoppingCartIcon className="me-2" />{" "}
                   {!cartAdded ? "ADD TO CART" : "REMOVE FROM CART"}
                 </button>
-                <button
+                {/* <button
                   className={`btn outline-wish px-5 py-2 fs-6 `}
                   onClick={() => {
                     setSelectedAddons([]);
                   }}
                 >
                   Remove Add Ons
-                </button>
+                </button> */}
                 {user && (
                   <>
                     {" "}
                     <button
-                      className=" btn outline-wish py-2 px-4 ms-3"
+                      className=" btn outline-wish py-2 px-4 ms-1"
                       onClick={() => {
                         !inWishList ? addToWishlist() : removeFromWishlist();
                       }}

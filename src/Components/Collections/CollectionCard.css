@@ -30,8 +30,8 @@
   background: rgba(0, 0, 0, 0.718);
   height: 100%;
   width: 100%;
-  transform: scale(1.2);
-  transition: all 0.5s ease-in-out;
+  transform: scale(1.11);
+  transition: all 1s;
   object-fit: cover;
 }
 
