@@ -3,7 +3,6 @@ import axios from "../../utils/axios";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import checkimg from "./Image/checkimg.jpg";
-
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -12,6 +11,7 @@ import currencyConverter from "../../utils/CurrencyChanger";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import { PulseLoader } from "react-spinners";
 import CartContext from "../../Contexts/CartContext";
+import "./CartItem.css";
 
 export default function CartItem({
   id,
@@ -95,7 +95,7 @@ export default function CartItem({
             {currencyConverter(currency, price * amount)}
           </p>
           <div className="ps-1">
-            <ButtonGroup size="sm " className="btn-group-sm">
+            <ButtonGroup size="sm " className="btn-group-sm fontP">
               <Button
                 onClick={() => {
                   // console.log(amount);
@@ -118,12 +118,12 @@ export default function CartItem({
                     }
                   }
                 }}
-                className="btn-light rounded-0 border"
+                className="btn-light rounded-0 border fontP"
               >
                 <RemoveIcon />
               </Button>
-              <Button className="btn-light rounded-0 border px-4">
-                <h5>{amount}</h5>
+              <Button className="btn-light rounded-0 border px-4 fontP">
+                <h6 className="fontP my-auto">{amount}</h6>
               </Button>
               <Button
                 onClick={() => {

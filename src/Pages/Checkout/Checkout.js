@@ -438,20 +438,20 @@ export default function Checkout(props) {
                         return !prevState;
                       });
                     }}
-                    className={` form-check-input ps-3 fs-5 mt-1 checked ${
+                    className={` form-check-input ps-3 fs-5  checked btnCheckUse ${
                       checkRefund && " "
                     }`}
                     type="checkbox"
                     id="flexSwitchCheckChecked"
                   />
                   <label
-                    className="form-check-label text-start my-auto"
+                    className="form-check-label text-start my-auto "
                     for="flexSwitchCheckChecked"
                   >
                     I have read and agree to all the terms of{" "}
                     <a
-                      className="text-decoration-none text-primary"
-                      href="/returnpolicy"
+                      className="text-decoration-none hoverBold text-theme-yellow"
+                      href="/return"
                     >
                       RETURN POLICY
                     </a>
