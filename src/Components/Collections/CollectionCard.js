@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
@@ -159,9 +160,9 @@ export default function CollectionCard({ productId, index }) {
           alt="This  is an  picture"
         />
         {product.discount !== 0 && (
-          <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-2 rounded-circle m-3">
-            <p className="fw-bold mb-0 mt-2 text-28">{product.discount}%</p>
-            <p className="fw-bold my-0">OFF</p>
+          <span className="position-absolute top-0 end-0 bg-danger text-light px-3 py-2 rounded-circle m-3 overflow-hidden">
+            <p className="fw-bold mb-0 mt-1 text-18">{product.discount}%</p>
+            <p className="fw-bold my-0 pt-0 text-14">OFF</p>
           </span>
         )}
       </div>

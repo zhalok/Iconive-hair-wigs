@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import Subscription from "../../Components/Subscription/Subscription";
-import banner from "../../.././src/Components/Images/joinus/joinusBanner.png";
+import banner from "../../.././src/Components/Images/joinus/repair.webp";
 import banner1 from "../../.././src/Components/Images/repair/repair1.png";
-import banner2 from "../../.././src/Components/Images/repair/repair2.png";
+
 import "./Repair.css";
 
 export default function Repair() {

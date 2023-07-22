@@ -1,5 +1,5 @@
 import React from "react";
-import banner from "../../.././src/Components/Images/Blog/blogbanner.png";
+import banner from "../../.././src/Components/Images/joinus/blog.webp";
 
 export default function BasicHair() {
   return (
