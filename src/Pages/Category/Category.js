@@ -35,6 +35,7 @@ export default function Category({}) {
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [currencyLoading, setCurrencyLoading] = useState(false);
   const [category, setCategory] = useState("");
+  console.log("filter", filters);
 
   console.log("Top Banner", topbanner);
 
@@ -244,9 +245,11 @@ export default function Category({}) {
                                       class="form-check-input checkCatagory my-auto"
                                       type="checkbox"
                                       id="checkboxNoLabel"
-                                      // value={filters.subCategory.includes(
-                                      //   subcategory._id
-                                      // )}
+                                      checked={filters
+                                        .map((e) => e.split(" ")[1])
+                                        .includes(subcategory._id)}
+                                      // value={}
+                                      // checked={true}
                                       aria-label="..."
                                     />
                                     <p className="text-14 text-start Chover ms-3 my-auto">
