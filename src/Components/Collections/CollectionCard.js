@@ -158,6 +158,12 @@ export default function CollectionCard({ productId, index }) {
           src={product.photo}
           alt="This  is an  picture"
         />
+        {product.discount !== 0 && (
+          <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-2 rounded-circle m-3">
+            <p className="fw-bold mb-0 mt-2 text-28">{product.discount}%</p>
+            <p className="fw-bold my-0">OFF</p>
+          </span>
+        )}
       </div>
       <div className="text-start p-3 mt-auto">
         <p className=" fw-bold  ">{product.name}</p>
@@ -165,7 +171,10 @@ export default function CollectionCard({ productId, index }) {
         <div className="d-flex justify-content-between mt-4">
           <p className="text-20 fw-bold text-dark my-auto pt-1">
             {currency == "USD" ? "$" : "৳"}
-            {currencyConverter(currency, product.price)}
+            {currencyConverter(
+              currency,
+              discountCalculator(product.price, product.discount)
+            )}
           </p>
           <div className="d-flex" style={{}}>
             {user && (
