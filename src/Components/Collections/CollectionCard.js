@@ -169,15 +169,19 @@ export default function CollectionCard({ productId, index }) {
       <div className="text-start p-3 mt-auto">
         <p className=" fw-bold  ">{product.name}</p>
 
-        <div className="d-flex justify-content-between mt-4">
-          <p className="text-20 fw-bold text-dark my-auto pt-1">
-            {currency == "USD" ? "$" : "৳"}
+        <div className="d-flex mt-4">
+          <p className="text-20 fw-bold text-secondary text-decoration-line-through pt-1 my-auto">
+            {currency === "USD" ? "$" : "৳"}
+            {currencyConverter(currency, product?.price)}
+          </p>
+          <p className="text-20 fw-bold text-dark my-auto pt-1 ms-3">
+            {currency === "USD" ? "$" : "৳"}
             {currencyConverter(
               currency,
               discountCalculator(product.price, product.discount)
             )}
           </p>
-          <div className="d-flex" style={{}}>
+          <div className="d-flex ms-auto" style={{}}>
             {user && (
               <button
                 className="btn px-0 mt-1"
@@ -202,10 +206,10 @@ export default function CollectionCard({ productId, index }) {
             )}
 
             {/* <Favorite className="text-danger" /> */}
-            <button className="btn ps-2 my-auto">
+            {/* <button className="btn ps-2 my-auto">
               {" "}
               <img src={cardicon1} className="w-100 " alt="this is an icon" />
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

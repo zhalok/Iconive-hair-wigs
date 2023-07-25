@@ -196,7 +196,7 @@ export default function Home() {
               </p>
               <a
                 className="text-theme-gray text-decoration-none border-2 border-bottom pb-2 "
-                href=""
+                href="/wholesale"
                 target="_blank"
               >
                 View Wholesale Shop

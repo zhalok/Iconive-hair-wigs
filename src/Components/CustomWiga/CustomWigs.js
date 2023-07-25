@@ -119,7 +119,7 @@ export default function CustomWigs() {
         <div className="my-5 d-flex flex-column text-center">
           <button
             onClick={() => {
-              navigate("/catagory");
+              navigate("/customize");
             }}
             className="btn text-theme-gray text-18"
           >
