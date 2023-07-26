@@ -74,8 +74,8 @@ export default function Profile() {
 
   return (
     <div className="px60 bg-body">
-      <div className="w-100 d-flex gap-5 pt-5">
-        <div className="w-20 ">
+      <div className="w-100 d-flex gap-5 py-5">
+        <div className="w-20 py-3">
           <div className=" profile-border bg-light pt-5">
             <div className="w-100px  bg-themeYellow rounded-circle d-flex mx-auto mb-4 shadow-lg">
               <h1 className="m-auto text-light fw-bold">
@@ -228,7 +228,7 @@ export default function Profile() {
           </div>
         </div>
 
-        <div className="w-80 d-flex flex-column ">
+        <div className="w-80 d-flex flex-column py-3">
           {sidebar === 2 && (
             <div className="d-flex flex-column gap-5 pb-5">
               {orders.map((order, index) => {

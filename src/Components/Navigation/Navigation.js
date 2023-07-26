@@ -4,10 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import "./Navigation.css";
-import maleCollection from "./image/malecollection.jpg";
-import femaleCollection from "./image/femaleCollections.jpg";
-import Rawhair from "./image/Rawhair.jpg";
-import Accessories from "./image/Accessories.jpg";
+import maleCollection from "./image/malenav.webp";
+import femaleCollection from "./image/femalenav.webp";
+import Rawhair from "./image/rawnav.webp";
+import Accessories from "./image/accnav.webp";
 import { Login, LoginOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import AuthContext from "../../Contexts/AuthContext";
@@ -18,17 +18,11 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import profile from "./image/profile.svg";
 import search from "./image/search.svg";
 import wish from "./image/wishj.svg";
 import cart from "./image/cart.svg";
 import usericon from "./image/picon.png";
-import malepro from "../Images/navbar/malenav.svg";
-import femalepro from "../Images/navbar/femalenav.svg";
-import accpro from "../Images/navbar/accnav.svg";
-import rawpro from "../Images/navbar/rawnav.svg";
-import CurrencySwitch from "../Switches/CurrencySwitch";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
 import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
@@ -283,7 +277,7 @@ export default function Navigation({ renderer }) {
                   />
                 </div>
 
-                <p className="mt-3 text-18 nav-drop">Gents Wigs</p>
+                <p className="mt-3 text-18 nav-drop text-dark">Gents Wigs</p>
               </div>
             </a>
             <a
@@ -299,7 +293,7 @@ export default function Navigation({ renderer }) {
                   />
                 </div>
 
-                <p className="mt-3 text-18 nav-drop">Ladies Wigs</p>
+                <p className="mt-3 text-18 nav-drop text-dark">Ladies Wigs</p>
               </div>
             </a>
             <a
@@ -311,7 +305,7 @@ export default function Navigation({ renderer }) {
                   <img src={Rawhair} alt="This is an Image" className="w-100" />
                 </div>
 
-                <p className="mt-3 nav-drop text-18">Raw Hair</p>
+                <p className="mt-3 nav-drop text-18 text-dark">Raw Hair</p>
               </div>
             </a>
             <a
@@ -326,7 +320,7 @@ export default function Navigation({ renderer }) {
                     className="w-100"
                   />
                 </div>
-                <p className="mt-3 text-18 nav-drop">Accessories</p>
+                <p className="mt-3 text-18 nav-drop text-dark">Accessories</p>
               </div>
             </a>
           </div>

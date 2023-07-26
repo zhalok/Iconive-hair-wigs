@@ -28,7 +28,7 @@ import TTT6 from "../../.././src/Components/Images/wholesale/section3/Group (6).
 import TTT7 from "../../.././src/Components/Images/wholesale/section3/Group (7).png";
 import Subscription from "../../Components/Subscription/Subscription";
 import BackupIcon from "@mui/icons-material/Backup";
-import banner from "../../.././src/Components/Images/joinus/joinusBanner.png";
+import banner from "../../.././src/Components/Images/joinus/wholesale.webp";
 
 export default function Wholesale() {
   return (

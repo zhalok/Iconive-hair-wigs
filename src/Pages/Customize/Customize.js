@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./Customize.css";
 import Subscription from "../../Components/Subscription/Subscription";
 import BackupIcon from "@mui/icons-material/Backup";
-import banner from "../../.././src/Components/Images/joinus/joinusBanner.png";
+import banner from "../../.././src/Components/Images/joinus/customize.webp";
 
 export default function Customize() {
   const navigate = useNavigate();

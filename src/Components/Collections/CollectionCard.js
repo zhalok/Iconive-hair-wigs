@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
@@ -159,24 +160,28 @@ export default function CollectionCard({ productId, index }) {
           alt="This  is an  picture"
         />
         {product.discount !== 0 && (
-          <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-2 rounded-circle m-3">
-            <p className="fw-bold mb-0 mt-2 text-28">{product.discount}%</p>
-            <p className="fw-bold my-0">OFF</p>
+          <span className="position-absolute top-0 end-0 bg-danger text-light px-3 py-2 rounded-circle m-3 overflow-hidden">
+            <p className="fw-bold mb-0 mt-1 text-18">{product.discount}%</p>
+            <p className="fw-bold my-0 pt-0 text-14">OFF</p>
           </span>
         )}
       </div>
       <div className="text-start p-3 mt-auto">
         <p className=" fw-bold  ">{product.name}</p>
 
-        <div className="d-flex justify-content-between mt-4">
-          <p className="text-20 fw-bold text-dark my-auto pt-1">
-            {currency == "USD" ? "$" : "৳"}
+        <div className="d-flex mt-4">
+          <p className="text-20 fw-bold text-secondary text-decoration-line-through pt-1 my-auto">
+            {currency === "USD" ? "$" : "৳"}
+            {currencyConverter(currency, product?.price)}
+          </p>
+          <p className="text-20 fw-bold text-dark my-auto pt-1 ms-3">
+            {currency === "USD" ? "$" : "৳"}
             {currencyConverter(
               currency,
               discountCalculator(product.price, product.discount)
             )}
           </p>
-          <div className="d-flex" style={{}}>
+          <div className="d-flex ms-auto" style={{}}>
             {user && (
               <button
                 className="btn px-0 mt-1"
@@ -201,10 +206,10 @@ export default function CollectionCard({ productId, index }) {
             )}
 
             {/* <Favorite className="text-danger" /> */}
-            <button className="btn ps-2 my-auto">
+            {/* <button className="btn ps-2 my-auto">
               {" "}
               <img src={cardicon1} className="w-100 " alt="this is an icon" />
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

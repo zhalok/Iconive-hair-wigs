@@ -248,8 +248,6 @@ export default function Category({}) {
                                       checked={filters
                                         .map((e) => e.split(" ")[1])
                                         .includes(subcategory._id)}
-                                      // value={}
-                                      // checked={true}
                                       aria-label="..."
                                     />
                                     <p className="text-14 text-start Chover ms-3 my-auto">
