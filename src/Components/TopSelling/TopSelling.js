@@ -47,33 +47,49 @@ export default function TopSelling() {
           {mostSold.map((product, index) => (
             <div
               key={index}
-              className="card-main border rounded-iconive w-25"
+              className="card-main border rounded-iconive w-25 d-flex flex-column"
               style={{ cursor: "pointer" }}
               onClick={() => {
                 navigate(`/ProductDetails/${product._id}`);
               }}
             >
-              <div className="img-card">
+              <div className="img-card img-card position-relative cardMain overflow-hidden porda">
                 <img
                   className="w-100 h-100 rounded-iconive"
                   src={product.photo}
                   alt="This  is an  picture"
                 />
+                {product.discount !== 0 && (
+                  <span className="position-absolute top-0 end-0 bg-danger text-light px-3 py-2 rounded-circle m-3 overflow-hidden">
+                    <p className="fw-bold mb-0 mt-1 text-18">
+                      {product.discount}%
+                    </p>
+                    <p className="fw-bold my-0 pt-0 text-14">OFF</p>
+                  </span>
+                )}
               </div>
-              <div className="text-start p-3">
-                <p className=" fw-bold text-16 text-dark">{product.name}</p>
 
-                <div className="d-flex justify-content-between mt-4">
+              <p className=" fw-bold text-16 text-dark text-start px-3">
+                {product.name}
+              </p>
+              <div className="text-start px-3 pb-3 mt-auto">
+                <div className="d-flex  mt-4">
+                  {product.discount !== 0 && (
+                    <p className="text-20 fw-bold text-secondary text-decoration-line-through pt-1 my-auto me-3">
+                      {currency === "USD" ? "$" : "৳"}
+                      {currencyConverter(currency, product?.price)}
+                    </p>
+                  )}
                   <p className="text-20 fw-bold text-dark my-auto pt-1">
                     {currency == "USD" ? "$" : "৳"}
                     {currencyConverter(currency, product.price)}
                   </p>
-                  <div className="d-flex">
+                  <div className="d-flex ms-auto">
                     <button className="btn px-0 mt-1">
                       {" "}
                       <img src={cardicon2} className="" alt="this is an icon" />
                     </button>
-                    <button
+                    {/* <button
                       className="btn ps-2 my-auto"
                       onClick={() => {
                         navigate(`/ProductDetails/${product._id}`);
@@ -85,7 +101,7 @@ export default function TopSelling() {
                         className="w-100 "
                         alt="this is an icon"
                       />
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
