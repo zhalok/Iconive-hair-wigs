@@ -201,7 +201,7 @@
   left: -17%;
 }
 .px120 {
-  padding: 0px 120px;
+  padding: 0px 6%;
 }
 .rounded-iconive {
   border-radius: 8px;
@@ -277,4 +277,22 @@
 
 .cardMain:hover .overlay {
   height: 100%;
+}
+
+/* responsive design for mobile screen */
+@media screen and (min-width: 320px) and (max-width: 580px) {
+  .sidebarwidth {
+    width: 90%;
+  }
+  .px120 {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .card-main {
+    width: 90% !important;
+  }
+}
+
+/* responsive design for 1280 screen */
+@media only screen and (max-width: 1280px) {
 }

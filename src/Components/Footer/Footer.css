@@ -12,12 +12,10 @@
   font-size: 14px;
   color: #666666;
 }
-.px90 {
-  padding-left: 90px;
-}
+
 .containerpro {
-  padding-left: 150px;
-  padding-right: 150px;
+  padding-left: 10%;
+  padding-right: 6%;
 }
 .bg-black-pro {
   background-color: #363636;
@@ -31,5 +29,11 @@
   .border-start-end {
     border-left: #66666663 1px solid;
     border-right: #66666663 1px solid;
+  }
+  .px90 {
+    padding-left: 20px;
+  }
+  .text-14 {
+    font-size: 10px;
   }
 }

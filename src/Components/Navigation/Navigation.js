@@ -22,7 +22,6 @@ import search from "./image/search.svg";
 import wish from "./image/wishj.svg";
 import cart from "./image/cart.svg";
 import usericon from "./image/picon.png";
-
 import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
@@ -56,14 +55,14 @@ export default function Navigation({ renderer }) {
   return (
     <>
       {/* offer div */}
-      <div className="bg-top d-flex">
-        <p className="m-auto text-light text-14 animate__animated  animate__fadeInUp animate__slower	animate__infinite">
+      <div className="bg-top d-flex ">
+        <p className="m-auto text-light text-14">
           FREE INTERNATIONAL SHIPPING ON ORDER OVER $250!
         </p>
       </div>
       {/* 2nd section email and icons  */}
-      <div className="bg-light d-flex justify-content-between border-bottom px115 hide">
-        <div className="my-auto text-dark d-flex py-2">
+      <div className="bg-light d-flex justify-content-center justify-content-md-between border-bottom w-100 px115 flex-column flex-lg-row displayHidden">
+        <div className="my-auto text-dark d-flex py-2 w-25">
           <MailOutlineIcon className="text-secondary me-1 my-auto" />
           <p className="text-14 navtxt my-auto text-secondary fw-600">
             info@iconivewigs.com
@@ -129,7 +128,7 @@ export default function Navigation({ renderer }) {
         }}
       >
         <div className="d-flex mx-auto  justify-content-between px115">
-          <div className="my-auto d-flex w12 text-start ">
+          <div className="mb-auto mt-2  my-lg-auto d-flex w12 text-start ">
             <div className="my-auto d-flex text-18 ps-5 pe-3 py-1 bg-light useBtn form-check form-switch">
               <input
                 className="my-auto form-check-input ps-2 me-2 btnCheckUse "
@@ -212,7 +211,7 @@ export default function Navigation({ renderer }) {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-          <div className="d-flex  my-auto gap-1 w12 justify-content-end">
+          <div className="d-flex  gap-1 w12 justify-content-end mb-auto mt-2  my-lg-auto">
             <div className="m-auto  ">
               <img width={"20"} src={search} alt="this is an icon" />
             </div>
