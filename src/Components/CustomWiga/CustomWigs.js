@@ -14,7 +14,6 @@ import p3 from "../Images/partners/3.svg";
 import p4 from "../Images/partners/4.svg";
 import p5 from "../Images/partners/5.svg";
 import p6 from "../Images/partners/6.svg";
-import bg from "../Images/custom/bg-custom.svg";
 import icon1 from "../Images/custom/iconwhy.svg";
 import icon2 from "../Images/custom/iconwhy1.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";

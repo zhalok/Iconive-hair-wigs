@@ -7,6 +7,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import sp1 from "../Images/footer/sp1.svg";
 import sp2 from "../Images/footer/sp2.svg";
 import sp3 from "../Images/footer/sp3.svg";
@@ -18,9 +19,9 @@ import p5 from "../Images/footer/p5.svg";
 
 export default function Footer() {
   return (
-    <>
-      <div className=" d-flex">
-        <div className="bg-footer py-5  d-flex flex-column  flex-lg-row justify-content-between containerpro w-100   row me-0">
+    <div className="w-100 bg-footer">
+      <div className=" d-flex w-100">
+        <div className="bg-footer py-5  d-flex flex-column  flex-lg-row justify-content-between containerpro w-100   row mx-auto ">
           <div className="  border-secondary col-12 col-lg-4">
             <div>
               <p className="text-16 text-lg-start text-center ms-2">
@@ -45,7 +46,14 @@ export default function Footer() {
           </div>
           <div className=" d-flex border-start-end flex-column my-lg-auto col-12 col-lg-4 my-5">
             <h3 className="text-theme-gray fw-bold ">ICONIVE</h3>
-            <div className="mt-4 text-dark d-flex gap-2 mx-auto flex-wrap justify-content-center">
+            <p className="mt-4">
+              <LocationOnIcon className="text-secondary me-1 fs-5" />
+              <small className="text-secondary ">
+                House-#1/B, Garib-E-Newaj Avenue Road, <br /> Sector-11, Uttara,
+                Dhaka.
+              </small>
+            </p>
+            <div className="mt-1 text-dark d-flex gap-2 mx-auto flex-wrap justify-content-center">
               <a
                 className="mx-1"
                 href="https://www.facebook.com/profile.php?id=100087712010768"
@@ -140,6 +148,6 @@ export default function Footer() {
           </small>
         </p>
       </div>
-    </>
+    </div>
   );
 }

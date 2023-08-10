@@ -144,4 +144,8 @@
   .text44 {
     font-size: 23px !important;
   }
+  .text-nav {
+    font-size: 3vw;
+    border-bottom: #ffffff3c solid 2px;
+  }
 }

@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState, useContext } from "react";
-import CloseIcon from "@mui/icons-material/Close";
 import StarIcon from "@mui/icons-material/Star";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SendIcon from "@mui/icons-material/Send";
-import pic1 from "./Images/modalpic2.jpg";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import checkimg from "./Images/checkimg.jpg";
@@ -20,14 +18,9 @@ import axios from "../../utils/axios";
 import CartContext from "../../Contexts/CartContext";
 import currencyConverter from "../../utils/CurrencyChanger";
 import discountCalculator from "../../utils/calculateDIscount";
-import { SipRounded } from "@mui/icons-material";
-import OffCanvas from "../../Pages/Checkout/OffCanvas";
 import CurrencyContext from "../../Contexts/CurrencyContext";
-import CartItem from "../CartItem/CartItem";
-import { PulseLoader } from "react-spinners";
 import AuthContext from "../../Contexts/AuthContext";
 import Cookies from "js-cookie";
-import CartDrawer from "../Drawer/CartDrawer";
 
 export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const navigate = useNavigate();
@@ -236,23 +229,21 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   return (
     <>
       <div className="positon-relative">
-        <div className="px120 d-flex my-5">
-          <div className=" w-50 px-4">
-            {
-              <div className="w-100 position-relative">
-                <img src={productDetails.photo} alt="wigs" className="w-100" />
-                {productDetails.discount !== 0 && (
-                  <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-2 rounded-circle m-3">
-                    <p className="fw-bold mb-0 mt-2 text-28">
-                      {productDetails.discount}%
-                    </p>
-                    <p className="fw-bold my-0">OFF</p>
-                  </span>
-                )}
-              </div>
-            }
+        <div className="px120 d-flex flex-column flex-lg-row my-5 row m-0">
+          <div className=" col-12 col-md-6">
+            <div className="w-100 position-relative">
+              <img src={productDetails.photo} alt="wigs" className="w-100" />
+              {productDetails.discount !== 0 && (
+                <span className="position-absolute top-0 end-0 bg-danger text-light px-4 py-2 rounded-circle m-3">
+                  <p className="fw-bold mb-0 mt-2 text-28">
+                    {productDetails.discount}%
+                  </p>
+                  <p className="fw-bold my-0">OFF</p>
+                </span>
+              )}
+            </div>
           </div>
-          <div className="w-50 px-4 my-auto">
+          <div className="px-md-4 px-4 my-auto col-12 col-md-6">
             <h3 className="text-start fw-bold">{productDetails.name}</h3>
 
             <p className="text-start text-secondary">SKU: 2050</p>
@@ -304,7 +295,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
             <div className="text-start">
               {/* color */}
               <p className="text-secondary pt-2"> Colors : </p>
-              <div class=" w-50 " id="accordionFlushExample">
+              <div class=" w-50p " id="accordionFlushExample">
                 <div class=" p-0 m-0">
                   <nav className="d-flex justify-content-center">
                     <div
@@ -438,7 +429,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                     return e ? (
                       <>
                         <p className="text-secondary pt-2 ">{e?.name} :</p>
-                        <div className="d-flex gap-2">
+                        <div className="d-flex gap-2 flex-wrap">
                           {e?.values.map((f) => {
                             return (
                               <button
@@ -583,7 +574,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                   <>
                     {" "}
                     <button
-                      className=" btn outline-wish py-2 px-4 ms-1"
+                      className=" btn outline-wish py-2 px-4 mt-md-0 mt-3 text-16"
                       onClick={() => {
                         !inWishList ? addToWishlist() : removeFromWishlist();
                       }}
@@ -602,14 +593,14 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
             </div>
           </div>
         </div>
-        <div className="px120 border-top ">
-          <div className="w-100 text-start py-3 pt-5">
+        <div className="px120 border-top">
+          <div className="w-100 text-start p-3 pt-5 ">
             <h5 className=" pb-2 fs-4 fw-bold">Description :</h5>
             <p className="pb-0 text-16 text-theme-gray">
               {productDetails.description}
             </p>
           </div>
-          <div className="w-100 text-start py-2">
+          <div className="w-100 text-start py-2 px-">
             <h5 className=" pb-2 fs-4 fw-bold">Shipping policy :</h5>
             <p className="pb-0 text-16 text-theme-gray">
               At Iconive, we understand how important it is for you to receive
@@ -721,7 +712,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               </div>
             </p>
           </div>
-          <div className="w-100 text-start py-3 pb-5">
+          <div className="w-100 text-start p- pb-5">
             <h5 className=" pb-2 fs-4 fw-bold">Return & Refund policy :</h5>
             <p className="pb-0 text-theme-gray text-16">
               You have 7 calendar days to return an item from the date you
@@ -871,7 +862,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               </div>
             </p>
           </div>
-          <div className="d-flex w-100 pb-5">
+          <div className="d-flex w-100 pb-5 px-md-">
             <div className="w-100 ">
               <iframe
                 width="100%"

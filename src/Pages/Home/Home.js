@@ -65,7 +65,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="col-6 w-50  d-flex p-1 px-lg-4 border-end feature-hover">
+              <div className="col-6 w-50  d-flex p-1 px-lg-4 border-end feature-hover no-border">
                 <div className="my-auto w-25">
                   <img
                     src={feature2}

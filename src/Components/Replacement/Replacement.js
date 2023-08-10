@@ -40,7 +40,7 @@ export default function Replacement() {
           a flawless fit and timeless style for men of all ages
         </p>
       </div>
-      <div className="bg-ch p-5">
+      <div className="bg-ch py-5">
         <div className="d-flex py-4   mx-auto container marginTop row ">
           {/* card */}
           <div className="mx-auto  col-5 col-lg-2 p-0 ">
