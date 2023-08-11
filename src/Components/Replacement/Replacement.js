@@ -31,7 +31,7 @@ export default function Replacement() {
   ];
   return (
     <>
-      <div className="my-5 paddingBottom">
+      <div className="my-5 paddingBottom ptsm">
         <h2 className="fw-bold  w-100 mx-auto text-uppercase headingHover">
           Men’s Hair Replacement System
         </h2>
@@ -41,9 +41,9 @@ export default function Replacement() {
         </p>
       </div>
       <div className="bg-ch p-5">
-        <div className="d-flex py-4  mx-auto container marginTop row ">
+        <div className="d-flex py-4   mx-auto container marginTop row ">
           {/* card */}
-          <div className="mx-auto  col-6 col-lg-2 p-0 ">
+          <div className="mx-auto  col-5 col-lg-2 p-0 ">
             <img
               className="w-22 w-100 h-100"
               src={card1}
@@ -51,7 +51,7 @@ export default function Replacement() {
             />
           </div>
 
-          <div className="mx-auto  col-6 col-lg-2 p-0 ">
+          <div className="mx-auto  col-5 col-lg-2 p-0 ">
             <img
               className="w-22  w-100 h-100"
               src={card3}
@@ -59,23 +59,23 @@ export default function Replacement() {
             />
           </div>
 
-          <div className="mx-auto  col-6 col-lg-2 p-0 ">
+          <div className="mx-auto  col-5 col-lg-2 p-0 gapsm">
             <img
-              className=" w-22  w-100 h-100"
+              className=" w-22 gapsm  w-100 h-100"
               src={card4}
               alt="This  is an  picture "
             />
           </div>
-          <div className="mx-auto  col-6 col-lg-2 p-0 ">
+          <div className="mx-auto  col-5 col-lg-2 p-0 gapsm">
             <img
-              className="w-22  w-100 h-100"
+              className="w-22 gapsm w-100 h-100"
               src={card5}
               alt="This  is an  picture "
             />
           </div>
-          <div className="mx-auto  col-6 col-lg-2 p-0 ">
+          <div className="mx-auto  col-5 col-lg-2 p-0 gapsm">
             <img
-              className="w-22  w-100 h-100"
+              className="w-22 gapsm  w-100 h-100"
               src={card2}
               alt="This  is an  picture"
             />

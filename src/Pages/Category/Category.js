@@ -125,7 +125,7 @@ export default function Category({}) {
                   />
                 )}
               </div>
-              <div className="d-flex justify-content-between py-5 px120">
+              <div className="d-flex justify-content-between py-5 px120 flex-column flex-lg-row ">
                 <div className="d-flex gap-2">
                   <p className="text-uppercase text-22 my-auto ps-4 fw-bold">
                     Filters{" "}
@@ -169,7 +169,7 @@ export default function Category({}) {
                 </div>
               </div>
 
-              <div className="d-flex px120">
+              <div className="d-flex px120 flex-column flex-lg-row">
                 {/* sidebar */}
                 <div className="sidebarwidth d-flex flex-column gap-4">
                   <div className="sidebarBg  ">
@@ -272,7 +272,7 @@ export default function Category({}) {
                 </div>
 
                 <div className="w-80 ps-5 text-center">
-                  <div className="d-flex w-100 flex-wrap gap-4 mx-auto justify-content-center">
+                  <div className="d-flex w-100 flex-wrap flex-column flex-lg-row gap-4 mx-auto justify-content-center">
                     {products.map((product, index) => (
                       <>
                         <CollectionCard productId={product._id} index={index} />

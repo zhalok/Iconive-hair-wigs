@@ -19,20 +19,22 @@ import p5 from "../Images/footer/p5.svg";
 export default function Footer() {
   return (
     <>
-      <div className="bg-footer d-flex">
-        <div className="py-5  d-flex flex-column flex-col-reverse  flex-lg-row justify-content-between containerpro w-100 row">
+      <div className=" d-flex">
+        <div className="bg-footer py-5  d-flex flex-column  flex-lg-row justify-content-between containerpro w-100   row me-0">
           <div className="  border-secondary col-12 col-lg-4">
             <div>
-              <p className="text-16 text-start ms-2">Shipping Partner</p>
-              <div className="text-start">
+              <p className="text-16 text-lg-start text-center ms-2">
+                Shipping Partner
+              </p>
+              <div className="text-lg-start text-center">
                 <img src={sp1} className="" alt="this is an icon" />
                 <img src={sp2} className="" alt="this is an icon" />
                 <img src={sp3} className="" alt="this is an icon" />
               </div>
-              <p className="text-16 text-start ms-2">
+              <p className="text-16 text-lg-start text-center ms-2">
                 Accepted Payment Methods
               </p>
-              <div className="text-start">
+              <div className="text-lg-start text-center">
                 <img src={p1} className="" alt="this is an icon" />
                 <img src={p2} className="" alt="this is an icon" />
                 <img src={p3} className="" alt="this is an icon" />
@@ -41,9 +43,9 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className=" d-flex border-start-end flex-column my-autocol-12 col-lg-4">
+          <div className=" d-flex border-start-end flex-column my-lg-auto col-12 col-lg-4 my-5">
             <h3 className="text-theme-gray fw-bold ">ICONIVE</h3>
-            <div className="mt-4 text-dark d-flex gap-2 mx-auto">
+            <div className="mt-4 text-dark d-flex gap-2 mx-auto flex-wrap justify-content-center">
               <a
                 className="mx-1"
                 href="https://www.facebook.com/profile.php?id=100087712010768"
@@ -92,9 +94,9 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          <div className=" px90 d-flex  border-secondary col-12 col-lg-4">
-            <div className="text-start pe-4">
-              <h6 className="fw-bold pb-3">Our Policies</h6>
+          <div className=" d-flex  border-secondary col-12 col-lg-4 flex-column flex-lg-row">
+            <div className="text-lg-end  mx-auto">
+              <h6 className="fw-bold pb-3 ">Our Policies</h6>
               <a href="/privacy" className="text-decoration-none">
                 <p className="text-16">Privacy Policy</p>
               </a>
@@ -109,7 +111,10 @@ export default function Footer() {
                 <p className="text-16">Shipping Policy</p>
               </a>
             </div>
-            <div className="text-start">
+            <div
+              className="text-lg-end mx-auto mt-4 mt-lg-0
+            "
+            >
               <h6 className="fw-bold pb-3">Our Profile</h6>
               <a href="/about" className="text-decoration-none">
                 <p className="text-16">About Us</p>

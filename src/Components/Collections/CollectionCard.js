@@ -166,15 +166,17 @@ export default function CollectionCard({ productId, index }) {
           </span>
         )}
       </div>
+      <p className="text-start px-3 pt-3 fw-bold  ">{product.name}</p>
       <div className="text-start p-3 mt-auto">
-        <p className=" fw-bold  ">{product.name}</p>
+        <div className="d-flex mt-auto">
+          {product.discount !== 0 && (
+            <p className="text-20 fw-bold text-secondary text-decoration-line-through pt-1 my-auto me-3">
+              {currency === "USD" ? "$" : "৳"}
+              {currencyConverter(currency, product?.price)}
+            </p>
+          )}
 
-        <div className="d-flex mt-4">
-          <p className="text-20 fw-bold text-secondary text-decoration-line-through pt-1 my-auto">
-            {currency === "USD" ? "$" : "৳"}
-            {currencyConverter(currency, product?.price)}
-          </p>
-          <p className="text-20 fw-bold text-dark my-auto pt-1 ms-3">
+          <p className="text-20 fw-bold text-dark my-auto pt-1 ">
             {currency === "USD" ? "$" : "৳"}
             {currencyConverter(
               currency,

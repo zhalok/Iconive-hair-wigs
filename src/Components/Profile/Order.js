@@ -19,7 +19,7 @@ import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import { PulseLoader } from "react-spinners";
 
-const percentage = 66;
+// const percentage = 66;
 const steps = [
   "Order Placed",
   "Payment Completed",
@@ -44,7 +44,6 @@ const months = [
 ];
 
 export default function Order({ order, index, getOrders }) {
-  // console.log("order", order);
   const [collapase, setCollapse] = useState(false);
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [loading, setLoading] = useState(false);
@@ -92,7 +91,9 @@ export default function Order({ order, index, getOrders }) {
   };
 
   const updateStepper = () => {
+    console.log("Order status", order.status);
     const idx = steps.indexOf(order.status);
+    console.log("index of steps", idx);
     return idx + 1;
   };
 
