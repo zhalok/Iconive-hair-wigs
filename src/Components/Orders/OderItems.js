@@ -4,11 +4,13 @@ import { Accordion } from "react-bootstrap";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import currencyConverter from "../../utils/CurrencyChanger";
 import discountCalculator from "../../utils/calculateDIscount";
+import { useNavigate } from "react-router-dom";
 
 export default function OrderItem({ orderItemId }) {
   const [orderItem, setOrderItem] = useState({});
   const { currency, setCurrency } = useContext(CurrencyContext);
-  // console.log("orderItem", orderItem);
+  const navigate = useNavigate();
+  console.log("orderItem", orderItem);
 
   const getOrderItem = async () => {
     try {
@@ -25,7 +27,13 @@ export default function OrderItem({ orderItemId }) {
     getOrderItem();
   }, []);
   return (
-    <div className="d-flex mb-3">
+    <div
+      className="d-flex mb-3"
+      style={{ cursor: "pointer" }}
+      onClick={() => {
+        navigate(`/productDetails/${orderItem?.product?._id}`);
+      }}
+    >
       <span className="my-auto w-90px rounded-3 overflow-hidden ">
         <img
           src={orderItem?.product?.photo}
@@ -34,10 +42,9 @@ export default function OrderItem({ orderItemId }) {
         />
       </span>
       <div className="text-start ps-3 my-auto">
-        <p className="text-18 mb-1">SuperSkin - Ladies Blonde Wig</p>
+        <p className="text-18 mb-1">{orderItem?.product?.name}</p>
         <p className="text-theme-gray text-14 mb-0">
-          Women’s Thin Skin Hair System with 110% density and Knotless V-Looped
-          hair at front
+          {orderItem?.product?.description}
         </p>
       </div>
       <div className="text-end my-auto ms-auto">
