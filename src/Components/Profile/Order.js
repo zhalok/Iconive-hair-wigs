@@ -47,6 +47,8 @@ export default function Order({ order, index, getOrders }) {
   const [collapase, setCollapse] = useState(false);
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [loading, setLoading] = useState(false);
+  const [loadingPayment, setLoadingPayment] = useState(false);
+  console.log("Order", order);
 
   const cancelOrder = async () => {
     try {
@@ -71,19 +73,20 @@ export default function Order({ order, index, getOrders }) {
 
   const payOrder = async () => {
     try {
-      setLoading(true);
+      setLoadingPayment(true);
       const paymentResponse = await axios.post(
-        `/payment/create/${order._id}`,
+        `/payment/repay/${order._id}`,
         {},
         {
           headers: {
             Authorization: `Bearer ${Cookies.get("jwt")}`,
+            invoice_number: order.payment.invoice_number,
           },
         }
       );
-      setLoading(false);
-      console.log(paymentResponse);
-      // window.location.replace(paymentResponse.data.payment_url);
+      setLoadingPayment(false);
+      // console.log("paymentResponse", paymentResponse);
+      window.location.replace(paymentResponse.data.payment_url);
     } catch (e) {
       setLoading(false);
       console.log(e);
@@ -208,6 +211,16 @@ export default function Order({ order, index, getOrders }) {
                       onClick={cancelOrder}
                     >
                       Cancel Order{" "}
+                    </button>
+                  )}
+                  {order?.payment_status != "Successful" && (
+                    <button
+                      className="btn btn-theme-hover btn-theme-order border-bottom pb-1"
+                      onClick={() => {
+                        payOrder();
+                      }}
+                    >
+                      Pay Now
                     </button>
                   )}
                   <button className="btn btn-theme-hover btn-theme-order border-bottom pb-1">
