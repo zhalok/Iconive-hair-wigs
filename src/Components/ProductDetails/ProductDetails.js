@@ -600,7 +600,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               {productDetails.description}
             </p>
           </div>
-          <div className="w-100 text-start py-2 px-">
+          <div className="w-100 text-start p-3 px-">
             <h5 className=" pb-2 fs-4 fw-bold">Shipping policy :</h5>
             <p className="pb-0 text-16 text-theme-gray">
               At Iconive, we understand how important it is for you to receive
@@ -609,7 +609,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               as quickly as possible.
               <button
                 type="button"
-                class="btn btn-outline-secondary text-14 py-0 mx-2"
+                class="btn btn-outline-secondary text-15 py-0 mx-2"
                 data-bs-toggle="modal"
                 data-bs-target="#shippingModal"
               >
@@ -712,14 +712,14 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               </div>
             </p>
           </div>
-          <div className="w-100 text-start p- pb-5">
+          <div className="w-100 text-start p-3 pb-5">
             <h5 className=" pb-2 fs-4 fw-bold">Return & Refund policy :</h5>
             <p className="pb-0 text-theme-gray text-16">
               You have 7 calendar days to return an item from the date you
               received it.
               <button
                 type="button"
-                class="btn btn-outline-secondary py-0 mx-2 text-14"
+                class="btn btn-outline-secondary py-0 mx-2 text-15"
                 data-bs-toggle="modal"
                 data-bs-target="#refundandreturnpolicy"
               >
@@ -862,7 +862,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               </div>
             </p>
           </div>
-          <div className="d-flex w-100 pb-5 px-md-">
+          <div className="d-flex w-100 pb-5 px-md-3">
             <div className="w-100 ">
               <iframe
                 width="100%"

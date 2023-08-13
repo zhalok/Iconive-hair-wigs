@@ -5,6 +5,9 @@
   height: 320px;
   display: flex;
 }
+.input-height {
+  height: 45px;
+}
 .xyauto {
   margin: auto auto;
 }
@@ -78,4 +81,25 @@
   background-color: #ecb30a;
   color: #fff;
   border: #ecb30a 1px solid;
+}
+
+@media screen and (min-width: 481px) and (max-width: 1280px) {
+}
+@media screen and (max-width: 480px) {
+  .big-txt {
+    font-size: 16px;
+  }
+  .sm-txt {
+    font-size: 10px;
+  }
+  .xyauto {
+    margin-top: 8%;
+  }
+  .top-banner {
+    background-image: url(./Image/checkoutBanner.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 120px;
+    display: flex;
+  }
 }

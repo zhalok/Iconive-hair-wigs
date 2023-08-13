@@ -19,7 +19,7 @@ import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import { PulseLoader } from "react-spinners";
 
-const percentage = 66;
+// const percentage = 66;
 const steps = [
   "Order Placed",
   "Payment Completed",
@@ -44,10 +44,11 @@ const months = [
 ];
 
 export default function Order({ order, index, getOrders }) {
-  // console.log("order", order);
   const [collapase, setCollapse] = useState(false);
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [loading, setLoading] = useState(false);
+  const [loadingPayment, setLoadingPayment] = useState(false);
+  console.log("Order", order);
 
   const cancelOrder = async () => {
     try {
@@ -72,19 +73,20 @@ export default function Order({ order, index, getOrders }) {
 
   const payOrder = async () => {
     try {
-      setLoading(true);
+      setLoadingPayment(true);
       const paymentResponse = await axios.post(
-        `/payment/create/${order._id}`,
+        `/payment/repay/${order._id}`,
         {},
         {
           headers: {
             Authorization: `Bearer ${Cookies.get("jwt")}`,
+            invoice_number: order.payment.invoice_number,
           },
         }
       );
-      setLoading(false);
-      console.log(paymentResponse);
-      // window.location.replace(paymentResponse.data.payment_url);
+      setLoadingPayment(false);
+      // console.log("paymentResponse", paymentResponse);
+      window.location.replace(paymentResponse.data.payment_url);
     } catch (e) {
       setLoading(false);
       console.log(e);
@@ -92,7 +94,9 @@ export default function Order({ order, index, getOrders }) {
   };
 
   const updateStepper = () => {
+    console.log("Order status", order.status);
     const idx = steps.indexOf(order.status);
+    console.log("index of steps", idx);
     return idx + 1;
   };
 
@@ -207,6 +211,16 @@ export default function Order({ order, index, getOrders }) {
                       onClick={cancelOrder}
                     >
                       Cancel Order{" "}
+                    </button>
+                  )}
+                  {order?.payment_status != "Successful" && (
+                    <button
+                      className="btn btn-theme-hover btn-theme-order border-bottom pb-1"
+                      onClick={() => {
+                        payOrder();
+                      }}
+                    >
+                      Pay Now
                     </button>
                   )}
                   <button className="btn btn-theme-hover btn-theme-order border-bottom pb-1">
