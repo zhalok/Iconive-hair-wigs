@@ -5,6 +5,7 @@ import { Link, useNavigate, useNavigation } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
 import logo from "../Images/logoblack.png";
 import "../globalcss/style.css";
+import "./Login.css";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import AuthContext from "../../Contexts/AuthContext";
@@ -83,76 +84,78 @@ const Login = () => {
   return (
     <>
       <div className="text-center d-flex ">
-        <div className="w-50 d-flex shadow-theme-sign mx-auto my-5 bg-signup marginTopBot">
-          <div className="w-50 d-flex">
-            <img
-              src={logbanner}
-              alt="login img"
-              className="m-auto"
-              width="100%"
-            />
-          </div>
-          <div className="w-50 w-50  rounded-theme11 my-auto ">
-            <Container className="border-start w-100 text-start">
-              <p className="pt-5 ps-5 pb-0 mb-0 text-theme-dark  text-28 mx-auto ">
-                Login Here
-              </p>
-              <p className="ps-5 pt-1">
-                New to Iconive ?
-                <Link
-                  to="/signup"
-                  className="text-dark pb-1 border-bottom border-dark text-decoration-none pb-1 ms-2 text-shadow"
-                >
-                  Sign Up
-                </Link>
-              </p>
-              <div className="text-center p-5 ">
-                <form>
-                  <input
-                    type="email"
-                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
-                    placeholder="Email"
-                    value={email}
-                    onChange={handleEmailchange}
-                  />
-                  <br />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
-                    value={pass}
-                    onChange={handlePassChange}
-                  />
-                  <br />
-                  {loading ? (
-                    <PulseLoader />
-                  ) : (
-                    <button
-                      type="submit"
-                      className="btn btn-theme-up px-5 py-2 my-4 text-light "
-                      value="Login"
-                      // onClick={handleLogin}
-                      onClick={() => {
-                        login();
-                      }}
-                    >
-                      Log in
-                    </button>
-                  )}
-                </form>
-                <small className="text-danger">{error}</small>
-
-                <div className="d-flex mx-auto text-center">
-                  <span
-                    // onClick={handleGoogleLogin}
-                    className="mx-auto"
+        <div className="w-50p  d-flex flex-column flex-md-row shadow-theme-sign mx-auto my-5 bg-signup marginTopBot">
+          <div className="row mx-auto w-100 p-4 p-md-0">
+            <div className="col-12 col-md-6 d-flex p-0">
+              <img
+                src={logbanner}
+                alt="login img"
+                className="m-auto "
+                width="100%"
+              />
+            </div>
+            <div className="col-12 col-md-6  rounded-theme11 my-auto ">
+              <div className="marginTopLog w-100 text-start p-2">
+                <p className="pt-5 ps-md-5 pb-0 mb-0 text-theme-dark  text-28 mx-auto ">
+                  Login Here
+                </p>
+                <p className="ps-md-5 pt-1">
+                  New to Iconive ?
+                  <Link
+                    to="/signup"
+                    className="text-dark pb-1 border-bottom border-dark text-decoration-none pb-1 ms-2 text-shadow"
                   >
-                    <img src={glogo} className="me-2" />
-                    <img src={flogo} className="" />
-                  </span>
+                    Sign Up
+                  </Link>
+                </p>
+                <div className="text-center px-md-5 py-5 ">
+                  <form>
+                    <input
+                      type="email"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
+                      placeholder="Email"
+                      value={email}
+                      onChange={handleEmailchange}
+                    />
+                    <br />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
+                      value={pass}
+                      onChange={handlePassChange}
+                    />
+                    <br />
+                    {loading ? (
+                      <PulseLoader />
+                    ) : (
+                      <button
+                        type="submit"
+                        className="btn btn-theme-up px-5 py-2 my-4 text-light "
+                        value="Login"
+                        // onClick={handleLogin}
+                        onClick={() => {
+                          login();
+                        }}
+                      >
+                        Log in
+                      </button>
+                    )}
+                  </form>
+                  <small className="text-danger">{error}</small>
+
+                  <div className="d-flex mx-auto text-center">
+                    <span
+                      // onClick={handleGoogleLogin}
+                      className="mx-auto"
+                    >
+                      <img src={glogo} className="me-2" />
+                      <img src={flogo} className="" />
+                    </span>
+                  </div>
                 </div>
               </div>
-            </Container>
+            </div>
           </div>
         </div>
       </div>

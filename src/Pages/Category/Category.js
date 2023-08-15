@@ -1,30 +1,18 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Collection from "./image/Collections.jpg";
 import maleCollection from "./image/malecollection.jpg";
 import femaleCollection from "./image/femaleCollections.jpg";
 import Rawhair from "./image/Rawhair.jpg";
 import Accessories from "./image/Accessories.jpg";
-import down from "./icons/downArrow.svg";
-import card1 from "./image/cardh1.jpg";
 import "./Category.css";
-import cardicon1 from "./image/cardicon1.svg";
-import cardicon2 from "./image/cardicon2.svg";
 import sidebarimg from "./image/sidebar.svg";
 import filter from "./image/filter.svg";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import axios from "../../utils/axios";
-import { Cookie } from "@mui/icons-material";
-import { useSearchParams } from "react-router-dom";
-import apiLayerAxios from "../../utils/apiLayerAxios";
 import CollectionCard from "../../Components/Collections/CollectionCard";
-import CurrencyContext from "../../Contexts/CurrencyContext";
-
-// import { useNavigate } from "react-router-dom";
 
 export default function Category({}) {
   const [topbanner, setTopBanner] = useState(1);
@@ -32,9 +20,6 @@ export default function Category({}) {
   const [filters, setFilters] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
-  const { currency, setCurrency } = useContext(CurrencyContext);
-  const [currencyLoading, setCurrencyLoading] = useState(false);
-  const [category, setCategory] = useState("");
   console.log("filter", filters);
 
   console.log("Top Banner", topbanner);
@@ -125,23 +110,27 @@ export default function Category({}) {
                   />
                 )}
               </div>
-              <div className="d-flex justify-content-between py-5 px120 flex-column flex-lg-row ">
-                <div className="d-flex gap-2">
+              <div className="d-flex justify-content-between px120pro flex-column flex-lg-row ">
+                <div className="d-flex gap-2 gayeb w-25p">
                   <p className="text-uppercase text-22 my-auto ps-4 fw-bold">
                     Filters{" "}
                   </p>
-                  <img src={filter} alt="this is an image" />
+                  <img
+                    src={filter}
+                    className="h-50 my-auto"
+                    alt="this is an image"
+                  />
                 </div>
-                <div className="w-50 ms-auto">
-                  <form class="d-flex w-75 ">
+                <div className="w-60p mx-auto pt-4 pt-md-0">
+                  <form class="d-flex  w-60p mx-auto">
                     <input
-                      class="form-control rounded-0"
+                      class="form-control round-start "
                       type="search"
                       placeholder="Search"
                       aria-label="Search"
                     />
                     <button
-                      class="btn btn-secondary rounded-0 py-1"
+                      class="btn btn-secondary  py-1 round-end"
                       type="submit"
                     >
                       Search
@@ -149,9 +138,11 @@ export default function Category({}) {
                   </form>
                 </div>
 
-                <div className="my-auto d-flex pe-5 gap-5">
-                  <p className="text-16 text-theme-gray my-auto">SORT BY</p>
-                  <div class="btn-group">
+                <div className="my-auto d-flex mx-auto gap-5 py-3 pt-md-0 w-25p  msm-auto ms">
+                  <div class="btn-group w-100 outline-secondary">
+                    <p className="text-16 text-theme-gray my-auto w-50 ">
+                      SORT BY
+                    </p>
                     <button
                       class="btn btn-secondary btn-sm dropdown-toggle"
                       type="button"
@@ -262,21 +253,19 @@ export default function Category({}) {
                       );
                     })}
                   </div>
-                  <div className="m-auto pt-2 overFlow rounded-iconive">
+                  <div className="m-auto pt-2 overFlow rounded-iconive gayeb">
                     <img
                       src={sidebarimg}
                       alt="this is an image "
-                      className="w-100 m-auto sidebarImg"
+                      className="w-100 m-auto sidebarImg gayeb"
                     />
                   </div>
                 </div>
 
-                <div className="w-80 ps-5 text-center">
-                  <div className="d-flex w-100 flex-wrap flex-column flex-lg-row gap-4 mx-auto justify-content-center">
+                <div className="w-80 ps-md-5 pt-5 pt-md-0">
+                  <div className="d-flex flex-wrap flex-column flex-lg-row gap-4 mx-auto justify-content-center">
                     {products.map((product, index) => (
-                      <>
-                        <CollectionCard productId={product._id} index={index} />
-                      </>
+                      <CollectionCard productId={product._id} index={index} />
                     ))}
                   </div>
                 </div>
