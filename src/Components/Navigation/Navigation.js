@@ -127,203 +127,217 @@ export default function Navigation({ renderer }) {
           zIndex: "50",
         }}
       >
-        <div className="d-flex mx-auto  justify-content-between px115">
-          <div className="mb-auto mt-2  my-lg-auto d-flex w12 text-start ">
-            <div className="my-auto d-flex text-18 ps-5 pe-3 py-1 bg-light useBtn form-check form-switch">
-              <input
-                className="my-auto form-check-input ps-2 me-2 btnCheckUse "
-                type="checkbox"
-                id="flexSwitchCheckChecked"
-                onClick={() => {
-                  setCurrency((prevs) => {
-                    return prevs === "BDT" ? "USD" : "BDT";
-                  });
-                }}
-              />
+        <div className="position-relative ">
+          <div className="d-flex mx-auto  justify-content-between px115">
+            <div className="mb-auto mt-2  my-lg-auto d-flex w12 text-start ">
+              <div className="my-auto d-flex text-18 ps-5 pe-3 py-1 bg-light useBtn form-check form-switch">
+                <input
+                  className="my-auto form-check-input ps-2 me-2 btnCheckUse "
+                  type="checkbox"
+                  id="flexSwitchCheckChecked"
+                  onClick={() => {
+                    setCurrency((prevs) => {
+                      return prevs === "BDT" ? "USD" : "BDT";
+                    });
+                  }}
+                />
 
-              <label class=" text-16 my-auto" for="flexSwitchCheckChecked">
-                {/* {usdCheck ? (
+                <label class=" text-16 my-auto" for="flexSwitchCheckChecked">
+                  {/* {usdCheck ? (
                   <p className="my-auto ms-1">BDT</p>
                 ) : (
                   <p className="my-auto ms-1">USD</p>
                 )} */}
-                <p className="my-auto ms-1">{currency}</p>
-              </label>
+                  <p className="my-auto ms-1">{currency}</p>
+                </label>
+              </div>
             </div>
-          </div>
-          <Navbar expand="lg m-auto " className="">
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto gap-4 d-flex mx-auto position-relative">
-                <Nav.Link href="/home" className="text-black text-nav  drop">
-                  HOME
-                </Nav.Link>
+            <Navbar expand="lg m-auto " className="">
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto gap-2 gap-md-4 d-flex mx-auto position-relative">
+                  <Nav.Link href="/home" className="text-black text-nav  drop">
+                    HOME
+                  </Nav.Link>
 
-                <Nav.Link
-                  onClick={() => {
-                    setCollectionDropdown((prevs) => {
-                      return !prevs;
-                    });
-                  }}
-                  className="text-black drop  text-nav"
-                >
-                  SHOP
-                </Nav.Link>
+                  <Nav.Link
+                    onClick={() => {
+                      setCollectionDropdown((prevs) => {
+                        return !prevs;
+                      });
+                    }}
+                    className="text-black drop  text-nav"
+                  >
+                    SHOP
+                  </Nav.Link>
 
-                <Nav.Link
-                  href="/guideme"
-                  className="text-black text-nav text-uppercase drop"
-                >
-                  {" "}
-                  Guide ME
-                </Nav.Link>
+                  <Nav.Link
+                    href="/guideme"
+                    className="text-black text-nav text-uppercase drop"
+                  >
+                    {" "}
+                    Guide ME
+                  </Nav.Link>
 
-                <Nav.Link
-                  href="/customize"
-                  className="text-black text-nav text-uppercase drop"
-                >
-                  customIZE
-                </Nav.Link>
-                <Nav.Link
-                  href="/offers"
-                  className="text-black text-nav text-uppercase drop"
-                >
-                  Offers
-                </Nav.Link>
-                <Nav.Link
-                  href="/joinus"
-                  className="text-black text-nav text-uppercase drop"
-                >
-                  JOIN US
-                </Nav.Link>
-                <Nav.Link
-                  href="/blog"
-                  className="text-black text-nav text-uppercase drop"
-                >
-                  BLOG
-                </Nav.Link>
-                <Nav.Link
-                  href="/wholesale"
-                  className="text-warning text-nav text-uppercase drop"
-                >
-                  Wholesale
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
-          <div className="d-flex  gap-1 w12 justify-content-end mb-auto mt-2  my-lg-auto">
-            <div className="m-auto  ">
-              <img width={"20"} src={search} alt="this is an icon" />
-            </div>
-            <div className="m-auto ">
-              <img width={"27"} src={wish} alt="this is an icon" />
-            </div>
-            <div className="m-auto">
-              {/* <a href="/checkout"> */}
-              <Badge badgeContent={cartItems} color="primary">
-                <img
-                  width={"25"}
-                  src={cart}
-                  alt="this is an icon"
-                  onClick={() => {
-                    setShowCartDrawer((prev) => !prev);
-                  }}
-                />
-              </Badge>
-              {/* </a> */}
-            </div>
-            {user ? (
+                  <Nav.Link
+                    href="/customize"
+                    className="text-black text-nav text-uppercase drop"
+                  >
+                    customIZE
+                  </Nav.Link>
+                  <Nav.Link
+                    href="/offers"
+                    className="text-black text-nav text-uppercase drop"
+                  >
+                    Offers
+                  </Nav.Link>
+                  <Nav.Link
+                    href="/joinus"
+                    className="text-black text-nav text-uppercase drop"
+                  >
+                    JOIN US
+                  </Nav.Link>
+                  <Nav.Link
+                    href="/blog"
+                    className="text-black text-nav text-uppercase drop"
+                  >
+                    BLOG
+                  </Nav.Link>
+                  <Nav.Link
+                    href="/wholesale"
+                    className="text-warning text-nav text-uppercase drop"
+                  >
+                    Wholesale
+                  </Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+            <div className="d-flex  gap-1 w12 justify-content-end mb-auto mt-2  my-lg-auto">
+              <div className="m-auto  ">
+                <img width={"20"} src={search} alt="this is an icon" />
+              </div>
+              <div className="m-auto ">
+                <img width={"27"} src={wish} alt="this is an icon" />
+              </div>
               <div className="m-auto">
-                <a href="/profile" className="text-decoration-none">
-                  <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
-                    <h5 className=" m-auto fw-bold text-light">
-                      {user.name[0].toUpperCase()}
-                    </h5>
-                  </div>
-                </a>
+                {/* <a href="/checkout"> */}
+                <Badge badgeContent={cartItems} color="primary">
+                  <img
+                    width={"25"}
+                    src={cart}
+                    alt="this is an icon"
+                    onClick={() => {
+                      setShowCartDrawer((prev) => !prev);
+                    }}
+                  />
+                </Badge>
+                {/* </a> */}
               </div>
-            ) : (
-              <div
-                style={{
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  navigate("/login");
-                }}
+              {user ? (
+                <div className="m-auto">
+                  <a href="/profile" className="text-decoration-none">
+                    <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
+                      <h5 className=" m-auto fw-bold text-light">
+                        {user.name[0].toUpperCase()}
+                      </h5>
+                    </div>
+                  </a>
+                </div>
+              ) : (
+                <div
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  <img
+                    width={"35"}
+                    src={usericon}
+                    alt="this is an icon"
+                    onClick={() => {}}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+          {CollectionDropdown && (
+            <div className=" w-100 row m-0  d-flex flex-column flex-lg-row position-absolute z-100 bg-white p-0 shadow-lg navOpen mtm">
+              <a
+                href="/catagory?category=6432a3f8bc1e9c4115b67db5?topbanner=1"
+                className="text-decoration-none  col-12 col-md-3 drop p-md-4 pt-3 border-end"
               >
-                <img
-                  width={"35"}
-                  src={usericon}
-                  alt="this is an icon"
-                  onClick={() => {}}
-                />
-              </div>
-            )}
-          </div>
+                <div className="w-100 ">
+                  <div className="">
+                    <img
+                      src={maleCollection}
+                      alt="This is an Image"
+                      className="w-100"
+                    />
+                  </div>
+
+                  <p className="mt-3 text-18 nav-drop text-dark text-12p">
+                    Gents Wigs
+                  </p>
+                </div>
+              </a>
+              <a
+                href="/catagory?category=6432eb5a9e5f9a8abde960e0&topbanner=2"
+                className="text-decoration-none col-12 col-md-3 drop p-md-4 border-end"
+              >
+                <div className="w-100  ">
+                  <div className="w-100 ">
+                    <img
+                      src={femaleCollection}
+                      alt="This is an Image"
+                      className="w-100"
+                    />
+                  </div>
+
+                  <p className="mt-3 text-18 nav-drop text-dark text-12p">
+                    Ladies Wigs
+                  </p>
+                </div>
+              </a>
+              <a
+                href="/catagory?category=64343a704fb336001b129958&topbanner=3"
+                className="text-decoration-none col-12 col-md-3 drop p-md-4 border-end"
+              >
+                <div className="w-100 ">
+                  <div className="w-100 ">
+                    <img
+                      src={Rawhair}
+                      alt="This is an Image"
+                      className="w-100"
+                    />
+                  </div>
+
+                  <p className="mt-3 nav-drop text-18 text-dark text-12p">
+                    Raw Hair
+                  </p>
+                </div>
+              </a>
+              <a
+                href="/catagory?category=64343aaf4fb336001b12995c&topbanner=4"
+                className="text-decoration-none col-12 col-md-3 drop p-md-4"
+              >
+                <div className="w-100">
+                  <div className="w-100 ">
+                    <img
+                      src={Accessories}
+                      alt="This is an Image"
+                      className="w-100"
+                    />
+                  </div>
+                  <p className="mt-3 text-18 nav-drop text-dark text-12p">
+                    Accessories
+                  </p>
+                </div>
+              </a>
+            </div>
+          )}
         </div>
-        {CollectionDropdown && (
-          <div className=" w-100  d-flex position-absolute z-100 bg-white p-0 shadow-lg navOpen">
-            <a
-              href="/catagory?category=6432a3f8bc1e9c4115b67db5?topbanner=1"
-              className="text-decoration-none w-25 drop p-4 border-end"
-            >
-              <div className="w-100 ">
-                <div className="">
-                  <img
-                    src={maleCollection}
-                    alt="This is an Image"
-                    className="w-100"
-                  />
-                </div>
-
-                <p className="mt-3 text-18 nav-drop text-dark">Gents Wigs</p>
-              </div>
-            </a>
-            <a
-              href="/catagory?category=6432eb5a9e5f9a8abde960e0&topbanner=2"
-              className="text-decoration-none w-25 drop p-4 border-end"
-            >
-              <div className="w-100  ">
-                <div className="w-100 ">
-                  <img
-                    src={femaleCollection}
-                    alt="This is an Image"
-                    className="w-100"
-                  />
-                </div>
-
-                <p className="mt-3 text-18 nav-drop text-dark">Ladies Wigs</p>
-              </div>
-            </a>
-            <a
-              href="/catagory?category=64343a704fb336001b129958&topbanner=3"
-              className="text-decoration-none w-25 drop p-4 border-end"
-            >
-              <div className="w-100 ">
-                <div className="w-100 ">
-                  <img src={Rawhair} alt="This is an Image" className="w-100" />
-                </div>
-
-                <p className="mt-3 nav-drop text-18 text-dark">Raw Hair</p>
-              </div>
-            </a>
-            <a
-              href="/catagory?category=64343aaf4fb336001b12995c&topbanner=4"
-              className="text-decoration-none w-25 drop p-4"
-            >
-              <div className="w-100">
-                <div className="w-100 ">
-                  <img
-                    src={Accessories}
-                    alt="This is an Image"
-                    className="w-100"
-                  />
-                </div>
-                <p className="mt-3 text-18 nav-drop text-dark">Accessories</p>
-              </div>
-            </a>
-          </div>
-        )}
       </div>
     </>
   );

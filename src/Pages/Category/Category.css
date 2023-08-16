@@ -335,4 +335,7 @@
 
 /* responsive design for 1280 screen */
 @media screen and (min-width: 481px) and (max-width: 1280px) {
+  .card-main {
+    width: 30% !important;
+  }
 }

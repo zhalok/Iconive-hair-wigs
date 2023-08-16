@@ -148,4 +148,10 @@
     font-size: 5vw;
     border-bottom: #ffffff3c solid 2px;
   }
+  .mtm {
+    top: 30%;
+  }
+  .text-12p {
+    font-size: 13px !important;
+  }
 }

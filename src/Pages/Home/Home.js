@@ -44,7 +44,6 @@ export default function Home() {
   return (
     <div>
       <CarouselHome></CarouselHome>
-
       {/* free features section */}
       <div className="container d-flex ">
         <div className=" row d-flex flex-column flex-lg-row w-100 mt-100  mx-0 px-0 justify-content-center">
@@ -118,7 +117,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
       {/* choose style˚*/}
       <div className="mb-5 container">
         <div className="row  d-flex  flex-lg-row p-2 p-lg-0">
@@ -170,20 +168,19 @@ export default function Home() {
           </div>
         </div>
       </div>
-
       <TopSelling></TopSelling>
       <Trending></Trending>
       {/* wholesales */}
       <div className="container pb-5">
         <div className="row w-100 position-relative d-flex pb-5 px-0 ">
-          <div className=" col-12 col-lg-8 ms-lg-auto mx-0 overflow-hidden">
+          <div className="displayHidden col-12 col-lg-8 ms-lg-auto mx-0 overflow-hidden">
             <img
               src={wholesale}
               alt="this is a picture "
               className="w-100 cardImg"
             />
           </div>
-          <div className="w-100 row px-0 me-autos position-absolute  text-start  postion-wholesale shadow-lg ">
+          <div className="w-100 row me-0 px-0 me-autos position-absolute displayBlock text-start  postion-wholesale shadow-lg mx-auto ">
             <div className="col-12 col-lg-6 bg-wholeslae p-5 rounded-3 headingHover">
               <h2 className="fw-bold">For Wholesellers</h2>
               <p className="py-4 text-16 text-justify text-theme-gray ">
@@ -207,7 +204,6 @@ export default function Home() {
       </div>
       <Replacement></Replacement>
       <CustomWigs></CustomWigs>
-
       {/* what people are sating */}
       <div className="bg-testimonial   py-md-5 p-4 px-lg-0">
         <h3 className="fw-bold py9060 text-dark headingHover">

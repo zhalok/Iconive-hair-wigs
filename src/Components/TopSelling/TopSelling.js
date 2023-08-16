@@ -55,7 +55,7 @@ export default function TopSelling() {
             >
               <div className="img-card img-card position-relative cardMain overflow-hidden porda">
                 <img
-                  className="w-100 h-100 rounded-iconive"
+                  className="w-100 h-100 rounded-iconive cardImg"
                   src={product.photo}
                   alt="This  is an  picture"
                 />

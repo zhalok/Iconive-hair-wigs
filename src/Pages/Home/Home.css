@@ -132,4 +132,10 @@ hr {
   .no-border {
     border: none !important;
   }
+  .displayHidden {
+    display: none !important;
+  }
+  .displayBlock {
+    display: block !important;
+  }
 }

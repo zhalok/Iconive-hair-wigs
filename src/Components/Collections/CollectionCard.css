@@ -45,3 +45,11 @@
 .mt-m5 {
   margin-top: -59px;
 }
+@media screen and (min-width: 481px) and (max-width: 1280px) {
+  .card-main {
+    width: 30% !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+}
