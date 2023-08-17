@@ -44,6 +44,10 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const [selectedFamily, setSelectedFamily] = useState("black");
   const [colors, setColors] = useState("");
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   // console.log(selectedFamily);
   // console.log(productDetails.colors);
   // useEffect(() => {
@@ -57,7 +61,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   // }, [selectedFamily, productDetails]);
   // console.log(colors);
 
-  console.log("product Details", productDetails);
+  // console.log("product Details", productDetails);
 
   // console.log(
   //   productDetails.colors.filter(

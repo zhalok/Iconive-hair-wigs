@@ -85,10 +85,10 @@ export default function TopSelling() {
                     {currencyConverter(currency, product.price)}
                   </p>
                   <div className="d-flex ms-auto">
-                    <button className="btn px-0 mt-1">
+                    {/* <button className="btn px-0 mt-1">
                       {" "}
                       <img src={cardicon2} className="" alt="this is an icon" />
-                    </button>
+                    </button> */}
                     {/* <button
                       className="btn ps-2 my-auto"
                       onClick={() => {
