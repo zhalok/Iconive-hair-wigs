@@ -103,121 +103,123 @@ export default function Signup() {
       } */}
       <div className="text-center d-flex ">
         <div className="d-flex shadow-theme-sign mx-auto my-5 marginTopBot bg-signup">
-          <div className="w-50 d-flex">
-            <img
-              src={logbanner}
-              alt="login img"
-              className="m-auto"
-              width="100%"
-            />
-          </div>
-          <div className="w-50 my-auto rounded-theme11">
-            <Container className="border-start w-100 text-start">
-              <p className="pt-5 ps-5 pb-0 mb-0 text-theme-dark  text-28 mx-auto ">
-                Create Your Account
-              </p>
-              <p className="ps-5">
-                Already a member?{" "}
-                <Link
-                  to="/login"
-                  className="text-dark pb-1 border-bottom border-dark text-decoration-none pb-1 ms-2 text-shadow"
-                >
-                  Login Here
-                </Link>
-              </p>
-              <div className="p-5 text-center">
-                <form>
-                  <div className="w-100 d-flex gap-2">
-                    <input
-                      type="text"
-                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-100"
-                      placeholder="First Name"
-                      value={firstName}
-                      onChange={(e) => {
-                        setFirstName(e.target.value);
-                      }}
-                    />
-                    <input
-                      type="text"
-                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
-                      placeholder="Last Name"
-                      value={lastName}
-                      onChange={(e) => {
-                        setLastName(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <br />
-                  <input
-                    type="email"
-                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none   mx-auto"
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={handleEmailchange}
-                  />{" "}
-                  <br />
-                  <input
-                    type="password"
-                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none  mx-auto"
-                    placeholder="Password"
-                    value={pass}
-                    onChange={handlePassChange}
-                  />
-                  <br />
-                  <input
-                    type="password"
-                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none  mx-auto"
-                    placeholder="Confirm Password"
-                    value={confirmPass}
-                    onChange={(e) => {
-                      setConfirmPass(e.target.value);
-                    }}
-                  />
-                  <br />
-                  <p className="my-3 pb-2 text-14 text-theme-gray ">
-                    <input
-                      class="form-check-input me-2 bg-theme-check"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    I accept terms and conditions and privacy policy.
-                  </p>
-                  {loading ? (
-                    <PulseLoader />
-                  ) : (
-                    <button
-                      type="submit"
-                      className=" btn-theme-up btn  text-light px-5 py-2 mb-3 "
-                      value="Sign Up"
-                      // onClick={handleSignup}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        signup();
-                      }}
-                    >
-                      Sign Up
-                    </button>
-                  )}
-                  <div>
-                    <small className="text-success">{message}</small>
-                    <small className="text-danger">{error}</small>
-                  </div>
-                </form>
-                <p className="my-3 text-14 text-theme-gray pb-2 ">
-                  Or, sign up using
+          <div className="row mx-auto w-100 p-4 p-md-0">
+            <div className="col-12 col-md-6 d-flex">
+              <img
+                src={logbanner}
+                alt="login img"
+                className="m-auto"
+                width="100%"
+              />
+            </div>
+            <div className="col-12 col-md-6 my-auto rounded-theme11">
+              <Container className=" w-100 text-start">
+                <p className="pt-5 ps-md-5 pb-0 mb-0 text-theme-dark  text-28 mx-auto ">
+                  Create Your Account
                 </p>
-                <div className="d-flex mx-auto text-center">
-                  <span
-                    // onClick={handleGoogleLogin}
-                    className="mx-auto"
+                <p className="ps-md-5">
+                  Already a member?{" "}
+                  <Link
+                    to="/login"
+                    className="text-dark pb-1 border-bottom border-dark text-decoration-none pb-1 ms-2 text-shadow"
                   >
-                    <img src={glogo} className="me-2" />
-                    <img src={flogo} className="" />
-                  </span>
+                    Login Here
+                  </Link>
+                </p>
+                <div className="px-md-5 py-5  text-center">
+                  <form>
+                    <div className="w-100 d-flex gap-2">
+                      <input
+                        type="text"
+                        className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
+                        placeholder="First Name"
+                        value={firstName}
+                        onChange={(e) => {
+                          setFirstName(e.target.value);
+                        }}
+                      />
+                      <input
+                        type="text"
+                        className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
+                        placeholder="Last Name"
+                        value={lastName}
+                        onChange={(e) => {
+                          setLastName(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <br />
+                    <input
+                      type="email"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none   mx-auto"
+                      placeholder="Enter Email"
+                      value={email}
+                      onChange={handleEmailchange}
+                    />{" "}
+                    <br />
+                    <input
+                      type="password"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none  mx-auto"
+                      placeholder="Password"
+                      value={pass}
+                      onChange={handlePassChange}
+                    />
+                    <br />
+                    <input
+                      type="password"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none  mx-auto"
+                      placeholder="Confirm Password"
+                      value={confirmPass}
+                      onChange={(e) => {
+                        setConfirmPass(e.target.value);
+                      }}
+                    />
+                    <br />
+                    <p className="my-3 pb-2 text-14 text-theme-gray ">
+                      <input
+                        class="form-check-input me-2 bg-theme-check"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                      />
+                      I accept terms and conditions and privacy policy.
+                    </p>
+                    {loading ? (
+                      <PulseLoader />
+                    ) : (
+                      <button
+                        type="submit"
+                        className=" btn-theme-up btn  text-light px-5 py-2 mb-3 "
+                        value="Sign Up"
+                        // onClick={handleSignup}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          signup();
+                        }}
+                      >
+                        Sign Up
+                      </button>
+                    )}
+                    <div>
+                      <small className="text-success">{message}</small>
+                      <small className="text-danger">{error}</small>
+                    </div>
+                  </form>
+                  <p className="my-3 text-14 text-theme-gray pb-2 ">
+                    Or, sign up using
+                  </p>
+                  <div className="d-flex mx-auto text-center">
+                    <span
+                      // onClick={handleGoogleLogin}
+                      className="mx-auto"
+                    >
+                      <img src={glogo} className="me-2" />
+                      <img src={flogo} className="" />
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </Container>
+              </Container>
+            </div>
           </div>
         </div>
       </div>

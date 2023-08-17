@@ -146,7 +146,7 @@ export default function CollectionCard({ productId, index }) {
       style={{
         cursor: "pointer",
       }}
-      className="card-main border rounded-iconive w-25 d-flex flex-column"
+      className="card-main border rounded-iconive d-flex flex-column mx-auto"
     >
       <div
         className="img-card position-relative cardMain overflow-hidden porda"

@@ -194,21 +194,21 @@ export default function Checkout(props) {
         <div className="top-banner ">
           <div className="xyauto">
             <h3 className="big-txt text-dark">Checkout</h3>
-            <p className="text-theme-gray">Home / Checkout</p>
+            <p className="text-theme-gray sm-txt">Home / Checkout</p>
           </div>
         </div>
 
         {/* main section */}
-        <div className="container py-5 ">
+        <div className="container py-md-5 ">
           <div className="row  shadow">
-            <div className="col-8 p-4 ">
+            <div className="col-12 col-md-8 p-4 ">
               {/* {!auth && ( */}
-              <div className="text-start my-4  d-flex">
+              <div className="text-start my-md-4  d-flex flex-column">
                 <h5 className="">Already registered?</h5>
 
                 <h5>
                   <a
-                    className="text-decoration-none border-bottom border-dark pb-0 text-dark fw-bold ms-2"
+                    className="text-decoration-none border-bottom border-dark pb-0 text-dark fw-bold "
                     href="/signup"
                   >
                     Login Here
@@ -216,10 +216,12 @@ export default function Checkout(props) {
                 </h5>
               </div>
               {/* )} */}
-              <h4 className="text-dark text-start fw-bold">Delivery Address</h4>
+              <h4 className="text-dark text-start fw-bold mt-3 mt-md-0">
+                Delivery Address
+              </h4>
               <form action="" className="text-center pe-4">
-                <div className="d-flex py-4">
-                  <div className="w-50 pe-lg-4">
+                <div className="d-flex row me-0 py-2 pt-4">
+                  <div className="col-12 col-md-6  pe-lg-4">
                     <p className="text-start mb-1">Name</p>
                     <input
                       type="text"
@@ -229,18 +231,18 @@ export default function Checkout(props) {
                       onChange={(e) => {
                         setName(e.target.value);
                       }}
-                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
+                      className="w-100 input-height px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
-                  <div className="w-50 ">
-                    <p className="text-start mb-1 d-flex">
+                  <div className="col-12 col-md-6 ">
+                    <p className="text-start mb-1 mt-4 mt-md-0 d-flex">
                       Phone Number <span className="spanRed"> *</span>
                     </p>
                     <input
                       type="text"
                       name="contactName"
                       id=""
-                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
+                      className="w-100 input-height px-2 rounded-3 border-1 border-theme"
                       value={phone}
                       onChange={(e) => {
                         setPhone(e.target.value);
@@ -248,8 +250,8 @@ export default function Checkout(props) {
                     />
                   </div>
                 </div>
-                <div className="d-flex py-3">
-                  <div className="w-50 pe-lg-4">
+                <div className="d-flex row me-0 py-2">
+                  <div className="col-12 col-md-6 pe-lg-4">
                     <p className="text-start mb-1 d-flex">
                       Email <span className="spanRed"> *</span>
                     </p>
@@ -261,11 +263,13 @@ export default function Checkout(props) {
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
-                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
+                      className="w-100 input-height px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
-                  <div className="w-50 ">
-                    <p className="text-start mb-1">Alternative Phone Number</p>
+                  <div className="col-12 col-md-6 ">
+                    <p className="text-start mb-1 mt-4 mt-md-0">
+                      Alternative Phone Number
+                    </p>
                     <input
                       type="text"
                       name="contactName"
@@ -274,12 +278,12 @@ export default function Checkout(props) {
                       onChange={(e) => {
                         setAltPhone(e.target.value);
                       }}
-                      className="w-100 h-75  px-2 rounded-3 border-1 border-theme"
+                      className="w-100 input-height  px-2 rounded-3 border-1 border-theme"
                     />
                   </div>
                 </div>
-                <div className="d-flex py-3 ">
-                  <div className="w-50 pe-lg-4">
+                <div className="d-flex row me-0 py-2 ">
+                  <div className="col-12 col-md-6 pe-lg-4">
                     <p className="text-start mb-1">
                       Address<span className="spanRed">*</span>
                     </p>
@@ -287,20 +291,20 @@ export default function Checkout(props) {
                       type="text"
                       name="contactName"
                       id=""
-                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
+                      className="w-100 input-height px-2 rounded-3 border-1 border-theme"
                       value={address}
                       onChange={(e) => {
                         setAddress(e.target.value);
                       }}
                     />
                   </div>
-                  <div className="w-50 ">
-                    <p className="text-start mb-1">
+                  <div className="col-12 col-md-6 ">
+                    <p className="text-start mb-1 mt-4 mt-md-0">
                       Country<span className="spanRed">*</span>
                     </p>
 
                     <select
-                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
+                      className="w-100 input-height px-2 rounded-3 border-1 border-theme"
                       value={selectedCountry}
                       onChange={(e) => {
                         setSelectedCountry(e.target.value);
@@ -314,14 +318,14 @@ export default function Checkout(props) {
                   </div>
                 </div>
 
-                <div className="d-flex pt-4 pb-2 ">
-                  <div className="w-50 pe-lg-4">
+                <div className="d-flex row me-0 pt-3 pt-md-2 pb-2 ">
+                  <div className="col-12 col-md-6 pe-lg-4">
                     <p className="text-start mb-1">
                       City<span className="spanRed">*</span>
                     </p>
 
                     <select
-                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
+                      className="w-100 input-height px-2 rounded-3 border-1 border-theme"
                       value={selectedCity}
                       onChange={(e) => {
                         setSelectedCity(e.target.value);
@@ -333,13 +337,13 @@ export default function Checkout(props) {
                     </select>
                   </div>
 
-                  <div className="w-50">
-                    <p className="text-start mb-1">
+                  <div className="col-12 col-md-6">
+                    <p className="text-start mb-1 mt-4 mt-md-0">
                       State<span className="spanRed">*</span>
                     </p>
 
                     <select
-                      className="w-100 h-75 px-2 rounded-3 border-1 border-theme"
+                      className="w-100 input-height px-2 rounded-3 border-1 border-theme"
                       value={selectedState}
                       onChange={(e) => {
                         setSelectedState(e.target.value);
@@ -363,7 +367,7 @@ export default function Checkout(props) {
                   <input
                     type="submit"
                     value="CHECK OUT"
-                    className="border-0 btn-theme-check text-white mx-auto my-4 w-50 pe-4"
+                    className="border-0 btn-theme-check text-white mx-auto my-4 w-50 "
                     onClick={(e) => {
                       e.preventDefault();
                       // console.log(cartItems);
@@ -374,7 +378,7 @@ export default function Checkout(props) {
                 )}
               </form>
             </div>
-            <div className="col-4 border-start p-4 ">
+            <div className="col-12 col-md-4 border-start p-4 ">
               <div>
                 {/* {cartItems &&
                   cartItems.map((card, index) => (

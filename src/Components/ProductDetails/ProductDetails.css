@@ -45,7 +45,7 @@
   margin-top: 50px;
 }
 .px120 {
-  padding: 0px 120px;
+  padding: 0px 5% !important;
 }
 .rounded-6 {
   border-radius: 6px !important;
@@ -68,6 +68,9 @@
   background: #ecb30a;
   border-radius: 10px;
 }
+.w-50p {
+  width: 50%;
+}
 .top-15p {
   top: 25%;
 }
@@ -79,4 +82,14 @@
 }
 .hoverBold:hover {
   font-weight: 600;
+}
+@media screen and (min-width: 481px) and (max-width: 1280px) {
+  .w-50p {
+    width: 60% !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  .w-50p {
+    width: 100%;
+  }
 }

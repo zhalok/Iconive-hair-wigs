@@ -15,7 +15,7 @@
 
 .w-22 {
   transition: all 0.5s;
-  /* transform: scale(1.1); */
+  transform: scale(1.1);
 }
 .w-22:hover {
   transform: scale(1.2);
@@ -64,7 +64,7 @@
     display: none !important;
   }
   .ptsm {
-    padding-top: 60%;
+    padding-top: 130%;
   }
   .gapsm {
     padding-top: 10px !important;

@@ -200,8 +200,8 @@
   top: 38px;
   left: -17%;
 }
-.px120 {
-  padding: 0px 6%;
+.px120pro {
+  padding: 3% 5%;
 }
 .rounded-iconive {
   border-radius: 8px;
@@ -278,21 +278,64 @@
 .cardMain:hover .overlay {
   height: 100%;
 }
+.w-50p {
+  width: 50%;
+}
+.w-60p {
+  width: 60%;
+}
+.w-25p {
+  width: 15%;
+}
+.outline-secondary {
+  border: 1px solid #2c2c2c28;
+  border-radius: 5px;
+}
+.round-start {
+  border-bottom-left-radius: 5px !important;
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
 
+.round-end {
+  border-bottom-left-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+}
 /* responsive design for mobile screen */
-@media screen and (min-width: 320px) and (max-width: 580px) {
+@media screen and (max-width: 480px) {
   .sidebarwidth {
-    width: 90%;
+    width: 100%;
   }
   .px120 {
     padding-left: 5%;
     padding-right: 5%;
   }
   .card-main {
-    width: 90% !important;
+    width: 100% !important;
+  }
+  .w-80 {
+    width: 100% !important;
+  }
+  .gayeb {
+    display: none !important;
+  }
+  .w-60p {
+    width: 100% !important;
+  }
+  .w-25p {
+    width: 100% !important;
+  }
+  .msm-auto {
+    margin: 0% auto !important;
   }
 }
 
 /* responsive design for 1280 screen */
-@media only screen and (max-width: 1280px) {
+@media screen and (min-width: 481px) and (max-width: 1280px) {
+  .card-main {
+    width: 30% !important;
+  }
 }

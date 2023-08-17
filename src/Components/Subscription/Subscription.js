@@ -14,16 +14,18 @@ export default function Subscription() {
             more directly delivered to your inbox.
           </p>
         </div>
-        <div class="d-flex justify-center mx-auto">
-          <input
-            class="w-200 me-2 border-top-0 border-start-0 border-end-0 border-bottom border border-secondary"
-            type="search"
-            placeholder="  Your e-mail address"
-            aria-label="Search"
-          />
-          <button class="btn btnsub  px-3" type="submit">
-            Subscribe
-          </button>
+        <div class="d-flex justify-center mx-auto w-100">
+          <div className="mx-auto w-100">
+            <input
+              class="w-200 me-2 border-top-0 border-start-0 border-end-0 border-bottom border border-secondary text-10p"
+              type="search"
+              placeholder="  Your e-mail address"
+              aria-label="Search"
+            />
+            <button class="btn btnsub  px-3" type="submit">
+              Subscribe
+            </button>
+          </div>
         </div>
       </div>
     </>
