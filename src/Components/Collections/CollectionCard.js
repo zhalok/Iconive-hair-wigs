@@ -124,7 +124,10 @@ export default function CollectionCard({ productId, index }) {
   }, [currency]);
 
   const handleClick = () => {
-    navigate(`/productDetails/${productId}`);
+    // navigate(`/productDetails/${productId}`);
+    window.location.replace(
+      `${window.location.origin}/productDetails/` + productId
+    );
   };
 
   useEffect(() => {

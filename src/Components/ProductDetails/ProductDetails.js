@@ -45,7 +45,11 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const [colors, setColors] = useState("");
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    // document.getElementById("scroll-top").scrollTop = 0;
+    // useEffect(() => {
+    window.scrollTo(0, 0);
+    // }, []);
   }, []);
 
   // console.log(selectedFamily);
@@ -232,7 +236,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
 
   return (
     <>
-      <div className="positon-relative">
+      <div className="positon-relation">
         <div className="px120 d-flex flex-column flex-lg-row my-5 row m-0">
           <div className=" col-12 col-md-6">
             <div className="w-100 position-relative">
