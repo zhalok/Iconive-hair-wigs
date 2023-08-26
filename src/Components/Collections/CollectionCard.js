@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { PulseLoader } from "react-spinners";
-import apiLayerAxios from "../../utils/apiLayerAxios";
 import currencyConverter from "../../utils/CurrencyChanger";
 import discountCalculator from "../../utils/calculateDIscount";
 import cardicon1 from "../../Pages/Category/image/cardicon1.svg";
