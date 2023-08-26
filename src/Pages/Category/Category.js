@@ -2,10 +2,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Collection from "./image/Collections.jpg";
-import maleCollection from "./image/malecollection.jpg";
-import femaleCollection from "./image/femaleCollections.jpg";
-import Rawhair from "./image/Rawhair.jpg";
-import Accessories from "./image/Accessories.jpg";
+import maleCollection from "./image/malecollection.webp";
+import femaleCollection from "./image/femaleCollections.webp";
+import Rawhair from "./image/Rawhair.webp";
+import Accessories from "./image/Accessories.webp";
 import "./Category.css";
 import sidebarimg from "./image/sidebar.svg";
 import filter from "./image/filter.svg";
