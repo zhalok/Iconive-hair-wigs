@@ -118,7 +118,7 @@ export default function Order({ order, index, getOrders }) {
     try {
       setPdfLoading(true);
       const response = await fetch(
-        `http://localhost:8000/api/invoice/getInvoice/${order._id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/invoice/getInvoice/${order._id}`,
         {
           headers: {
             "content-type": "applicaion/json",
