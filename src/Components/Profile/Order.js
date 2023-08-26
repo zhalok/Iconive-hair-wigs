@@ -116,6 +116,7 @@ export default function Order({ order, index, getOrders }) {
 
   const handleDownload = async (filename) => {
     try {
+      setPdfLoading(true);
       const response = await fetch(
         `http://localhost:8000/api/invoice/getInvoice/${order._id}`,
         {
@@ -124,9 +125,9 @@ export default function Order({ order, index, getOrders }) {
           },
         }
       );
-      console.log(response);
+      // console.log(response);
       const blob = await response.blob();
-
+      setPdfLoading(false);
       const fileUrl = URL.createObjectURL(blob);
 
       const link = document.createElement("a");
@@ -136,6 +137,7 @@ export default function Order({ order, index, getOrders }) {
 
       URL.revokeObjectURL(fileUrl);
     } catch (error) {
+      setPdfLoading(false);
       console.error("Error downloading the PDF:", error);
     }
   };
@@ -278,16 +280,20 @@ export default function Order({ order, index, getOrders }) {
                 {/* download invoice */}
 
                 <div className="d-flex py-4 text-start gap-5">
-                  <button
-                    className="btn btn-theme-hover btn-theme-order border-bottom text-uppercase pb-1"
-                    onClick={() => {
-                      // createAndDownloadPdf();
-                      handleDownload();
-                      // window.location.replace();
-                    }}
-                  >
-                    Download Invoice
-                  </button>
+                  {pdfLoading ? (
+                    <PulseLoader />
+                  ) : (
+                    <button
+                      className="btn btn-theme-hover btn-theme-order border-bottom text-uppercase pb-1"
+                      onClick={() => {
+                        // createAndDownloadPdf();
+                        handleDownload();
+                        // window.location.replace();
+                      }}
+                    >
+                      Download Invoice
+                    </button>
+                  )}
                   {loading ? (
                     <PulseLoader />
                   ) : (
