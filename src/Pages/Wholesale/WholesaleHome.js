@@ -5,6 +5,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import "./Wholesale.css";
 import Subscription from "../../Components/Subscription/Subscription";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import CloseIcon from "@mui/icons-material/Close";
 const categoriesGentsWhole = [
   {
     id: 1,
@@ -69,7 +72,7 @@ const categoriesLadiessWhole = [
 const ProductTable = [
   {
     id: 1,
-    name: "MGM",
+    name: "Black hair clipper",
     quantity: "2",
     unitprice: "134",
     totalprice: "123",
@@ -95,6 +98,7 @@ export default function WholesaleHome() {
   const [ladies, seLadies] = useState("");
   const [extension, setExtension] = useState("");
   const [accessories, setAccessories] = useState("");
+  const [itemQuantity, setItemQuantity] = useState(0);
   return (
     <div>
       <div className="w-100">
@@ -148,7 +152,7 @@ export default function WholesaleHome() {
                 // }}
               >
                 {gents ? (
-                  <ExpandMoreIcon
+                  <KeyboardArrowUpIcon
                     onClick={() => {
                       setGents((prevs) => {
                         return !prevs;
@@ -157,7 +161,7 @@ export default function WholesaleHome() {
                     className="my-auto"
                   />
                 ) : (
-                  <KeyboardArrowUpIcon
+                  <ExpandMoreIcon
                     onClick={() => {
                       setGents((prevs) => {
                         return !prevs;
@@ -232,7 +236,7 @@ export default function WholesaleHome() {
                 // }}
               >
                 {ladies ? (
-                  <ExpandMoreIcon
+                  <KeyboardArrowUpIcon
                     onClick={() => {
                       seLadies((prevs) => {
                         return !prevs;
@@ -241,7 +245,7 @@ export default function WholesaleHome() {
                     className="my-auto"
                   />
                 ) : (
-                  <KeyboardArrowUpIcon
+                  <ExpandMoreIcon
                     onClick={() => {
                       seLadies((prevs) => {
                         return !prevs;
@@ -318,7 +322,7 @@ export default function WholesaleHome() {
                 // }}
               >
                 {extension ? (
-                  <ExpandMoreIcon
+                  <KeyboardArrowUpIcon
                     onClick={() => {
                       setExtension((prevs) => {
                         return !prevs;
@@ -327,7 +331,7 @@ export default function WholesaleHome() {
                     className="my-auto"
                   />
                 ) : (
-                  <KeyboardArrowUpIcon
+                  <ExpandMoreIcon
                     onClick={() => {
                       setExtension((prevs) => {
                         return !prevs;
@@ -404,7 +408,7 @@ export default function WholesaleHome() {
                 // }}
               >
                 {accessories ? (
-                  <ExpandMoreIcon
+                  <KeyboardArrowUpIcon
                     onClick={() => {
                       setAccessories((prevs) => {
                         return !prevs;
@@ -413,7 +417,7 @@ export default function WholesaleHome() {
                     className="my-auto"
                   />
                 ) : (
-                  <KeyboardArrowUpIcon
+                  <ExpandMoreIcon
                     onClick={() => {
                       setAccessories((prevs) => {
                         return !prevs;
@@ -483,8 +487,32 @@ export default function WholesaleHome() {
               {ProductTable.map((product, index) => (
                 <tr className="text-td py-2">
                   <td>{index + 1}</td>
-                  <td>{product.name}</td>
-                  <td>{product.quantity}</td>
+                  <td className="d-flex ps-5 gap-4">
+                    <CloseIcon />
+                    {product.name}
+                  </td>
+                  <td>
+                    <div className="d-flex justify-content-center gap-4">
+                      <AddIcon
+                        onClick={() => {
+                          setItemQuantity((prevs) => {
+                            return prevs + 1;
+                          });
+                        }}
+                        className="borderbtn"
+                      />
+                      {itemQuantity}
+                      <RemoveIcon
+                        onClick={() => {
+                          setItemQuantity((prevs) => {
+                            if (prevs === 0) return 0;
+                            else return prevs - 1;
+                          });
+                        }}
+                        className="borderbtn"
+                      />
+                    </div>
+                  </td>
                   <td>{product.unitprice} $</td>
                   <td>{product.totalprice} $</td>
                 </tr>

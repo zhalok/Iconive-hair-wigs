@@ -10,11 +10,13 @@ import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CollectionCard from "../../.././src/Components/Collections/CollectionCard";
+import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import "./Offer.css";
 
 export default function Offer() {
   const navigate = useNavigate();
-
+  const [collapase, setCollapse] = useState(false);
   const [newArrivals, setNewArrivals] = useState([]);
   const { currency, setCurrency } = useContext(CurrencyContext);
 
@@ -53,15 +55,32 @@ export default function Offer() {
           })}
         </div>
         <div className="mb-5 mt-4 d-flex flex-column text-center">
-          <button
-            onClick={() => {
-              navigate("/catagory");
-            }}
-            className="btn text-theme-gray text-18"
-          >
-            View Shop
-          </button>
-          <KeyboardArrowDownIcon className="text-theme-gray m-auto mb-md-5" />
+          {collapase && (
+            <button
+              onClick={() => {
+                setCollapse((prevs) => {
+                  return !prevs;
+                });
+              }}
+              className="btn text-16 text-theme-gray"
+            >
+              <KeyboardArrowUpOutlinedIcon />
+              Collapse
+            </button>
+          )}
+          {!collapase && (
+            <button
+              onClick={() => {
+                setCollapse((prevs) => {
+                  return !prevs;
+                });
+              }}
+              className="btn text-16 text-theme-gray"
+            >
+              <KeyboardArrowDownOutlinedIcon />
+              Expand
+            </button>
+          )}
         </div>
       </div>
 
@@ -86,15 +105,32 @@ export default function Offer() {
           })}
         </div>
         <div className="mb-5 mt-4 d-flex flex-column text-center">
-          <button
-            onClick={() => {
-              navigate("/catagory");
-            }}
-            className="btn text-theme-gray text-18"
-          >
-            View Shop
-          </button>
-          <KeyboardArrowDownIcon className="text-theme-gray m-auto mb-md-5" />
+          {collapase && (
+            <button
+              onClick={() => {
+                setCollapse((prevs) => {
+                  return !prevs;
+                });
+              }}
+              className="btn text-16 text-theme-gray"
+            >
+              <KeyboardArrowUpOutlinedIcon />
+              Collapse
+            </button>
+          )}
+          {!collapase && (
+            <button
+              onClick={() => {
+                setCollapse((prevs) => {
+                  return !prevs;
+                });
+              }}
+              className="btn text-16 text-theme-gray"
+            >
+              <KeyboardArrowDownOutlinedIcon />
+              Expand
+            </button>
+          )}
         </div>
       </div>
 

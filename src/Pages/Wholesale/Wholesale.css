@@ -71,3 +71,8 @@
 .pb-4p {
   padding-bottom: 2%;
 }
+.borderbtn {
+  border: #cc9552 solid 1px;
+  border-radius: 5px;
+  cursor: pointer;
+}
