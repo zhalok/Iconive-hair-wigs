@@ -20,9 +20,10 @@ export default function Category({}) {
   const [filters, setFilters] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
-  console.log("filter", filters);
+  // console.log("filter", filters);
+  console.log("products", products);
 
-  console.log("Top Banner", topbanner);
+  // console.log("Top Banner", topbanner);
 
   const getCategories = async () => {
     try {
@@ -59,6 +60,11 @@ export default function Category({}) {
 
     if (category) {
       setShowSubCategory(category);
+      setProducts((prev) => {
+        return prev.filter((e) => {
+          return e.category._id === category;
+        });
+      });
     }
     if (banner) {
       setTopBanner(parseInt(banner));

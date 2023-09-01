@@ -875,7 +875,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               <iframe
                 width="100%"
                 height="715"
-                src="https://www.youtube.com/embed/1mkB-ENIeco?start=336"
+                src={productDetails?.demo}
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
