@@ -39,6 +39,8 @@ const Category = React.lazy(() => import("./Pages/Category/Category"));
 const Navigation = React.lazy(() =>
   import("./Components/Navigation/Navigation")
 );
+import Offer from "./Pages/Offer/Offer";
+import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
@@ -155,9 +157,10 @@ function App() {
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/repair" element={<Repair />} />
                   <Route path="/guideme" element={<UnderConst />} />
-                  <Route path="/offers" element={<UnderConst />} />
+                  <Route path="/offers" element={<Offer />} />
                   <Route path="/customize" element={<Customize />} />
                   <Route path="/wholesale" element={<Wholesale />} />
+                  <Route path="/wholesalehome" element={<WholesaleHome />} />
                   <Route path="/privacy" element={<Privacy />} />
                   <Route path="/terms" element={<Terms />} />
                   <Route path="/return" element={<Return />} />

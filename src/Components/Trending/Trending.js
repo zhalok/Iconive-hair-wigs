@@ -1,14 +1,10 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useContext, useEffect, useState } from "react";
 import "./Trending.css";
-import card2 from "../Images/card/Mask2.svg";
-import cardicon1 from "../Images/card/cardicon1.svg";
-import cardicon2 from "../Images/card/cardicon2.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 import CurrencyContext from "../../Contexts/CurrencyContext";
-import currencyConverter from "../../utils/CurrencyChanger";
 import CollectionCard from "../Collections/CollectionCard";
 
 export default function Trending() {
