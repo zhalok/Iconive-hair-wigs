@@ -39,18 +39,20 @@ export default function Category({}) {
     }
   };
   const getProducts = async () => {
+    // console.log("calling");
     try {
       const response = await axios.get("/products", {
         params: { filters: filters },
       });
 
+      console.log("data", response.data);
       setProducts(response.data);
     } catch (e) {}
   };
 
   useEffect(() => {
-    getProducts();
-    // console.log(filters);
+    if (filters.categories.length > 0 || filters.subcategories.length > 0)
+      getProducts();
   }, [filters]);
 
   useEffect(() => {
@@ -67,22 +69,11 @@ export default function Category({}) {
       setFilters((prev) => {
         return { ...prev, categories: [category] };
       });
-      // setProducts((prev) => {
-      //   return prev.filter((e) => {
-      //     return e.category._id === category;
-      //   });
-      // });
     }
     if (banner) {
       setTopBanner(parseInt(banner));
     }
   }, []);
-
-  const navigate = useNavigate();
-
-  function handleClick(id) {
-    navigate(`/ProductDetails/${id}`);
-  }
 
   return (
     <>
