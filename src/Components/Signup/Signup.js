@@ -9,6 +9,7 @@ import "../globalcss/style.css";
 import "./Signup.css";
 import { PulseLoader } from "react-spinners";
 import axios from "../../utils/axios";
+import { WindowOutlined } from "@mui/icons-material";
 // import { auth, provider } from "../Login/config.js";
 // import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 export default function Signup() {
@@ -30,30 +31,6 @@ export default function Signup() {
     //console.log(pass);
   };
 
-  // const handleSignup = e => {
-  //     e.preventDefault();
-  //        //console.log(email);
-  //        //console.log(pass);
-
-  //       createUserWithEmailAndPassword(auth,email,pass)
-  //       .then((user)=>{
-  //         setUser(user.user);
-  //       }).catch((error)=>{
-  //         console.log(error)
-  //       })
-
-  //   }
-  // const handleGoogleLogin = (e) => {
-  //   // console.log(email);
-  //   // console.log(pass);
-  //   signInWithPopup(auth, provider).then((data) => {
-  //     setGooglelog(data.user.email);
-  //     localStorage.setItem("email", data.user.email);
-  //     console.log('login kor')
-  //   });
-
-  // };
-
   useEffect(() => {
     setGooglelog(localStorage.getItem("email"));
   });
@@ -67,7 +44,14 @@ export default function Signup() {
       alert("Please fill all necessary informations");
       return;
     }
-
+    if (pass.length < 8) {
+      setError("Please make your password more than 8 characters");
+      return;
+    }
+    if (pass != confirmPass) {
+      setError("Password and Confirm Password did not match");
+      return;
+    }
     const signupInfo = {
       name: firstName + " " + lastName,
       email,
@@ -80,11 +64,14 @@ export default function Signup() {
       const response = await axios.post("/auth/signup", signupInfo);
       setLoading(false);
       setMessage("Please check email and confirm");
+      setError("");
+      window.location.replace(`${window.location.origin}/login`);
       // console.log(response.data);
     } catch (e) {
       // console.log()
       setLoading(false);
-      setMessage("Email already exists");
+      // setMessage();
+      setError("Email already exists");
       // alert(e);
     }
   };
