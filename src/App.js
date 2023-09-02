@@ -1,9 +1,9 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home/Home";
-import Navigation from "./Components/Navigation/Navigation";
-import Category from "./Pages/Category/Category";
+// import Home from "./Pages/Home/Home";
+// import Navigation from "./Components/Navigation/Navigation";
+// import Category from "./Pages/Category/Category";
 import Footer from "./Components/Footer/Footer";
 import Checkout from "./Pages/Checkout/Checkout";
 import ProductDetail from "./Components/ProductDetails/ProductDetails";
@@ -32,6 +32,13 @@ import Customize from "./Pages/Customize/Customize";
 import Blog from "./Pages/Blog/Blog";
 import Repair from "./Pages/Repair/Repair";
 import UnderConst from "./Pages/Underconst/UnderConst";
+import { PulseLoader } from "react-spinners";
+
+const Home = React.lazy(() => import("./Pages/Home/Home"));
+const Category = React.lazy(() => import("./Pages/Category/Category"));
+const Navigation = React.lazy(() =>
+  import("./Components/Navigation/Navigation")
+);
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
@@ -69,12 +76,15 @@ function App() {
           <AuthDispatcherContext.Provider value={setUser}>
             <CurrencyContext.Provider value={{ currency, setCurrency }}>
               <Router>
-                <Navigation
-                  renderer={cartRenderer}
-                  currency={currency}
-                  setCurrency={setCurrency}
-                  // setShowCartDrawer={setShowCartDrawer}
-                />
+                <Suspense fallback={<PulseLoader />}>
+                  <Navigation
+                    renderer={cartRenderer}
+                    currency={currency}
+                    setCurrency={setCurrency}
+                    // setShowCartDrawer={setShowCartDrawer}
+                  />
+                </Suspense>
+
                 <CartDrawer
                   opened={showCartDrawer}
                   close={() => {
@@ -82,22 +92,59 @@ function App() {
                   }}
                 />
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/home" element={<Home />} />
-                  <Route path="/catagory" element={<Category />} />
-                  <Route path="/checkout" element={<Checkout />} />
+                  <Route
+                    path="/"
+                    element={
+                      <Suspense fallback={<PulseLoader />}>
+                        <Home />
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    path="/home"
+                    element={
+                      <Suspense fallback={<PulseLoader />}>
+                        {" "}
+                        <Home />
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    path="/catagory"
+                    element={
+                      <Suspense fallback={<PulseLoader />}>
+                        {" "}
+                        <Category />
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    path="/checkout"
+                    element={
+                      <Suspense fallback={<PulseLoader />}>
+                        <Checkout />
+                      </Suspense>
+                    }
+                  />
                   <Route
                     path="/ProductDetails/:product"
                     element={
-                      // <CartContext.Provider value={cartRenderer}>
-                      <ProductDetail
-                        setCartRenderer={setCartRenderer}
-                        cartRenderer={cartRenderer}
-                      />
-                      // </CartContext.Provider>
+                      <Suspense fallback={<PulseLoader />}>
+                        <ProductDetail
+                          setCartRenderer={setCartRenderer}
+                          cartRenderer={cartRenderer}
+                        />
+                      </Suspense>
                     }
                   />
-                  <Route path="/faq" element={<FAQ />} />
+                  <Route
+                    path="/faq"
+                    element={
+                      <Suspense fallback={<PulseLoader />}>
+                        <FAQ />
+                      </Suspense>
+                    }
+                  />
                   <Route path="/paymentMethod" element={<PaymentMethod />} />
                   <Route path="/about" element={<About />} />
                   <Route
@@ -115,10 +162,34 @@ function App() {
                   <Route path="/terms" element={<Terms />} />
                   <Route path="/return" element={<Return />} />
                   <Route path="/shipping" element={<Shipping />} />
-                  <Route path="/aboutus" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/signup" element={<Signup />} />
-                  <Route path="/profile" element={<Profile />} />
+                  {/* <Route path="/aboutus" element={<Home />} /> */}
+                  <Route
+                    path="/login"
+                    element={
+                      <Suspense fallback={<PulseLoader />}>
+                        {" "}
+                        <Login />
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    path="/signup"
+                    element={
+                      <Suspense fallback={<PulseLoader />}>
+                        {" "}
+                        <Signup />
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <Suspense fallback={<PulseLoader />}>
+                        {" "}
+                        <Profile />
+                      </Suspense>
+                    }
+                  />
                 </Routes>
 
                 <Footer></Footer>

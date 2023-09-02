@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useContext, useEffect, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState, lazy } from "react";
 import { useNavigate } from "react-router-dom";
 import Collection from "./image/Collections.jpg";
 import maleCollection from "./image/malecollection.jpg";
@@ -12,7 +12,21 @@ import filter from "./image/filter.svg";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import axios from "../../utils/axios";
-import CollectionCard from "../../Components/Collections/CollectionCard";
+import { PulseLoader } from "react-spinners";
+// import CollectionCard from "../../Components/Collections/CollectionCard";
+const CollectionCard = React.lazy(() =>
+  import("../../Components/Collections/CollectionCard")
+);
+
+// const maleCollection = React.lazy(() => import("./image/malecollection.jpg"));
+
+// const femaleCollection = React.lazy(() =>
+//   import("./image/femaleCollections.jpg")
+// );
+
+// const Rawhair = React.lazy(() => import("./image/Rawhair.jpg"));
+
+// const Accessories = React.lazy(() => import("./image/Accessories.jpg"));
 
 export default function Category({}) {
   const [topbanner, setTopBanner] = useState(1);
@@ -24,7 +38,7 @@ export default function Category({}) {
   // const [filters, setFilters] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
-  console.log("filter", filters);
+  // console.log("filter", filters);
   // console.log("products", products);
 
   // console.log("Top Banner", topbanner);
@@ -280,7 +294,9 @@ export default function Category({}) {
                 <div className="w-80 ps-md-5 pt-5 pt-md-0">
                   <div className="d-flex flex-wrap flex-column flex-lg-row gap-4 mx-auto justify-content-center">
                     {products.map((product, index) => (
-                      <CollectionCard productId={product._id} index={index} />
+                      <Suspense fallback={<PulseLoader />}>
+                        <CollectionCard productId={product._id} index={index} />
+                      </Suspense>
                     ))}
                   </div>
                 </div>
