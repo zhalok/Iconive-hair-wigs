@@ -1,0 +1,72 @@
+.bg-join {
+  background: #f9f5f0;
+}
+.btn-join {
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  color: black;
+}
+.w-60 {
+  background-color: #fffbe0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.w-88 {
+  background-color: #fffbe0;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+}
+.text-komola {
+  color: #b8662a;
+}
+.ps-r {
+  position: relative;
+}
+.ps-a {
+  position: absolute;
+}
+
+.-mb {
+  margin-bottom: -20px;
+  z-index: 2;
+}
+.card-main {
+  width: 23% !important;
+}
+
+.text-20 {
+  font-size: 20px;
+}
+.text-12 {
+  font-size: 12px;
+}
+.text-15 {
+  font-size: 15px;
+}
+.text-16 {
+  font-size: 16px;
+}
+.text-18 {
+  font-size: 18px;
+}
+.text-theme-gray {
+  color: #666666;
+}
+
+.rounded-iconive {
+  border-radius: 8px;
+}
+.headingHover:hover {
+  transform: scale(1.1);
+  transition: all 0.7s;
+}
+.cardImg:hover {
+  transform: scale(1.1);
+  transition: all 0.8s;
+}
+.mt-5p {
+  margin-top: 5%;
+}

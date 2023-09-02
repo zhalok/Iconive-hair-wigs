@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";

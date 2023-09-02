@@ -33,3 +33,46 @@
   border: 1px dashed #0000004b;
   border-radius: 2px;
 }
+.bg-whole-home {
+  background: #f9f5f0;
+}
+.btn-whole {
+  background-color: #e8e8e8;
+  border-radius: 4px;
+  width: 240px;
+}
+.pt-4p {
+  padding-top: 3%;
+}
+.dropbg {
+  background-color: #f6f6f6;
+  border-radius: 10px;
+}
+.text-th {
+  color: #9d5e10;
+}
+.text-td {
+  color: #b78c54;
+}
+.btn-whole2 {
+  border-radius: 10px;
+  width: 200px;
+  background-color: #ecb30a;
+}
+.btn-whole1 {
+  border-radius: 10px;
+  width: 200px;
+  background-color: #ffeebb;
+  color: #ecb30a;
+}
+.pt-table {
+  padding-top: 20px !important;
+}
+.pb-4p {
+  padding-bottom: 2%;
+}
+.borderbtn {
+  border: #cc9552 solid 1px;
+  border-radius: 5px;
+  cursor: pointer;
+}

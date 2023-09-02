@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Wholesale.css";
 import T1 from "../../.././src/Components/Images/wholesale/section1/Group (1).png";
 import T2 from "../../.././src/Components/Images/wholesale/section1/Group (8).png";
@@ -29,8 +30,69 @@ import TTT7 from "../../.././src/Components/Images/wholesale/section3/Group (7).
 import Subscription from "../../Components/Subscription/Subscription";
 import BackupIcon from "@mui/icons-material/Backup";
 import banner from "../../.././src/Components/Images/joinus/wholesale.webp";
+import Select from "react-select";
+
+const dropItemBusinessType = [
+  {
+    value: 1,
+    label: "Professional salon",
+  },
+  {
+    value: 2,
+    label: "Stylists",
+  },
+  {
+    value: 3,
+    label: "Online store",
+  },
+  {
+    value: 4,
+    label: "Offline store",
+  },
+
+  {
+    value: 5,
+    label: "Others",
+  },
+];
+const dropItemProducts = [
+  {
+    value: 1,
+    label: "Hair toppers for women",
+  },
+  {
+    value: 2,
+    label: "Wigs for women",
+  },
+  {
+    value: 3,
+    label: "wigs & toppers for women",
+  },
+  {
+    value: 4,
+    label: "Men hair systems",
+  },
+
+  {
+    value: 5,
+    label: "Extentions",
+  },
+  {
+    value: 6,
+    label: "All mentioned above",
+  },
+  {
+    value: 7,
+    label: "others",
+  },
+];
 
 export default function Wholesale() {
+  const [value, setValue] = useState(dropItemBusinessType.value);
+  const DropAction = (e) => {
+    setValue(e.label);
+  };
+  const navigate = useNavigate();
   return (
     <>
       <div className="w-100">
@@ -64,10 +126,9 @@ export default function Wholesale() {
                   type="submit"
                   className="btn btn-theme-up px-5 py-2 my-4 text-light "
                   value="Login"
-                  // onClick={handleLogin}
-                  //   onClick={() => {
-                  //     login();
-                  //   }}
+                  onClick={() => {
+                    navigate("/wholesalehome");
+                  }}
                 >
                   LOGIN
                 </button>
@@ -587,73 +648,21 @@ export default function Wholesale() {
                 <div className="w-100 text-start">
                   <p className="text-14 pt-1 mb-2 ms-3">Country</p>
                   <div class="btn-group w-100">
-                    <button
-                      type="button"
-                      class="btn btn-light w-100 dropdown-toggle text-start"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Action
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Another action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Something else here
-                        </a>
-                      </li>
-
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Separated link
-                        </a>
-                      </li>
-                    </ul>
+                    <Select
+                      className="w-100 text-14"
+                      options={dropItemBusinessType}
+                      onChange={DropAction}
+                    />
                   </div>
                 </div>
                 <div className="w-100 text-start">
                   <p className="text-14 pt-3 mb-2 ms-3">Your Business is</p>
                   <div class="btn-group w-100 ">
-                    <button
-                      type="button"
-                      class="btn btn-light w-100 dropdown-toggle text-start"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Action
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Another action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Something else here
-                        </a>
-                      </li>
-
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Separated link
-                        </a>
-                      </li>
-                    </ul>
+                    <Select
+                      className="w-100 text-14"
+                      options={dropItemBusinessType}
+                      onChange={DropAction}
+                    />
                   </div>
                 </div>
                 <div className="w-100 text-start">
@@ -662,37 +671,11 @@ export default function Wholesale() {
                     The products you are interested in
                   </p>
                   <div class="btn-group w-100 ">
-                    <button
-                      type="button"
-                      class="btn btn-light w-100 dropdown-toggle text-start"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Action
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Another action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Something else here
-                        </a>
-                      </li>
-
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Separated link
-                        </a>
-                      </li>
-                    </ul>
+                    <Select
+                      className="w-100 text-14"
+                      options={dropItemProducts}
+                      onChange={DropAction}
+                    />
                   </div>
                 </div>
                 <div className="my-4 p-5 border-dotted mb-4">
