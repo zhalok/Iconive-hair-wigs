@@ -17,11 +17,15 @@ import CollectionCard from "../../Components/Collections/CollectionCard";
 export default function Category({}) {
   const [topbanner, setTopBanner] = useState(1);
   const [products, setProducts] = useState([]);
-  const [filters, setFilters] = useState([]);
+  const [filters, setFilters] = useState({
+    categories: [],
+    subcategories: [],
+  });
+  // const [filters, setFilters] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
-  // console.log("filter", filters);
-  console.log("products", products);
+  console.log("filter", filters);
+  // console.log("products", products);
 
   // console.log("Top Banner", topbanner);
 
@@ -60,11 +64,14 @@ export default function Category({}) {
 
     if (category) {
       setShowSubCategory(category);
-      setProducts((prev) => {
-        return prev.filter((e) => {
-          return e.category._id === category;
-        });
+      setFilters((prev) => {
+        return { ...prev, categories: [category] };
       });
+      // setProducts((prev) => {
+      //   return prev.filter((e) => {
+      //     return e.category._id === category;
+      //   });
+      // });
     }
     if (banner) {
       setTopBanner(parseInt(banner));
@@ -180,9 +187,13 @@ export default function Category({}) {
                       return (
                         <div
                           className="border-top border-1 border-secondary py-4"
-                          // onClick={() => {
-                          //   console.log("hello world");
-                          // }}
+                          onClick={() => {
+                            // console.log("hello world");
+                            setShowSubCategory(category._id);
+                            setFilters((prev) => {
+                              return { ...prev, categories: [category._id] };
+                            });
+                          }}
                         >
                           <div className="text-black d-flex ">
                             <p className="text-18 text-start text-theme-gray mb-0 pt-1">
@@ -223,17 +234,24 @@ export default function Category({}) {
                                     className="ps-2  d-flex f-18 my-3"
                                     onClick={() => {
                                       setFilters((prev) => {
-                                        const uniq =
-                                          category._id + " " + subcategory._id;
-                                        if (prev.includes(uniq)) {
-                                          return prev.filter((item) => {
-                                            return item !== uniq;
-                                          });
+                                        let newState = [...prev?.subcategories];
+                                        if (
+                                          !newState.includes(subcategory._id)
+                                        ) {
+                                          newState.push(subcategory._id);
+                                          return {
+                                            ...prev,
+                                            subcategories: newState,
+                                          };
                                         } else {
-                                          return [...prev, uniq];
+                                          newState = newState.filter((item) => {
+                                            return item !== subcategory._id;
+                                          });
+                                          return {
+                                            ...prev,
+                                            subcategories: newState,
+                                          };
                                         }
-
-                                        return [...prev];
                                       });
                                     }}
                                   >
@@ -242,9 +260,9 @@ export default function Category({}) {
                                       class="form-check-input checkCatagory my-auto"
                                       type="checkbox"
                                       id="checkboxNoLabel"
-                                      checked={filters
-                                        .map((e) => e.split(" ")[1])
-                                        .includes(subcategory._id)}
+                                      checked={filters?.subcategories.includes(
+                                        subcategory._id
+                                      )}
                                       aria-label="..."
                                     />
                                     <p className="text-14 text-start Chover ms-3 my-auto">
