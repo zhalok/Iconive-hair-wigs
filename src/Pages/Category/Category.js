@@ -18,15 +18,6 @@ const CollectionCard = React.lazy(() =>
   import("../../Components/Collections/CollectionCard")
 );
 
-// const maleCollection = React.lazy(() => import("./image/malecollection.jpg"));
-
-// const femaleCollection = React.lazy(() =>
-//   import("./image/femaleCollections.jpg")
-// );
-
-// const Rawhair = React.lazy(() => import("./image/Rawhair.jpg"));
-
-// const Accessories = React.lazy(() => import("./image/Accessories.jpg"));
 
 export default function Category({}) {
   const [topbanner, setTopBanner] = useState(1);

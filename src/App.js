@@ -34,13 +34,14 @@ import Repair from "./Pages/Repair/Repair";
 import UnderConst from "./Pages/Underconst/UnderConst";
 import { PulseLoader } from "react-spinners";
 
+import Offer from "./Pages/Offer/Offer";
+import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
+
 const Home = React.lazy(() => import("./Pages/Home/Home"));
 const Category = React.lazy(() => import("./Pages/Category/Category"));
 const Navigation = React.lazy(() =>
   import("./Components/Navigation/Navigation")
 );
-import Offer from "./Pages/Offer/Offer";
-import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
