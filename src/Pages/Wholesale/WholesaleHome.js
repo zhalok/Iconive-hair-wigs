@@ -488,7 +488,7 @@ export default function WholesaleHome() {
                 <tr className="text-td py-2">
                   <td>{index + 1}</td>
                   <td className="d-flex ps-5 gap-4">
-                    <CloseIcon />
+                    <CloseIcon className="borderbtn text-td fs-5 my-auto" />
                     {product.name}
                   </td>
                   <td>
