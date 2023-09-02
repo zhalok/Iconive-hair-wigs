@@ -45,7 +45,7 @@ export default function Category({}) {
         params: { filters: filters },
       });
 
-      console.log("data", response.data);
+      // console.log("data", response.data);
       setProducts(response.data);
     } catch (e) {}
   };
