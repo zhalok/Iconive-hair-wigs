@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://api.apilayer.com",
+  baseURL: "https://invoice-generator.com",
 });

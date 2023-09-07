@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useContext, useEffect, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState, lazy } from "react";
 import { useNavigate } from "react-router-dom";
 import Collection from "./image/Collections.jpg";
 import maleCollection from "./image/malecollection.webp";
@@ -12,17 +12,27 @@ import filter from "./image/filter.svg";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import axios from "../../utils/axios";
-import CollectionCard from "../../Components/Collections/CollectionCard";
+import { PulseLoader } from "react-spinners";
+// import CollectionCard from "../../Components/Collections/CollectionCard";
+const CollectionCard = React.lazy(() =>
+  import("../../Components/Collections/CollectionCard")
+);
+
 
 export default function Category({}) {
   const [topbanner, setTopBanner] = useState(1);
   const [products, setProducts] = useState([]);
-  const [filters, setFilters] = useState([]);
+  const [filters, setFilters] = useState({
+    categories: [],
+    subcategories: [],
+  });
+  // const [filters, setFilters] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
-  console.log("filter", filters);
+  // console.log("filter", filters);
+  // console.log("products", products);
 
-  console.log("Top Banner", topbanner);
+  // console.log("Top Banner", topbanner);
 
   const getCategories = async () => {
     try {
@@ -34,18 +44,20 @@ export default function Category({}) {
     }
   };
   const getProducts = async () => {
+    // console.log("calling");
     try {
       const response = await axios.get("/products", {
         params: { filters: filters },
       });
 
+      // console.log("data", response.data);
       setProducts(response.data);
     } catch (e) {}
   };
 
   useEffect(() => {
-    getProducts();
-    // console.log(filters);
+    if (filters.categories.length > 0 || filters.subcategories.length > 0)
+      getProducts();
   }, [filters]);
 
   useEffect(() => {
@@ -59,17 +71,14 @@ export default function Category({}) {
 
     if (category) {
       setShowSubCategory(category);
+      setFilters((prev) => {
+        return { ...prev, categories: [category] };
+      });
     }
     if (banner) {
       setTopBanner(parseInt(banner));
     }
   }, []);
-
-  const navigate = useNavigate();
-
-  function handleClick(id) {
-    navigate(`/ProductDetails/${id}`);
-  }
 
   return (
     <>
@@ -174,9 +183,13 @@ export default function Category({}) {
                       return (
                         <div
                           className="border-top border-1 border-secondary py-4"
-                          // onClick={() => {
-                          //   console.log("hello world");
-                          // }}
+                          onClick={() => {
+                            // console.log("hello world");
+                            setShowSubCategory(category._id);
+                            setFilters((prev) => {
+                              return { ...prev, categories: [category._id] };
+                            });
+                          }}
                         >
                           <div className="text-black d-flex ">
                             <p className="text-18 text-start text-theme-gray mb-0 pt-1">
@@ -217,17 +230,24 @@ export default function Category({}) {
                                     className="ps-2  d-flex f-18 my-3"
                                     onClick={() => {
                                       setFilters((prev) => {
-                                        const uniq =
-                                          category._id + " " + subcategory._id;
-                                        if (prev.includes(uniq)) {
-                                          return prev.filter((item) => {
-                                            return item !== uniq;
-                                          });
+                                        let newState = [...prev?.subcategories];
+                                        if (
+                                          !newState.includes(subcategory._id)
+                                        ) {
+                                          newState.push(subcategory._id);
+                                          return {
+                                            ...prev,
+                                            subcategories: newState,
+                                          };
                                         } else {
-                                          return [...prev, uniq];
+                                          newState = newState.filter((item) => {
+                                            return item !== subcategory._id;
+                                          });
+                                          return {
+                                            ...prev,
+                                            subcategories: newState,
+                                          };
                                         }
-
-                                        return [...prev];
                                       });
                                     }}
                                   >
@@ -236,9 +256,9 @@ export default function Category({}) {
                                       class="form-check-input checkCatagory my-auto"
                                       type="checkbox"
                                       id="checkboxNoLabel"
-                                      checked={filters
-                                        .map((e) => e.split(" ")[1])
-                                        .includes(subcategory._id)}
+                                      checked={filters?.subcategories.includes(
+                                        subcategory._id
+                                      )}
                                       aria-label="..."
                                     />
                                     <p className="text-14 text-start Chover ms-3 my-auto">
@@ -265,7 +285,9 @@ export default function Category({}) {
                 <div className="w-80 ps-md-5 pt-5 pt-md-0">
                   <div className="d-flex flex-wrap flex-column flex-lg-row gap-4 mx-auto justify-content-center">
                     {products.map((product, index) => (
-                      <CollectionCard productId={product._id} index={index} />
+                      <Suspense fallback={<PulseLoader />}>
+                        <CollectionCard productId={product._id} index={index} />
+                      </Suspense>
                     ))}
                   </div>
                 </div>

@@ -203,18 +203,20 @@ export default function Checkout(props) {
           <div className="row  shadow">
             <div className="col-12 col-md-8 p-4 ">
               {/* {!auth && ( */}
-              <div className="text-start my-md-4  d-flex flex-column">
-                <h5 className="">Already registered?</h5>
+              {!auth && (
+                <div className="text-start my-md-4  d-flex flex-column">
+                  <h5 className="">Already registered?</h5>
 
-                <h5>
-                  <a
-                    className="text-decoration-none border-bottom border-dark pb-0 text-dark fw-bold "
-                    href="/signup"
-                  >
-                    Login Here
-                  </a>
-                </h5>
-              </div>
+                  <h5>
+                    <a
+                      className="text-decoration-none border-bottom border-dark pb-0 text-dark fw-bold "
+                      href="/signup"
+                    >
+                      Login Here
+                    </a>
+                  </h5>
+                </div>
+              )}
               {/* )} */}
               <h4 className="text-dark text-start fw-bold mt-3 mt-md-0">
                 Delivery Address

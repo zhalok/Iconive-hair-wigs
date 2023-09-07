@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import { React, useEffect, useState } from "react";
-import CarouselHome from "../../Components/CarouselHome/CarouselHome";
+import { React, Suspense, useEffect, useState } from "react";
+import { lazy } from "react";
+// import CarouselHome from "../../Components/CarouselHome/CarouselHome";
+
 import "./Home.css";
 import girl from "../ImagesPage/girl.png";
 import pola from "../ImagesPage/Guy.png";
@@ -13,37 +15,33 @@ import feature1 from "../ImagesPage/freeshipping.svg";
 import feature2 from "../ImagesPage/secure.svg";
 import feature3 from "../ImagesPage/support.svg";
 import feature4 from "../ImagesPage/refund.svg";
-import TopSelling from "../../Components/TopSelling/TopSelling";
-import Trending from "../../Components/Trending/Trending";
+// import TopSelling from "../../Components/TopSelling/TopSelling";
+// import Trending from "../../Components/Trending/Trending";
 import Replacement from "../../Components/Replacement/Replacement";
 import StarIcon from "@mui/icons-material/Star";
 import CustomWigs from "../../Components/CustomWiga/CustomWigs";
 import Subscription from "../../Components/Subscription/Subscription";
 import "animate.css";
+
 import axios from "../../utils/axios";
+import { PulseLoader } from "react-spinners";
+const CarouselHome = lazy(() =>
+  import("../../Components/CarouselHome/CarouselHome")
+);
+const TopSelling = lazy(() => import("../../Components/TopSelling/TopSelling"));
+const Trending = lazy(() => import("../../Components/Trending/Trending"));
 
 export default function Home() {
   const [show, setShow] = useState(false);
   // const [mostSold, setMostSold] = useState([]);
   const [newArrivals, setNewArrivals] = useState([]);
 
-  // const getMostSold = async () => {
-  //   try {
-  //     const response = await axios.get("/filterProducts/mostSold");
-  //     console.log(response.data);
-  //     setMostSold(response.data);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getMostSold();
-  // }, []);
-
   return (
     <div>
-      <CarouselHome></CarouselHome>
+      <Suspense fallback={<PulseLoader />}>
+        <CarouselHome></CarouselHome>
+      </Suspense>
+
       {/* free features section */}
       <div className="container d-flex ">
         <div className=" row d-flex flex-column flex-lg-row w-100 mt-100  mx-0 px-0 justify-content-center">
@@ -168,8 +166,13 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <TopSelling></TopSelling>
-      <Trending></Trending>
+      <Suspense fallback={<PulseLoader />}>
+        <TopSelling />
+      </Suspense>
+      <Suspense fallback={<PulseLoader />}>
+        <Trending />
+      </Suspense>
+
       {/* wholesales */}
       <div className="container pb-5">
         <div className="row w-100 position-relative d-flex pb-5 px-0 ">

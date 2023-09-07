@@ -10,12 +10,15 @@ import "animate.css";
 import axios from "../../utils/axios";
 import currencyConverter from "../../utils/CurrencyChanger";
 import CurrencyContext from "../../Contexts/CurrencyContext";
+import AuthContext from "../../Contexts/AuthContext";
 
 export default function TopSelling() {
   const navigate = useNavigate();
 
   const [mostSold, setMostSold] = useState([]);
   const { currency, setCurrency } = useContext(CurrencyContext);
+  const { user, setUser } = useContext(AuthContext);
+
   const getMostSold = async () => {
     try {
       const response = await axios.get("/filterProducts/mostSold");
@@ -37,10 +40,10 @@ export default function TopSelling() {
           <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 text-center text-uppercase headingHover ">
             Our Best Selling wigs
           </h2>
-          {/* <p className="text-theme-gray text-18 	">
+          <p className="text-theme-gray text-18 	">
             Discover your unique look, Browse our selection of wigs for him and
             her
-          </p> */}
+          </p>
         </div>
 
         <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center ">
@@ -85,10 +88,16 @@ export default function TopSelling() {
                     {currencyConverter(currency, product.price)}
                   </p>
                   <div className="d-flex ms-auto">
-                    <button className="btn px-0 mt-1">
-                      {" "}
-                      <img src={cardicon2} className="" alt="this is an icon" />
-                    </button>
+                    {user && (
+                      <button className="btn px-0 mt-1">
+                        {" "}
+                        <img
+                          src={cardicon2}
+                          className=""
+                          alt="this is an icon"
+                        />
+                      </button>
+                    )}
                     {/* <button
                       className="btn ps-2 my-auto"
                       onClick={() => {

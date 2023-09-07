@@ -1,14 +1,10 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { PulseLoader } from "react-spinners";
-import apiLayerAxios from "../../utils/apiLayerAxios";
 import currencyConverter from "../../utils/CurrencyChanger";
 import discountCalculator from "../../utils/calculateDIscount";
-import cardicon1 from "../../Pages/Category/image/cardicon1.svg";
-
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Favorite } from "@mui/icons-material";
@@ -39,7 +35,7 @@ export default function CollectionCard({ productId, index }) {
       // console.log(data);
       setProduct(data);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -63,7 +59,7 @@ export default function CollectionCard({ productId, index }) {
       // setWishlistloading(false);
     } catch (e) {
       setWishlistloading(false);
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -113,7 +109,7 @@ export default function CollectionCard({ productId, index }) {
       },
     });
     const data = response.data;
-    console.log(data);
+    // console.log(data);
     setProduct((prev) => {
       return { ...prev, price: data.price };
     });
@@ -124,7 +120,10 @@ export default function CollectionCard({ productId, index }) {
   }, [currency]);
 
   const handleClick = () => {
-    navigate(`/productDetails/${productId}`);
+    // navigate(`/productDetails/${productId}`);
+    window.location.replace(
+      `${window.location.origin}/productDetails/` + productId
+    );
   };
 
   useEffect(() => {
@@ -146,7 +145,7 @@ export default function CollectionCard({ productId, index }) {
       style={{
         cursor: "pointer",
       }}
-      className="card-main border rounded-iconive d-flex flex-column mx-auto"
+      className="card-main border rounded-iconive  mx-auto d-flex flex-column"
     >
       <div
         className="img-card position-relative cardMain overflow-hidden porda"
@@ -167,52 +166,50 @@ export default function CollectionCard({ productId, index }) {
         )}
       </div>
       <p className="text-start px-3 pt-3 fw-bold  ">{product.name}</p>
-      <div className="text-start p-3 mt-auto">
-        <div className="d-flex mt-auto">
-          {product.discount !== 0 && (
-            <p className="text-20 fw-bold text-secondary text-decoration-line-through pt-1 my-auto me-3">
-              {currency === "USD" ? "$" : "৳"}
-              {currencyConverter(currency, product?.price)}
-            </p>
+      <div className="d-flex mt-auto px-3 pb-3">
+        {product.discount !== 0 && (
+          <p className="text-20 fw-bold text-secondary text-decoration-line-through pt-1 my-auto me-3">
+            {currency === "USD" ? "$" : "৳"}
+            {currencyConverter(currency, product?.price)}
+          </p>
+        )}
+
+        <p className="text-20 fw-bold text-dark my-auto pt-1 ">
+          {currency === "USD" ? "$" : "৳"}
+          {currencyConverter(
+            currency,
+            discountCalculator(product.price, product.discount)
+          )}
+        </p>
+        <div className="d-flex ms-auto" style={{}}>
+          {user && (
+            <button
+              className="btn px-0 mt-1"
+              name="wishlist"
+              onClick={() => {
+                inWishList ? removeFromWishlist() : addToWishlist();
+              }}
+            >
+              {" "}
+              {!inWishList ? (
+                <FavoriteBorderIcon
+                  className="text-theme-icon"
+                  sx={{ width: "29px", height: "25px" }}
+                />
+              ) : (
+                <Favorite
+                  className="text-theme-icon"
+                  sx={{ width: "29px", height: "25px" }}
+                />
+              )}
+            </button>
           )}
 
-          <p className="text-20 fw-bold text-dark my-auto pt-1 ">
-            {currency === "USD" ? "$" : "৳"}
-            {currencyConverter(
-              currency,
-              discountCalculator(product.price, product.discount)
-            )}
-          </p>
-          <div className="d-flex ms-auto" style={{}}>
-            {user && (
-              <button
-                className="btn px-0 mt-1"
-                name="wishlist"
-                onClick={() => {
-                  inWishList ? removeFromWishlist() : addToWishlist();
-                }}
-              >
-                {" "}
-                {!inWishList ? (
-                  <FavoriteBorderIcon
-                    className="text-theme-icon"
-                    sx={{ width: "29px", height: "25px" }}
-                  />
-                ) : (
-                  <Favorite
-                    className="text-theme-icon"
-                    sx={{ width: "29px", height: "25px" }}
-                  />
-                )}
-              </button>
-            )}
-
-            {/* <Favorite className="text-danger" /> */}
-            {/* <button className="btn ps-2 my-auto">
+          {/* <Favorite className="text-danger" /> */}
+          {/* <button className="btn ps-2 my-auto">
               {" "}
               <img src={cardicon1} className="w-100 " alt="this is an icon" />
             </button> */}
-          </div>
         </div>
       </div>
     </div>

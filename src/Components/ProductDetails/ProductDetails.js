@@ -44,6 +44,14 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const [selectedFamily, setSelectedFamily] = useState("black");
   const [colors, setColors] = useState("");
 
+  useEffect(() => {
+    // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    // document.getElementById("scroll-top").scrollTop = 0;
+    // useEffect(() => {
+    window.scrollTo(0, 0);
+    // }, []);
+  }, []);
+
   // console.log(selectedFamily);
   // console.log(productDetails.colors);
   // useEffect(() => {
@@ -57,7 +65,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   // }, [selectedFamily, productDetails]);
   // console.log(colors);
 
-  console.log("product Details", productDetails);
+  // console.log("product Details", productDetails);
 
   // console.log(
   //   productDetails.colors.filter(
@@ -228,7 +236,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
 
   return (
     <>
-      <div className="positon-relative">
+      <div className="positon-relation">
         <div className="px120 d-flex flex-column flex-lg-row my-5 row m-0">
           <div className=" col-12 col-md-6">
             <div className="w-100 position-relative">
@@ -862,12 +870,12 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               </div>
             </p>
           </div>
-          <div className="d-flex w-100 pb-5 px-md-3">
-            <div className="w-100 ">
+          <div className="d-flex w-100 d-flex pb-5 px-md-3 mx-auto">
+            <div className="w-res mx-auto my-5">
               <iframe
                 width="100%"
                 height="715"
-                src="https://www.youtube.com/embed/1mkB-ENIeco?start=336"
+                src={productDetails?.demo}
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

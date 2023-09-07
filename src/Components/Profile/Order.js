@@ -16,8 +16,19 @@ import StepLabel from "@mui/material/StepLabel";
 import OrderItem from "../Orders/OderItems";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import axios from "../../utils/axios";
+import axios1 from "axios";
 import Cookies from "js-cookie";
 import { PulseLoader } from "react-spinners";
+import invoiceApiAxios from "../../utils/invoiceApiAxios";
+// import Invoice from "../Invoice";
+// import {
+//   renderToFile,
+//   renderToStream,
+//   render,
+//   PDFDownloadLink,
+// } from "@react-pdf/renderer";
+
+import ReactPDF from "@react-pdf/renderer";
 
 // const percentage = 66;
 const steps = [
@@ -48,6 +59,9 @@ export default function Order({ order, index, getOrders }) {
   const { currency, setCurrency } = useContext(CurrencyContext);
   const [loading, setLoading] = useState(false);
   const [loadingPayment, setLoadingPayment] = useState(false);
+  const [pdfLoading, setPdfLoading] = useState(false);
+  const [blob1, setBlob1] = useState(null);
+  const [blob2, setBlob2] = useState(null);
   console.log("Order", order);
 
   const cancelOrder = async () => {
@@ -98,6 +112,71 @@ export default function Order({ order, index, getOrders }) {
     const idx = steps.indexOf(order.status);
     console.log("index of steps", idx);
     return idx + 1;
+  };
+
+  const handleDownload = async (filename) => {
+    try {
+      setPdfLoading(true);
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/invoice/getInvoice/${order._id}`,
+        {
+          headers: {
+            "content-type": "applicaion/json",
+          },
+        }
+      );
+      // console.log(response);
+      const blob = await response.blob();
+      setPdfLoading(false);
+      const fileUrl = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = fileUrl;
+      link.download = "invoice_" + order?.payment?.invoice_number + ".pdf"; // Adjust the file name and extension
+      link.click();
+
+      URL.revokeObjectURL(fileUrl);
+    } catch (error) {
+      setPdfLoading(false);
+      console.error("Error downloading the PDF:", error);
+    }
+  };
+
+  const createAndDownloadPdf = async () => {
+    setPdfLoading(true);
+
+    axios1({
+      url: "http://localhost:8000/api/invoice/create",
+      responseType: "stream",
+      method: "POST",
+      data: {
+        items: [
+          {
+            name: "Gizmo",
+            quantity: 10,
+            unit_cost: 99.99,
+            description: "The best gizmos there are around.",
+          },
+          {
+            name: "Gizmo v2",
+            quantity: 5,
+            unit_cost: 199.99,
+          },
+        ],
+      },
+    })
+      .then((res) => {
+        // console.log(typeof res.data);
+        const blob = new Blob([res.data], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "invoice_" + order?.payment?.invoice_number + ".pdf"; // Adjust the file name and extension
+        link.click();
+
+        URL.revokeObjectURL(url);
+      })
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -199,10 +278,22 @@ export default function Order({ order, index, getOrders }) {
                 </>
 
                 {/* download invoice */}
+
                 <div className="d-flex py-4 text-start gap-5">
-                  <button className="btn btn-theme-hover btn-theme-order border-bottom text-uppercase pb-1">
-                    Download Invoice{" "}
-                  </button>
+                  {pdfLoading ? (
+                    <PulseLoader />
+                  ) : (
+                    <button
+                      className="btn btn-theme-hover btn-theme-order border-bottom text-uppercase pb-1"
+                      onClick={() => {
+                        // createAndDownloadPdf();
+                        handleDownload();
+                        // window.location.replace();
+                      }}
+                    >
+                      Download Invoice
+                    </button>
+                  )}
                   {loading ? (
                     <PulseLoader />
                   ) : (
