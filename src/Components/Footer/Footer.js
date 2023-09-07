@@ -57,19 +57,28 @@ export default function Footer() {
               <a
                 className="mx-1"
                 href="https://www.facebook.com/profile.php?id=100087712010768"
+                target="_blank"
+                rel="noreferrer"
               >
                 <button className="btn btn-outline-secondary p-2 rounded-circle">
                   <FacebookIcon />
                 </button>
               </a>
-              <a className="mx-1" href="https://wa.me/message/PIZLMGBXCLUUN1">
+              <a
+                className="mx-1"
+                href="https://wa.me/message/PIZLMGBXCLUUN1"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <button className="btn btn-outline-secondary p-2 rounded-circle">
                   <WhatsAppIcon />
                 </button>
               </a>
               <a
                 className="mx-1"
-                href="https://www.instagram.com/invites/contact/?i=5jfrooti9ghz&utm_content=qa5m1k1"
+                href="https://www.instagram.com/iconivewigs/"
+                target="_blank"
+                rel="noreferrer"
               >
                 <button className="btn btn-outline-secondary p-2 rounded-circle">
                   <InstagramIcon />
@@ -78,7 +87,9 @@ export default function Footer() {
 
               <a
                 className="mx-1"
-                href="https://twitter.com/Iconivehairwigs?t=NKMVGHrLlnyuKu5bZkZ3MA&s=35"
+                href="https://twitter.com/Iconivewigs"
+                target="_blank"
+                rel="noreferrer"
               >
                 <button className="btn btn-outline-secondary p-2 rounded-circle">
                   <TwitterIcon />
@@ -86,7 +97,9 @@ export default function Footer() {
               </a>
               <a
                 className="mx-1"
-                href="https://www.facebook.com/profile.php?id=100087712010768"
+                href="https://youtube.com/@IconiveWigs?si=m5ojSW2u4XrFVUCE"
+                target="_blank"
+                rel="noreferrer"
               >
                 <button className="btn btn-outline-secondary p-2 rounded-circle">
                   <YouTubeIcon />
@@ -94,7 +107,9 @@ export default function Footer() {
               </a>
               <a
                 className="mx-1"
-                href="https://www.facebook.com/profile.php?id=100087712010768"
+                href="https://www.linkedin.com/company/99836837/admin/feed/posts/?feedType=following"
+                target="_blank"
+                rel="noreferrer"
               >
                 <button className="btn btn-outline-secondary p-2 rounded-circle">
                   <LinkedInIcon />

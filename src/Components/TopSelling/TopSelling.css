@@ -48,7 +48,7 @@ hr {
   border-radius: 8px;
 }
 .card-main {
-  width: 100% !important;
+  width: 23% !important;
 }
 .headingHover:hover {
   transform: scale(1.1);
@@ -57,4 +57,9 @@ hr {
 .cardImg:hover {
   transform: scale(1.1);
   transition: all 0.8s;
+}
+@media screen and (max-width: 480px) {
+  .card-main {
+    width: 90% !important;
+  }
 }
