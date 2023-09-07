@@ -870,8 +870,8 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
               </div>
             </p>
           </div>
-          <div className="d-flex w-100 pb-5 px-md-3">
-            <div className="w-100 ">
+          <div className="d-flex w-100 d-flex pb-5 px-md-3 mx-auto">
+            <div className="w-res mx-auto my-5">
               <iframe
                 width="100%"
                 height="715"
