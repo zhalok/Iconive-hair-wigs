@@ -265,7 +265,7 @@ export default function Navigation({ renderer }) {
           {CollectionDropdown && (
             <div className=" w-100 row m-0  d-flex flex-column flex-lg-row position-absolute z-100 bg-white p-0 shadow-lg navOpen mtm">
               <a
-                href="/catagory?category=6432a3f8bc1e9c4115b67db5&=1"
+                href="/catagory?category=6432a3f8bc1e9c4115b67db5&topbanner=1"
                 className="text-decoration-none  col-12 col-md-3 drop p-md-4 pt-3 border-end"
               >
                 <div className="w-100 ">
@@ -283,7 +283,7 @@ export default function Navigation({ renderer }) {
                 </div>
               </a>
               <a
-                href="/catagory?category=6432eb5a9e5f9a8abde960e0&=2"
+                href="/catagory?category=6432eb5a9e5f9a8abde960e0&topbanner=2"
                 className="text-decoration-none col-12 col-md-3 drop p-md-4 border-end"
               >
                 <div className="w-100  ">
