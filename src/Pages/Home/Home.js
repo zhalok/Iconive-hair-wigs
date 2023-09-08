@@ -25,6 +25,7 @@ import "animate.css";
 
 import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 const CarouselHome = lazy(() =>
   import("../../Components/CarouselHome/CarouselHome")
 );
@@ -35,6 +36,8 @@ export default function Home() {
   const [show, setShow] = useState(false);
   // const [mostSold, setMostSold] = useState([]);
   const [newArrivals, setNewArrivals] = useState([]);
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -117,46 +120,63 @@ export default function Home() {
       </div>
       {/* choose style˚*/}
       <div className="mb-5 container">
-        <div className="row  d-flex  flex-lg-row p-2 p-lg-0">
+        <div
+          className="row  d-flex  flex-lg-row p-2 p-lg-0"
+          style={{
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            navigate("/catagory?category=6432a3f8bc1e9c4115b67db5&topbanner=1");
+          }}
+        >
           <div className="col-12 col-lg-6 my-5 pb-4 ">
-            <a href="/catagory?category=6432a3f8bc1e9c4115b67db5&topbanner=1">
-              <div className="card-img cardMain">
-                <img
-                  width="100%"
-                  height="100%"
-                  src={pola}
-                  alt="this is a picture of girl"
-                />
-                <div className="overlay d-flex mx-auto w-100">
-                  <h1 className="abs  text-light fw-bold p-50p mx-auto">
-                    GENTS
-                  </h1>
-                </div>
+            {/* <a href="/catagory?category=6432a3f8bc1e9c4115b67db5&topbanner=1"> */}
+            <div className="card-img cardMain">
+              <img
+                width="100%"
+                height="100%"
+                src={pola}
+                alt="this is a picture of girl"
+              />
+              <div className="overlay d-flex mx-auto w-100">
+                <h1 className="abs  text-light fw-bold p-50p mx-auto">GENTS</h1>
               </div>
-            </a>
+            </div>
             <h4 className="fw-bold pt-4 pb-3 ">GENTS</h4>
+            {/* </a> */}
+
             <p className="px-3 text-theme-gray text-18">
               Be confident with any style you like to own from a <br />
               large variety of styles.
             </p>
           </div>
 
-          <div className="col-12 col-lg-6 my-5 pb-4">
-            <a href="/catagory?category=6432eb5a9e5f9a8abde960e0&topbanner=2">
-              <div className="card-img cardMain">
-                <img
-                  width="100%"
-                  height="100%"
-                  src={girl}
-                  alt="this is a picture of girl"
-                />
-                <div className="overlay d-flex mx-auto w-100">
-                  <h1 className="abs  text-light fw-bold p-50p  mx-auto">
-                    LADIES
-                  </h1>
-                </div>
+          <div
+            className="col-12 col-lg-6 my-5 pb-4"
+            style={{
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              navigate(
+                "/catagory?category=6432eb5a9e5f9a8abde960e0&topbanner=2"
+              );
+            }}
+          >
+            {/* <a href="/catagory?category=6432eb5a9e5f9a8abde960e0&topbanner=2"> */}
+            <div className="card-img cardMain">
+              <img
+                width="100%"
+                height="100%"
+                src={girl}
+                alt="this is a picture of girl"
+              />
+              <div className="overlay d-flex mx-auto w-100">
+                <h1 className="abs  text-light fw-bold p-50p  mx-auto">
+                  LADIES
+                </h1>
               </div>
-            </a>
+            </div>
+            {/* </a> */}
 
             <h4 className="fw-bold pt-4 pb-3">LADIES</h4>
             <p className="px-3 text-theme-gray text-18">
