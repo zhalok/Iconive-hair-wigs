@@ -119,7 +119,7 @@ export default function Home() {
       <div className="mb-5 container">
         <div className="row  d-flex  flex-lg-row p-2 p-lg-0">
           <div className="col-12 col-lg-6 my-5 pb-4 ">
-            <a href="/catagory">
+            <a href="/catagory?category=6432a3f8bc1e9c4115b67db5&topbanner=1">
               <div className="card-img cardMain">
                 <img
                   width="100%"
@@ -142,7 +142,7 @@ export default function Home() {
           </div>
 
           <div className="col-12 col-lg-6 my-5 pb-4">
-            <a href="/catagory">
+            <a href="/catagory?category=6432eb5a9e5f9a8abde960e0&topbanner=2">
               <div className="card-img cardMain">
                 <img
                   width="100%"
