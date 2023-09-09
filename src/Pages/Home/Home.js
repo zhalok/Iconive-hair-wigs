@@ -120,16 +120,18 @@ export default function Home() {
       </div>
       {/* choose style˚*/}
       <div className="mb-5 container">
-        <div
-          className="row  d-flex  flex-lg-row p-2 p-lg-0"
-          style={{
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            navigate("/catagory?category=6432a3f8bc1e9c4115b67db5&topbanner=1");
-          }}
-        >
-          <div className="col-12 col-lg-6 my-5 pb-4 ">
+        <div className="row  d-flex  flex-lg-row p-2 p-lg-0">
+          <div
+            className="col-12 col-lg-6 my-5 pb-4 "
+            style={{
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              navigate(
+                "/catagory?category=6432a3f8bc1e9c4115b67db5&topbanner=1"
+              );
+            }}
+          >
             {/* <a href="/catagory?category=6432a3f8bc1e9c4115b67db5&topbanner=1"> */}
             <div className="card-img cardMain">
               <img
