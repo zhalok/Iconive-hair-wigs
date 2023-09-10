@@ -339,3 +339,11 @@
     width: 30% !important;
   }
 }
+@media screen and (max-width: 480px) {
+  .card-main {
+    width: 90% !important;
+  }
+  .img-card {
+    width: 90% !important;
+  }
+}

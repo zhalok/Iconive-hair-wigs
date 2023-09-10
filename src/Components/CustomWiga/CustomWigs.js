@@ -23,7 +23,7 @@ export default function CustomWigs() {
   return (
     <div>
       {/* our partners */}
-      <div className="m-90">
+      <div className="m-90 overflow-hidden">
         <h2 className="fw-bold text-uppercase headingHover">Our partners</h2>
         <div className="d-flex flex-wrap justify-content-between container pt-5 row mx-auto g-3">
           <div className="col  my-auto p-3 cardImg">
@@ -54,8 +54,8 @@ export default function CustomWigs() {
       {/* position-relative position-absolute */}
 
       <div className="bg-custom">
-        <div className="p-3 p-lg-0 mt-5">
-          <h4 className="fw-bold fs-2  pt-5  w-100 mx-auto text-uppercase headingHover">
+        <div className="p-3 p-lg-0 overflow-hidden">
+          <h4 className="fw-bold fs-2 mt-3p pt-5  w-100 mx-auto text-uppercase headingHover">
             Custom medical wigs
           </h4>
           <p className="pt-4  f-16 text-theme-gray pb-4 pb-lg-0">

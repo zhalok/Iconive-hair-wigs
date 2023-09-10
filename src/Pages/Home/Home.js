@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { React, Suspense, useEffect, useState } from "react";
 import { lazy } from "react";
-// import CarouselHome from "../../Components/CarouselHome/CarouselHome";
+import CarouselHome from "../../Components/CarouselHome/CarouselHome";
 
 import "./Home.css";
 import girl from "../ImagesPage/girl.png";
@@ -15,8 +15,8 @@ import feature1 from "../ImagesPage/freeshipping.svg";
 import feature2 from "../ImagesPage/secure.svg";
 import feature3 from "../ImagesPage/support.svg";
 import feature4 from "../ImagesPage/refund.svg";
-// import TopSelling from "../../Components/TopSelling/TopSelling";
-// import Trending from "../../Components/Trending/Trending";
+import TopSelling from "../../Components/TopSelling/TopSelling";
+import Trending from "../../Components/Trending/Trending";
 import Replacement from "../../Components/Replacement/Replacement";
 import StarIcon from "@mui/icons-material/Star";
 import CustomWigs from "../../Components/CustomWiga/CustomWigs";
@@ -25,11 +25,11 @@ import "animate.css";
 
 import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
-const CarouselHome = lazy(() =>
-  import("../../Components/CarouselHome/CarouselHome")
-);
-const TopSelling = lazy(() => import("../../Components/TopSelling/TopSelling"));
-const Trending = lazy(() => import("../../Components/Trending/Trending"));
+// const CarouselHome = lazy(() =>
+// import("../../Components/CarouselHome/CarouselHome")
+// );
+// const TopSelling = lazy(() => import("../../Components/TopSelling/TopSelling"));
+// const Trending = lazy(() => import("../../Components/Trending/Trending"));
 
 export default function Home() {
   const [show, setShow] = useState(false);
@@ -38,9 +38,9 @@ export default function Home() {
 
   return (
     <div>
-      <Suspense fallback={<PulseLoader />}>
-        <CarouselHome></CarouselHome>
-      </Suspense>
+      {/* <Suspense fallback={<PulseLoader />}> */}
+      <CarouselHome></CarouselHome>
+      {/* </Suspense> */}
 
       {/* free features section */}
       <div className="container d-flex ">
@@ -166,12 +166,12 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Suspense fallback={<PulseLoader />}>
-        <TopSelling />
-      </Suspense>
-      <Suspense fallback={<PulseLoader />}>
-        <Trending />
-      </Suspense>
+      {/* <Suspense fallback={<PulseLoader />}> */}
+      <TopSelling />
+      {/* </Suspense> */}
+      {/* <Suspense fallback={<PulseLoader />}> */}
+      <Trending />
+      {/* </Suspense> */}
 
       {/* wholesales */}
       <div className="container pb-5">
@@ -209,7 +209,7 @@ export default function Home() {
       <CustomWigs></CustomWigs>
       {/* what people are sating */}
       <div className="bg-testimonial   py-md-5 p-4 px-lg-0">
-        <h3 className="fw-bold py9060 text-dark headingHover">
+        <h3 className="fw-bold py9060 text-dark headingHover overflow-hidden">
           WHAT PEOPLE ARE SAYING
         </h3>
 

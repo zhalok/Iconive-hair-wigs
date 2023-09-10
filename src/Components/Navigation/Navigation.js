@@ -72,6 +72,8 @@ export default function Navigation({ renderer }) {
           <a
             className="mx-1 text-secondary my-auto"
             href="https://www.facebook.com/profile.php?id=100087712010768"
+            target="_blank"
+            rel="noreferrer"
           >
             <FacebookIcon />
           </a>
@@ -83,26 +85,34 @@ export default function Navigation({ renderer }) {
           </a>
           <a
             className="mx-1 text-secondary my-auto"
-            href="https://www.instagram.com/invites/contact/?i=5jfrooti9ghz&utm_content=qa5m1k1"
+            href="https://www.instagram.com/iconivewigs/"
+            target="_blank"
+            rel="noreferrer"
           >
             <InstagramIcon />
           </a>
 
           <a
             className="mx-1 text-secondary my-auto"
-            href="https://twitter.com/Iconivehairwigs?t=NKMVGHrLlnyuKu5bZkZ3MA&s=35"
+            href="https://twitter.com/Iconivewigs"
+            target="_blank"
+            rel="noreferrer"
           >
             <TwitterIcon />
           </a>
           <a
             className="mx-1 text-secondary my-auto"
-            href="https://www.facebook.com/profile.php?id=100087712010768"
+            href="https://youtube.com/@IconiveWigs?si=m5ojSW2u4XrFVUCE"
+            target="_blank"
+            rel="noreferrer"
           >
             <YouTubeIcon />{" "}
           </a>
           <a
             className="mx-1 text-secondary my-auto"
-            href="https://www.facebook.com/profile.php?id=100087712010768"
+            href="https://www.linkedin.com/company/99836837/admin/feed/posts/?feedType=following"
+            target="_blank"
+            rel="noreferrer"
           >
             <LinkedInIcon />
           </a>

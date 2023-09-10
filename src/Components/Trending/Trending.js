@@ -31,7 +31,7 @@ export default function Trending() {
     <>
       <div className="container">
         <div className="w-100 mt-5 pb-3">
-          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 mx-auto text-uppercase headingHover">
+          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 mx-auto text-uppercase overflow-hidden headingHover">
             New arrivals
           </h2>
           <p className="text-theme-gray text-18">

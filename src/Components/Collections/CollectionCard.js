@@ -129,7 +129,7 @@ export default function CollectionCard({ productId, index }) {
   useEffect(() => {
     // console.log(productId);
     getProduct(productId);
-    checkWishList();
+    user && checkWishList();
   }, [productId]);
 
   // useEffect(() => {
@@ -148,13 +148,13 @@ export default function CollectionCard({ productId, index }) {
       className="card-main border rounded-iconive  mx-auto d-flex flex-column"
     >
       <div
-        className="img-card position-relative cardMain overflow-hidden porda"
+        className="img-card position-relative cardMain porda overflow-hidden"
         onClick={() => {
           handleClick(product._id);
         }}
       >
         <img
-          className="w-100 h-100 rounded-iconive card-img2"
+          className="w-100 h-100 rounded-iconive card-img2 overflow-hidden"
           src={product.photo}
           alt="This  is an  picture"
         />

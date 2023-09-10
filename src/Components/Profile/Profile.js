@@ -15,7 +15,6 @@ import wish from ".././Images/profile/wish.svg";
 import wishY from ".././Images/profile/wishY.svg";
 import refundd from ".././Images/profile/refundd.svg";
 import refundY from ".././Images/profile/refundY.svg";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Order from "./Order";
 import Wishlist from "./Wishlist";
 import MyProfile from "./MyProfile";
@@ -26,21 +25,19 @@ import Cookies from "js-cookie";
 import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const sidebarItem = [
-  { id: 1, name: "My Profile" },
-  { id: 2, name: "Orders" },
-  { id: 3, name: "Order History" },
-  { id: 4, name: "Wishlist" },
-  { id: 5, name: "Refund and Return" },
-];
+// const sidebarItem = [
+//   { id: 1, name: "My Profile" },
+//   { id: 2, name: "Orders" },
+//   { id: 3, name: "Order History" },
+//   { id: 4, name: "Wishlist" },
+//   { id: 5, name: "Refund and Return" },
+// ];
 
 export default function Profile() {
   const [sidebar, setSidebar] = useState(1);
   const [activeBtn, setActiveBtn] = useState(true);
   const [orders, setOrders] = useState([]);
-  const [wishListProducts, setWishListProducts] = useState([]);
   const { user, setUser } = useContext(AuthContext);
-  const { reRender, setRerender } = useState({});
   const [name, setName] = useState({
     value: "",
     editable: false,
@@ -74,8 +71,8 @@ export default function Profile() {
 
   return (
     <div className="px60 bg-body">
-      <div className="w-100 d-flex gap-5 py-5">
-        <div className="w-20 py-3">
+      <div className="w-100 d-flex  py-5 flex-column flex-lg-row">
+        <div className="w-20 py-3 me-md-5 mx-auto">
           <div className=" profile-border bg-light pt-5">
             <div className="w-100px  bg-themeYellow rounded-circle d-flex mx-auto mb-4 shadow-lg">
               <h1 className="m-auto text-light fw-bold">
@@ -228,7 +225,7 @@ export default function Profile() {
           </div>
         </div>
 
-        <div className="w-80 d-flex flex-column py-3">
+        <div className="w-80 d-flex flex-column py-3 mx-auto">
           {sidebar === 2 && (
             <div className="d-flex flex-column gap-5 pb-5">
               {orders.map((order, index) => {
@@ -245,7 +242,7 @@ export default function Profile() {
             </div>
           )}
           {sidebar === 4 && (
-            <div className="overflow-auto">
+            <div className="w-100">
               <Wishlist></Wishlist>
             </div>
           )}

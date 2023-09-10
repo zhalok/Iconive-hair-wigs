@@ -5,7 +5,7 @@ export default function Subscription() {
   return (
     <>
       <div className="my90 d-flex flex-column">
-        <div className="d-flex flex-column">
+        <div className="d-flex flex-column overflow-hidden">
           <h2 className="fw-bold headingHover">
             WANT $ <span className="fs-1">10</span> OFF ?
           </h2>
