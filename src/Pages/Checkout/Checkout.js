@@ -13,7 +13,7 @@ import CartContext from "../../Contexts/CartContext";
 
 export default function Checkout(props) {
   const [cartItems, setCartItems] = useState(null);
-  const [deliveryCharge, setDeliveryCharge] = useState(0);
+  const [deliveryCharge, setDeliveryCharge] = useState(20 * 111);
   const [productTotal, setProductTotal] = useState(0);
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState();
