@@ -17,11 +17,11 @@ import "./Joinus.css";
 
 export default function Joinus() {
   return (
-    <>
-      <div className="w-100">
+    <div>
+      <div className="w-100 ">
         <img src={banner} className="w-100" alt="this is a banner" />
       </div>
-      <div className="container py-5 text-start">
+      <div className="container py-5 text-start px-4">
         <h2 className="mt-4 mb-4 fw-bold">Iconive Affiliate Programs</h2>
         <p>
           Calling all hair lovers! If you are an influencer, a hairstylist, a
@@ -34,7 +34,7 @@ export default function Joinus() {
 
         <h3 className="mt-5 fw-bold">Select a Program:</h3>
 
-        <div className="d-flex gap-5 py-3">
+        <div className="d-flex gap-5 py-3 flex-column flex-lg-row">
           <button className="px-5 py-2 btn  btn-join rounded-2">
             <a href="#everybody" className="text-decoration-none text-dark">
               FOR EVERYBODY
@@ -54,8 +54,8 @@ export default function Joinus() {
       </div>
 
       <div id="everybody" className="bg-join">
-        <div className="d-flex mx-auto w-100 container py-5">
-          <div className="w-50 text-start my-auto">
+        <div className="d-flex mx-auto flex-column-reverse flex-lg-row w-100 container py-5 gap-5">
+          <div className="w-50 text-start my-auto pt-md-5 mx-auto">
             <h4 className="fw-bold">Referral Program:</h4>
             <p className="mb-5">
               Get up to 20% off on your next order by successfully referring
@@ -67,17 +67,17 @@ export default function Joinus() {
 
             <button className="btn btn-join px-5 py-2 mt-5">JOIN NOW</button>
           </div>
-          <div className="w-50 d-flex">
+          <div className="w-50 d-flex pb-md-5 mx-auto">
             <img src={sq} className="w-100 m-auto" alt="this is a picture" />
           </div>
         </div>
       </div>
 
-      <div id="influnce" className="container mx-auto py-5">
+      <div id="influnce" className=" mx-auto py-5 container">
         <div className="w-100 mb-5">
           <img src={info} alt="this is a banner" className="w-100" />
         </div>
-        <div className="text-start">
+        <div className="text-start container px-4">
           <h4 className="fw-bold">Influencer Affiliate Program:</h4>
           <p className="pb-5">
             Your opinions matter to us at New Times Hair. We value your personal
@@ -290,18 +290,18 @@ export default function Joinus() {
         </div>
       </div>
       <div className="d-flex container">
-        <button className="px-5 py-2 btn btn-join me-auto  my-5">
+        <button className="px-5 py-2 btn btn-join  m-auto  my-5">
           JOIN as influencer
         </button>
       </div>
 
-      <div id="style" className="container pb-5 border-bottom">
+      <div id="style" className=" pb-5 border-bottom container">
         <img className="w-100" src={style} alt="this is a picture" />
 
-        <h4 className="text-start fw-bold pt-5 pb-4">
+        <h4 className="text-start fw-bold pt-5 pb-4 ps-4">
           Join Iconive Stylist Program
         </h4>
-        <div className="row">
+        <div className="row container mx-auto">
           <div className="col-md-3 col-12 text-center p-4">
             <span className="mx-auto w-88 d-flex my-3">
               <img src={s1} className="w-50 m-auto" />
@@ -341,6 +341,6 @@ export default function Joinus() {
       </div>
 
       <Subscription />
-    </>
+    </div>
   );
 }

@@ -36,6 +36,7 @@ import { PulseLoader } from "react-spinners";
 
 import Offer from "./Pages/Offer/Offer";
 import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
+import Guideme from "./Pages/GuideMe/Guideme";
 
 // const Home = React.lazy(() => import("./Pages/Home/Home"));
 const Category = React.lazy(() => import("./Pages/Category/Category"));
@@ -157,7 +158,7 @@ function App() {
                   <Route path="/joinus" element={<Joinus />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/repair" element={<Repair />} />
-                  <Route path="/guideme" element={<UnderConst />} />
+                  <Route path="/guideme" element={<Guideme />} />
                   <Route path="/offers" element={<Offer />} />
                   <Route path="/customize" element={<Customize />} />
                   <Route path="/wholesale" element={<Wholesale />} />

@@ -1,6 +1,6 @@
 import React from "react";
 import banner from "../../.././src/Components/Images/joinus/blog.webp";
-
+import "./Blog.css";
 export default function BasicHair() {
   return (
     <div>
@@ -63,7 +63,7 @@ export default function BasicHair() {
           id="nav-tabContent"
         >
           <div
-            class="tab-pane fade show active  p-5"
+            class="tab-pane fade show active  p-md-5 p-4"
             id="nav-home"
             role="tabpanel"
             aria-labelledby="nav-home-tab"
@@ -147,7 +147,7 @@ export default function BasicHair() {
             </div>
           </div>
           <div
-            class="tab-pane fade  p-5"
+            class="tab-pane fade  p-4 p-md-5"
             id="nav-profile"
             role="tabpanel"
             aria-labelledby="nav-profile-tab"
@@ -203,7 +203,7 @@ export default function BasicHair() {
             </div>
           </div>
           <div
-            class="tab-pane fade p-5"
+            class="tab-pane fade p-4 p-md-5"
             id="nav-contact"
             role="tabpanel"
             aria-labelledby="nav-contact-tab"
