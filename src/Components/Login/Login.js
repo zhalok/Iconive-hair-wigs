@@ -48,6 +48,8 @@ const Login = () => {
       if (searchParams.get("proceeedToCheckout") == "true") {
         navigate("/checkout");
         return;
+      } else if (searchParams.get("redirect") == "wholesale") {
+        navigate("/wholesale");
       }
       window.location.reload();
     } catch (e) {

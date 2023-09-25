@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Wholesale.css";
 import T1 from "../../.././src/Components/Images/wholesale/section1/Group (1).png";
@@ -31,6 +31,10 @@ import Subscription from "../../Components/Subscription/Subscription";
 import BackupIcon from "@mui/icons-material/Backup";
 import banner from "../../.././src/Components/Images/joinus/wholesale.webp";
 import Select from "react-select";
+import axios from "../../utils/axios";
+import Cookies from "js-cookie";
+import AuthContext from "../../Contexts/AuthContext";
+import { PulseLoader } from "react-spinners";
 
 const dropItemBusinessType = [
   {
@@ -88,11 +92,56 @@ const dropItemProducts = [
 ];
 
 export default function Wholesale() {
-  const [value, setValue] = useState(dropItemBusinessType.value);
+  const [contact, setContact] = useState("");
+  const [value, setValue] = useState("");
+  // const { auth, setAuth } = useContext(AuthContext);
+  // const {user,setUser} = AuthContext
+  const { user, setUser } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  // console.log("Auth", auth);
+
+  // console.log(value);
+  const [isRequested, setIsRequested] = useState(false);
+
+  console.log("isRequested", isRequested);
+  console.log("loading", loading);
+
   const DropAction = (e) => {
     setValue(e.label);
   };
+
   const navigate = useNavigate();
+
+  const submitRequest = async () => {
+    if (!user) {
+      // console.log(auth);
+      navigate("/login?redirect=wholesale");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "/wholesale/createRequest",
+        {
+          contact: contact,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("jwt")}`,
+          },
+        }
+      );
+      console.log(response.data);
+      setContact("");
+      setIsRequested(false);
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      console.log("error", e);
+    }
+  };
+
   return (
     <>
       <div className="w-100">
@@ -102,12 +151,12 @@ export default function Wholesale() {
         <div className="w-50   rounded-theme11 m-auto ">
           <div className=" w-100 text-center">
             <p className="pt-5 ps-5 pb-0 mb-0 fw-bold text-theme-dark  text-28 mx-auto ">
-              WHOLESALE LOGIN
+              WANTO TO BE A WHOLESALER?
             </p>
-            <p className="ps-5 pt-1 text-14">Login to your wholesale account</p>
+            {/* <p className="ps-5 pt-1 text-14">Want to be a wholesaler?</p> */}
             <div className="text-center p-5 ">
               <form>
-                <input
+                {/* <input
                   type="email"
                   className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
                   placeholder="Email"
@@ -115,25 +164,42 @@ export default function Wholesale() {
                   // onChange={handleEmailchange}
                 />
                 <br />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
-                />
+                */}
+                {isRequested && !loading && (
+                  <input
+                    type="text"
+                    placeholder="Contact Number"
+                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
+                    value={contact}
+                    onChange={(e) => {
+                      setContact(e.target.value);
+                    }}
+                  />
+                )}
                 <br />
 
-                <button
-                  type="submit"
-                  className="btn btn-theme-up px-5 py-2 my-4 text-light "
-                  value="Login"
-                  onClick={() => {
-                    navigate("/wholesalehome");
-                  }}
-                >
-                  LOGIN
-                </button>
+                {!loading ? (
+                  <button
+                    type="submit"
+                    className="btn btn-theme-up px-5 py-2 my-4 text-light text-boldz"
+                    style={{
+                      textEmphasis: true,
+                    }}
+                    onClick={(e) => {
+                      // navigate("/wholesalehome");
+                      e.preventDefault();
+                      !isRequested ? setIsRequested(true) : submitRequest();
+                    }}
+                  >
+                    {!isRequested
+                      ? "Request for wholeseller certificate"
+                      : "Request"}
+                  </button>
+                ) : (
+                  <PulseLoader />
+                )}
 
-                <p className="text-center pt-1">
+                {/* <p className="text-center pt-1">
                   Not a member?
                   <a
                     href="#signup"
@@ -141,7 +207,7 @@ export default function Wholesale() {
                   >
                     Sign Up Here
                   </a>
-                </p>
+                </p> */}
               </form>
             </div>
           </div>
