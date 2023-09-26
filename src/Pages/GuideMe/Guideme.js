@@ -13,9 +13,9 @@ export default function Guideme() {
   const [btnCtn, setbtnCtn] = useState(1);
   const [morf, setmorf] = useState();
   return (
-    <div className="pt-5">
-      {window === 1 && (
-        <div className="bg-light rounded-2 p-5 text-start container my-5 border">
+    <div className="pt-md-5">
+      {window == 1 && (
+        <div className="bg-light rounded-2 p-4 p-md-5 text-start container my-5 border ">
           <p className="text-theme-gray text-center pt-5">
             Please answer a few questions to help us understand your hair loss
             type. The entire process is confidential and private
@@ -24,7 +24,7 @@ export default function Guideme() {
             Which gender do you identify with?
           </h3>
 
-          <div className="d-flex p-5 gap-5 w-100">
+          <div className="d-flex flex-column flex-md-row p-3 p-md-5 gap-5 w-100 justify-content-center">
             <button
               onClick={() => {
                 setbtnCtn((prevs) => {
@@ -35,7 +35,7 @@ export default function Guideme() {
                   return (prevs = prevs + 1);
                 });
               }}
-              className="btn w-50  py-4 d-flex bg-white border px-4 overGuide"
+              className="btn w-50 ws-100  py-4 d-flex bg-white border px-4 overGuide"
             >
               {/* <input
                 className="form-check-input my-auto"
@@ -58,7 +58,7 @@ export default function Guideme() {
                   return (prevs = prevs + 1);
                 });
               }}
-              className="btn w-50  py-4 d-flex bg-white border px-4 overGuide "
+              className="btn w-50 ws-100 py-4 d-flex bg-white border px-4 overGuide "
             >
               {/* <input
                 class="form-check-input"
@@ -72,15 +72,15 @@ export default function Guideme() {
           </div>
         </div>
       )}
-      {window === 2 && (
+      {window == 2 && (
         <div className="container">
           {morf === 1 && (
-            <div className="bg-light rounded-2 p-5 text-start container my-5 border">
-              <h3 className="fw-bold text-center mb-5 mt-4 ms-5">
+            <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
+              <h3 className="fw-bold text-center mb-5 mt-4 ">
                 What kind of hair wig product are you looking for?
               </h3>
               {/* male guide */}
-              <div className="d-flex px-5 gap-4 w-100 flex-wrap justify-content-center">
+              <div className="d-flex px-md-5 px-3 gap-4 w-100 flex-wrap justify-content-center pb-3">
                 <button
                   onClick={() => {
                     setbtnCtn((prevs) => {
@@ -91,7 +91,7 @@ export default function Guideme() {
                       return (prevs = prevs + 1);
                     });
                   }}
-                  className="btn w-23 fs-4 py-4  bg-white border px-4 "
+                  className="btn w-23 ws-100 fs-4 py-4  bg-white border px-4 "
                 >
                   <img
                     src="/Image/guidemale/bald-01.png"
@@ -110,7 +110,7 @@ export default function Guideme() {
                       return (prevs = prevs + 1);
                     });
                   }}
-                  className="btn w-23 fs-4 py-4 bg-white border px-4 "
+                  className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 "
                 >
                   <img
                     src="/Image/guidemale/crown thinning-01.png"
@@ -129,7 +129,7 @@ export default function Guideme() {
                       return (prevs = prevs + 1);
                     });
                   }}
-                  className="btn w-23 fs-4 py-4  bg-white border px-4 "
+                  className="btn w-23 ws-100 fs-4 py-4  bg-white border px-4 "
                 >
                   <img
                     src="/Image/guidemale/front thinning-01.png"
@@ -148,7 +148,7 @@ export default function Guideme() {
                       return (prevs = prevs + 1);
                     });
                   }}
-                  className="btn w-23 fs-4 py-4  bg-white border px-4 "
+                  className="btn w-23 ws-100 fs-4 py-4  bg-white border px-4 "
                 >
                   <img
                     src="/Image/guidemale/More top thinning-01.png"
@@ -169,7 +169,7 @@ export default function Guideme() {
                       return (prevs = prevs + 1);
                     });
                   }}
-                  className="btn w-25 fs-4 py-4 bg-white border px-4 "
+                  className="btn w-25 ws-100 fs-4 py-4 bg-white border px-4 "
                 >
                   <img
                     src="/Image/guidemale/top thinning-01.png"
@@ -182,12 +182,12 @@ export default function Guideme() {
             </div>
           )}
           {morf === 0 && (
-            <div className="bg-light rounded-2 p-5 text-start container my-5 border">
-              <h3 className="fw-bold text-center mb-5 mt-4 ms-5">
+            <div className="bg-light rounded-2 p-3 p-md-5 text-start container my-5 border">
+              <h3 className="fw-bold text-center mb-5 mt-4 ">
                 What kind of hair wig product are you looking for?
               </h3>
               {/*female guide */}
-              <div className="d-flex px-5 gap-4 w-100 flex-wrap justify-content-center">
+              <div className="d-flex px-md-5 px-3 gap-4 w-100 flex-wrap justify-content-center pb-3">
                 <button
                   onClick={() => {
                     setbtnCtn((prevs) => {
@@ -198,7 +198,7 @@ export default function Guideme() {
                       return (prevs = prevs + 1);
                     });
                   }}
-                  className="btn w-23 fs-4 py-4 bg-white border px-4 "
+                  className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 "
                 >
                   <img
                     src="/Image/guidefemale/Add Colour.png"
@@ -217,7 +217,7 @@ export default function Guideme() {
                       return (prevs = prevs + 1);
                     });
                   }}
-                  className="btn w-23 fs-4 py-4 bg-white border px-4 "
+                  className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 "
                 >
                   <img
                     src="/Image/guidefemale/Add Length.png"
@@ -236,7 +236,7 @@ export default function Guideme() {
                       return (prevs = prevs + 1);
                     });
                   }}
-                  className="btn w-23 fs-4 py-4 bg-white border px-4 "
+                  className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 "
                 >
                   <img
                     src="/Image/guidefemale/Add Volume.png"
@@ -245,7 +245,7 @@ export default function Guideme() {
                   />
                   <p className="fs-6 fw-bold">Add Volume</p>
                 </button>
-                <button className="btn w-23 fs-4 py-4 bg-white border px-4 ">
+                <button className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 ">
                   <img
                     src="/Image/guidefemale/Full Coverage.png"
                     alt="This is an image"
@@ -253,7 +253,7 @@ export default function Guideme() {
                   />
                   <p className="fs-6 fw-bold">Increased Crown thinning</p>
                 </button>
-                <button className="btn w-25 fs-4 py-4 bg-white border px-4 ">
+                <button className="btn w-25 ws-100 fs-4 py-4 bg-white border px-4 ">
                   <img
                     src="/Image/guidefemale/Partial (5).png"
                     alt="This is an image"
@@ -271,7 +271,7 @@ export default function Guideme() {
                       return (prevs = prevs + 1);
                     });
                   }}
-                  className="btn w-25 fs-4 py-4 bg-white border px-4 "
+                  className="btn w-25 ws-100 fs-4 py-4 bg-white border px-4 "
                 >
                   <img
                     src="/Image/guidefemale/Partial (6).png"
@@ -290,7 +290,7 @@ export default function Guideme() {
                       return (prevs = prevs + 1);
                     });
                   }}
-                  className="btn w-25 fs-4 py-4 bg-white border px-4 "
+                  className="btn w-25 ws-100 fs-4 py-4 bg-white border px-4 "
                 >
                   <img
                     src="/Image/guidefemale/Partial Front Zone.png"
@@ -304,13 +304,13 @@ export default function Guideme() {
           )}
         </div>
       )}
-      {(window === 3 || window === 3.5) && (
-        <div className="bg-light rounded-2 p-5 text-start container my-5 border">
-          <h3 className="fw-bold mb-5 text-start mt-4 ms-5">
+      {(window == 3 || window === 3.5) && (
+        <div className="bg-light rounded-2 p-md-5 px-3 text-start container my-5 border">
+          <h3 className="fw-bold mb-5 text-start mt-4 ms-3  ms-md-5">
             1. During which weather you would like to wear your wigs on?
           </h3>
 
-          <div className="d-flex pb-5 px-5 gap-4 w-100">
+          <div className="d-flex pb-5 px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row">
             <button
               onClick={() => {
                 setbtnCtn((prevs) => {
@@ -355,11 +355,11 @@ export default function Guideme() {
             </button>
           </div>
 
-          <h3 className="fw-bold mb-5 text-start mt-4 ms-5">
+          <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
             2. Which one do you prioritise?
           </h3>
 
-          <div className="d-flex px-5 gap-4 w-100">
+          <div className="d-flex px-md-5 px-3 flex-column flex-lg-row gap-4 w-100 mb-3 pb-3">
             <button
               onClick={() => {
                 setbtnCtn((prevs) => {
@@ -405,15 +405,15 @@ export default function Guideme() {
           </div>
         </div>
       )}
-      {(window === 4 || window === 4.5) && (
-        <div className="bg-light rounded-2 p-5 text-start container my-5 border">
-          {morf == 1 && (
+      {(window == 4 || window === 4.5) && (
+        <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
+          {morf === 0 && (
             <div>
-              <h3 className="fw-bold mb-5 text-start mt-4 ms-5">
+              <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
                 ladies- how would you like to attach the system?
               </h3>
 
-              <div className="d-flex pb-5 px-5 gap-4 w-100">
+              <div className="d-flex pb-md-5 pb-3 px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row">
                 <button
                   onClick={() => {
                     setbtnCtn((prevs) => {
@@ -460,13 +460,13 @@ export default function Guideme() {
             </div>
           )}
 
-          {morf == 0 && (
+          {morf === 1 && (
             <div>
-              <h3 className="fw-bold mb-5 text-start mt-4 ms-5">
+              <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
                 gents- hairstyle
               </h3>
 
-              <div className="d-flex px-5 gap-4 w-100">
+              <div className="d-flex px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row pb-3">
                 <button
                   onClick={() => {
                     setbtnCtn((prevs) => {
@@ -542,15 +542,15 @@ export default function Guideme() {
           )}
         </div>
       )}
-      {window === 5 && (
-        <div className="bg-light rounded-2 p-5 text-start container my-5 border">
-          {morf == 1 && (
+      {window == 5 && (
+        <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
+          {morf === 0 && (
             <div>
-              <h3 className="fw-bold mb-5 text-start mt-4 ms-5">
+              <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
                 Ladies- Hairstyle
               </h3>
 
-              <div className="d-flex pb-5 px-5 gap-4 w-100">
+              <div className="d-flex pb-md-5 pb-3 px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row pb-3">
                 <button
                   onClick={() => {
                     setbtnCtn((prevs) => {
@@ -635,13 +635,13 @@ export default function Guideme() {
               </div>
             </div>
           )}
-          {morf == 0 && (
+          {morf === 1 && (
             <div>
-              <h3 className="fw-bold mb-5 text-start mt-4 ms-5">
+              <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
                 gents- Do you want grey Hair mixed?
               </h3>
 
-              <div className="d-flex px-5 gap-4 w-100">
+              <div className="d-flex px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row pb-3">
                 <button
                   onClick={() => {
                     setbtnCtn((prevs) => {
@@ -692,7 +692,7 @@ export default function Guideme() {
                 return (prevs = prevs - 1);
               });
             }}
-            className="btn px-5 py-2 bg-theme-holud text-light fs-5 me-auto"
+            className="btn px-md-5 px-3 py-2 bg-theme-holud text-light fs-5 me-auto"
           >
             <KeyboardDoubleArrowLeftIcon /> Back
           </button>
@@ -707,7 +707,7 @@ export default function Guideme() {
               else return (prevs = prevs + 1);
             });
           }}
-          className="btn px-5 py-2  bg-theme-holud text-light fs-5 ms-auto"
+          className="btn px-md-5 px-3 py-2  bg-theme-holud text-light fs-5 ms-auto"
         >
           Next <KeyboardDoubleArrowRightIcon />
         </button>
