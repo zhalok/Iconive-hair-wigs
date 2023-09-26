@@ -69,8 +69,8 @@ export default function HairWaveDensity() {
               </div>
 
               <h5 className="fw-bold pb-3 pt-5 mt-5 border-bottom">Density</h5>
-              <div className="w-100 d-flex justify-content-center pt-5">
-                <div className="text-center w-19">
+              <div className="w-100 d-flex flex-column flex-md-row justify-content-center pt-5 gap-3">
+                <div className="text-center w-19 ws-100 shadow">
                   <img
                     className="w-100"
                     src="/Image/blog/extra ight.png"
@@ -78,7 +78,7 @@ export default function HairWaveDensity() {
                   />
                   <p className="fs-5 pt-2">Extra light</p>
                 </div>
-                <div className="text-center w-19">
+                <div className="text-center w-19 ws-100 shadow">
                   <img
                     className="w-100"
                     src="/Image/blog/light.png"
@@ -86,7 +86,7 @@ export default function HairWaveDensity() {
                   />
                   <p className="fs-5 pt-2">Light</p>
                 </div>
-                <div className="text-center w-19">
+                <div className="text-center w-19 ws-100 shadow">
                   <img
                     className="w-100"
                     src="/Image/blog/medium heavy.png"
@@ -94,7 +94,7 @@ export default function HairWaveDensity() {
                   />
                   <p className="fs-5 pt-2">Medium heavy</p>
                 </div>
-                <div className="text-center w-19">
+                <div className="text-center w-19 ws-100 shadow">
                   <img
                     className="w-100"
                     src="/Image/blog/medium light.png"
@@ -102,7 +102,7 @@ export default function HairWaveDensity() {
                   />
                   <p className="fs-5 pt-2">Medium light</p>
                 </div>
-                <div className="text-center w-19">
+                <div className="text-center w-19 ws-100 shadow">
                   <img
                     className="w-100"
                     src="/Image/blog/medium.png"

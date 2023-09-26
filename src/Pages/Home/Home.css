@@ -90,7 +90,7 @@ hr {
   margin-top: 50px;
 }
 .feature-hover:hover {
-  background-color: #6666660d;
+  background-color: #66666625;
 }
 
 .bg-wholeslae {
@@ -124,6 +124,14 @@ hr {
   transform: scale(1.1);
   transition: all 0.8s;
 }
+.border-ends {
+  border-right: 1px solid #eeeeee;
+}
+.positon-box {
+  position: absolute;
+  top: 60% !important;
+  right: 0% !important;
+}
 
 @media screen and (min-width: 481px) and (max-width: 1280px) {
 }
@@ -137,5 +145,18 @@ hr {
   }
   .displayBlock {
     display: block !important;
+  }
+  .ws-100 {
+    width: 100%;
+  }
+  .border-ends {
+    border-right: 0px solid #eeeeee;
+  }
+  .border-bs {
+    border-bottom: 1px solid #eeeeee;
+  }
+  .positon-box {
+    top: 10%;
+    left: 10%;
   }
 }

@@ -45,33 +45,37 @@ export default function Home() {
       {/* free features section */}
       <div className="container d-flex ">
         <div className=" row d-flex flex-column flex-lg-row w-100 mt-100  mx-0 px-0 justify-content-center">
-          <div className="d-flex col-12 col-lg-6 row">
-            <div className="d-flex row px-0 mx-0">
-              <div className="col-6 w-50 d-flex px-lg-4 p-1 border-end feature-hover">
-                <div className="my-auto w-25">
+          <div className="d-flex col-12 col-lg-6 row mx-auto pe-1">
+            <div className="d-flex row px-0 mx-0 flex-column flex-md-row">
+              <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto border-ends mx-auto border-bs">
+                <div className="my-auto w-25 p-2 p-md-1">
                   <img
                     src={feature1}
                     alt="this is a picture"
                     className="w-100"
                   />
                 </div>
-                <div className="text-start my-auto p-lg-3 p-1 ps-2">
-                  <p className="f-16 py-0 my-0">Free Shipping</p>
+                <div className="text-start my-auto p-3 pt-3 w-75">
+                  <p className="text-16 fw-bold text-dark py-0 my-0">
+                    Free Shipping
+                  </p>
                   <p className="text-13 text-theme-gray">
                     Free Shipping on order over $200
                   </p>
                 </div>
               </div>
-              <div className="col-6 w-50  d-flex p-1 px-lg-4 border-end feature-hover no-border">
-                <div className="my-auto w-25">
+              <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto border-ends mx-auto border-bs">
+                <div className="my-auto w-25 p-3 p-md-1">
                   <img
                     src={feature2}
                     alt="this is a picture"
                     className="w-100"
                   />
                 </div>
-                <div className="text-start my-auto p-lg-3 p-1 ps-2">
-                  <p className="f-16 py-0 my-0">Secure Payment</p>
+                <div className="text-start my-auto p-3 pt-3 w-75">
+                  <p className="text-16 fw-bold text-dark py-0 my-0">
+                    Secure Payment
+                  </p>
                   <p className="text-13 text-theme-gray">
                     All payments are done through Paystation.
                   </p>
@@ -79,33 +83,37 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="d-flex col-12 col-lg-6 row">
-            <div className="d-flex row px-0 mx-0">
-              <div className="col-6 w-50 d-flex px-lg-4 p-1 border-end feature-hover">
-                <div className="my-auto w-25">
+          <div className="d-flex col-12 col-lg-6 row mx-auto">
+            <div className="d-flex row px-0 mx-0 flex-column flex-lg-row">
+              <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto border-ends mx-auto border-bs">
+                <div className="my-auto w-25 p-3 p-md-2">
                   <img
                     src={feature3}
                     alt="this is a picture"
                     className="w-100"
                   />
                 </div>
-                <div className="text-start my-auto p-lg-3 p-1 ps-2">
-                  <p className="f-16 py-0 my-0">Support 24/7</p>
+                <div className="text-start my-auto px-3 pt-3 w-75">
+                  <p className="text-16 fw-bold text-dark py-0 my-0">
+                    Support 24/7
+                  </p>
                   <p className="text-13 text-theme-gray">
                     Contact us 24 hours a day, 7 days a week
                   </p>
                 </div>
               </div>
-              <div className="col-6 w-50 d-flex px-lg-4 p-1  feature-hover">
-                <div className="my-auto w-25">
+              <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto mx-auto">
+                <div className="my-auto w-25 p-2 p-md-1">
                   <img
                     src={feature4}
                     alt="this is a picture"
                     className="w-100"
                   />
                 </div>
-                <div className="text-start my-auto p-lg-3 p-1 ps-2">
-                  <p className="f-20 py-0 my-0">10 Days Return</p>
+                <div className="text-start my-auto  px-3 pt-3 w-75">
+                  <p className="text-16 fw-bold text-dark py-0 my-0">
+                    10 Days Return
+                  </p>
                   <p className="text-13 text-theme-gray">
                     Return it within 10 days for exchange
                   </p>

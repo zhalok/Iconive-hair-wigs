@@ -237,10 +237,10 @@ export default function Joinus() {
                 <img src={iconp} alt="this is an icon" className=" m-auto" />
               </span>
               <p className="my-auto ps-3">
-                Please tag and @ uniwigs related accounts in your Instagram
-                posts <br />
-                UniWigs Instagram accounts: @uniwigs @uniwigs.helphair
-                @uniwigs.humanhair @UniWigs.menhairsystems
+                Please tag and @iconive related accounts in your Instagram posts{" "}
+                <br />
+                Iconive Instagram accounts: @iconive @iconive.helphair
+                @iconive.humanhair @iconive.menhairsystems
               </p>
             </div>
 
@@ -260,7 +260,7 @@ export default function Joinus() {
               </span>
 
               <p className="ps-3 py-0 my-auto">
-                All content should be emailed to market@uniwigs.com once you
+                All content should be emailed to market@iconivewigs.com once you
                 have posted
               </p>
             </div>

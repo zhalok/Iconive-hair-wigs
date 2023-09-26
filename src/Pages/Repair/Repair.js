@@ -87,12 +87,12 @@ export default function Repair() {
         </p>
       </div>
       <div className="w-100 bg-wholesale">
-        <div className="d-flex mx-auto container py-5">
-          <div className="w-50 pb-5">
+        <div className="d-flex mx-auto container py-5 flex-column flex-lg-row">
+          <div className="w-50 pb-5 ws-100">
             <img src={banner1} alt="This is an image" className="w-100" />
           </div>
-          <div className="w-50 my-auto px-5 text-start">
-            <h3 className="fw-bold mb-4">Colouring Your Wig</h3>
+          <div className="w-50 my-auto px-md-5 px-3 text-start ws-100">
+            <h3 className="fw-bold mb-4 text-center">Colouring Your Wig</h3>
             <p className="pb-2">
               Once we’ve achieved the ideal colour for your wig as part of our
               bespoke LC Wigs process, colour maintenance is recommended over
@@ -114,18 +114,18 @@ export default function Repair() {
       </div>
 
       <div className="bg-repair">
-        <div className="row container d-flex my-auto mt-10p">
-          <div className="col-4 my-auto ms-auto bg-light p-5 text-start rounded-3">
+        <div className=" mx-0 px-0 container d-flex p-4 p-md-0 position-relative ">
+          <div className="w-25 ws-100 my-auto bg-light p-5 text-start rounded-3 position-absolute position-box ">
             <h3 className="fw-bold pb-3">Ask us a question</h3>
             <p>
               If you have any questions at all, big or small, please feel free
               to ask us.
             </p>
 
-            <button className="btn btn-theme-up px-5 text-light text-uppercase rounded-3 mt-4">
+            <button className="btn btn-theme-up px-5 text-light text-uppercase rounded-3 mt-4 w-100 t">
               Get in touch
             </button>
-            <button className="btn btn-secondary text-uppercase mt-4 px-5">
+            <button className="btn btn-secondary text-uppercase mt-4 px-5 w-100">
               schedule appointment
             </button>
           </div>
