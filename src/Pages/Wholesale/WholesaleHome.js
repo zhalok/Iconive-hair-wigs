@@ -1,5 +1,5 @@
 import { Button } from "@mui/base";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import banner from "../../.././src/Components/Images/joinus/wholesale.webp";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -8,6 +8,11 @@ import Subscription from "../../Components/Subscription/Subscription";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import CloseIcon from "@mui/icons-material/Close";
+import AuthContext from "../../Contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import axios from "../../utils/axios";
+
 const categoriesGentsWhole = [
   {
     id: 1,
@@ -99,6 +104,55 @@ export default function WholesaleHome() {
   const [extension, setExtension] = useState("");
   const [accessories, setAccessories] = useState("");
   const [itemQuantity, setItemQuantity] = useState(0);
+  const { user, setUser } = useContext(AuthContext);
+  const [gentsProducts, setGentsProducts] = useState(
+    Array.from({ length: 20 })
+  );
+  const [ladiesProducts, setLadiesProducts] = useState([]);
+  const [extensionProducts, setExtensionProducts] = useState([]);
+  const [accessoriesProducts, setAccessoriesProducts] = useState([]);
+
+  const navigate = useNavigate();
+
+  const fetchGentsProduct = async () => {
+    setTimeout(() => {
+      setGentsProducts((items) => {
+        return items.concat(Array.from({ length: 20 }));
+      });
+    }, 1500);
+    return;
+    axios
+      .get("/products", {
+        params: {
+          filters: {
+            categories: ["6432a3f8bc1e9c4115b67db5"],
+          },
+        },
+      })
+      .then((res) => {
+        console.log(res.data.slice(0, 3));
+        setGentsProducts(res.data.slice(0, 3));
+        console.log(gentsProducts);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+
+    if (!user?.isWholeSaler) {
+      navigate("/wholesale");
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchGentsProduct();
+  }, []);
+
   return (
     <div>
       <div className="w-100">
@@ -173,41 +227,61 @@ export default function WholesaleHome() {
               </p>
             </div>
             {gents && (
-              <div className=" text-theme-gray  pt-2">
-                {categoriesGentsWhole?.map((category) => {
-                  return (
-                    <div
-                      className="ps-2  d-flex f-18 my-3"
-                      //   onClick={() => {
-                      //     setFilters((prev) => {
-                      //       const uniq = category._id + " " + subcategory._id;
-                      //       if (prev.includes(uniq)) {
-                      //         return prev.filter((item) => {
-                      //           return item !== uniq;
-                      //         });
-                      //       } else {
-                      //         return [...prev, uniq];
-                      //       }
+              <div
+                className=" text-theme-gray  pt-2"
+                style={{
+                  height: 300,
+                  overflow: "auto",
+                }}
+              >
+                <InfiniteScroll
+                  dataLength={3} //This is important field to render the next data
+                  next={fetchGentsProduct}
+                  hasMore={true}
+                  loader={<h4>Loading...</h4>}
+                  endMessage={
+                    <p style={{ textAlign: "center" }}>
+                      <b>Yay! You have seen it all</b>
+                    </p>
+                  }
+                >
+                  {gentsProducts?.map((product, index) => {
+                    return (
+                      <div
+                        className="ps-2  d-flex f-18 my-3"
+                        //   onClick={() => {
+                        //     setFilters((prev) => {
+                        //       const uniq = category._id + " " + subcategory._id;
+                        //       if (prev.includes(uniq)) {
+                        //         return prev.filter((item) => {
+                        //           return item !== uniq;
+                        //         });
+                        //       } else {
+                        //         return [...prev, uniq];
+                        //       }
 
-                      //       return [...prev];
-                      //     });
-                      //   }}
-                    >
-                      <input
-                        class="form-check-input checkCatagory my-auto"
-                        type="checkbox"
-                        id="checkboxNoLabel"
-                        // checked={filters
-                        //   .map((e) => e.split(" ")[1])
-                        //   .includes(subcategory._id)}
-                        aria-label="..."
-                      />
-                      <p className="text-14 text-start Chover ms-3 my-auto">
-                        {category.title}
-                      </p>
-                    </div>
-                  );
-                })}
+                        //       return [...prev];
+                        //     });
+                        //   }}
+                      >
+                        <input
+                          class="form-check-input checkCatagory my-auto"
+                          type="checkbox"
+                          id="checkboxNoLabel"
+                          // checked={filters
+                          //   .map((e) => e.split(" ")[1])
+                          //   .includes(subcategory._id)}
+                          aria-label="..."
+                        />
+                        <p className="text-14 text-start Chover ms-3 my-auto">
+                          {index}
+                          {product?.name}
+                        </p>
+                      </div>
+                    );
+                  })}
+                  {/* {items} */}
+                </InfiniteScroll>
               </div>
             )}
           </div>
