@@ -142,12 +142,15 @@ export default function Wholesale() {
     }
   };
 
-  useEffect(() => {
-    if (user.isWholeSaler) {
-      navigate("/wholesalehome");
-    }
-  }, []);
+  // useEffect(() => {
+  //   console.log("user", user);
+  //   console.log(user?.isWholeSaler);
+  // }, []);
 
+  if (user?.isWholeSaler) {
+    navigate("/wholesalehome");
+    return <></>;
+  }
   return (
     <>
       <div className="w-100">

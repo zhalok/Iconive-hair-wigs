@@ -105,22 +105,21 @@ export default function WholesaleHome() {
   const [accessories, setAccessories] = useState("");
   const [itemQuantity, setItemQuantity] = useState(0);
   const { user, setUser } = useContext(AuthContext);
-  const [gentsProducts, setGentsProducts] = useState(
-    Array.from({ length: 20 })
-  );
+  const [gentsProducts, setGentsProducts] = useState();
+  // Array.from({ length: 20 })
   const [ladiesProducts, setLadiesProducts] = useState([]);
   const [extensionProducts, setExtensionProducts] = useState([]);
   const [accessoriesProducts, setAccessoriesProducts] = useState([]);
-
+  const [selected, setSelected] = useState([]);
   const navigate = useNavigate();
 
   const fetchGentsProduct = async () => {
-    setTimeout(() => {
-      setGentsProducts((items) => {
-        return items.concat(Array.from({ length: 20 }));
-      });
-    }, 1500);
-    return;
+    // setTimeout(() => {
+    //   setGentsProducts((items) => {
+    //     return items.concat(Array.from({ length: 20 }));
+    //   });
+    // }, 1500);
+    // return;
     axios
       .get("/products", {
         params: {
@@ -130,9 +129,54 @@ export default function WholesaleHome() {
         },
       })
       .then((res) => {
-        console.log(res.data.slice(0, 3));
-        setGentsProducts(res.data.slice(0, 3));
+        // console.log(res.data.slice(0, 3));
+        setGentsProducts(res.data);
         console.log(gentsProducts);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    axios
+      .get("/products", {
+        params: {
+          filters: {
+            categories: ["6432eb5a9e5f9a8abde960e0"],
+          },
+        },
+      })
+      .then((res) => {
+        setLadiesProducts(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    axios
+      .get("/products", {
+        params: {
+          filters: {
+            categories: ["64343a704fb336001b129958"],
+          },
+        },
+      })
+      .then((res) => {
+        setExtension(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    axios
+      .get("/products", {
+        params: {
+          filters: {
+            categories: ["64343aaf4fb336001b12995c"],
+          },
+        },
+      })
+      .then((res) => {
+        setAccessories(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -183,7 +227,12 @@ export default function WholesaleHome() {
         </div>
       </div>
 
-      <div className="container d-flex justify-content-center gap-5 my-5">
+      <div
+        className="container d-flex justify-content-center gap-5 my-5"
+        style={{
+          cursor: "pointer",
+        }}
+      >
         <div className="w-25">
           {/* Gents Wig */}
 
@@ -192,19 +241,15 @@ export default function WholesaleHome() {
             // onClick={() => {
             //   console.log("hello world");
             // }}
+            style={
+              {
+                // width: "500px",
+              }
+            }
           >
             <div className="text-black d-flex border-bottom border-1 border-secondary py-3">
               <p className="text-18 text-start fw-bold mb-0 pt-1 px-2">GENTS</p>
-              <p
-                className="ms-auto my-auto"
-                // onClick={() => {
-                //   setShowSubCategory((prevState) => {
-                //     return prevState != category._id
-                //       ? category._id
-                //       : "";
-                //   });
-                // }}
-              >
+              <p className="ms-auto my-auto">
                 {gents ? (
                   <KeyboardArrowUpIcon
                     onClick={() => {
@@ -234,54 +279,50 @@ export default function WholesaleHome() {
                   overflow: "auto",
                 }}
               >
-                <InfiniteScroll
-                  dataLength={3} //This is important field to render the next data
-                  next={fetchGentsProduct}
-                  hasMore={true}
-                  loader={<h4>Loading...</h4>}
-                  endMessage={
-                    <p style={{ textAlign: "center" }}>
-                      <b>Yay! You have seen it all</b>
-                    </p>
-                  }
-                >
-                  {gentsProducts?.map((product, index) => {
-                    return (
-                      <div
-                        className="ps-2  d-flex f-18 my-3"
-                        //   onClick={() => {
-                        //     setFilters((prev) => {
-                        //       const uniq = category._id + " " + subcategory._id;
-                        //       if (prev.includes(uniq)) {
-                        //         return prev.filter((item) => {
-                        //           return item !== uniq;
-                        //         });
-                        //       } else {
-                        //         return [...prev, uniq];
-                        //       }
+                {gentsProducts?.map((product, index) => {
+                  return (
+                    <div
+                      className="ps-2  d-flex f-18 my-3"
+                      onClick={() => {
+                        setSelected((prev) => {
+                          if (prev.includes(product)) {
+                            const newState = [
+                              ...prev
+                                .map((e) => e._id)
+                                .filter((e) => e != product._id),
+                            ];
+                            return newState;
+                          } else {
+                            const newState = [...prev];
+                            newState.push(product);
+                            return newState;
+                          }
+                        });
+                      }}
+                    >
+                      <input
+                        class="form-check-input checkCatagory my-auto"
+                        type="checkbox"
+                        id="checkboxNoLabel"
+                        // style={{
+                        //   minWidthwidth: "30px",
+                        //   maxWidth: "30px",
+                        // }}
+                        // checked={filters
+                        //   .map((e) => e.split(" ")[1])
+                        //   .includes(subcategory._id)}
+                        checked={selected.includes(product)}
+                        aria-label="..."
+                      />
 
-                        //       return [...prev];
-                        //     });
-                        //   }}
-                      >
-                        <input
-                          class="form-check-input checkCatagory my-auto"
-                          type="checkbox"
-                          id="checkboxNoLabel"
-                          // checked={filters
-                          //   .map((e) => e.split(" ")[1])
-                          //   .includes(subcategory._id)}
-                          aria-label="..."
-                        />
-                        <p className="text-14 text-start Chover ms-3 my-auto">
-                          {index}
-                          {product?.name}
-                        </p>
-                      </div>
-                    );
-                  })}
-                  {/* {items} */}
-                </InfiniteScroll>
+                      <p className="text-14 text-start Chover ms-3 my-auto">
+                        {index}
+                        {product?.name}
+                      </p>
+                    </div>
+                  );
+                })}
+                {/* {items} */}
               </div>
             )}
           </div>
@@ -332,10 +373,26 @@ export default function WholesaleHome() {
             </div>
             {ladies && (
               <div className=" text-theme-gray  pt-2">
-                {categoriesLadiessWhole?.map((category) => {
+                {ladiesProducts?.map((product) => {
                   return (
                     <div
                       className="ps-2  d-flex f-18 my-3"
+                      onClick={() => {
+                        setSelected((prev) => {
+                          if (prev.includes(product)) {
+                            const newState = [
+                              ...prev
+                                .map((e) => e._id)
+                                .filter((e) => e != product._id),
+                            ];
+                            return newState;
+                          } else {
+                            const newState = [...prev];
+                            newState.push(product);
+                            return newState;
+                          }
+                        });
+                      }}
                       //   onClick={() => {
                       //     setFilters((prev) => {
                       //       const uniq = category._id + " " + subcategory._id;
@@ -361,7 +418,7 @@ export default function WholesaleHome() {
                         aria-label="..."
                       />
                       <p className="text-14 text-start Chover ms-3 my-auto">
-                        {category.title}
+                        {product.name}
                       </p>
                     </div>
                   );
@@ -418,36 +475,35 @@ export default function WholesaleHome() {
             </div>
             {extension && (
               <div className=" text-theme-gray  pt-2">
-                {categoriesLadiessWhole?.map((category) => {
+                {extensionProducts?.map((product) => {
                   return (
                     <div
                       className="ps-2  d-flex f-18 my-3"
-                      //   onClick={() => {
-                      //     setFilters((prev) => {
-                      //       const uniq = category._id + " " + subcategory._id;
-                      //       if (prev.includes(uniq)) {
-                      //         return prev.filter((item) => {
-                      //           return item !== uniq;
-                      //         });
-                      //       } else {
-                      //         return [...prev, uniq];
-                      //       }
-
-                      //       return [...prev];
-                      //     });
-                      //   }}
+                      onClick={() => {
+                        setSelected((prev) => {
+                          if (prev.includes(product)) {
+                            const newState = [
+                              ...prev
+                                .map((e) => e._id)
+                                .filter((e) => e != product._id),
+                            ];
+                            return newState;
+                          } else {
+                            const newState = [...prev];
+                            newState.push(product);
+                            return newState;
+                          }
+                        });
+                      }}
                     >
                       <input
                         class="form-check-input checkCatagory my-auto"
                         type="checkbox"
                         id="checkboxNoLabel"
-                        // checked={filters
-                        //   .map((e) => e.split(" ")[1])
-                        //   .includes(subcategory._id)}
                         aria-label="..."
                       />
                       <p className="text-14 text-start Chover ms-3 my-auto">
-                        {category.title}
+                        {product.name}
                       </p>
                     </div>
                   );
@@ -504,7 +560,7 @@ export default function WholesaleHome() {
             </div>
             {accessories && (
               <div className=" text-theme-gray  pt-2">
-                {categoriesLadiessWhole?.map((category) => {
+                {accessoriesProducts?.map((product) => {
                   return (
                     <div
                       className="ps-2  d-flex f-18 my-3"
@@ -522,6 +578,22 @@ export default function WholesaleHome() {
                       //       return [...prev];
                       //     });
                       //   }}
+                      onClick={() => {
+                        setSelected((prev) => {
+                          if (prev.includes(product)) {
+                            const newState = [
+                              ...prev
+                                .map((e) => e._id)
+                                .filter((e) => e != product._id),
+                            ];
+                            return newState;
+                          } else {
+                            const newState = [...prev];
+                            newState.push(product);
+                            return newState;
+                          }
+                        });
+                      }}
                     >
                       <input
                         class="form-check-input checkCatagory my-auto"
@@ -533,7 +605,7 @@ export default function WholesaleHome() {
                         aria-label="..."
                       />
                       <p className="text-14 text-start Chover ms-3 my-auto">
-                        {category.title}
+                        {product.name}
                       </p>
                     </div>
                   );
