@@ -12,6 +12,10 @@ import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "../../utils/axios";
+import Cookies from "js-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { PulseLoader } from "react-spinners";
 
 const categoriesGentsWhole = [
   {
@@ -105,22 +109,51 @@ export default function WholesaleHome() {
   const [accessories, setAccessories] = useState("");
   const [itemQuantity, setItemQuantity] = useState(0);
   const { user, setUser } = useContext(AuthContext);
-  const [gentsProducts, setGentsProducts] = useState(
-    Array.from({ length: 20 })
-  );
+  const [gentsProducts, setGentsProducts] = useState();
+  // Array.from({ length: 20 })
   const [ladiesProducts, setLadiesProducts] = useState([]);
   const [extensionProducts, setExtensionProducts] = useState([]);
   const [accessoriesProducts, setAccessoriesProducts] = useState([]);
-
+  const [submitting, setSubmitting] = useState(false);
+  const [selected, setSelected] = useState([]);
   const navigate = useNavigate();
 
-  const fetchGentsProduct = async () => {
-    setTimeout(() => {
-      setGentsProducts((items) => {
-        return items.concat(Array.from({ length: 20 }));
+  const submitOrder = async () => {
+    if (selected.length == 0) {
+      toast.warn("Please select at least one product");
+      return;
+    }
+    setSubmitting(true);
+    // toast.loading("Submitting order");
+    axios
+      .post(
+        "/wholesale/submitOrder",
+        {
+          items: selected.map((e) => {
+            return { name: e.name, price: e.price, quantity: e.quantity };
+          }),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("jwt")}`,
+          },
+        }
+      )
+      .then((e) => {
+        console.log("Order submitted");
+        setSelected([]);
+        setSubmitting(false);
+        toast.success("Order submitted");
+      })
+      .catch((e) => {
+        setSubmitting(false);
+        toast.error("An error occured while submitting your order");
+
+        console.log(e);
       });
-    }, 1500);
-    return;
+  };
+
+  const fetchProducts = async () => {
     axios
       .get("/products", {
         params: {
@@ -130,9 +163,54 @@ export default function WholesaleHome() {
         },
       })
       .then((res) => {
-        console.log(res.data.slice(0, 3));
-        setGentsProducts(res.data.slice(0, 3));
+        // console.log(res.data.slice(0, 3));
+        setGentsProducts(res.data);
         console.log(gentsProducts);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    axios
+      .get("/products", {
+        params: {
+          filters: {
+            categories: ["6432eb5a9e5f9a8abde960e0"],
+          },
+        },
+      })
+      .then((res) => {
+        setLadiesProducts(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    axios
+      .get("/products", {
+        params: {
+          filters: {
+            categories: ["64343a704fb336001b129958"],
+          },
+        },
+      })
+      .then((res) => {
+        setExtension(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    axios
+      .get("/products", {
+        params: {
+          filters: {
+            categories: ["64343aaf4fb336001b12995c"],
+          },
+        },
+      })
+      .then((res) => {
+        setAccessories(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -150,11 +228,14 @@ export default function WholesaleHome() {
   }, []);
 
   useEffect(() => {
-    fetchGentsProduct();
+    fetchProducts();
   }, []);
+
+  // console.log(selected);
 
   return (
     <div>
+      <ToastContainer />
       <div className="w-100">
         <img src={banner} className="w-100" alt="this is a banner" />
       </div>
@@ -183,7 +264,12 @@ export default function WholesaleHome() {
         </div>
       </div>
 
-      <div className="container d-flex justify-content-center gap-5 my-5">
+      <div
+        className="container d-flex justify-content-center gap-5 my-5"
+        style={{
+          cursor: "pointer",
+        }}
+      >
         <div className="w-25">
           {/* Gents Wig */}
 
@@ -192,19 +278,15 @@ export default function WholesaleHome() {
             // onClick={() => {
             //   console.log("hello world");
             // }}
+            style={
+              {
+                // width: "500px",
+              }
+            }
           >
             <div className="text-black d-flex border-bottom border-1 border-secondary py-3">
               <p className="text-18 text-start fw-bold mb-0 pt-1 px-2">GENTS</p>
-              <p
-                className="ms-auto my-auto"
-                // onClick={() => {
-                //   setShowSubCategory((prevState) => {
-                //     return prevState != category._id
-                //       ? category._id
-                //       : "";
-                //   });
-                // }}
-              >
+              <p className="ms-auto my-auto">
                 {gents ? (
                   <KeyboardArrowUpIcon
                     onClick={() => {
@@ -234,54 +316,51 @@ export default function WholesaleHome() {
                   overflow: "auto",
                 }}
               >
-                <InfiniteScroll
-                  dataLength={3} //This is important field to render the next data
-                  next={fetchGentsProduct}
-                  hasMore={true}
-                  loader={<h4>Loading...</h4>}
-                  endMessage={
-                    <p style={{ textAlign: "center" }}>
-                      <b>Yay! You have seen it all</b>
-                    </p>
-                  }
-                >
-                  {gentsProducts?.map((product, index) => {
-                    return (
-                      <div
-                        className="ps-2  d-flex f-18 my-3"
-                        //   onClick={() => {
-                        //     setFilters((prev) => {
-                        //       const uniq = category._id + " " + subcategory._id;
-                        //       if (prev.includes(uniq)) {
-                        //         return prev.filter((item) => {
-                        //           return item !== uniq;
-                        //         });
-                        //       } else {
-                        //         return [...prev, uniq];
-                        //       }
+                {gentsProducts?.map((product, index) => {
+                  return (
+                    <div
+                      className="ps-2  d-flex f-18 my-3"
+                      onClick={() => {
+                        setSelected((prev) => {
+                          if (prev.map((e) => e._id).includes(product._id)) {
+                            const newState = [...prev].filter((e) => {
+                              return e._id != product._id;
+                            });
 
-                        //       return [...prev];
-                        //     });
-                        //   }}
-                      >
-                        <input
-                          class="form-check-input checkCatagory my-auto"
-                          type="checkbox"
-                          id="checkboxNoLabel"
-                          // checked={filters
-                          //   .map((e) => e.split(" ")[1])
-                          //   .includes(subcategory._id)}
-                          aria-label="..."
-                        />
-                        <p className="text-14 text-start Chover ms-3 my-auto">
-                          {index}
-                          {product?.name}
-                        </p>
-                      </div>
-                    );
-                  })}
-                  {/* {items} */}
-                </InfiniteScroll>
+                            return newState;
+                          } else {
+                            const newState = [...prev];
+                            newState.push({ ...product, quantity: 1 });
+                            return newState;
+                          }
+                        });
+                      }}
+                    >
+                      <input
+                        class="form-check-input checkCatagory my-auto w-5"
+                        type="checkbox"
+                        id="checkboxNoLabel"
+                        // style={{
+                        //   minWidthwidth: "30px",
+                        //   maxWidth: "30px",
+                        // }}
+                        // checked={filters
+                        //   .map((e) => e.split(" ")[1])
+                        //   .includes(subcategory._id)}
+                        checked={selected
+                          .map((product) => product._id)
+                          .includes(product._id)}
+                        aria-label="..."
+                      />
+
+                      <p className="text-14 text-start Chover ms-3 my-auto w-100">
+                        {index}
+                        {product?.name}
+                      </p>
+                    </div>
+                  );
+                })}
+                {/* {items} */}
               </div>
             )}
           </div>
@@ -332,10 +411,25 @@ export default function WholesaleHome() {
             </div>
             {ladies && (
               <div className=" text-theme-gray  pt-2">
-                {categoriesLadiessWhole?.map((category) => {
+                {ladiesProducts?.map((product) => {
                   return (
                     <div
                       className="ps-2  d-flex f-18 my-3"
+                      onClick={() => {
+                        setSelected((prev) => {
+                          if (prev.map((e) => e._id).includes(product._id)) {
+                            const newState = [...prev].filter((e) => {
+                              return e._id != product._id;
+                            });
+
+                            return newState;
+                          } else {
+                            const newState = [...prev];
+                            newState.push({ ...product, quantity: 1 });
+                            return newState;
+                          }
+                        });
+                      }}
                       //   onClick={() => {
                       //     setFilters((prev) => {
                       //       const uniq = category._id + " " + subcategory._id;
@@ -361,7 +455,7 @@ export default function WholesaleHome() {
                         aria-label="..."
                       />
                       <p className="text-14 text-start Chover ms-3 my-auto">
-                        {category.title}
+                        {product.name}
                       </p>
                     </div>
                   );
@@ -418,36 +512,34 @@ export default function WholesaleHome() {
             </div>
             {extension && (
               <div className=" text-theme-gray  pt-2">
-                {categoriesLadiessWhole?.map((category) => {
+                {extensionProducts?.map((product) => {
                   return (
                     <div
                       className="ps-2  d-flex f-18 my-3"
-                      //   onClick={() => {
-                      //     setFilters((prev) => {
-                      //       const uniq = category._id + " " + subcategory._id;
-                      //       if (prev.includes(uniq)) {
-                      //         return prev.filter((item) => {
-                      //           return item !== uniq;
-                      //         });
-                      //       } else {
-                      //         return [...prev, uniq];
-                      //       }
+                      onClick={() => {
+                        setSelected((prev) => {
+                          if (prev.map((e) => e._id).includes(product._id)) {
+                            const newState = [...prev].filter((e) => {
+                              return e._id != product._id;
+                            });
 
-                      //       return [...prev];
-                      //     });
-                      //   }}
+                            return newState;
+                          } else {
+                            const newState = [...prev];
+                            newState.push({ ...product, quantity: 1 });
+                            return newState;
+                          }
+                        });
+                      }}
                     >
                       <input
                         class="form-check-input checkCatagory my-auto"
                         type="checkbox"
                         id="checkboxNoLabel"
-                        // checked={filters
-                        //   .map((e) => e.split(" ")[1])
-                        //   .includes(subcategory._id)}
                         aria-label="..."
                       />
                       <p className="text-14 text-start Chover ms-3 my-auto">
-                        {category.title}
+                        {product.name}
                       </p>
                     </div>
                   );
@@ -504,7 +596,7 @@ export default function WholesaleHome() {
             </div>
             {accessories && (
               <div className=" text-theme-gray  pt-2">
-                {categoriesLadiessWhole?.map((category) => {
+                {accessoriesProducts?.map((product) => {
                   return (
                     <div
                       className="ps-2  d-flex f-18 my-3"
@@ -522,6 +614,21 @@ export default function WholesaleHome() {
                       //       return [...prev];
                       //     });
                       //   }}
+                      onClick={() => {
+                        setSelected((prev) => {
+                          if (prev.map((e) => e._id).includes(product._id)) {
+                            const newState = [...prev].filter((e) => {
+                              return e._id != product._id;
+                            });
+
+                            return newState;
+                          } else {
+                            const newState = [...prev];
+                            newState.push({ ...product, quantity: 1 });
+                            return newState;
+                          }
+                        });
+                      }}
                     >
                       <input
                         class="form-check-input checkCatagory my-auto"
@@ -533,7 +640,7 @@ export default function WholesaleHome() {
                         aria-label="..."
                       />
                       <p className="text-14 text-start Chover ms-3 my-auto">
-                        {category.title}
+                        {product.name}
                       </p>
                     </div>
                   );
@@ -558,56 +665,98 @@ export default function WholesaleHome() {
               </tr>
             </thead>
             <tbody>
-              {ProductTable.map((product, index) => (
+              {selected.map((product, index) => (
                 <tr className="text-td py-2">
                   <td>{index + 1}</td>
                   <td className="d-flex ps-5 gap-4">
-                    <CloseIcon className="borderbtn text-td fs-5 my-auto" />
-                    {product.name}
+                    <div
+                      onClick={() => {
+                        setSelected((prev) => {
+                          return prev.filter((e) => e._id != product._id);
+                        });
+                      }}
+                    >
+                      <CloseIcon className="borderbtn text-td fs-5 my-auto" />
+                    </div>
+                    {product?.name}
                   </td>
                   <td>
                     <div className="d-flex justify-content-center gap-4">
                       <AddIcon
                         onClick={() => {
-                          setItemQuantity((prevs) => {
-                            return prevs + 1;
+                          setSelected((prev) => {
+                            const newState = [...prev];
+                            newState.find(
+                              (e) => e._id == product._id
+                            ).quantity += 0.5;
+                            return newState;
                           });
                         }}
                         className="borderbtn"
                       />
-                      {itemQuantity}
+                      {product?.quantity}
                       <RemoveIcon
                         onClick={() => {
-                          setItemQuantity((prevs) => {
-                            if (prevs === 0) return 0;
-                            else return prevs - 1;
+                          setSelected((prev) => {
+                            const newState = [...prev];
+                            const idx = newState.findIndex(
+                              (e) => e._id == product._id
+                            );
+                            if (newState[idx].quantity > 1) {
+                              newState[idx].quantity -= 0.5;
+                            } else {
+                              newState.splice(idx, 1);
+                            }
+                            return newState;
                           });
                         }}
                         className="borderbtn"
                       />
                     </div>
                   </td>
-                  <td>{product.unitprice} $</td>
-                  <td>{product.totalprice} $</td>
+                  <td>{product?.price} $</td>
+                  <td>{product?.quantity * product?.price} $</td>
                 </tr>
               ))}
               <tr className="text-td py-2 border-top-0 fw-bold">
                 <td>#</td>
                 <td>Total</td>
-                <td>34</td>
-                <td>1235 $</td>
-                <td>8522 $</td>
+                <td>
+                  {selected.reduce((acc, curr) => {
+                    return acc + curr.quantity;
+                  }, 0)}
+                </td>
+                <td>
+                  {selected.reduce((acc, e) => {
+                    return acc + e.price;
+                  }, 0)}{" "}
+                  $
+                </td>
+                <td>
+                  {selected.reduce((acc, e) => {
+                    return acc + e.price * e.quantity;
+                  }, 0)}{" "}
+                  $
+                </td>
               </tr>
             </tbody>
           </table>
-          <div className="d-flex justify-content-end container pt-4p mb-5">
-            <button className="btn fw-bold  py-2 btn-whole1 shadow">
-              Inquires
-            </button>
-            <button className="btn fw-bold py-2 btn-whole2  shadow ms-5 text-light me-0">
-              Submit
-            </button>
-          </div>
+          {
+            <div className="d-flex justify-content-end container pt-4p mb-5">
+              <button className="btn fw-bold  py-2 btn-whole1 shadow">
+                Inquires
+              </button>
+              <button
+                className="btn fw-bold py-2 btn-whole2  shadow ms-5 text-light me-0"
+                onClick={() => {
+                  if (submitting) return;
+                  submitOrder();
+                }}
+              >
+                {!submitting ? "Submit" : <PulseLoader />}
+              </button>
+            </div>
+          }
         </div>
       </div>
       <Subscription />
