@@ -12,6 +12,10 @@ import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "../../utils/axios";
+import Cookies from "js-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { PulseLoader } from "react-spinners";
 
 const categoriesGentsWhole = [
   {
@@ -110,16 +114,46 @@ export default function WholesaleHome() {
   const [ladiesProducts, setLadiesProducts] = useState([]);
   const [extensionProducts, setExtensionProducts] = useState([]);
   const [accessoriesProducts, setAccessoriesProducts] = useState([]);
+  const [submitting, setSubmitting] = useState(false);
   const [selected, setSelected] = useState([]);
   const navigate = useNavigate();
 
-  const fetchGentsProduct = async () => {
-    // setTimeout(() => {
-    //   setGentsProducts((items) => {
-    //     return items.concat(Array.from({ length: 20 }));
-    //   });
-    // }, 1500);
-    // return;
+  const submitOrder = async () => {
+    if (selected.length == 0) {
+      toast.warn("Please select at least one product");
+      return;
+    }
+    setSubmitting(true);
+    // toast.loading("Submitting order");
+    axios
+      .post(
+        "/wholesale/submitOrder",
+        {
+          items: selected.map((e) => {
+            return { name: e.name, price: e.price, quantity: e.quantity };
+          }),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("jwt")}`,
+          },
+        }
+      )
+      .then((e) => {
+        console.log("Order submitted");
+        setSelected([]);
+        setSubmitting(false);
+        toast.success("Order submitted");
+      })
+      .catch((e) => {
+        setSubmitting(false);
+        toast.error("An error occured while submitting your order");
+
+        console.log(e);
+      });
+  };
+
+  const fetchProducts = async () => {
     axios
       .get("/products", {
         params: {
@@ -194,11 +228,14 @@ export default function WholesaleHome() {
   }, []);
 
   useEffect(() => {
-    fetchGentsProduct();
+    fetchProducts();
   }, []);
+
+  // console.log(selected);
 
   return (
     <div>
+      <ToastContainer />
       <div className="w-100">
         <img src={banner} className="w-100" alt="this is a banner" />
       </div>
@@ -285,23 +322,22 @@ export default function WholesaleHome() {
                       className="ps-2  d-flex f-18 my-3"
                       onClick={() => {
                         setSelected((prev) => {
-                          if (prev.includes(product)) {
-                            const newState = [
-                              ...prev
-                                .map((e) => e._id)
-                                .filter((e) => e != product._id),
-                            ];
+                          if (prev.map((e) => e._id).includes(product._id)) {
+                            const newState = [...prev].filter((e) => {
+                              return e._id != product._id;
+                            });
+
                             return newState;
                           } else {
                             const newState = [...prev];
-                            newState.push(product);
+                            newState.push({ ...product, quantity: 1 });
                             return newState;
                           }
                         });
                       }}
                     >
                       <input
-                        class="form-check-input checkCatagory my-auto"
+                        class="form-check-input checkCatagory my-auto w-5"
                         type="checkbox"
                         id="checkboxNoLabel"
                         // style={{
@@ -311,11 +347,13 @@ export default function WholesaleHome() {
                         // checked={filters
                         //   .map((e) => e.split(" ")[1])
                         //   .includes(subcategory._id)}
-                        checked={selected.includes(product)}
+                        checked={selected
+                          .map((product) => product._id)
+                          .includes(product._id)}
                         aria-label="..."
                       />
 
-                      <p className="text-14 text-start Chover ms-3 my-auto">
+                      <p className="text-14 text-start Chover ms-3 my-auto w-100">
                         {index}
                         {product?.name}
                       </p>
@@ -379,16 +417,15 @@ export default function WholesaleHome() {
                       className="ps-2  d-flex f-18 my-3"
                       onClick={() => {
                         setSelected((prev) => {
-                          if (prev.includes(product)) {
-                            const newState = [
-                              ...prev
-                                .map((e) => e._id)
-                                .filter((e) => e != product._id),
-                            ];
+                          if (prev.map((e) => e._id).includes(product._id)) {
+                            const newState = [...prev].filter((e) => {
+                              return e._id != product._id;
+                            });
+
                             return newState;
                           } else {
                             const newState = [...prev];
-                            newState.push(product);
+                            newState.push({ ...product, quantity: 1 });
                             return newState;
                           }
                         });
@@ -481,16 +518,15 @@ export default function WholesaleHome() {
                       className="ps-2  d-flex f-18 my-3"
                       onClick={() => {
                         setSelected((prev) => {
-                          if (prev.includes(product)) {
-                            const newState = [
-                              ...prev
-                                .map((e) => e._id)
-                                .filter((e) => e != product._id),
-                            ];
+                          if (prev.map((e) => e._id).includes(product._id)) {
+                            const newState = [...prev].filter((e) => {
+                              return e._id != product._id;
+                            });
+
                             return newState;
                           } else {
                             const newState = [...prev];
-                            newState.push(product);
+                            newState.push({ ...product, quantity: 1 });
                             return newState;
                           }
                         });
@@ -580,16 +616,15 @@ export default function WholesaleHome() {
                       //   }}
                       onClick={() => {
                         setSelected((prev) => {
-                          if (prev.includes(product)) {
-                            const newState = [
-                              ...prev
-                                .map((e) => e._id)
-                                .filter((e) => e != product._id),
-                            ];
+                          if (prev.map((e) => e._id).includes(product._id)) {
+                            const newState = [...prev].filter((e) => {
+                              return e._id != product._id;
+                            });
+
                             return newState;
                           } else {
                             const newState = [...prev];
-                            newState.push(product);
+                            newState.push({ ...product, quantity: 1 });
                             return newState;
                           }
                         });
@@ -630,56 +665,98 @@ export default function WholesaleHome() {
               </tr>
             </thead>
             <tbody>
-              {ProductTable.map((product, index) => (
+              {selected.map((product, index) => (
                 <tr className="text-td py-2">
                   <td>{index + 1}</td>
                   <td className="d-flex ps-5 gap-4">
-                    <CloseIcon className="borderbtn text-td fs-5 my-auto" />
-                    {product.name}
+                    <div
+                      onClick={() => {
+                        setSelected((prev) => {
+                          return prev.filter((e) => e._id != product._id);
+                        });
+                      }}
+                    >
+                      <CloseIcon className="borderbtn text-td fs-5 my-auto" />
+                    </div>
+                    {product?.name}
                   </td>
                   <td>
                     <div className="d-flex justify-content-center gap-4">
                       <AddIcon
                         onClick={() => {
-                          setItemQuantity((prevs) => {
-                            return prevs + 1;
+                          setSelected((prev) => {
+                            const newState = [...prev];
+                            newState.find(
+                              (e) => e._id == product._id
+                            ).quantity += 0.5;
+                            return newState;
                           });
                         }}
                         className="borderbtn"
                       />
-                      {itemQuantity}
+                      {product?.quantity}
                       <RemoveIcon
                         onClick={() => {
-                          setItemQuantity((prevs) => {
-                            if (prevs === 0) return 0;
-                            else return prevs - 1;
+                          setSelected((prev) => {
+                            const newState = [...prev];
+                            const idx = newState.findIndex(
+                              (e) => e._id == product._id
+                            );
+                            if (newState[idx].quantity > 1) {
+                              newState[idx].quantity -= 0.5;
+                            } else {
+                              newState.splice(idx, 1);
+                            }
+                            return newState;
                           });
                         }}
                         className="borderbtn"
                       />
                     </div>
                   </td>
-                  <td>{product.unitprice} $</td>
-                  <td>{product.totalprice} $</td>
+                  <td>{product?.price} $</td>
+                  <td>{product?.quantity * product?.price} $</td>
                 </tr>
               ))}
               <tr className="text-td py-2 border-top-0 fw-bold">
                 <td>#</td>
                 <td>Total</td>
-                <td>34</td>
-                <td>1235 $</td>
-                <td>8522 $</td>
+                <td>
+                  {selected.reduce((acc, curr) => {
+                    return acc + curr.quantity;
+                  }, 0)}
+                </td>
+                <td>
+                  {selected.reduce((acc, e) => {
+                    return acc + e.price;
+                  }, 0)}{" "}
+                  $
+                </td>
+                <td>
+                  {selected.reduce((acc, e) => {
+                    return acc + e.price * e.quantity;
+                  }, 0)}{" "}
+                  $
+                </td>
               </tr>
             </tbody>
           </table>
-          <div className="d-flex justify-content-end container pt-4p mb-5">
-            <button className="btn fw-bold  py-2 btn-whole1 shadow">
-              Inquires
-            </button>
-            <button className="btn fw-bold py-2 btn-whole2  shadow ms-5 text-light me-0">
-              Submit
-            </button>
-          </div>
+          {
+            <div className="d-flex justify-content-end container pt-4p mb-5">
+              <button className="btn fw-bold  py-2 btn-whole1 shadow">
+                Inquires
+              </button>
+              <button
+                className="btn fw-bold py-2 btn-whole2  shadow ms-5 text-light me-0"
+                onClick={() => {
+                  if (submitting) return;
+                  submitOrder();
+                }}
+              >
+                {!submitting ? "Submit" : <PulseLoader />}
+              </button>
+            </div>
+          }
         </div>
       </div>
       <Subscription />
