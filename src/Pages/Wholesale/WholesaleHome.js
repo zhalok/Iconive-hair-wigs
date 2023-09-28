@@ -688,7 +688,7 @@ export default function WholesaleHome() {
                             const newState = [...prev];
                             newState.find(
                               (e) => e._id == product._id
-                            ).quantity += 0.5;
+                            ).quantity += 1;
                             return newState;
                           });
                         }}
@@ -703,7 +703,7 @@ export default function WholesaleHome() {
                               (e) => e._id == product._id
                             );
                             if (newState[idx].quantity > 1) {
-                              newState[idx].quantity -= 0.5;
+                              newState[idx].quantity -= 1;
                             } else {
                               newState.splice(idx, 1);
                             }
