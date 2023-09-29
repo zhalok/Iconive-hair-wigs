@@ -368,7 +368,7 @@ export default function WholesaleHome() {
                       />
 
                       <p className="text-14 text-start Chover ms-3 my-auto w-100">
-                        {index}
+                        {/* {index} */}
                         {product?.name}
                       </p>
                     </div>
