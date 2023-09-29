@@ -205,7 +205,8 @@ export default function WholesaleHome() {
         },
       })
       .then((res) => {
-        setExtension(res.data);
+        console.log("extensions", res.data);
+        setExtensionProducts(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -223,7 +224,7 @@ export default function WholesaleHome() {
         },
       })
       .then((res) => {
-        setAccessories(res.data);
+        setAccessoriesProducts(res.data);
       })
       .catch((e) => {
         console.log(e);
