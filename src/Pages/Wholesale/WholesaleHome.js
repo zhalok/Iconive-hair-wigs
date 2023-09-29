@@ -155,11 +155,14 @@ export default function WholesaleHome() {
 
   const fetchProducts = async () => {
     axios
-      .get("/products", {
+      .get("/wholesale/getAllProducts", {
         params: {
           filters: {
             categories: ["6432a3f8bc1e9c4115b67db5"],
           },
+        },
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       })
       .then((res) => {
@@ -172,11 +175,14 @@ export default function WholesaleHome() {
       });
 
     axios
-      .get("/products", {
+      .get("/wholesale/getAllProducts", {
         params: {
           filters: {
             categories: ["6432eb5a9e5f9a8abde960e0"],
           },
+        },
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       })
       .then((res) => {
@@ -187,11 +193,14 @@ export default function WholesaleHome() {
       });
 
     axios
-      .get("/products", {
+      .get("/wholesale/getAllProducts", {
         params: {
           filters: {
             categories: ["64343a704fb336001b129958"],
           },
+        },
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       })
       .then((res) => {
@@ -202,11 +211,14 @@ export default function WholesaleHome() {
       });
 
     axios
-      .get("/products", {
+      .get("/wholesale/getAllProducts", {
         params: {
           filters: {
             categories: ["64343aaf4fb336001b12995c"],
           },
+        },
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       })
       .then((res) => {
