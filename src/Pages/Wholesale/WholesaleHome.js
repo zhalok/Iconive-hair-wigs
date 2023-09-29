@@ -117,7 +117,8 @@ export default function WholesaleHome() {
   const [submitting, setSubmitting] = useState(false);
   const [selected, setSelected] = useState([]);
   const navigate = useNavigate();
-
+  // console.log("ladies wigs", ladiesProducts);
+  // console.log("selected", selected);
   const submitOrder = async () => {
     if (selected.length == 0) {
       toast.warn("Please select at least one product");
@@ -204,7 +205,8 @@ export default function WholesaleHome() {
         },
       })
       .then((res) => {
-        setExtension(res.data);
+        console.log("extensions", res.data);
+        setExtensionProducts(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -222,7 +224,7 @@ export default function WholesaleHome() {
         },
       })
       .then((res) => {
-        setAccessories(res.data);
+        setAccessoriesProducts(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -366,7 +368,7 @@ export default function WholesaleHome() {
                       />
 
                       <p className="text-14 text-start Chover ms-3 my-auto w-100">
-                        {index}
+                        {/* {index} */}
                         {product?.name}
                       </p>
                     </div>
@@ -461,9 +463,10 @@ export default function WholesaleHome() {
                         class="form-check-input checkCatagory my-auto"
                         type="checkbox"
                         id="checkboxNoLabel"
-                        // checked={filters
-                        //   .map((e) => e.split(" ")[1])
-                        //   .includes(subcategory._id)}
+                        checked={selected
+                          .map((product) => product._id)
+                          .includes(product._id)}
+                        // checked
                         aria-label="..."
                       />
                       <p className="text-14 text-start Chover ms-3 my-auto">
@@ -549,6 +552,9 @@ export default function WholesaleHome() {
                         type="checkbox"
                         id="checkboxNoLabel"
                         aria-label="..."
+                        checked={selected
+                          .map((product) => product._id)
+                          .includes(product._id)}
                       />
                       <p className="text-14 text-start Chover ms-3 my-auto">
                         {product.name}
@@ -646,6 +652,9 @@ export default function WholesaleHome() {
                         class="form-check-input checkCatagory my-auto"
                         type="checkbox"
                         id="checkboxNoLabel"
+                        checked={selected
+                          .map((product) => product._id)
+                          .includes(product._id)}
                         // checked={filters
                         //   .map((e) => e.split(" ")[1])
                         //   .includes(subcategory._id)}
