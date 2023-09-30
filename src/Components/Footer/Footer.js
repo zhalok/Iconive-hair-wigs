@@ -155,11 +155,23 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="bg-black-pro text-light m-0 py-3">
-        <p className=" border-dark  m-0">
-          <small className="text-white-50">
+      <div className="bg-black-pro text-light m-0 py-3 d-flex text-center">
+        <p className=" border-dark  m-0 text-center mx-auto">
+          <small className="text-white-50 me-2">
             &#9400; All Rights Reserved by{" "}
-            <span className="text-light"> Iconve Hair Wigs</span>
+            <span className="text-light"> Iconive Wigs</span>
+          </small>
+          |
+          <small className="text-white-50 ms-2">
+            Developed by{" "}
+            <span className="text-light">
+              <a
+                href="https://web.facebook.com/codecatio"
+                className="text-decoration-none text-light"
+              >
+                Codecat.io
+              </a>
+            </span>
           </small>
         </p>
       </div>

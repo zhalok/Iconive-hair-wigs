@@ -129,8 +129,8 @@ hr {
 }
 .positon-box {
   position: absolute;
-  top: 60% !important;
-  right: 0% !important;
+  top: -50% !important;
+  left: -50% !important;
 }
 
 @media screen and (min-width: 481px) and (max-width: 1280px) {
@@ -156,7 +156,7 @@ hr {
     border-bottom: 1px solid #eeeeee;
   }
   .positon-box {
-    top: 10%;
-    left: 10%;
+    margin-top: 20%;
+    margin-left: 20% !important;
   }
 }

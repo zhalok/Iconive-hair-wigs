@@ -29,20 +29,9 @@ export default function BasicHair() {
               aria-controls="nav-home"
               aria-selected="true"
             >
-              Choosing the Right Wig
+              Choosing Wig
             </button>
-            <button
-              class="nav-link text-black"
-              id="nav-profile-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-profile"
-              type="button"
-              role="tab"
-              aria-controls="nav-profile"
-              aria-selected="false"
-            >
-              Choosing The Right Colour
-            </button>
+
             <button
               class="nav-link text-black"
               id="nav-contact-tab"
@@ -145,13 +134,6 @@ export default function BasicHair() {
                 afford.
               </p>
             </div>
-          </div>
-          <div
-            class="tab-pane fade  p-4 p-md-5"
-            id="nav-profile"
-            role="tabpanel"
-            aria-labelledby="nav-profile-tab"
-          >
             <div className="text-start">
               <h5 className="fw-bold">Consider your skin tone:</h5>
               <p className="text-gray pt-1 text-16">
@@ -202,6 +184,7 @@ export default function BasicHair() {
               </p>
             </div>
           </div>
+
           <div
             class="tab-pane fade p-4 p-md-5"
             id="nav-contact"

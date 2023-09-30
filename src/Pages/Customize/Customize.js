@@ -209,11 +209,17 @@ export default function Customize() {
               <p className="text-just py-4">
                 Custom orders at Iconive are specifically crafted to meet your
                 unique needs and preferences. Due to the personalized nature of
-                these orders, returns or exchanges are not accepted. We strongly
-                advise you to take accurate measurements to ensure a perfect fit
-                for your custom hair system. With Iconive, achieving your dream
-                of a customized hair system that fulfills all your requirements
-                and expectations is within reach.
+                these orders,{" "}
+                <span className="fw-bold">
+                  returns or exchanges are not accepted
+                </span>
+                . We strongly advise you to take accurate measurements to ensure
+                a perfect fit for your custom hair system.{" "}
+                <span className="fw-bold">
+                  For a more Personalized Customization, please download Custom
+                  Sheet
+                </span>
+                .
               </p>
               <div className="d-flex flex-column flex-lg-row gap-4 justify-content-between px-5 my-4">
                 <button className="btn-theme-up btn text-light px-5">

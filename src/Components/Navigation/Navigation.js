@@ -125,7 +125,7 @@ export default function Navigation({ renderer }) {
       <div className="  bg-white">
         <div className="d-flex justify-content-between px115">
           <a href="/home" className="text-decoration-none text-black mx-auto">
-            <h1 className="fw-bold text44 ps-1">ICONIVE</h1>
+            <h1 className="fw-bold text44 ps-1">ICONIVE WIGS</h1>
           </a>
         </div>
       </div>

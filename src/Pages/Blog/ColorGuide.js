@@ -43,7 +43,7 @@ export default function ColorGuide() {
               aria-controls="nav-profile"
               aria-selected="false"
             >
-              Blond
+              Blonde
             </button>
             <button
               class="nav-link text-black"

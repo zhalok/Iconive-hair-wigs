@@ -12,6 +12,7 @@ export default function Guideme() {
   const [window, setWindow] = useState(1);
   const [btnCtn, setbtnCtn] = useState(1);
   const [morf, setmorf] = useState();
+  console.log(btnCtn, window);
   return (
     <div className="pt-md-5">
       {window == 1 && (
@@ -74,7 +75,7 @@ export default function Guideme() {
       )}
       {window == 2 && (
         <div className="container">
-          {morf === 1 && (
+          {morf == 1 && (
             <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
               <h3 className="fw-bold text-center mb-5 mt-4 ">
                 What kind of hair wig product are you looking for?
@@ -181,7 +182,7 @@ export default function Guideme() {
               </div>
             </div>
           )}
-          {morf === 0 && (
+          {morf == 0 && (
             <div className="bg-light rounded-2 p-3 p-md-5 text-start container my-5 border">
               <h3 className="fw-bold text-center mb-5 mt-4 ">
                 What kind of hair wig product are you looking for?
@@ -304,7 +305,7 @@ export default function Guideme() {
           )}
         </div>
       )}
-      {(window == 3 || window === 3.5) && (
+      {(window == 3 || window == 3.5) && (
         <div className="bg-light rounded-2 p-md-5 px-3 text-start container my-5 border">
           <h3 className="fw-bold mb-5 text-start mt-4 ms-3  ms-md-5">
             1. During which weather you would like to wear your wigs on?
@@ -323,7 +324,7 @@ export default function Guideme() {
               }}
               className="btn py-2 d-flex btn-outline-secondary border px-4 "
             >
-              <h6 className=" my-auto fw-bold">Summe (warm)</h6>
+              <h6 className=" my-auto fw-bold">Summer (warm)</h6>
             </button>
             <button
               onClick={() => {
@@ -405,9 +406,9 @@ export default function Guideme() {
           </div>
         </div>
       )}
-      {(window == 4 || window === 4.5) && (
+      {(window == 4 || window == 4.5) && (
         <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
-          {morf === 0 && (
+          {morf == 0 && (
             <div>
               <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
                 ladies- how would you like to attach the system?
@@ -460,7 +461,7 @@ export default function Guideme() {
             </div>
           )}
 
-          {morf === 1 && (
+          {morf == 1 && (
             <div>
               <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
                 gents- hairstyle
@@ -686,10 +687,13 @@ export default function Guideme() {
             onClick={() => {
               setbtnCtn((prevs) => {
                 if (prevs === 1) return 1;
+                else if (prevs > 5) return 4;
                 else return (prevs = prevs - 1);
               });
               setWindow((prevs) => {
-                return (prevs = prevs - 1);
+                if (prevs === 1) return 1;
+                else if (prevs > 5) return 4;
+                else return (prevs = prevs - 1);
               });
             }}
             className="btn px-md-5 px-3 py-2 bg-theme-holud text-light fs-5 me-auto"
