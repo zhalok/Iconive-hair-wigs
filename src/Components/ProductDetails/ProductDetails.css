@@ -86,6 +86,12 @@
 .w-res {
   width: 80%;
 }
+.h-details {
+  height: 600px;
+}
+.w-details {
+  height: 800px;
+}
 @media screen and (min-width: 481px) and (max-width: 1280px) {
   .w-50p {
     width: 60% !important;
@@ -97,5 +103,11 @@
   }
   .w-res {
     width: 100%;
+  }
+  .h-details {
+    height: 100% !important;
+  }
+  .w-details {
+    height: 100% !important;
   }
 }

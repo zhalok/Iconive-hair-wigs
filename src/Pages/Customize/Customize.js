@@ -114,29 +114,55 @@ export default function Customize() {
                     </div>
                   </div>
                 </div>
-                <div className="w-100 text-start my-3">
-                  <p className="text-14 pt-1 mb-2 ms-3">Hair Material</p>
-                  <div class="btn-group w-100">
-                    <Select
-                      className="w-100 text-14"
-                      options={dropItemBusinessType}
-                      onChange={DropAction}
-                    />
+                <div className="w-100 d-flex gap-3 text-start my-3">
+                  <div className="w-50 text-start">
+                    <p className="text-14 pt-1 mb-2 ms-3">Hair Material</p>
+                    <div class="btn-group w-100">
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-50 text-start">
+                    <p className="text-14 pt-1 mb-2 ms-3">Hair Color</p>
+                    <div class="btn-group w-100">
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="w-100 text-start">
-                  <p className="text-14 pt-1 mb-2 ms-3">Hair Colour</p>
-                  <div class="btn-group w-100 ">
-                    <Select
-                      className="w-100 text-14"
-                      options={dropItemBusinessType}
-                      onChange={DropAction}
-                    />
+                <div className="w-100 d-flex gap-3 text-start">
+                  <div className="w-50 text-start">
+                    <p className="text-14 pt-1 mb-2 ms-3">Pre-Haircut</p>
+                    <div class="btn-group w-100">
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-50 text-start">
+                    <p className="text-14 pt-1 mb-2 ms-3">
+                      Percentage of Grey Hair
+                    </p>
+                    <div class="btn-group w-100">
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="d-flex w-100 my-3 gap-3">
                   <div className="w-50 text-start">
-                    <p className="text-14 pt-1 mb-2 ms-3">Hair Style</p>
+                    <p className="text-14 pt-1 mb-2 ms-3">Hair direction</p>
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
@@ -158,7 +184,9 @@ export default function Customize() {
                 </div>
                 <div className="d-flex w-100 gap-3">
                   <div className="w-50 text-start">
-                    <p className="text-14 pt-1 mb-2 ms-3">Base Wave</p>
+                    <p className="text-14 pt-1 mb-2 ms-3">
+                      Hair texture for Ladies
+                    </p>
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
@@ -169,7 +197,7 @@ export default function Customize() {
                   </div>
                   <div className="w-50 text-start">
                     <p className="text-14 pt-1 mb-2 ms-3">
-                      Percentage of Grey Hair{" "}
+                      Hair texture for Gents
                     </p>
                     <div class="btn-group w-100">
                       <Select

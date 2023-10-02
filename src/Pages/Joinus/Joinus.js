@@ -93,48 +93,27 @@ export default function Joinus() {
                       aria-label="Close"
                     ></button>
                   </div>
+
                   <div class="modal-body text-start d-flex flex-column bg-wholesale">
                     <form className="text-start p-3">
+                      <p>
+                        Please send your email address below. The coupon code
+                        will be sent to your email address. If three of your
+                        referrals use your given coupon code, you will get 20%
+                        off of your next order.
+                      </p>
                       <input
-                        type="text"
-                        className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 text-black border-dark outline-none   mx-auto"
-                        placeholder="Full  Name"
+                        type="email"
+                        className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 text-black border-dark outline-none mt-5  mx-auto"
+                        placeholder="Enter your email address"
                         // value={email}
                         // onChange={handleEmailchange}
                       />{" "}
                       <br />
-                      <div className="w-100 d-flex gap-2">
-                        <input
-                          type="text"
-                          className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
-                          placeholder="Email Address"
-                          //   value={name}
-                          //   onChange={(e) => {
-                          //     setName(e.target.value);
-                          //   }}
-                        />
-                        <input
-                          type="number"
-                          className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
-                          placeholder="Contact Number"
-                          //   value={name}
-                          //   onChange={(e) => {
-                          //     setName(e.target.value);
-                          //   }}
-                        />
-                      </div>
-                      <br />
-                      <input
-                        type="text"
-                        className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 text-black border-dark outline-none   mx-auto"
-                        placeholder="Location"
-                        // value={email}
-                        // onChange={handleEmailchange}
-                      />{" "}
                       <div className="my-4 w-100">
                         <textarea
                           className="w-100 border-0 mb-auto p-3 text-wrap h-333"
-                          placeholder="Social Media link: Ex=(' https://iconivewigs.com ' , ' https://twitter.com ')"
+                          placeholder="Other info : "
                         />
                       </div>
                       <button
@@ -420,24 +399,46 @@ export default function Joinus() {
               </div>
               <div class="modal-body text-start d-flex flex-column bg-wholesale">
                 <form className="text-start p-3">
-                  <p>
-                    Please send your email address below. The coupon code will
-                    be sent to your email address. If three of your referrals
-                    use your given coupon code, you will get 20% off of your
-                    next order.
-                  </p>
                   <input
-                    type="email"
-                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 text-black border-dark outline-none mt-5  mx-auto"
-                    placeholder="Enter your email address"
+                    type="text"
+                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 text-black border-dark outline-none   mx-auto"
+                    placeholder="Full  Name"
                     // value={email}
                     // onChange={handleEmailchange}
                   />{" "}
                   <br />
+                  <div className="w-100 d-flex gap-2">
+                    <input
+                      type="text"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
+                      placeholder="Email Address"
+                      //   value={name}
+                      //   onChange={(e) => {
+                      //     setName(e.target.value);
+                      //   }}
+                    />
+                    <input
+                      type="number"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
+                      placeholder="Contact Number"
+                      //   value={name}
+                      //   onChange={(e) => {
+                      //     setName(e.target.value);
+                      //   }}
+                    />
+                  </div>
+                  <br />
+                  <input
+                    type="text"
+                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 text-black border-dark outline-none   mx-auto"
+                    placeholder="Location"
+                    // value={email}
+                    // onChange={handleEmailchange}
+                  />{" "}
                   <div className="my-4 w-100">
                     <textarea
                       className="w-100 border-0 mb-auto p-3 text-wrap h-333"
-                      placeholder="Other info : "
+                      placeholder="Social Media link: Ex=(' https://iconivewigs.com ' , ' https://twitter.com ')"
                     />
                   </div>
                   <button

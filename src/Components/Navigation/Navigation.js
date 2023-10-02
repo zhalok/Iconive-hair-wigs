@@ -56,7 +56,7 @@ export default function Navigation({ renderer }) {
     <>
       {/* offer div */}
       <div className="bg-top d-flex ">
-        <p className="m-auto text-light text-14">
+        <p className="m-auto text-light text-14 animate__animated animate__fadeInUp   animate__slow	5s animate__infinite	infinite">
           FREE INTERNATIONAL SHIPPING ON ORDER OVER $250!
         </p>
       </div>

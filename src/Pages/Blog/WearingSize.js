@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import banner from "../../.././src/Components/Images/joinus/blog.webp";
 import "./Blog.css";
@@ -101,6 +103,7 @@ export default function WearingSize() {
               <h5 className="fw-bold pb-3 pt-5">
                 How Would I know What Size to Buy?
               </h5>
+              <h6 className="fw-bold py-2">Measuring topper :</h6>
               <p className="text-theme-gray">
                 When it comes to the base size of toupees, they are available in
                 various dimensions such as 6x8, 7x8, 7x9, 8x10, and other sizes.
@@ -114,29 +117,103 @@ export default function WearingSize() {
                 your front hairline.
               </p>
 
-              <h6 className="fw-bold py-2 pt-4">Next, ascertain the length:</h6>
-              <ul>
-                <li className="text-gray text-16">
-                  Measure from your front hairline to the point where your hair
-                  loss ends at the back of your head.
-                </li>
-              </ul>
-
-              <h6 className="fw-bold py-2 pt-4">
-                Lastly, determine the width:{" "}
-              </h6>
-              <ul>
-                <li className="text-gray text-16">
-                  Measure the widest area of your hair loss region from one side
-                  to the other.
-                </li>
-              </ul>
+              <div className="d-flex flex-column flex-lg-row w-100">
+                <div className="w-50 pe-5 my-auto">
+                  <ol type="a">
+                    <h6 className="fw-bold py-2 pt-4">
+                      Next, ascertain the length:
+                    </h6>
+                    <li className="text-gray text-16">
+                      Measure from your front hairline to the point where your
+                      hair loss ends at the back of your head.
+                    </li>
+                    <h6 className="fw-bold py-2 pt-4">
+                      Lastly, determine the width:{" "}
+                    </h6>
+                    <li className="text-gray text-16">
+                      Measure the widest area of your hair loss region from one
+                      side to the other.
+                    </li>
+                  </ol>
+                </div>
+                <div className="w-50 py-md-4">
+                  <img className="W-100" src="/Image/wear/ab.png" />
+                </div>
+              </div>
 
               <p className="pt-4 tex">
                 By accurately measuring the length and width of your hair loss
                 area, you can ensure that the toupee you choose fits you
                 perfectly and provides the desired coverage.
               </p>
+
+              <h6 className="fw-bold pb-3 pt-5">Measuring Full head cap:</h6>
+              <p>
+                There are 7 things to measure when buying a full head cap. They
+                are :
+              </p>
+              <div className="w-100 d-flex flex-column flex-md-row justify-content-center pt-5 gap-5">
+                <div className="text-center w-22b ws-100 shadow">
+                  <img
+                    className="w-100"
+                    src="/Image/wear/1.png"
+                    alt="This is an image"
+                  />
+                  <p className="fs-6 pt-2 fw-">1. Circumference</p>
+                </div>
+                <div className="text-center w-22b ws-100 shadow">
+                  <img
+                    className="w-100"
+                    src="/Image/wear/2.png"
+                    alt="This is an image"
+                  />
+                  <p className="fs-6 pt-2">2. Front to nape</p>
+                </div>
+                <div className="text-center w-22b ws-100 shadow">
+                  <img
+                    className="w-100"
+                    src="/Image/wear/3.png"
+                    alt="This is an image"
+                  />
+                  <p className="fs-6 pt-2">3. ar to ear across forehead</p>
+                </div>
+                <div className="text-center w-22b ws-100 shadow">
+                  <img
+                    className="w-100"
+                    src="/Image/wear/4.png"
+                    alt="This is an image"
+                  />
+                  <p className="fs-6 pt-2">4. Temple to temple</p>
+                </div>
+              </div>
+              <div className="w-100 d-flex flex-column flex-md-row justify-content- pt-5 gap-5">
+                <div className="text-center w-22b ws-100 shadow">
+                  <img
+                    className="w-100"
+                    src="/Image/wear/5.png"
+                    alt="This is an image"
+                  />
+                  <p className="fs-6 pt-2">5. Ear to ear over top</p>
+                </div>
+                <div className="text-center w-22b ws-100 shadow">
+                  <img
+                    className="w-100"
+                    src="/Image/wear/6.png"
+                    alt="This is an image"
+                  />
+                  <p className="fs-6 pt-2 px-3">
+                    6. Temple to temple round back
+                  </p>
+                </div>
+                <div className="text-center w-22b ws-100 shadow">
+                  <img
+                    className="w-100"
+                    src="/Image/wear/7.png"
+                    alt="This is an image"
+                  />
+                  <p className="fs-6 pt-2">7. Nape of neck</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

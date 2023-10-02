@@ -871,10 +871,10 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
             </p>
           </div>
           <div className="d-flex w-100 d-flex pb-5 px-md-3 mx-auto">
-            <div className="w-res mx-auto my-5">
+            <div className="w-res mx-auto my-5 h-details w-details">
               <iframe
                 width="100%"
-                height="715"
+                height="100%"
                 src={productDetails?.demo}
                 title="YouTube video player"
                 frameborder="0"

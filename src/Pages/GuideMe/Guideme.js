@@ -252,7 +252,7 @@ export default function Guideme() {
                     alt="This is an image"
                     className="w-100"
                   />
-                  <p className="fs-6 fw-bold">Increased Crown thinning</p>
+                  <p className="fs-6 fw-bold">Complete Hair Loss</p>
                 </button>
                 <button className="btn w-25 ws-100 fs-4 py-4 bg-white border px-4 ">
                   <img
@@ -260,7 +260,7 @@ export default function Guideme() {
                     alt="This is an image"
                     className="w-100"
                   />
-                  <p className="fs-6 fw-bold">Complete Hair Loss</p>
+                  <p className="fs-6 fw-bold">Increased Crown thinning</p>
                 </button>
                 <button
                   onClick={() => {

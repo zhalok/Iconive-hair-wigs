@@ -117,10 +117,10 @@ export default function Repair() {
                     <button class="btn btn-primary px-5 mx-auto mt-3 rounded-1">
                       <a
                         href="https://mail.google.com/mail/"
-                        className="text-decoration-none text-dark"
+                        className="text-decoration-none text-light"
                         type="button"
                       >
-                        Go for Mail
+                        Email Us
                       </a>
                     </button>
                   </div>
@@ -310,7 +310,7 @@ export default function Repair() {
                         className="text-decoration-none text-light"
                         type="button"
                       >
-                        Go for Mail
+                        Email Us
                       </a>
                     </button>
                   </div>

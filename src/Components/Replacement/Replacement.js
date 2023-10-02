@@ -90,7 +90,12 @@ export default function Replacement() {
           >
             View Hair Base Systems
           </button>
-          <KeyboardArrowDownIcon className="text-theme-gray m-auto" />
+          <KeyboardArrowDownIcon
+            onClick={() => {
+              navigate("/catagory");
+            }}
+            className="text-theme-gray m-auto"
+          />
         </div>
       </div>
     </>

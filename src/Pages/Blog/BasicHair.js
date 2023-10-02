@@ -42,7 +42,7 @@ export default function BasicHair() {
               aria-controls="nav-contact"
               aria-selected="false"
             >
-              Caring For your Wig
+              Care for Wig
             </button>
           </div>
         </nav>

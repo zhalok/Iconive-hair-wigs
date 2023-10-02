@@ -54,7 +54,12 @@ export default function Trending() {
           >
             View Shop
           </button>
-          <KeyboardArrowDownIcon className="text-theme-gray m-auto mb-md-5" />
+          <KeyboardArrowDownIcon
+            onClick={() => {
+              navigate("/catagory");
+            }}
+            className="text-theme-gray m-auto mb-md-5"
+          />
         </div>
       </div>
     </>

@@ -228,13 +228,12 @@ export default function Home() {
             </p>
             <p className="text-theme-gray py-3 ">
               <img src={left} className="me-2 mb-2" width={30} />
-              I had a fantastic experience and Kayla was so educated on your
-              products, helpful and kind. She represented the organization in
-              the best possible way, and I will refer my friends and family to
-              Strut.
+              I ordered a custom wig from Iconive, and I'm satisfied by the
+              results. It fits perfectly and looks so natural. I've received
+              countless compliments. Thanks for making me feel beautiful.
               <img src={right} className="ms-2 mt-2" width={30} />
             </p>
-            <p className="text-center fw-bold"> @ Ellen White</p>
+            <p className="text-center fw-bold"> @ Sophie M. - London, UK</p>
           </div>
           <div className="d-flex flex-column text-start  p-5 shadow rounded-3 bg-light-test effecttest col-12 col-lg-3 my-5 my-lg-0">
             <p className="d-flex mx-auto text-warning">
@@ -242,13 +241,17 @@ export default function Home() {
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
             </p>
             <p className="text-center text-theme-gray py-3 ">
-              <img src={left} className="me-2 mb-2" width={30} />I went to one
-              other store before yours, and while it wasn’t negative, I just
-              didn’t get a positive, welcoming vibe. I had a close friend with
-              me when I first entered your shop, with no appointment.
+              <img src={left} className="me-2 mb-2" width={30} />
+              Iconive's customer service team is amazing. They guided me through
+              the process of measuring for a custom wig and helped me choose the
+              right style. The end result was a wig that fits perfectly and
+              looks stunning.
               <img src={right} className="ms-2 mt-2" width={30} />
             </p>
-            <p className="text-center fw-bold"> @ Abdul Kader Akash </p>
+            <p className="text-center fw-bold">
+              {" "}
+              @ Michael R. - Toronto, Canada{" "}
+            </p>
           </div>
           <div className="d-flex flex-column  text-start  p-5 shadow rounded-3 bg-light-test effecttest col-12 col-lg-3">
             <p className="d-flex mx-auto text-warning">
@@ -257,12 +260,13 @@ export default function Home() {
             </p>
             <p className="text-center text-theme-gray py-3 ">
               <img src={left} className="me-2 mb-2" width={30} />
-              This place is awesome! So many wig choices and Kayla was so
-              helpful and answered all my questions! She helped me find the
-              perfect wig! Thank you Kayla!
+              I've tried many wig companies, but none compare to Iconive. Their
+              Gents wigs are incredibly comfortable, and the hair quality is
+              exceptional. I feel like a new person every time I put one on.
+              Highly recommended!
               <img src={right} className="ms-2 mt-2" width={30} />
             </p>
-            <p className="text-center fw-bold"> @ Jennifer P.</p>
+            <p className="text-center fw-bold"> @ David. - Sydney, Australia</p>
           </div>
         </div>
       </div>

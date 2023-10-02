@@ -124,7 +124,12 @@ export default function CustomWigs() {
           >
             View custom medical Systems
           </button>
-          <KeyboardArrowDownIcon className="text-theme-gray m-auto " />
+          <KeyboardArrowDownIcon
+            onClick={() => {
+              navigate("/catagory");
+            }}
+            className="text-theme-gray m-auto "
+          />
         </div>{" "}
       </div>
       <div className=" pt-5 bg-custom-banner">
