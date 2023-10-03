@@ -44,8 +44,8 @@ const Navigation = React.lazy(() =>
   import("./Components/Navigation/Navigation")
 );
 const Checkout = React.lazy(() => import("./Pages/Checkout/Checkout"));
-const Login = React.lazy(() => import("./Pages/Authentication/Login"));
-const Signup = React.lazy(() => import("./Pages/Authentication/SignUp"));
+const Login = React.lazy(() => import("./Components/Login/Login"));
+const Signup = React.lazy(() => import("./Components/Signup/Signup"));
 const ProductDetail = React.lazy(() =>
   import("./Components/ProductDetails/ProductDetails")
 );
