@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { React, Suspense, useEffect, useState } from "react";
 import { lazy } from "react";
-import CarouselHome from "../../Components/CarouselHome/CarouselHome";
+// import CarouselHome from "../../Components/CarouselHome/CarouselHome";
 
 import "./Home.css";
 import girl from "../ImagesPage/girl.png";
