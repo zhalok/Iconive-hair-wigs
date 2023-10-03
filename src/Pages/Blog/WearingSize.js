@@ -118,7 +118,7 @@ export default function WearingSize() {
               </p>
 
               <div className="d-flex flex-column flex-lg-row w-100">
-                <div className="w-50 pe-5 my-auto">
+                <div className="w-50 pe-5 my-auto ws-100">
                   <ol type="a">
                     <h6 className="fw-bold py-2 pt-4">
                       Next, ascertain the length:
@@ -136,8 +136,8 @@ export default function WearingSize() {
                     </li>
                   </ol>
                 </div>
-                <div className="w-50 py-md-4">
-                  <img className="W-100" src="/Image/wear/ab.png" />
+                <div className="w-50 py-md-4 ws-100">
+                  <img className="w-100" src="/Image/wear/ab.png" />
                 </div>
               </div>
 
