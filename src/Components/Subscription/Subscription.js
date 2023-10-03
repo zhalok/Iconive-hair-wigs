@@ -4,12 +4,12 @@ import "./Subscription.css";
 export default function Subscription() {
   return (
     <>
-      <div className="my90 d-flex flex-column">
-        <div className="d-flex flex-column">
+      <div className="my90 d-flex flex-column p-3">
+        <div className="d-flex flex-column overflow-hidden">
           <h2 className="fw-bold headingHover">
             WANT $ <span className="fs-1">10</span> OFF ?
           </h2>
-          <p className="text-18 text-theme-gray pt-3 pb-4">
+          <p className="text-16 text-theme-gray pt-3 pb-4">
             Join us and get the exclusive sales, product launches, wig tips &
             more directly delivered to your inbox.
           </p>

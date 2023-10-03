@@ -56,7 +56,7 @@ export default function Navigation({ renderer }) {
     <>
       {/* offer div */}
       <div className="bg-top d-flex ">
-        <p className="m-auto text-light text-14">
+        <p className="m-auto text-light text-14 animate__animated animate__fadeInUp   animate__slow	5s animate__infinite	infinite">
           FREE INTERNATIONAL SHIPPING ON ORDER OVER $250!
         </p>
       </div>
@@ -72,6 +72,8 @@ export default function Navigation({ renderer }) {
           <a
             className="mx-1 text-secondary my-auto"
             href="https://www.facebook.com/profile.php?id=100087712010768"
+            target="_blank"
+            rel="noreferrer"
           >
             <FacebookIcon />
           </a>
@@ -83,26 +85,34 @@ export default function Navigation({ renderer }) {
           </a>
           <a
             className="mx-1 text-secondary my-auto"
-            href="https://www.instagram.com/invites/contact/?i=5jfrooti9ghz&utm_content=qa5m1k1"
+            href="https://www.instagram.com/iconivewigs/"
+            target="_blank"
+            rel="noreferrer"
           >
             <InstagramIcon />
           </a>
 
           <a
             className="mx-1 text-secondary my-auto"
-            href="https://twitter.com/Iconivehairwigs?t=NKMVGHrLlnyuKu5bZkZ3MA&s=35"
+            href="https://twitter.com/Iconivewigs"
+            target="_blank"
+            rel="noreferrer"
           >
             <TwitterIcon />
           </a>
           <a
             className="mx-1 text-secondary my-auto"
-            href="https://www.facebook.com/profile.php?id=100087712010768"
+            href="https://youtube.com/@IconiveWigs?si=m5ojSW2u4XrFVUCE"
+            target="_blank"
+            rel="noreferrer"
           >
             <YouTubeIcon />{" "}
           </a>
           <a
             className="mx-1 text-secondary my-auto"
-            href="https://www.facebook.com/profile.php?id=100087712010768"
+            href="https://www.linkedin.com/company/99836837/admin/feed/posts/?feedType=following"
+            target="_blank"
+            rel="noreferrer"
           >
             <LinkedInIcon />
           </a>
@@ -115,7 +125,7 @@ export default function Navigation({ renderer }) {
       <div className="  bg-white">
         <div className="d-flex justify-content-between px115">
           <a href="/home" className="text-decoration-none text-black mx-auto">
-            <h1 className="fw-bold text44 ps-1">ICONIVE</h1>
+            <h1 className="fw-bold text44 ps-1">ICONIVE WIGS</h1>
           </a>
         </div>
       </div>

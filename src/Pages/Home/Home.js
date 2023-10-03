@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { React, Suspense, useEffect, useState } from "react";
 import { lazy } from "react";
-// import CarouselHome from "../../Components/CarouselHome/CarouselHome";
+import CarouselHome from "../../Components/CarouselHome/CarouselHome";
 
 import "./Home.css";
 import girl from "../ImagesPage/girl.png";
@@ -15,8 +15,8 @@ import feature1 from "../ImagesPage/freeshipping.svg";
 import feature2 from "../ImagesPage/secure.svg";
 import feature3 from "../ImagesPage/support.svg";
 import feature4 from "../ImagesPage/refund.svg";
-// import TopSelling from "../../Components/TopSelling/TopSelling";
-// import Trending from "../../Components/Trending/Trending";
+import TopSelling from "../../Components/TopSelling/TopSelling";
+import Trending from "../../Components/Trending/Trending";
 import Replacement from "../../Components/Replacement/Replacement";
 import StarIcon from "@mui/icons-material/Star";
 import CustomWigs from "../../Components/CustomWiga/CustomWigs";
@@ -41,40 +41,44 @@ export default function Home() {
 
   return (
     <div>
-      <Suspense fallback={<PulseLoader />}>
-        <CarouselHome></CarouselHome>
-      </Suspense>
+      {/* <Suspense fallback={<PulseLoader />}> */}
+      <CarouselHome></CarouselHome>
+      {/* </Suspense> */}
 
       {/* free features section */}
       <div className="container d-flex ">
         <div className=" row d-flex flex-column flex-lg-row w-100 mt-100  mx-0 px-0 justify-content-center">
-          <div className="d-flex col-12 col-lg-6 row">
-            <div className="d-flex row px-0 mx-0">
-              <div className="col-6 w-50 d-flex px-lg-4 p-1 border-end feature-hover">
-                <div className="my-auto w-25">
+          <div className="d-flex col-12 col-lg-6 row mx-auto pe-1">
+            <div className="d-flex row px-0 mx-0 flex-column flex-md-row">
+              <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto border-ends mx-auto border-bs">
+                <div className="my-auto w-25 p-2 p-md-1">
                   <img
                     src={feature1}
                     alt="this is a picture"
                     className="w-100"
                   />
                 </div>
-                <div className="text-start my-auto p-lg-3 p-1 ps-2">
-                  <p className="f-16 py-0 my-0">Free Shipping</p>
+                <div className="text-start my-auto p-3 pt-3 w-75">
+                  <p className="text-16 fw-bold text-dark py-0 my-0">
+                    Free Shipping
+                  </p>
                   <p className="text-13 text-theme-gray">
                     Free Shipping on order over $200
                   </p>
                 </div>
               </div>
-              <div className="col-6 w-50  d-flex p-1 px-lg-4 border-end feature-hover no-border">
-                <div className="my-auto w-25">
+              <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto border-ends mx-auto border-bs">
+                <div className="my-auto w-25 p-3 p-md-1">
                   <img
                     src={feature2}
                     alt="this is a picture"
                     className="w-100"
                   />
                 </div>
-                <div className="text-start my-auto p-lg-3 p-1 ps-2">
-                  <p className="f-16 py-0 my-0">Secure Payment</p>
+                <div className="text-start my-auto p-3 pt-3 w-75">
+                  <p className="text-16 fw-bold text-dark py-0 my-0">
+                    Secure Payment
+                  </p>
                   <p className="text-13 text-theme-gray">
                     All payments are done through Paystation.
                   </p>
@@ -82,33 +86,37 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="d-flex col-12 col-lg-6 row">
-            <div className="d-flex row px-0 mx-0">
-              <div className="col-6 w-50 d-flex px-lg-4 p-1 border-end feature-hover">
-                <div className="my-auto w-25">
+          <div className="d-flex col-12 col-lg-6 row mx-auto">
+            <div className="d-flex row px-0 mx-0 flex-column flex-lg-row">
+              <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto border-ends mx-auto border-bs">
+                <div className="my-auto w-25 p-3 p-md-2">
                   <img
                     src={feature3}
                     alt="this is a picture"
                     className="w-100"
                   />
                 </div>
-                <div className="text-start my-auto p-lg-3 p-1 ps-2">
-                  <p className="f-16 py-0 my-0">Support 24/7</p>
+                <div className="text-start my-auto px-3 pt-3 w-75">
+                  <p className="text-16 fw-bold text-dark py-0 my-0">
+                    Support 24/7
+                  </p>
                   <p className="text-13 text-theme-gray">
                     Contact us 24 hours a day, 7 days a week
                   </p>
                 </div>
               </div>
-              <div className="col-6 w-50 d-flex px-lg-4 p-1  feature-hover">
-                <div className="my-auto w-25">
+              <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto mx-auto">
+                <div className="my-auto w-25 p-2 p-md-1">
                   <img
                     src={feature4}
                     alt="this is a picture"
                     className="w-100"
                   />
                 </div>
-                <div className="text-start my-auto p-lg-3 p-1 ps-2">
-                  <p className="f-20 py-0 my-0">10 Days Return</p>
+                <div className="text-start my-auto  px-3 pt-3 w-75">
+                  <p className="text-16 fw-bold text-dark py-0 my-0">
+                    10 Days Return
+                  </p>
                   <p className="text-13 text-theme-gray">
                     Return it within 10 days for exchange
                   </p>
@@ -227,7 +235,7 @@ export default function Home() {
       <CustomWigs></CustomWigs>
       {/* what people are sating */}
       <div className="bg-testimonial   py-md-5 p-4 px-lg-0">
-        <h3 className="fw-bold py9060 text-dark headingHover">
+        <h3 className="fw-bold py9060 text-dark headingHover overflow-hidden">
           WHAT PEOPLE ARE SAYING
         </h3>
 
@@ -238,13 +246,12 @@ export default function Home() {
             </p>
             <p className="text-theme-gray py-3 ">
               <img src={left} className="me-2 mb-2" width={30} />
-              I had a fantastic experience and Kayla was so educated on your
-              products, helpful and kind. She represented the organization in
-              the best possible way, and I will refer my friends and family to
-              Strut.
+              I ordered a custom wig from Iconive, and I'm satisfied by the
+              results. It fits perfectly and looks so natural. I've received
+              countless compliments. Thanks for making me feel beautiful.
               <img src={right} className="ms-2 mt-2" width={30} />
             </p>
-            <p className="text-center fw-bold"> @ Ellen White</p>
+            <p className="text-center fw-bold"> @ Sophie M. - London, UK</p>
           </div>
           <div className="d-flex flex-column text-start  p-5 shadow rounded-3 bg-light-test effecttest col-12 col-lg-3 my-5 my-lg-0">
             <p className="d-flex mx-auto text-warning">
@@ -252,13 +259,17 @@ export default function Home() {
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
             </p>
             <p className="text-center text-theme-gray py-3 ">
-              <img src={left} className="me-2 mb-2" width={30} />I went to one
-              other store before yours, and while it wasn’t negative, I just
-              didn’t get a positive, welcoming vibe. I had a close friend with
-              me when I first entered your shop, with no appointment.
+              <img src={left} className="me-2 mb-2" width={30} />
+              Iconive's customer service team is amazing. They guided me through
+              the process of measuring for a custom wig and helped me choose the
+              right style. The end result was a wig that fits perfectly and
+              looks stunning.
               <img src={right} className="ms-2 mt-2" width={30} />
             </p>
-            <p className="text-center fw-bold"> @ Abdul Kader Akash </p>
+            <p className="text-center fw-bold">
+              {" "}
+              @ Michael R. - Toronto, Canada{" "}
+            </p>
           </div>
           <div className="d-flex flex-column  text-start  p-5 shadow rounded-3 bg-light-test effecttest col-12 col-lg-3">
             <p className="d-flex mx-auto text-warning">
@@ -267,12 +278,13 @@ export default function Home() {
             </p>
             <p className="text-center text-theme-gray py-3 ">
               <img src={left} className="me-2 mb-2" width={30} />
-              This place is awesome! So many wig choices and Kayla was so
-              helpful and answered all my questions! She helped me find the
-              perfect wig! Thank you Kayla!
+              I've tried many wig companies, but none compare to Iconive. Their
+              Gents wigs are incredibly comfortable, and the hair quality is
+              exceptional. I feel like a new person every time I put one on.
+              Highly recommended!
               <img src={right} className="ms-2 mt-2" width={30} />
             </p>
-            <p className="text-center fw-bold"> @ Jennifer P.</p>
+            <p className="text-center fw-bold"> @ David. - Sydney, Australia</p>
           </div>
         </div>
       </div>

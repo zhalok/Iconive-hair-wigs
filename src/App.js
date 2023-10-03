@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { Suspense, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Home from "./Pages/Home/Home";
+import Home from "./Pages/Home/Home";
 // import Navigation from "./Components/Navigation/Navigation";
 // import Category from "./Pages/Category/Category";
 import Footer from "./Components/Footer/Footer";
@@ -36,8 +36,9 @@ import { PulseLoader } from "react-spinners";
 
 import Offer from "./Pages/Offer/Offer";
 import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
+import Guideme from "./Pages/GuideMe/Guideme";
 
-const Home = React.lazy(() => import("./Pages/Home/Home"));
+// const Home = React.lazy(() => import("./Pages/Home/Home"));
 const Category = React.lazy(() => import("./Pages/Category/Category"));
 const Navigation = React.lazy(() =>
   import("./Components/Navigation/Navigation")
@@ -117,10 +118,10 @@ function App() {
                   <Route
                     path="/home"
                     element={
-                      <Suspense fallback={<PulseLoader />}>
-                        {" "}
-                        <Home />
-                      </Suspense>
+                      // <Suspense fallback={<PulseLoader />}>
+                      // {" "}
+                      <Home />
+                      // </Suspense>
                     }
                   />
                   <Route
@@ -168,7 +169,7 @@ function App() {
                   <Route path="/joinus" element={<Joinus />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/repair" element={<Repair />} />
-                  <Route path="/guideme" element={<UnderConst />} />
+                  <Route path="/guideme" element={<Guideme />} />
                   <Route path="/offers" element={<Offer />} />
                   <Route path="/customize" element={<Customize />} />
                   <Route path="/wholesale" element={<Wholesale />} />

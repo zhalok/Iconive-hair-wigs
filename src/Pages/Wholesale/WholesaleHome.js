@@ -253,15 +253,15 @@ export default function WholesaleHome() {
       <div className="w-100">
         <img src={banner} className="w-100" alt="this is a banner" />
       </div>
-      <div className="bg-whole-home p-5">
-        <div className="w-100 pb-3">
-          <h2 className="fw-bold fs-2  text-dark px-4 pb-0 mx-auto text-uppercase headingHover">
+      <div className="bg-whole-home p-5 ">
+        <div className=" pb-3 d-flex flex-column text-center ">
+          <h2 className="fw-bold fs-2  text-dark px-4 pb-0 mx-auto text-uppercase headingHover text-center">
             Catalog
           </h2>
           <p className="text-theme-gray text-18">
             Click the buttons below to download the catalogs
           </p>
-          <div className="d-flex justify-content-between container pt-4p">
+          <div className="d-flex flex-column flex-lg-row gap-4 justify-content-between container pt-4p ">
             <button className="btn fw-bold  py-2 btn-whole shadow">
               Gents
             </button>
@@ -379,7 +379,7 @@ export default function WholesaleHome() {
             )}
           </div>
         </div>
-        <div className="w-25  ">
+        <div className="w-25 ws-100 ">
           {/*   Ladies Wig */}
 
           <div
@@ -480,7 +480,7 @@ export default function WholesaleHome() {
           </div>
         </div>
 
-        <div className="w-25 ">
+        <div className="w-25 ws-100">
           {/*   hair extension Wig */}
 
           <div
@@ -567,7 +567,7 @@ export default function WholesaleHome() {
           </div>
         </div>
 
-        <div className="w-25 ">
+        <div className="w-25 ws-100">
           {/*   accessories */}
 
           <div
@@ -672,10 +672,10 @@ export default function WholesaleHome() {
         </div>
       </div>
 
-      <div className="container pb-4p">
+      <div className="container pb-4p overflow-scroll-s">
         <h2 className="my-5 pt-4p fw-bold">PRODUCT CHECKLIST</h2>
-        <div>
-          <table className="table bg-whole-home shadow">
+        <div className="w-100 table-width ">
+          <table className="table bg-whole-home shadow w-100  ">
             <thead className="">
               <tr className="text-th mt-3 pt-table">
                 <th scope="col">No.</th>

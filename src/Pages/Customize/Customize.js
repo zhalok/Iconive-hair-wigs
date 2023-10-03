@@ -1,14 +1,43 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Customize.css";
 import Subscription from "../../Components/Subscription/Subscription";
 import BackupIcon from "@mui/icons-material/Backup";
 import banner from "../../.././src/Components/Images/joinus/customize.webp";
+import Select from "react-select";
+
+const dropItemBusinessType = [
+  {
+    value: 1,
+    label: "Professional salon",
+  },
+  {
+    value: 2,
+    label: "Stylists",
+  },
+  {
+    value: 3,
+    label: "Online store",
+  },
+  {
+    value: 4,
+    label: "Offline store",
+  },
+
+  {
+    value: 5,
+    label: "Others",
+  },
+];
 
 export default function Customize() {
   const navigate = useNavigate();
+  const [value, setValue] = useState(dropItemBusinessType.value);
+  const DropAction = (e) => {
+    setValue(e.label);
+  };
   return (
     <>
       <div className="w-100">
@@ -22,7 +51,7 @@ export default function Customize() {
             <p className="pt-5  fs-3 pb-0 mb-0 fw-bold text-theme-dark  text-28 mx-auto ">
               CUSTOM A HAIR SYSTEM
             </p>
-            <p className="text-16 pt-4 px-5 text-just">
+            <p className="text-16 pt-4 px-md-5 px-3 text-just">
               At Iconive Hair Wigs, our custom section provides a personalized
               and luxurious experience. With our custom-made products service,
               you can tailor your wig to meet your unique desires. Simply share
@@ -32,7 +61,7 @@ export default function Customize() {
               you.
             </p>
 
-            <div className="p-5 ">
+            <div className="p-md-5 p-3 pt-5">
               <form className="text-start">
                 <input
                   type="text"
@@ -63,299 +92,119 @@ export default function Customize() {
                   />
                 </div>
                 <br />
-                <div className="d-flex w-100">
+                <div className="d-flex w-100 gap-3">
                   <div className="w-50 text-start">
                     <p className="text-14 pt-1 mb-2 ms-3">Base Material</p>
                     <div class="btn-group w-100">
-                      <button
-                        type="button"
-                        class="btn btn-light w-100 dropdown-toggle text-start"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Action
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Something else here
-                          </a>
-                        </li>
-
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Separated link
-                          </a>
-                        </li>
-                      </ul>
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
                     </div>
                   </div>
                   <div className="w-50 text-start">
                     <p className="text-14 pt-1 mb-2 ms-3">Hair Length </p>
                     <div class="btn-group w-100">
-                      <button
-                        type="button"
-                        class="btn btn-light w-100 dropdown-toggle text-start"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Action
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Something else here
-                          </a>
-                        </li>
-
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Separated link
-                          </a>
-                        </li>
-                      </ul>
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
                     </div>
                   </div>
                 </div>
-                <div className="w-100 text-start my-3">
-                  <p className="text-14 pt-1 mb-2 ms-3">Hair Material</p>
-                  <div class="btn-group w-100">
-                    <button
-                      type="button"
-                      class="btn btn-light w-100 dropdown-toggle text-start"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Action
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Another action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Something else here
-                        </a>
-                      </li>
-
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Separated link
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="w-100 text-start">
-                  <p className="text-14 pt-1 mb-2 ms-3">Hair Colour</p>
-                  <div class="btn-group w-100 ">
-                    <button
-                      type="button"
-                      class="btn btn-light w-100 dropdown-toggle text-start"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Action
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Another action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Something else here
-                        </a>
-                      </li>
-
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Separated link
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="d-flex w-100 my-3">
+                <div className="w-100 d-flex gap-3 text-start my-3">
                   <div className="w-50 text-start">
-                    <p className="text-14 pt-1 mb-2 ms-3">Hair Style</p>
+                    <p className="text-14 pt-1 mb-2 ms-3">Hair Material</p>
                     <div class="btn-group w-100">
-                      <button
-                        type="button"
-                        class="btn btn-light w-100 dropdown-toggle text-start"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Action
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Something else here
-                          </a>
-                        </li>
-
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Separated link
-                          </a>
-                        </li>
-                      </ul>
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-50 text-start">
+                    <p className="text-14 pt-1 mb-2 ms-3">Hair Color</p>
+                    <div class="btn-group w-100">
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="w-100 d-flex gap-3 text-start">
+                  <div className="w-50 text-start">
+                    <p className="text-14 pt-1 mb-2 ms-3">Pre-Haircut</p>
+                    <div class="btn-group w-100">
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-50 text-start">
+                    <p className="text-14 pt-1 mb-2 ms-3">
+                      Percentage of Grey Hair
+                    </p>
+                    <div class="btn-group w-100">
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex w-100 my-3 gap-3">
+                  <div className="w-50 text-start">
+                    <p className="text-14 pt-1 mb-2 ms-3">Hair direction</p>
+                    <div class="btn-group w-100">
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
                     </div>
                   </div>
                   <div className="w-50 text-start">
                     <p className="text-14 pt-1 mb-2 ms-3">Hair Density </p>
                     <div class="btn-group w-100">
-                      <button
-                        type="button"
-                        class="btn btn-light w-100 dropdown-toggle text-start"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Action
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Something else here
-                          </a>
-                        </li>
-
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Separated link
-                          </a>
-                        </li>
-                      </ul>
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
                     </div>
                   </div>
                 </div>
-                <div className="d-flex w-100 ">
+                <div className="d-flex w-100 gap-3">
                   <div className="w-50 text-start">
-                    <p className="text-14 pt-1 mb-2 ms-3">Base Wave</p>
+                    <p className="text-14 pt-1 mb-2 ms-3">
+                      Hair texture for Ladies
+                    </p>
                     <div class="btn-group w-100">
-                      <button
-                        type="button"
-                        class="btn btn-light w-100 dropdown-toggle text-start"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Action
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Something else here
-                          </a>
-                        </li>
-
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Separated link
-                          </a>
-                        </li>
-                      </ul>
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
                     </div>
                   </div>
                   <div className="w-50 text-start">
                     <p className="text-14 pt-1 mb-2 ms-3">
-                      Percentage of Grey Hair{" "}
+                      Hair texture for Gents
                     </p>
                     <div class="btn-group w-100">
-                      <button
-                        type="button"
-                        class="btn btn-light w-100 dropdown-toggle text-start"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Action
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Something else here
-                          </a>
-                        </li>
-
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            Separated link
-                          </a>
-                        </li>
-                      </ul>
+                      <Select
+                        className="w-100 text-14"
+                        options={dropItemBusinessType}
+                        onChange={DropAction}
+                      />
                     </div>
                   </div>
                 </div>
@@ -388,13 +237,19 @@ export default function Customize() {
               <p className="text-just py-4">
                 Custom orders at Iconive are specifically crafted to meet your
                 unique needs and preferences. Due to the personalized nature of
-                these orders, returns or exchanges are not accepted. We strongly
-                advise you to take accurate measurements to ensure a perfect fit
-                for your custom hair system. With Iconive, achieving your dream
-                of a customized hair system that fulfills all your requirements
-                and expectations is within reach.
+                these orders,{" "}
+                <span className="fw-bold">
+                  returns or exchanges are not accepted
+                </span>
+                . We strongly advise you to take accurate measurements to ensure
+                a perfect fit for your custom hair system.{" "}
+                <span className="fw-bold">
+                  For a more Personalized Customization, please download Custom
+                  Sheet
+                </span>
+                .
               </p>
-              <div className="d-flex justify-content-between px-5 my-4">
+              <div className="d-flex flex-column flex-lg-row gap-4 justify-content-between px-5 my-4">
                 <button className="btn-theme-up btn text-light px-5">
                   Download custom sheet
                 </button>
