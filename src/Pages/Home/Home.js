@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { React, Suspense, useEffect, useState } from "react";
 import { lazy } from "react";
-import CarouselHome from "../../Components/CarouselHome/CarouselHome";
+// import CarouselHome from "../../Components/CarouselHome/CarouselHome";
 
 import "./Home.css";
 import girl from "../ImagesPage/girl.png";
@@ -15,8 +15,8 @@ import feature1 from "../ImagesPage/freeshipping.svg";
 import feature2 from "../ImagesPage/secure.svg";
 import feature3 from "../ImagesPage/support.svg";
 import feature4 from "../ImagesPage/refund.svg";
-import TopSelling from "../../Components/TopSelling/TopSelling";
-import Trending from "../../Components/Trending/Trending";
+// import TopSelling from "../../Components/TopSelling/TopSelling";
+// import Trending from "../../Components/Trending/Trending";
 import Replacement from "../../Components/Replacement/Replacement";
 import StarIcon from "@mui/icons-material/Star";
 import CustomWigs from "../../Components/CustomWiga/CustomWigs";
