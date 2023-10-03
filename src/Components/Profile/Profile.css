@@ -83,7 +83,7 @@
   padding-top: 2px;
 }
 .text-theme {
-  color: #ecb30a;
+  color: #ecb30a !important;
 }
 .bg-themeYellow {
   background-color: #ecb30a;
@@ -126,4 +126,85 @@
 .text-75 {
   font-size: 75px;
   font-weight: 600;
+}
+.sideItem:hover {
+  cursor: pointer;
+  color: #ecb30a;
+  font-weight: 600;
+}
+.border-midddle {
+  border-right: #66666669 1px solid !important;
+}
+.card-img2 {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.card-main22 {
+  width: 23% !important;
+}
+.card-img2:hover {
+  transform: scale(1.1);
+  transition: all 0.8s ease-in-out;
+}
+.displayHiddenSm {
+  display: block;
+}
+.displayHiddenSmV {
+  display: none;
+}
+@media screen and (min-width: 481px) and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 480px) {
+  .w-20 {
+    width: 90% !important;
+  }
+  .w-30 {
+    width: 90% !important;
+  }
+  .w-80 {
+    width: 90% !important;
+  }
+  .w-40 {
+    width: 90% !important;
+  }
+  .w-60p {
+    width: 90% !important;
+  }
+  .w-50 {
+    width: 90% !important;
+  }
+  .px60 {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .text-invoice {
+    font-size: 18px !important;
+    font-weight: 600;
+  }
+  .border-midddle {
+    border-right: #66666669 0px solid !important;
+  }
+  .card-main22 {
+    width: 100% !important;
+  }
+  .img-card {
+    width: 90% !important;
+  }
+  .text-16 {
+    font-size: 14px !important;
+  }
+  .displayHiddenSm {
+    display: none !important;
+  }
+  .displayHiddenSmV {
+    display: block !important;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 1280px) {
+  .card-main {
+    width: 30% !important;
+  }
 }

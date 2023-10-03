@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import invoice from ".././Images/profile/order/invoice.svg";
 import biman from ".././Images/profile/order/biman.svg";
 import orderdp from ".././Images/profile/order/orderdp.svg";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import FlightIcon from "@mui/icons-material/Flight";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
@@ -13,6 +13,10 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+import StepContent from "@mui/material/StepContent";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import OrderItem from "../Orders/OderItems";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import axios from "../../utils/axios";
@@ -182,17 +186,17 @@ export default function Order({ order, index, getOrders }) {
   return (
     <>
       <div className="w-100 ">
-        <div className="border-bottom px-5 pt-5 order-bg bg-light w-100">
-          <div className="w-100 d-flex  ">
-            <div className="w-40 ">
-              <div className="text-start border-end">
-                <div className="d-flex">
+        <div className="border-bottom d-flex flex-column px-5  pt-5 order-bg bg-light w-100">
+          <div className="w-100 d-flex flex-column flex-lg-row ">
+            <div className="w-50 ">
+              <div className="text-start border-midddle">
+                <div className="d-flex ">
                   <p className="text-invoice my-auto pe-2">
                     Invoice ID: {order?.payment?.invoice_number}
                   </p>
-                  <span className="my-auto">
+                  <span className="m-auto">
                     <img
-                      className="my-auto"
+                      className="m-auto"
                       alt="this is an image"
                       src={invoice}
                     />
@@ -201,10 +205,14 @@ export default function Order({ order, index, getOrders }) {
                 <p className="text-14 text-theme-gray pt-5 mb-0">
                   Estimated Delivery Date
                 </p>
+                <p className="text-invoice text-theme">
+                  {" "}
+                  15 October, 2023 <FlightIcon />
+                </p>
               </div>
             </div>
-            <div className="w-60p ps-md-5 ps-sm-3">
-              <div className="w-100 d-flex ">
+            <div className="w-50 ps-md-5 ps-sm-3">
+              <div className="w-100 d-flex flex-column-reverse flex-lg-row">
                 <div className="w-60p text-start mt-4">
                   <p className="text-14 text-theme-gray mb-0">Order Date</p>
                   <p className="text-18">{`${new Date(
@@ -217,9 +225,9 @@ export default function Order({ order, index, getOrders }) {
                   </p>
                   <p className="text-18">{order?.billing?.address}, </p>
                 </div>
-                <div className="w-40 text-center">
-                  <p className="text-18">{updateStepper()}</p>
-                  <div className="mx-auto" style={{ width: 100, height: 100 }}>
+                <div className="w-40 ps-md-4 text-start py-4 py-md-0">
+                  <p className="text-18 ms-2">Completed</p>
+                  <div className="" style={{ width: 115, height: 115 }}>
                     <CircularProgressbar
                       value={(updateStepper() / steps.length).toFixed(2) * 100}
                       text={`${
@@ -253,10 +261,15 @@ export default function Order({ order, index, getOrders }) {
               </div>
             </div>
           </div>
-          <div className="w-100 text-start mt-4">
+          <div className="w-100 text-start mt-4 d-flex flex-column">
             {collapase && (
-              <div>
-                <Box sx={{ width: "100%" }} marginTop={10} marginBottom={8}>
+              <div className="w-100 ">
+                <Box
+                  className="displayHiddenSm"
+                  sx={{ width: "100%" }}
+                  marginTop={10}
+                  marginBottom={8}
+                >
                   <Stepper activeStep={updateStepper()} alternativeLabel>
                     {steps.map((label) => (
                       <Step key={label}>
@@ -265,6 +278,21 @@ export default function Order({ order, index, getOrders }) {
                     ))}
                   </Stepper>
                 </Box>
+
+                <Box
+                  className="displayHiddenSmV mb-5"
+                  sx={{ maxWidth: "100%" }}
+                >
+                  <Stepper activeStep={updateStepper()} orientation="vertical">
+                    {steps.map((label) => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                        <StepContent></StepContent>
+                      </Step>
+                    ))}
+                  </Stepper>
+                </Box>
+
                 <p className="text-invoice">Items :</p>
                 {/* items */}
                 <div className="w-100 border-bottom">{/* order items  */}</div>
@@ -279,12 +307,12 @@ export default function Order({ order, index, getOrders }) {
 
                 {/* download invoice */}
 
-                <div className="d-flex py-4 text-start gap-5">
+                <div className="d-flex flex-column flex-lg-row py-4 text-start gap-5 mx-auto w-100">
                   {pdfLoading ? (
                     <PulseLoader />
                   ) : (
                     <button
-                      className="btn btn-theme-hover btn-theme-order border-bottom text-uppercase pb-1"
+                      className="btn btn-theme-hover btn-theme-order border-bottom text-uppercase pb-1 "
                       onClick={() => {
                         // createAndDownloadPdf();
                         handleDownload();
@@ -321,7 +349,7 @@ export default function Order({ order, index, getOrders }) {
               </div>
             )}
 
-            <div className="d-flex py-2 justify-content-center gap-5">
+            <div className="d-flex py-2  gap-5 mx-auto ">
               {collapase && (
                 <button
                   onClick={() => {

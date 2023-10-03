@@ -1,9 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
-import pps from ".././Images/profile/pps.svg";
 import edit from ".././Images/profile/Myprofile/editicon.svg";
-import add from ".././Images/profile/Myprofile/addicon.svg";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import { PulseLoader } from "react-spinners";
@@ -89,12 +87,12 @@ export default function MyProfile({ name, setName }) {
 
   return (
     <div>
-      <div className="w-100 ">
-        <div className="border-bottom px-5 pt-5 order-bg bg-light w-100">
-          <div className="w-100 d-flex border-bottom mb-5">
+      <div className="w-100">
+        <div className="border-bottom px-md-5 px-4 pt-4 pt-md-5 order-bg bg-light w-100 mx-auto">
+          <div className="w-100 d-flex flex-column flex-lg-row border-bottom mb-5">
             <div className="w-50 text-start ">
               <>
-                <div className="d-flex pt-3">
+                <div className="d-flex pt-md-3">
                   <p className="text-16 mb-0 border-end pe-2">Name</p>
                   <img
                     style={{
@@ -205,14 +203,14 @@ export default function MyProfile({ name, setName }) {
 
           {showUpdateButton && (
             <div
-              className="w-25 pb-5 px-5 mx-auto"
+              className="w-100 pb-5 px-5 mx-auto"
               style={{ marginTop: "20px" }}
             >
               {loading ? (
                 <PulseLoader />
               ) : (
                 <button
-                  className="w-100 bg-themeYellow btn text-light fw-bold mr-auto ml-auto"
+                  className="bg-themeYellow btn text-light fw-bold mr-auto ml-auto px-5"
                   onClick={() => {
                     updateInfo();
                   }}

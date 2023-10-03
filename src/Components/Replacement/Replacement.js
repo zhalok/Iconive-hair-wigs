@@ -31,7 +31,7 @@ export default function Replacement() {
   ];
   return (
     <>
-      <div className="my-5 paddingBottom ptsm">
+      <div className="my-5 paddingBottom ptsm overflow-hidden">
         <h2 className="fw-bold  w-100 mx-auto text-uppercase headingHover">
           Men’s Hair Replacement System
         </h2>
@@ -90,7 +90,12 @@ export default function Replacement() {
           >
             View Hair Base Systems
           </button>
-          <KeyboardArrowDownIcon className="text-theme-gray m-auto" />
+          <KeyboardArrowDownIcon
+            onClick={() => {
+              navigate("/catagory");
+            }}
+            className="text-theme-gray m-auto"
+          />
         </div>
       </div>
     </>

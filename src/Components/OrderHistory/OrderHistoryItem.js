@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState } from "react";
 import invoice from ".././Images/profile/order/invoice.svg";
 import orderdp from ".././Images/profile/order/orderdp.svg";
@@ -7,7 +8,7 @@ import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutl
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import "react-circular-progressbar/dist/styles.css";
 import OrderItem from "../Orders/OderItems";
-
+import "../Profile/Profile.css";
 export default function OrderHistoryItem({ order }) {
   const months = [
     "Jan",
@@ -27,14 +28,14 @@ export default function OrderHistoryItem({ order }) {
   return (
     <div className="w-100 ">
       <div className="border-bottom px-5 pt-5 order-bg bg-light w-100">
-        <div className="w-100 d-flex  ">
-          <div className="w-40 ">
-            <div className="text-start border-end">
+        <div className="w-100 d-flex flex-column flex-lg-row ">
+          <div className="w-40 border-midddle">
+            <div className="text-start">
               <div className="d-flex">
                 <p className="text-invoice my-auto pe-2 text-theme">
                   {`${new Date(order.createdAt).getDate()} ${
                     months[new Date(order.createdAt).getMonth()]
-                  } ${new Date(order.createdAt).getFullYear()}`}
+                  }, ${new Date(order.createdAt).getFullYear()}`}
                 </p>
                 <span className="my-auto ms-1">
                   <img className="my-auto" alt="this is an image" src={dateY} />
@@ -43,11 +44,11 @@ export default function OrderHistoryItem({ order }) {
               <p className="text-14 text-theme-gray pb-5 mb-0">
                 Estimated Delivery Date
               </p>
-              <div className="d-flex my-0">
-                <p className="text-delivary text-dark my-auto pe-2">
+              <div className="d-flex pe-4">
+                <p className="text-invoice text-dark my-auto pe-2">
                   Invoice ID: {order.payment.invoice_number}
                 </p>
-                <span className="my-auto">
+                <span className="m-auto">
                   <img
                     className="my-auto "
                     src={invoice}
@@ -58,7 +59,7 @@ export default function OrderHistoryItem({ order }) {
             </div>
           </div>
           <div className="w-60p ps-md-5 ps-sm-3">
-            <div className="w-100 d-flex ">
+            <div className="w-100 d-flex flex-column flex-lg-row">
               <div className="w-60p text-start mt-4">
                 <p className="text-14 text-theme-gray mb-0">Order Date</p>
                 <p className="text-18">{`${new Date(
@@ -72,8 +73,8 @@ export default function OrderHistoryItem({ order }) {
                   {order.billing.country}
                 </p>
               </div>
-              <div className="w-40 text-center">
-                <p className="text-18">Completed</p>
+              <div className="w-40 text-center py-5 mx-auto">
+                <p className="text-18 fw-bold">Completed</p>
                 <span className="my-auto">
                   <img src={bluetick} alt="this is an icon" />
                 </span>
@@ -117,7 +118,7 @@ export default function OrderHistoryItem({ order }) {
 
               {/* download invoice */}
               <div className="d-flex py-4 text-start gap-5">
-                <button className="btn btn-theme-hover btn-theme-order border-bottom text-uppercase pb-1">
+                <button className="btn btn-theme-hover btn-theme-order border-bottom text-uppercase pb-1 text-16 mx-auto">
                   Download Invoice{" "}
                 </button>
               </div>

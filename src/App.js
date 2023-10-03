@@ -1,14 +1,14 @@
 import "./App.css";
 import React, { Suspense, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Home from "./Pages/Home/Home";
+import Home from "./Pages/Home/Home";
 // import Navigation from "./Components/Navigation/Navigation";
 // import Category from "./Pages/Category/Category";
 import Footer from "./Components/Footer/Footer";
-import Checkout from "./Pages/Checkout/Checkout";
-import ProductDetail from "./Components/ProductDetails/ProductDetails";
-import Login from "./Components/Login/Login";
-import Signup from "./Components/Signup/Signup";
+// import Checkout from "./Pages/Checkout/Checkout";
+// import ProductDetail from "./Components/ProductDetails/ProductDetails";
+// import Login from "./Components/Login/Login";
+// import Signup from "./Components/Signup/Signup";
 import CartContext from "./Contexts/CartContext";
 import Profile from "./Components/Profile/Profile";
 import Cookies from "js-cookie";
@@ -23,11 +23,11 @@ import Return from "./Pages/ReturnAndRefund/Return";
 import Shipping from "./Pages/ShippingPolicy/Shipping";
 import Wholesale from "./Pages/Wholesale/Wholesale";
 import Joinus from "./Pages/Joinus/Joinus";
-import FAQ from "./Pages/FooterPages/FAQ";
+// import FAQ from "./Pages/FooterPages/FAQ";
 import ShippingPartners from "./Pages/FooterPages/ShippingPartners";
 import PaymentMethod from "./Pages/FooterPages/PaymentMethod";
 import About from "./Pages/FooterPages/About";
-import CartDrawer from "./Components/Drawer/CartDrawer";
+// import CartDrawer from "./Components/Drawer/CartDrawer";
 import Customize from "./Pages/Customize/Customize";
 import Blog from "./Pages/Blog/Blog";
 import Repair from "./Pages/Repair/Repair";
@@ -36,12 +36,21 @@ import { PulseLoader } from "react-spinners";
 
 import Offer from "./Pages/Offer/Offer";
 import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
+import Guideme from "./Pages/GuideMe/Guideme";
 
-const Home = React.lazy(() => import("./Pages/Home/Home"));
+// const Home = React.lazy(() => import("./Pages/Home/Home"));
 const Category = React.lazy(() => import("./Pages/Category/Category"));
 const Navigation = React.lazy(() =>
   import("./Components/Navigation/Navigation")
 );
+const Checkout = React.lazy(() => import("./Pages/Checkout/Checkout"));
+const Login = React.lazy(() => import("./Pages/Authentication/Login"));
+const Signup = React.lazy(() => import("./Pages/Authentication/SignUp"));
+const ProductDetail = React.lazy(() =>
+  import("./Components/ProductDetails/ProductDetails")
+);
+const FAQ = React.lazy(() => import("./Pages/FooterPages/FAQ"));
+const CartDrawer = React.lazy(() => import("./Components/Drawer/CartDrawer"));
 
 function App() {
   const [cartRenderer, setCartRenderer] = useState({});
@@ -88,12 +97,15 @@ function App() {
                   />
                 </Suspense>
 
-                <CartDrawer
-                  opened={showCartDrawer}
-                  close={() => {
-                    setShowCartDrawer(false);
-                  }}
-                />
+                <Suspense fallback={<PulseLoader />}>
+                  <CartDrawer
+                    opened={showCartDrawer}
+                    close={() => {
+                      setShowCartDrawer(false);
+                    }}
+                  />
+                </Suspense>
+
                 <Routes>
                   <Route
                     path="/"
@@ -106,10 +118,10 @@ function App() {
                   <Route
                     path="/home"
                     element={
-                      <Suspense fallback={<PulseLoader />}>
-                        {" "}
-                        <Home />
-                      </Suspense>
+                      // <Suspense fallback={<PulseLoader />}>
+                      // {" "}
+                      <Home />
+                      // </Suspense>
                     }
                   />
                   <Route
@@ -157,7 +169,7 @@ function App() {
                   <Route path="/joinus" element={<Joinus />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/repair" element={<Repair />} />
-                  <Route path="/guideme" element={<UnderConst />} />
+                  <Route path="/guideme" element={<Guideme />} />
                   <Route path="/offers" element={<Offer />} />
                   <Route path="/customize" element={<Customize />} />
                   <Route path="/wholesale" element={<Wholesale />} />

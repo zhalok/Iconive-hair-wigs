@@ -7,12 +7,15 @@ import BackupIcon from "@mui/icons-material/Backup";
 import banner from "../../.././src/Components/Images/Blog/blogbanner.png";
 import BasicHair from "./BasicHair";
 import BaseHair from "./BaseHair";
+import WearingSize from "./WearingSize";
+import HairWaveDensity from "./HairWaveDensity";
+import ColorGuide from "./ColorGuide";
 
 export default function Blog() {
   const [active, setActive] = useState(1);
   return (
     <>
-      <div className="d-flex justify-content-center pt-4 pb-2 gap-5">
+      <div className="d-flex flex-column flex-lg-row flex-wrap justify-content-center pt-4 pb-2 gap-md-5 gap-3 px-5 px-lg-0">
         <p
           onClick={() => {
             setActive(1);
@@ -57,9 +60,9 @@ export default function Blog() {
       <div>
         {active === 1 && <BasicHair />}
         {active === 2 && <BaseHair />}
-        {active === 3 && <BasicHair />}
-        {active === 4 && <BasicHair />}
-        {active === 5 && <BasicHair />}
+        {active === 3 && <WearingSize />}
+        {active === 4 && <HairWaveDensity />}
+        {active === 5 && <ColorGuide />}
       </div>
 
       <Subscription />

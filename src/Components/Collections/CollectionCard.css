@@ -29,7 +29,10 @@
 .card-main {
   width: 23% !important;
 }
-
+.card-img2:hover {
+  transform: scale(1.1);
+  transition: all 0.8s ease-in-out;
+}
 .mt-m5 {
   margin-top: -59px;
 }
