@@ -57,10 +57,15 @@ export default function Category({}) {
       //     success: "Products Loaded",
       //     error: "Error loading products",
       //   })
-      //   .then((response) => {
-      //     // console.log(response);
-      //     setProducts(response.data);
+      //   .then((result) => {
+      //     console.log(result);
+      //     setLoadingProductts(false);
+      //     setProducts(result.data);
+      //   })
+      //   .catch((e) => {
+      //     throw new Error(e);
       //   });
+
       // console.log("data", response.data);
       setLoadingProductts(false);
       setProducts(response.data);
@@ -72,11 +77,12 @@ export default function Category({}) {
 
   useEffect(() => {
     if (filters.categories.length > 0 || filters.subcategories.length > 0)
-      toast.promise(getProducts(), {
-        success: "Products Loaded",
-        pending: "Loading products",
-        error: "Error loading products",
-      });
+      // toast.promise(getProducts(), {
+      //   success: "Products Loaded",
+      //   pending: "Loading products",
+      //   error: "Error loading products",
+      // });
+      getProducts();
   }, [filters]);
 
   useEffect(() => {
