@@ -15,6 +15,7 @@ import wish from ".././Images/profile/wish.svg";
 import wishY from ".././Images/profile/wishY.svg";
 import refundd from ".././Images/profile/refundd.svg";
 import refundY from ".././Images/profile/refundY.svg";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import Order from "./Order";
 import Wishlist from "./Wishlist";
 import MyProfile from "./MyProfile";
@@ -38,6 +39,9 @@ export default function Profile() {
   const [activeBtn, setActiveBtn] = useState(true);
   const [orders, setOrders] = useState([]);
   const { user, setUser } = useContext(AuthContext);
+
+  // console.log("user", user);
+  // console.log(user)
   const [name, setName] = useState({
     value: "",
     editable: false,
@@ -48,7 +52,9 @@ export default function Profile() {
   const logout = async () => {
     Cookies.remove("jwt");
     setUser(null);
-    navigate("/");
+    // navigate("/");
+    // window.location.replace("")
+    window.location.reload();
   };
 
   const getOrders = async () => {
@@ -66,8 +72,12 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    getOrders();
+    const token = Cookies.get("jwt");
+    // console.log("token", token);
+    token ? getOrders() : window.location.replace("/home");
   }, []);
+
+  // useEffect(()=>)
 
   return (
     <div className="px60 bg-body">
@@ -202,6 +212,26 @@ export default function Profile() {
                   Refund & Return
                 </p>
               </div> */}
+
+              {user?.role == "admin" && (
+                <div className="d-flex border-bottom py-4">
+                  <span className="my-auto ms-1">
+                    <AdminPanelSettingsIcon />
+                  </span>
+                  <p
+                    onClick={() => {
+                      // logout();
+                      window.open(
+                        process.env.REACT_APP_ADMIN_PANNEL_URL,
+                        "_blank"
+                      );
+                    }}
+                    className={`my-auto text-18 ps-4 text-start text-theme-gray sideItem`}
+                  >
+                    Admin Pannel
+                  </p>
+                </div>
+              )}
 
               <div className="d-flex border-bottom py-4 mb-4">
                 <span className="my-auto ms-1">
