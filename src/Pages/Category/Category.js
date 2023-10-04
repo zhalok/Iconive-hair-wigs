@@ -13,11 +13,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
+import { ToastContainer, toast } from "react-toastify";
 // import CollectionCard from "../../Components/Collections/CollectionCard";
 const CollectionCard = React.lazy(() =>
   import("../../Components/Collections/CollectionCard")
 );
-
 
 export default function Category({}) {
   const [topbanner, setTopBanner] = useState(1);
@@ -26,7 +26,8 @@ export default function Category({}) {
     categories: [],
     subcategories: [],
   });
-  // const [filters, setFilters] = useState([]);
+  // const [filters, setFilters] = useState([])
+  const [loadingProducts, setLoadingProductts] = useState(false);
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
   // console.log("filter", filters);
@@ -46,18 +47,36 @@ export default function Category({}) {
   const getProducts = async () => {
     // console.log("calling");
     try {
+      setLoadingProductts(true);
       const response = await axios.get("/products", {
         params: { filters: filters },
       });
-
+      // toast
+      //   .promise(response, {
+      //     pending: "Loading",
+      //     success: "Products Loaded",
+      //     error: "Error loading products",
+      //   })
+      //   .then((response) => {
+      //     // console.log(response);
+      //     setProducts(response.data);
+      //   });
       // console.log("data", response.data);
+      setLoadingProductts(false);
       setProducts(response.data);
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+      setLoadingProductts(false);
+    }
   };
 
   useEffect(() => {
     if (filters.categories.length > 0 || filters.subcategories.length > 0)
-      getProducts();
+      toast.promise(getProducts(), {
+        success: "Products Loaded",
+        pending: "Loading products",
+        error: "Error loading products",
+      });
   }, [filters]);
 
   useEffect(() => {
@@ -82,6 +101,7 @@ export default function Category({}) {
 
   return (
     <>
+      <ToastContainer />
       <div>
         <div className="w-100 ">
           <div className="d-flex">
@@ -284,11 +304,15 @@ export default function Category({}) {
 
                 <div className="w-80 ps-md-5 pt-5 pt-md-0">
                   <div className="d-flex flex-wrap flex-column flex-lg-row gap-4 mx-auto justify-content-center">
-                    {products.map((product, index) => (
-                      <Suspense fallback={<PulseLoader />}>
-                        <CollectionCard productId={product._id} index={index} />
-                      </Suspense>
-                    ))}
+                    {loadingProducts ? (
+                      <PulseLoader />
+                    ) : (
+                      products.map((product, index) => (
+                        <Suspense fallback={<PulseLoader />}>
+                          <CollectionCard product={product} index={index} />
+                        </Suspense>
+                      ))
+                    )}
                   </div>
                 </div>
               </div>

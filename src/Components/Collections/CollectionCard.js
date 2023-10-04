@@ -12,10 +12,10 @@ import "./CollectionCard.css";
 import AuthContext from "../../Contexts/AuthContext";
 import Cookies from "js-cookie";
 
-export default function CollectionCard({ productId, index }) {
+export default function CollectionCard({ product, setProduct, index }) {
   const navigate = useNavigate();
   const { user, setUser } = useContext(AuthContext);
-  const [product, setProduct] = useState({});
+  // const [product, setProduct] = useState({});
   const [inWishList, setInWishList] = useState(false);
   const [wishlistloading, setWishlistloading] = useState(false);
   // console.log(inWishList);
@@ -24,20 +24,20 @@ export default function CollectionCard({ productId, index }) {
   const { currency, setCurrency } = useContext(CurrencyContext);
   // console.log()
 
-  const getProduct = async (productId) => {
-    try {
-      const response = await axios.get("/products/" + productId, {
-        params: {
-          currency: currency,
-        },
-      });
-      const data = response.data;
-      // console.log(data);
-      setProduct(data);
-    } catch (e) {
-      // console.log(e);
-    }
-  };
+  // const getProduct = async (productId) => {
+  //   try {
+  //     const response = await axios.get("/products/" + productId, {
+  //       params: {
+  //         currency: currency,
+  //       },
+  //     });
+  //     const data = response.data;
+  //     // console.log(data);
+  //     setProduct(data);
+  //   } catch (e) {
+  //     // console.log(e);
+  //   }
+  // };
 
   const addToWishlist = async () => {
     try {
@@ -45,7 +45,7 @@ export default function CollectionCard({ productId, index }) {
       const response = await axios.post(
         "/wishlist/addProduct",
         {
-          product: productId,
+          product: product?._id,
         },
         {
           headers: {
@@ -67,7 +67,7 @@ export default function CollectionCard({ productId, index }) {
     try {
       setWishlistloading(true);
       const response = await axios.delete(
-        `wishlist/removeProduct/${productId}`,
+        `wishlist/removeProduct/${product?._id}`,
         {
           headers: {
             Authorization: `Bearer ${Cookies.get("jwt")}`,
@@ -86,7 +86,7 @@ export default function CollectionCard({ productId, index }) {
   const checkWishList = async () => {
     try {
       setWishlistloading(true);
-      const response = await axios.get(`/wishlist/getProduct/${productId}`, {
+      const response = await axios.get(`/wishlist/getProduct/${product?._id}`, {
         headers: {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
@@ -102,35 +102,35 @@ export default function CollectionCard({ productId, index }) {
     }
   };
 
-  const currencyConversion = async () => {
-    const response = await axios.get("/products/" + productId, {
-      params: {
-        currency: currency,
-      },
-    });
-    const data = response.data;
-    // console.log(data);
-    setProduct((prev) => {
-      return { ...prev, price: data.price };
-    });
-  };
+  // const currencyConversion = async () => {
+  //   const response = await axios.get("/products/" + product?._id, {
+  //     params: {
+  //       currency: currency,
+  //     },
+  //   });
+  //   const data = response.data;
+  //   // console.log(data);
+  //   setProduct((prev) => {
+  //     return { ...prev, price: data.price };
+  //   });
+  // };
 
-  useEffect(() => {
-    currencyConversion();
-  }, [currency]);
+  // useEffect(() => {
+  //   currencyConversion();
+  // }, [currency]);
 
   const handleClick = () => {
     // navigate(`/productDetails/${productId}`);
     window.location.replace(
-      `${window.location.origin}/productDetails/` + productId
+      `${window.location.origin}/productDetails/` + product?._id
     );
   };
 
   useEffect(() => {
     // console.log(productId);
-    getProduct(productId);
+    // getProduct(productId);
     user && checkWishList();
-  }, [productId]);
+  }, [product]);
 
   // useEffect(() => {
   //   console.log(currency);
@@ -150,22 +150,22 @@ export default function CollectionCard({ productId, index }) {
       <div
         className="img-card position-relative cardMain porda overflow-hidden"
         onClick={() => {
-          handleClick(product._id);
+          handleClick(product?._id);
         }}
       >
         <img
           className="w-100 h-100 rounded-iconive card-img2 overflow-hidden"
-          src={product.photo}
+          src={product?.photo}
           alt="This  is an  picture"
         />
         {product.discount !== 0 && (
           <span className="position-absolute top-0 end-0 bg-danger text-light px-3 py-2 rounded-circle m-3 overflow-hidden">
-            <p className="fw-bold mb-0 mt-1 text-18">{product.discount}%</p>
+            <p className="fw-bold mb-0 mt-1 text-18">{product?.discount}%</p>
             <p className="fw-bold my-0 pt-0 text-14">OFF</p>
           </span>
         )}
       </div>
-      <p className="text-start px-3 pt-3 fw-bold  ">{product.name}</p>
+      <p className="text-start px-3 pt-3 fw-bold  ">{product?.name}</p>
       <div className="d-flex mt-auto px-3 pb-3">
         {product.discount !== 0 && (
           <p className="text-20 fw-bold text-secondary text-decoration-line-through pt-1 my-auto me-3">
@@ -178,7 +178,7 @@ export default function CollectionCard({ productId, index }) {
           {currency === "USD" ? "$" : "৳"}
           {currencyConverter(
             currency,
-            discountCalculator(product.price, product.discount)
+            discountCalculator(product?.price, product?.discount)
           )}
         </p>
         <div className="d-flex ms-auto" style={{}}>
