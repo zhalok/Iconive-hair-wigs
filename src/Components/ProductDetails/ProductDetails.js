@@ -21,6 +21,7 @@ import discountCalculator from "../../utils/calculateDIscount";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import AuthContext from "../../Contexts/AuthContext";
 import Cookies from "js-cookie";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const addToWishlist = async () => {
     try {
       setWishlistloading(true);
-      const response = await axios.post(
+      const response = axios.post(
         "/wishlist/addProduct",
         {
           product: productDetails._id,
@@ -107,9 +108,15 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
           },
         }
       );
+      await toast.promise(response, {
+        pending: "Adding to wishlist",
+        success: "Added to wishlist",
+        error: "Error adding to wishlist",
+      });
 
-      checkWishList();
-      // setWishlistloading(false);
+      // checkWishList();
+      setInWishList(true);
+      setWishlistloading(false);
     } catch (e) {
       setWishlistloading(false);
       console.log(e);
@@ -119,13 +126,19 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const removeFromWishlist = async () => {
     try {
       setWishlistloading(true);
-      const response = await axios.delete(`wishlist/removeProduct/${product}`, {
+      const response = axios.delete(`wishlist/removeProduct/${product}`, {
         headers: {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       });
-      checkWishList();
-      // setWishlistloading(false);
+      await toast.promise(response, {
+        pending: "Removing from wishlist",
+        success: "Removed from wishlist",
+        error: "Error removing from wishlist",
+      });
+      // checkWishList();
+      setWishlistloading(false);
+      setInWishList(false);
     } catch (e) {
       setWishlistloading(false);
       console.log(e);
@@ -236,6 +249,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
 
   return (
     <>
+      <ToastContainer />
       <div className="positon-relation">
         <div className="px120 d-flex flex-column flex-lg-row my-5 row m-0">
           <div className=" col-12 col-md-6">
