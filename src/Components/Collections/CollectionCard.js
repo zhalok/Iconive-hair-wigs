@@ -11,6 +11,7 @@ import { Favorite } from "@mui/icons-material";
 import "./CollectionCard.css";
 import AuthContext from "../../Contexts/AuthContext";
 import Cookies from "js-cookie";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function CollectionCard({ product, setProduct, index }) {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function CollectionCard({ product, setProduct, index }) {
   const addToWishlist = async () => {
     try {
       setWishlistloading(true);
-      const response = await axios.post(
+      const response = axios.post(
         "/wishlist/addProduct",
         {
           product: product?._id,
@@ -53,7 +54,11 @@ export default function CollectionCard({ product, setProduct, index }) {
           },
         }
       );
-
+      await toast.promise(response, {
+        pending: "Adding to wishlist",
+        success: "Added to wishlist",
+        error: "Error adding to wishlist",
+      });
       // checkWishList();
       setInWishList(true);
       // setWishlistloading(false);
@@ -66,14 +71,16 @@ export default function CollectionCard({ product, setProduct, index }) {
   const removeFromWishlist = async () => {
     try {
       setWishlistloading(true);
-      const response = await axios.delete(
-        `wishlist/removeProduct/${product?._id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${Cookies.get("jwt")}`,
-          },
-        }
-      );
+      const response = axios.delete(`wishlist/removeProduct/${product?._id}`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      });
+      await toast.promise(response, {
+        pending: "Removing from wishlist",
+        success: "Removed from wishlist",
+        error: "Error removing from wishlist",
+      });
       // checkWishList();
       setInWishList(false);
       // setWishlistloading(false);
@@ -147,6 +154,7 @@ export default function CollectionCard({ product, setProduct, index }) {
       }}
       className="card-main border rounded-iconive  mx-auto d-flex flex-column"
     >
+      <ToastContainer />
       <div
         className="img-card position-relative cardMain porda overflow-hidden"
         onClick={() => {
