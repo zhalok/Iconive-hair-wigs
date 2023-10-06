@@ -279,12 +279,12 @@ export default function WholesaleHome() {
       </div>
 
       <div
-        className="container d-flex justify-content-center gap-5 my-5"
+        className="container d-flex flex-column flex-lg-row justify-content-center gap-5 my-5"
         style={{
           cursor: "pointer",
         }}
       >
-        <div className="w-25">
+        <div className="w-25 ws-100">
           {/* Gents Wig */}
 
           <div
