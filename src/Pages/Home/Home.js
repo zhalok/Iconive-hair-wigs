@@ -196,8 +196,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Suspense fallback={<PulseLoader />}>{/* <TopSelling /> */}</Suspense>
-      <Suspense fallback={<PulseLoader />}>{/* <Trending /> */}</Suspense>
+      <Suspense fallback={<PulseLoader />}>
+        {" "}
+        <TopSelling />{" "}
+      </Suspense>
+      <Suspense fallback={<PulseLoader />}>
+        {" "}
+        <Trending />{" "}
+      </Suspense>
 
       {/* wholesales */}
       <div className="container pb-5">

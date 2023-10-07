@@ -70,3 +70,62 @@
 .mt-5p {
   margin-top: 5%;
 }
+@media screen and (min-width: 481px) and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 480px) {
+  .btn-whole {
+    width: 100% !important;
+  }
+  .ws-100 {
+    width: 100% !important;
+  }
+  .table-width {
+    width: 1000px !important;
+  }
+  .overflow-scroll-s {
+    overflow-x: scroll;
+  }
+}
+@media screen and (max-width: 480px) {
+  .sidebarwidth {
+    width: 100%;
+  }
+  .px120 {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .card-main {
+    width: 100% !important;
+  }
+  .w-80 {
+    width: 100% !important;
+  }
+  .gayeb {
+    display: none !important;
+  }
+  .w-60p {
+    width: 100% !important;
+  }
+  .w-25p {
+    width: 100% !important;
+  }
+  .msm-auto {
+    margin: 0% auto !important;
+  }
+}
+
+/* responsive design for 1280 screen */
+@media screen and (min-width: 481px) and (max-width: 1280px) {
+  .card-main {
+    width: 30% !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  .card-main {
+    width: 90% !important;
+  }
+  .img-card {
+    width: 90% !important;
+  }
+}

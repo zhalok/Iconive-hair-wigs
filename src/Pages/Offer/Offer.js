@@ -48,10 +48,10 @@ export default function Offer() {
             Get the perfect Wig at an amazing price that is readily available!
           </p>
         </div>
-        <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center">
+        <div className="container d-flex flex-column flex-lg-row justify-content-center gap-5 my-5">
           {newArrivals.map((product, index) => {
             // console.log(product._id);
-            return <CollectionCard productId={product._id} index={index} />;
+            return <CollectionCard product={product} index={index} />;
           })}
         </div>
         <div className="mb-5 mt-4 d-flex flex-column text-center">
@@ -98,10 +98,10 @@ export default function Offer() {
             price.
           </p>
         </div>
-        <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center">
+        <div className="d-flex flex-column flex-lg-row w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center">
           {newArrivals.map((product, index) => {
             // console.log(product._id);
-            return <CollectionCard productId={product._id} index={index} />;
+            return <CollectionCard product={product} index={index} />;
           })}
         </div>
         <div className="mb-5 mt-4 d-flex flex-column text-center">
