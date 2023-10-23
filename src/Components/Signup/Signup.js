@@ -10,6 +10,7 @@ import "./Signup.css";
 import { PulseLoader } from "react-spinners";
 import axios from "../../utils/axios";
 import { WindowOutlined } from "@mui/icons-material";
+import { ToastContainer, toast } from "react-toastify";
 // import { auth, provider } from "../Login/config.js";
 // import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 export default function Signup() {
@@ -71,7 +72,11 @@ export default function Signup() {
       // console.log()
       setLoading(false);
       // setMessage();
-      setError("Email already exists");
+      // setError("Email already exists");
+      // console.log(e);
+      // console.log(e?.response?.data?.message);
+      toast.error(e?.response?.data?.message);
+      // toast.error(error.)
       // alert(e);
     }
   };
@@ -89,6 +94,7 @@ export default function Signup() {
         user&&<><h2>Sign up successfully log in</h2> <button className="btn btn-info rounded-pill"><a className="text-decoration-none text-light px-3" href="/login">Now</a></button></>
       } */}
       <div className="text-center d-flex ">
+        <ToastContainer />
         <div className="d-flex shadow-theme-sign mx-auto my-5 marginTopBot bg-signup">
           <div className="row mx-auto w-100 p-4 p-md-0">
             <div className="col-12 col-md-6 d-flex">

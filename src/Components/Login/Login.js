@@ -14,6 +14,7 @@ import { useSearchParams } from "react-router-dom";
 import flogo from "../Images/login/facebookicon.svg";
 import glogo from "../Images/login/gmailicon.svg";
 import logbanner from "../Images/login/login.png";
+import { ToastContainer, toast } from "react-toastify";
 // import {auth,provider} from './config.js'
 // import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
@@ -43,7 +44,7 @@ const Login = () => {
         password: pass,
       };
       const response = await axios.post("/auth/login", loginInfo);
-      Cookies.set("jwt", response.data.token);
+      // Cookies.set("jwt", response.data.token);
       setLoading(false);
       if (searchParams.get("proceeedToCheckout") == "true") {
         navigate("/checkout");
@@ -54,7 +55,8 @@ const Login = () => {
       window.location.reload();
     } catch (e) {
       console.log(e);
-      setError("Invalid Credentials");
+      toast.error(e?.response?.data?.message);
+      // setError("Invalid Credentials");
       setLoading(false);
     }
   };
@@ -85,6 +87,7 @@ const Login = () => {
   };
   return (
     <>
+      <ToastContainer />
       <div className="text-center d-flex ">
         <div className="w-50p  d-flex flex-column flex-md-row shadow-theme-sign mx-auto my-5 bg-signup marginTopBot">
           <div className="row mx-auto w-100 p-4 p-md-0">
