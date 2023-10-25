@@ -44,7 +44,7 @@ const Login = () => {
         password: pass,
       };
       const response = await axios.post("/auth/login", loginInfo);
-      // Cookies.set("jwt", response.data.token);
+      Cookies.set("jwt", response.data.token);
       setLoading(false);
       if (searchParams.get("proceeedToCheckout") == "true") {
         navigate("/checkout");
