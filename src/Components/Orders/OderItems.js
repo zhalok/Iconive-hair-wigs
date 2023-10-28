@@ -11,7 +11,7 @@ export default function OrderItem({ orderItemId }) {
   const [orderItem, setOrderItem] = useState({});
   const { currency, setCurrency } = useContext(CurrencyContext);
   const navigate = useNavigate();
-  console.log("orderItem", orderItem);
+  // console.log("orderItem", orderItem);
 
   const getOrderItem = async () => {
     try {

@@ -7,6 +7,9 @@ import Subscription from "../../Components/Subscription/Subscription";
 import BackupIcon from "@mui/icons-material/Backup";
 import banner from "../../.././src/Components/Images/joinus/customize.webp";
 import Select from "react-select";
+import axios from "../../utils/axios";
+import downloadFile from "../../utils/downloadFIle";
+// import axios from "axios";
 
 const dropItemBusinessType = [
   {
@@ -31,6 +34,20 @@ const dropItemBusinessType = [
     label: "Others",
   },
 ];
+
+/* Helper function */
+async function downloadCustomizationRequirementFile(fileURL, fileName) {
+  axios
+    .get("/customwigs/get-custom-wigs-sheet", {
+      responseType: "blob",
+    })
+    .then((response) => {
+      downloadFile("Customization_Requirements.pdf", response.data);
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+    });
+}
 
 export default function Customize() {
   const navigate = useNavigate();
@@ -250,7 +267,12 @@ export default function Customize() {
                 .
               </p>
               <div className="d-flex flex-column flex-lg-row gap-4 justify-content-between px-5 my-4">
-                <button className="btn-theme-up btn text-light px-5">
+                <button
+                  className="btn-theme-up btn text-light px-5"
+                  onClick={() => {
+                    downloadCustomizationRequirementFile();
+                  }}
+                >
                   Download custom sheet
                 </button>
                 <button

@@ -119,31 +119,60 @@ export default function Order({ order, index, getOrders }) {
   };
 
   const handleDownload = async (filename) => {
-    try {
-      setPdfLoading(true);
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/invoice/getInvoice/${order._id}`,
-        {
-          headers: {
-            "content-type": "applicaion/json",
-          },
-        }
-      );
-      // console.log(response);
-      const blob = await response.blob();
-      setPdfLoading(false);
-      const fileUrl = URL.createObjectURL(blob);
+    // try {
+    //   setPdfLoading(true);
+    //   const response = await fetch(
+    //     `${process.env.REACT_APP_BACKEND_URL}/invoice/getInvoice/${order._id}`,
+    //     {
+    //       headers: {
+    //         // "content-type": "applicaion/json",
+    //       },
+    //     }
+    //   );
+    //   // console.log(response);
+    //   console.log(response);
+    //   const blob = await response.blob();
+    //   console.log(blob);
+    //   setPdfLoading(false);
+    //   const fileUrl = URL.createObjectURL(blob);
 
-      const link = document.createElement("a");
-      link.href = fileUrl;
-      link.download = "invoice_" + order?.payment?.invoice_number + ".pdf"; // Adjust the file name and extension
-      link.click();
+    //   const link = document.createElement("a");
+    //   link.href = fileUrl;
+    //   link.download = "invoice_" + order?.payment?.invoice_number + ".pdf"; // Adjust the file name and extension
+    //   link.click();
 
-      URL.revokeObjectURL(fileUrl);
-    } catch (error) {
-      setPdfLoading(false);
-      console.error("Error downloading the PDF:", error);
-    }
+    //   URL.revokeObjectURL(fileUrl);
+    // } catch (error) {
+    //   setPdfLoading(false);
+    //   console.error("Error downloading the PDF:", error);
+    // }
+    // async function download_file(fileURL, fileName) {
+    setPdfLoading(true);
+    axios
+      .get(`/invoice/getInvoice/${order._id}`, {
+        responseType: "blob",
+      })
+      .then((response) => {
+        setPdfLoading(false);
+        const href = window.URL.createObjectURL(response.data);
+
+        const anchorElement = document.createElement("a");
+
+        anchorElement.href = href;
+        anchorElement.download =
+          "invoice_" + order?.payment?.invoice_number + ".pdf";
+
+        document.body.appendChild(anchorElement);
+        anchorElement.click();
+
+        document.body.removeChild(anchorElement);
+        window.URL.revokeObjectURL(href);
+      })
+      .catch((error) => {
+        setPdfLoading(false);
+        console.log("error: ", error);
+      });
+    // }
   };
 
   const createAndDownloadPdf = async () => {
