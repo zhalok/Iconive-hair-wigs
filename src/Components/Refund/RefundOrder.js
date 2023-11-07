@@ -1,7 +1,5 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState } from "react";
-import invoice from ".././Images/profile/order/invoice.svg";
-import bluetick from ".././Images/profile/OrderHistory/blueTick.svg";
-import pickback from ".././Images/profile/pickback.svg";
 import "../Profile/Profile.css";
 export default function RefundOrder({ order, index }) {
   const months = [
@@ -41,7 +39,11 @@ export default function RefundOrder({ order, index }) {
             Invoice ID: {order.payment.invoice_number}
           </p>
           <span className="my-auto">
-            <img className="my-auto " src={invoice} alt="this is an icon" />
+            <img
+              className="my-auto "
+              src="./Image/profile/order/invoice.svg"
+              alt="this is an icon"
+            />
           </span>
         </div>
         <div className="w-100 d-flex flex-column flex-lg-row">
@@ -77,7 +79,7 @@ export default function RefundOrder({ order, index }) {
                     <img
                       className="my-auto"
                       alt="this is an image"
-                      src={pickback}
+                      src="./Image/profile/pickback.svg"
                     />
                   </span>
                 </div>
@@ -90,7 +92,10 @@ export default function RefundOrder({ order, index }) {
                 </div>
               ) : (
                 <div className="w-40 text-center pt-4 mx-auto">
-                  <img src={bluetick} alt="this is an icon" />
+                  <img
+                    src="./Image/profile/OrderHistory/blueTick.svg"
+                    alt="this is an icon"
+                  />
 
                   <p className="text-18 mb-0 mt-3">Refund Successful</p>
                 </div>

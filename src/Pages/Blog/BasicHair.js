@@ -1,11 +1,14 @@
 import React from "react";
-import banner from "../../.././src/Components/Images/joinus/blog.webp";
 import "./Blog.css";
 export default function BasicHair() {
   return (
     <div>
       <div className="w-100">
-        <img src={banner} className="w-100" alt="this is a banner" />
+        <img
+          src="./Image/joinus/blog.webp"
+          className="w-100"
+          alt="this is a banner"
+        />
       </div>
 
       {/* tabs */}

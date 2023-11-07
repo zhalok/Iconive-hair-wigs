@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import { useDisclosure } from "@mantine/hooks";
 import { Drawer, Button, Group } from "@mantine/core";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import { useContext, useState, useEffect } from "react";
 import CartItem from "../CartItem/CartItem";
 import CartContext from "../../Contexts/CartContext";
 import currencyConverter from "../../utils/CurrencyChanger";
-import empty from "../Images/emptycart.webp";
 export default function CartDrawer({ opened, close }) {
   //   const [opened, { open, close }] = useDisclosure(false);
   const [cartItems, setCartItems] = useState([]);
@@ -138,7 +136,7 @@ export default function CartDrawer({ opened, close }) {
             ) : (
               <div className="text-center p-2 fw-bold text-secondary">
                 <img
-                  src={empty}
+                  src="./Image/emptycart.webp"
                   alt="this is an image "
                   className="w-75 mt-5 mb-3"
                 />

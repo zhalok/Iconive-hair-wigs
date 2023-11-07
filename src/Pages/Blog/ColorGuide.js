@@ -1,5 +1,4 @@
 import React from "react";
-import banner from "../../.././src/Components/Images/joinus/blog.webp";
 import "./Blog.css";
 import { Image } from "react-bootstrap";
 
@@ -7,7 +6,11 @@ export default function ColorGuide() {
   return (
     <div>
       <div className="w-100">
-        <img src={banner} className="w-100" alt="this is a banner" />
+        <img
+          src="./Image/joinus/blog.webp"
+          className="w-100"
+          alt="this is a banner"
+        />
       </div>
 
       {/* tabs */}

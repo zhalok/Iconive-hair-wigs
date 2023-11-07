@@ -1,9 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState } from "react";
-import invoice from ".././Images/profile/order/invoice.svg";
-import orderdp from ".././Images/profile/order/orderdp.svg";
-import bluetick from ".././Images/profile/OrderHistory/blueTick.svg";
-import dateY from ".././Images/profile/OrderHistory/dateY.svg";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import "react-circular-progressbar/dist/styles.css";
@@ -38,7 +34,11 @@ export default function OrderHistoryItem({ order }) {
                   }, ${new Date(order.createdAt).getFullYear()}`}
                 </p>
                 <span className="my-auto ms-1">
-                  <img className="my-auto" alt="this is an image" src={dateY} />
+                  <img
+                    className="my-auto"
+                    alt="this is an image"
+                    src="./Image/profile/OrderHistory/dateY.svg"
+                  />
                 </span>
               </div>
               <p className="text-14 text-theme-gray pb-5 mb-0">
@@ -51,7 +51,7 @@ export default function OrderHistoryItem({ order }) {
                 <span className="m-auto">
                   <img
                     className="my-auto "
-                    src={invoice}
+                    src="./Image/profile/order/invoice.svg"
                     alt="this is an icon"
                   />
                 </span>
@@ -76,7 +76,10 @@ export default function OrderHistoryItem({ order }) {
               <div className="w-40 text-center py-5 mx-auto">
                 <p className="text-18 fw-bold">Completed</p>
                 <span className="my-auto">
-                  <img src={bluetick} alt="this is an icon" />
+                  <img
+                    src="./Image/profile/OrderHistory/blueTick.svg"
+                    alt="this is an icon"
+                  />
                 </span>
               </div>
             </div>

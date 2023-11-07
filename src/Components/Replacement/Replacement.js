@@ -2,11 +2,6 @@
 import React from "react";
 import "./Replacement.css";
 import { useNavigate } from "react-router-dom";
-import card1 from "../Images/replace/1.png";
-import card2 from "../Images/replace/2.png";
-import card3 from "../Images/replace/3.png";
-import card4 from "../Images/replace/4.png";
-import card5 from "../Images/replace/5.png";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function Replacement() {
@@ -46,7 +41,7 @@ export default function Replacement() {
           <div className="mx-auto  col-5 col-lg-2 p-0 ">
             <img
               className="w-22 w-100 h-100"
-              src={card1}
+              src="./Image/replace/1.png"
               alt="This  is an  picture"
             />
           </div>
@@ -54,7 +49,7 @@ export default function Replacement() {
           <div className="mx-auto  col-5 col-lg-2 p-0 ">
             <img
               className="w-22  w-100 h-100"
-              src={card3}
+              src="./Image/replace/3.png"
               alt="This  is an  picture"
             />
           </div>
@@ -62,21 +57,21 @@ export default function Replacement() {
           <div className="mx-auto  col-5 col-lg-2 p-0 gapsm">
             <img
               className=" w-22 gapsm  w-100 h-100"
-              src={card4}
+              src="./Image/replace/4.png"
               alt="This  is an  picture "
             />
           </div>
           <div className="mx-auto  col-5 col-lg-2 p-0 gapsm">
             <img
               className="w-22 gapsm w-100 h-100"
-              src={card5}
+              src="./Image/replace/5.png"
               alt="This  is an  picture "
             />
           </div>
           <div className="mx-auto  col-5 col-lg-2 p-0 gapsm">
             <img
               className="w-22 gapsm  w-100 h-100"
-              src={card2}
+              src="./Image/replace/2.png"
               alt="This  is an  picture"
             />
           </div>

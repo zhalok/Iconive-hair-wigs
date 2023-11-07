@@ -4,11 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import "./Navigation.css";
-import maleCollection from "./image/malenav.webp";
-import femaleCollection from "./image/femalenav.webp";
-import Rawhair from "./image/rawnav.webp";
-import Accessories from "./image/accnav.webp";
-import { Login, LoginOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -18,10 +13,14 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import search from "./image/search.svg";
-import wish from "./image/wishj.svg";
-import cart from "./image/cart.svg";
-import usericon from "./image/picon.png";
+// import maleCollection from "./Image/navi/malenav.webp";
+// import femaleCollection from "./Image/navi/femalenav.webp";
+// import Rawhair from "./Image/navi/rawnav.webp";
+// import Accessories from "./Image/navi/accnav.webp";
+// import search from "./Image/navi/search.svg";
+// import wish from "./Image/navi/wishj.svg";
+// import cart from "./Image/navi/cart.svg";
+// import usericon from "./Image/navi/picon.png";
 import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
@@ -224,17 +223,25 @@ export default function Navigation({ renderer }) {
             </Navbar>
             <div className="d-flex  gap-1 w12 justify-content-end mb-auto mt-2  my-lg-auto">
               <div className="m-auto  ">
-                <img width={"20"} src={search} alt="this is an icon" />
+                <img
+                  width={"20"}
+                  src="./Image/navi/search.svg"
+                  alt="this is an icon"
+                />
               </div>
               <div className="m-auto ">
-                <img width={"27"} src={wish} alt="this is an icon" />
+                <img
+                  width={"27"}
+                  src="./Image/navi/wishj.svg"
+                  alt="this is an icon"
+                />
               </div>
               <div className="m-auto">
                 {/* <a href="/checkout"> */}
                 <Badge badgeContent={cartItems} color="primary">
                   <img
                     width={"25"}
-                    src={cart}
+                    src="./Image/navi/cart.svg"
                     alt="this is an icon"
                     onClick={() => {
                       setShowCartDrawer((prev) => !prev);
@@ -264,7 +271,7 @@ export default function Navigation({ renderer }) {
                 >
                   <img
                     width={"35"}
-                    src={usericon}
+                    src="./Image/navi/picon.png"
                     alt="this is an icon"
                     onClick={() => {}}
                   />
@@ -281,7 +288,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100 ">
                   <div className="">
                     <img
-                      src={maleCollection}
+                      src="./Image/navi/malenav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />
@@ -299,7 +306,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100  ">
                   <div className="w-100 ">
                     <img
-                      src={femaleCollection}
+                      src="./Image/navi/femalenav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />
@@ -317,7 +324,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100 ">
                   <div className="w-100 ">
                     <img
-                      src={Rawhair}
+                      src="./Image/navi/rawnav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />
@@ -335,7 +342,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100">
                   <div className="w-100 ">
                     <img
-                      src={Accessories}
+                      src="./Image/navi/accnav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />

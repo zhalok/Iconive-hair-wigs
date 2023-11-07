@@ -46,7 +46,7 @@
   color: #996b32;
 }
 .bg-repair {
-  background-image: url("../.././Components/Images/repair/repair2.png");
+  background-image: url("./repair/repair2.png");
   background-size: cover;
   background-repeat: no-repeat;
   height: 900px;

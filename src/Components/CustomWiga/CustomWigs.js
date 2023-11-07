@@ -2,20 +2,20 @@
 import React from "react";
 import "./CustomWigs.css";
 import { useNavigate } from "react-router-dom";
-import card1 from "../Images/custom/1.svg";
-import card2 from "../Images/custom/2.svg";
-import card3 from "../Images/custom/3.svg";
-import card4 from "../Images/custom/4.svg";
-import card5 from "../Images/custom/5.svg";
-import card6 from "../Images/custom/6.svg";
-import p1 from "../Images/partners/1.svg";
-import p2 from "../Images/partners/2.svg";
-import p3 from "../Images/partners/3.svg";
-import p4 from "../Images/partners/4.svg";
-import p5 from "../Images/partners/5.svg";
-import p6 from "../Images/partners/6.svg";
-import icon1 from "../Images/custom/iconwhy.svg";
-import icon2 from "../Images/custom/iconwhy1.svg";
+// import card1 from "./Image/custom/1.svg";
+// import card2 from "./Image/custom/2.svg";
+// import card3 from "./Image/custom/3.svg";
+// import card4 from "./Image/custom/4.svg";
+// import card5 from "./Image/custom/5.svg";
+// import card6 from "./Image/custom/6.svg";
+// import p1 from "./Image/partners/1.svg";
+// import p2 from "./Image/partners/2.svg";
+// import p3 from "./Image/partners/3.svg";
+// import p4 from "./Image/partners/4.svg";
+// import p5 from "./Image/partners/5.svg";
+// import p6 from "./Image/partners/6.svg";
+// import icon1 from "./Image/custom/iconwhy.svg";
+// import icon2 from "./Image/custom/iconwhy1.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function CustomWigs() {
@@ -27,22 +27,22 @@ export default function CustomWigs() {
         <h2 className="fw-bold text-uppercase headingHover">Our partners</h2>
         <div className="d-flex flex-wrap justify-content-between container pt-5 row mx-auto g-3">
           <div className="col  my-auto p-3 cardImg">
-            <img src={p1} alt="this is a picture" />
+            <img src="./Image/partners/1.svg" alt="this is a picture" />
           </div>
           <div className="col  my-auto p-3 cardImg">
-            <img src={p2} alt="this is a picture" />
+            <img src="./Image/partners/2.svg" alt="this is a picture" />
           </div>
           <div className="col  my-auto p-3 cardImg">
-            <img src={p3} alt="this is a picture" />
+            <img src="./Image/partners/3.svg" alt="this is a picture" />
           </div>
           <div className="col  my-auto p-3 cardImg">
-            <img src={p4} alt="this is a picture" />
+            <img src="./Image/partners/4.svg" alt="this is a picture" />
           </div>
           <div className="col  my-auto p-3 cardImg">
-            <img src={p5} alt="this is a picture" />
+            <img src="./Image/partners/5.svg" alt="this is a picture" />
           </div>
           <div className="col  my-auto p-3 cardImg">
-            <img src={p6} alt="this is a picture" />
+            <img src="./Image/partners/6.svg" alt="this is a picture" />
           </div>
           {/* <img src={p2} alt="this is a picture" />
           <img src={p3} alt="this is a picture" />
@@ -71,7 +71,7 @@ export default function CustomWigs() {
             <div className="mx-auto   col-6 col-lg-2">
               <img
                 className=" wc-22 w-100 h-100"
-                src={card1}
+                src="./Image/custom/1.svg"
                 alt="This  is an  picture"
               />
             </div>
@@ -79,7 +79,7 @@ export default function CustomWigs() {
             <div className="mx-auto  col-6 col-lg-2">
               <img
                 className=" wc-22 w-100 h-100"
-                src={card2}
+                src="./Image/custom/2.svg"
                 alt="This  is an  picture"
               />
             </div>
@@ -87,7 +87,7 @@ export default function CustomWigs() {
             <div className="mx-auto  col-6 col-lg-2">
               <img
                 className=" wc-22 w-100 h-100"
-                src={card3}
+                src="./Image/custom/3.svg"
                 alt="This  is an  picture"
               />
             </div>
@@ -95,21 +95,21 @@ export default function CustomWigs() {
             <div className="mx-auto  col-6 col-lg-2">
               <img
                 className=" wc-22 w-100 h-100"
-                src={card4}
+                src="./Image/custom/4.svg"
                 alt="This  is an  picture "
               />
             </div>
             <div className="mx-auto col-6 col-lg-2">
               <img
                 className=" wc-22 w-100 h-100"
-                src={card5}
+                src="./Image/custom/5.svg"
                 alt="This  is an  picture "
               />
             </div>
             <div className="mx-auto  col-6 col-lg-2">
               <img
                 className="wc-22 w-100 h-100"
-                src={card6}
+                src="./Image/custom/6.svg"
                 alt="This  is an  picture "
               />
             </div>
@@ -136,12 +136,20 @@ export default function CustomWigs() {
         <div className="container ">
           <div className="whychooseUs  pt-5 ms-auto px85 pb100 text-end">
             <h2 className="fw-bold my-whole">WHY CHOOSE US</h2>
-            <img className="mb-3" src={icon1} alt="this is a picture" />
+            <img
+              className="mb-3"
+              src="./Image/custom/iconwhy.svg"
+              alt="this is a picture"
+            />
             <p className="text-theme-gray ">Non-Surgical Hair Replacement</p>
             <p className="text-theme-gray ">No harmful effect</p>
             <p className="text-theme-gray ">Safe & easy to use</p>
             <p className="text-theme-gray ">Loyal customer base</p>
-            <img className="mt-5 mb-3" src={icon2} alt="this is a picture" />
+            <img
+              className="mt-5 mb-3"
+              src="./Image/custom/iconwhy1.svg"
+              alt="this is a picture"
+            />
             <p className="text-theme-gray ">Easy return policy</p>
             <p className="text-theme-gray">Fast Worldwide Free Shipping</p>
             <p className="text-theme-gray">24/7 Customer Service</p>

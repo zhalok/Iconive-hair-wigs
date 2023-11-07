@@ -3,18 +3,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./Profile.css";
-import pps from ".././Images/profile/pps.svg";
-import ppr from ".././Images/profile/ppr.svg";
-import prosvg from ".././Images/profile/prosvg.svg";
-import prosvgY from ".././Images/profile/proY.svg";
-import orderY from ".././Images/profile/orderY.svg";
-import order from ".././Images/profile/order.svg";
-import history from ".././Images/profile/history.svg";
-import historyY from ".././Images/profile/historyY.svg";
-import wish from ".././Images/profile/wish.svg";
-import wishY from ".././Images/profile/wishY.svg";
-import refundd from ".././Images/profile/refundd.svg";
-import refundY from ".././Images/profile/refundY.svg";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import Order from "./Order";
 import Wishlist from "./Wishlist";
@@ -94,9 +82,17 @@ export default function Profile() {
               <div className="d-flex border-top border-bottom py-4">
                 <span className="my-auto ms-1">
                   {activeBtn === true && sidebar === 1 ? (
-                    <img src={prosvgY} alt="this is an image" className="" />
+                    <img
+                      src="./Image/profile/proY.svg"
+                      alt="this is an image"
+                      className=""
+                    />
                   ) : (
-                    <img src={prosvg} alt="this is an image" className="" />
+                    <img
+                      src="./Image/profile/prosvg.svg"
+                      alt="this is an image"
+                      className=""
+                    />
                   )}
                 </span>
                 <p
@@ -114,9 +110,17 @@ export default function Profile() {
               <div className="d-flex border-bottom py-4">
                 <span className="my-auto ms-1">
                   {activeBtn === true && sidebar === 2 ? (
-                    <img src={orderY} alt="this is an image" className="" />
+                    <img
+                      src="./Image/profile/orderY.svg"
+                      alt="this is an image"
+                      className=""
+                    />
                   ) : (
-                    <img src={order} alt="this is an image" className="" />
+                    <img
+                      src="./Image/profile/order.svg"
+                      alt="this is an image"
+                      className=""
+                    />
                   )}
                 </span>
                 <p
@@ -134,9 +138,17 @@ export default function Profile() {
               <div className="d-flex border-bottom py-4">
                 <span className="my-auto ms-1">
                   {activeBtn === true && sidebar === 3 ? (
-                    <img src={historyY} alt="this is an image" className="" />
+                    <img
+                      src="./Image/profile/historyY.svg"
+                      alt="this is an image"
+                      className=""
+                    />
                   ) : (
-                    <img src={history} alt="this is an image" className="" />
+                    <img
+                      src="./Image/profile/history.svg"
+                      alt="this is an image"
+                      className=""
+                    />
                   )}
                 </span>
                 <p
@@ -154,9 +166,17 @@ export default function Profile() {
               <div className="d-flex border-bottom py-4">
                 <span className="my-auto ms-1">
                   {activeBtn === true && sidebar === 4 ? (
-                    <img src={wishY} alt="this is an image" className="" />
+                    <img
+                      src="./Image/profile/wishY.svg"
+                      alt="this is an image"
+                      className=""
+                    />
                   ) : (
-                    <img src={wish} alt="this is an image" className="" />
+                    <img
+                      src="./Image/profile/wish.svg"
+                      alt="this is an image"
+                      className=""
+                    />
                   )}
                 </span>
                 <p
@@ -174,9 +194,17 @@ export default function Profile() {
               <div className="d-flex border-bottom py-4">
                 <span className="my-auto ms-1">
                   {activeBtn === true && sidebar === 5 ? (
-                    <img src={refundY} alt="this is an image" className="" />
+                    <img
+                      src="./Image/profile/refundY.svg"
+                      alt="this is an image"
+                      className=""
+                    />
                   ) : (
-                    <img src={refundd} alt="this is an image" className="" />
+                    <img
+                      src="./Image/profile/refundd.svg"
+                      alt="this is an image"
+                      className=""
+                    />
                   )}
                 </span>
                 <p

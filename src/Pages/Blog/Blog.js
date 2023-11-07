@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import "./Blog.css";
 import Subscription from "../../Components/Subscription/Subscription";
-import BackupIcon from "@mui/icons-material/Backup";
-import banner from "../../.././src/Components/Images/Blog/blogbanner.png";
 import BasicHair from "./BasicHair";
 import BaseHair from "./BaseHair";
 import WearingSize from "./WearingSize";

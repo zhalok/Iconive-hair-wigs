@@ -3,27 +3,13 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { React, Suspense, useEffect, useState } from "react";
 import { lazy } from "react";
-// import CarouselHome from "../../Components/CarouselHome/CarouselHome";
-
 import "./Home.css";
-import girl from "../ImagesPage/girl.png";
-import pola from "../ImagesPage/Guy.png";
-import wholesale from "../ImagesPage/WI.svg";
-import left from "../ImagesPage/leftquote.png";
-import right from "../ImagesPage/rightquote.png";
-import feature1 from "../ImagesPage/freeshipping.svg";
-import feature2 from "../ImagesPage/secure.svg";
-import feature3 from "../ImagesPage/support.svg";
-import feature4 from "../ImagesPage/refund.svg";
-// import TopSelling from "../../Components/TopSelling/TopSelling";
-// import Trending from "../../Components/Trending/Trending";
+
 import Replacement from "../../Components/Replacement/Replacement";
 import StarIcon from "@mui/icons-material/Star";
 import CustomWigs from "../../Components/CustomWiga/CustomWigs";
 import Subscription from "../../Components/Subscription/Subscription";
 import "animate.css";
-
-import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 const CarouselHome = lazy(() =>
@@ -53,7 +39,7 @@ export default function Home() {
               <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto border-ends mx-auto border-bs">
                 <div className="my-auto w-25 p-2 p-md-1">
                   <img
-                    src={feature1}
+                    src="./Image/ImagesPage/freeshipping.svg"
                     alt="this is a picture"
                     className="w-100"
                   />
@@ -70,7 +56,7 @@ export default function Home() {
               <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto border-ends mx-auto border-bs">
                 <div className="my-auto w-25 p-3 p-md-1">
                   <img
-                    src={feature2}
+                    src="./Image/ImagesPage/secure.svg"
                     alt="this is a picture"
                     className="w-100"
                   />
@@ -91,7 +77,7 @@ export default function Home() {
               <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto border-ends mx-auto border-bs">
                 <div className="my-auto w-25 p-3 p-md-2">
                   <img
-                    src={feature3}
+                    src="./Image/ImagesPage/support.svg"
                     alt="this is a picture"
                     className="w-100"
                   />
@@ -108,7 +94,7 @@ export default function Home() {
               <div className="col-6 w-50 d-flex px-lg-4 p-1 feature-hover ws-100 mx-auto mx-auto">
                 <div className="my-auto w-25 p-2 p-md-1">
                   <img
-                    src={feature4}
+                    src="./Image/ImagesPage/refund.svg"
                     alt="this is a picture"
                     className="w-100"
                   />
@@ -145,7 +131,7 @@ export default function Home() {
               <img
                 width="100%"
                 height="100%"
-                src={pola}
+                src="./Image/ImagesPage/Guy.png"
                 alt="this is a picture of girl"
               />
               <div className="overlay d-flex mx-auto w-100">
@@ -177,7 +163,7 @@ export default function Home() {
               <img
                 width="100%"
                 height="100%"
-                src={girl}
+                src="./Image/ImagesPage/girl.png"
                 alt="this is a picture of girl"
               />
               <div className="overlay d-flex mx-auto w-100">
@@ -210,7 +196,7 @@ export default function Home() {
         <div className="row w-100 position-relative d-flex pb-5 px-0 ">
           <div className="displayHidden col-12 col-lg-8 ms-lg-auto mx-0 overflow-hidden">
             <img
-              src={wholesale}
+              src="./Image/ImagesPage/WI.svg"
               alt="this is a picture "
               className="w-100 cardImg"
             />
@@ -251,11 +237,19 @@ export default function Home() {
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
             </p>
             <p className="text-theme-gray py-3 ">
-              <img src={left} className="me-2 mb-2" width={30} />
+              <img
+                src="./Image/ImagesPage/leftquote.png"
+                className="me-2 mb-2"
+                width={30}
+              />
               I ordered a custom wig from Iconive, and I'm satisfied by the
               results. It fits perfectly and looks so natural. I've received
               countless compliments. Thanks for making me feel beautiful.
-              <img src={right} className="ms-2 mt-2" width={30} />
+              <img
+                src="./Image/ImagesPage/rightquote.png"
+                className="ms-2 mt-2"
+                width={30}
+              />
             </p>
             <p className="text-center fw-bold"> @ Sophie M. - London, UK</p>
           </div>
@@ -265,12 +259,20 @@ export default function Home() {
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
             </p>
             <p className="text-center text-theme-gray py-3 ">
-              <img src={left} className="me-2 mb-2" width={30} />
+              <img
+                src="./Image/ImagesPage/leftquote.png"
+                className="me-2 mb-2"
+                width={30}
+              />
               Iconive's customer service team is amazing. They guided me through
               the process of measuring for a custom wig and helped me choose the
               right style. The end result was a wig that fits perfectly and
               looks stunning.
-              <img src={right} className="ms-2 mt-2" width={30} />
+              <img
+                src="./Image/ImagesPage/rightquote.png"
+                className="ms-2 mt-2"
+                width={30}
+              />
             </p>
             <p className="text-center fw-bold">
               {" "}
@@ -283,12 +285,20 @@ export default function Home() {
               <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />{" "}
             </p>
             <p className="text-center text-theme-gray py-3 ">
-              <img src={left} className="me-2 mb-2" width={30} />
+              <img
+                src="./Image/ImagesPage/leftquote.png"
+                className="me-2 mb-2"
+                width={30}
+              />
               I've tried many wig companies, but none compare to Iconive. Their
               Gents wigs are incredibly comfortable, and the hair quality is
               exceptional. I feel like a new person every time I put one on.
               Highly recommended!
-              <img src={right} className="ms-2 mt-2" width={30} />
+              <img
+                src="./Image/ImagesPage/rightquote.png"
+                className="ms-2 mt-2"
+                width={30}
+              />
             </p>
             <p className="text-center fw-bold"> @ David. - Sydney, Australia</p>
           </div>
