@@ -15,6 +15,10 @@ import flogo from "../Images/login/facebookicon.svg";
 import glogo from "../Images/login/gmailicon.svg";
 import logbanner from "../Images/login/login.png";
 import { ToastContainer, toast } from "react-toastify";
+import { GoogleLogin } from "@react-oauth/google";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth } from "../../utils/firebaseConfig.js";
+
 // import {auth,provider} from './config.js'
 // import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
@@ -70,6 +74,13 @@ const Login = () => {
     // console.log(pass);
   };
 
+  const responseMessage = (response) => {
+    console.log(response);
+  };
+  const errorMessage = (error) => {
+    console.log(error);
+  };
+
   useEffect(() => {
     const token = Cookies.get("jwt");
     if (token) {
@@ -80,6 +91,64 @@ const Login = () => {
   useEffect(() => {
     setGooglelog(localStorage.getItem("email"));
   });
+
+  const googleLogin = () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // console.log("credentials from success", credential);
+        // console.log("user", user);
+        const { uid, email } = user;
+        axios
+          .post("/auth/login", {
+            email,
+            password: uid,
+          })
+          .then((response) => {
+            Cookies.set("jwt", response.data.token);
+            window.location.reload();
+          })
+          .catch((e) => {
+            // console.log(e);\
+            axios
+              .post("/auth/signup", {
+                email,
+                password: uid,
+                passwordConfirm: uid,
+                name: user?.displayName,
+                verified: user?.emailVerified,
+              })
+              .then((response) => {
+                Cookies.set("jwt", response.data.token);
+                window.location.reload();
+              })
+              .catch((e) => {
+                console.log(e);
+                toast.error(e?.response?.data?.message);
+              });
+          });
+
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(credential);
+        // ...
+      });
+  };
 
   const googleLogout = () => {
     localStorage.clear();
@@ -154,7 +223,20 @@ const Login = () => {
                       // onClick={handleGoogleLogin}
                       className="mx-auto"
                     >
-                      <img src={glogo} className="me-2" />
+                      <img
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        src={glogo}
+                        className="me-2"
+                        onClick={() => {
+                          googleLogin();
+                        }}
+                      />
+                      {/* <GoogleLogin
+                        onSuccess={responseMessage}
+                        onError={errorMessage}
+                      /> */}
                       <img src={flogo} className="" />
                     </span>
                   </div>

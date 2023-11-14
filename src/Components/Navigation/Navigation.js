@@ -8,7 +8,6 @@ import maleCollection from "./image/malenav.webp";
 import femaleCollection from "./image/femalenav.webp";
 import Rawhair from "./image/rawnav.webp";
 import Accessories from "./image/accnav.webp";
-import { Login, LoginOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -49,7 +48,7 @@ export default function Navigation({ renderer }) {
       setCartItems(cart.length);
     }
   }, [renderer]);
-
+  console.log(user);
   // const authContext = useContext(AuthContext);
 
   return (
@@ -248,7 +247,7 @@ export default function Navigation({ renderer }) {
                   <a href="/profile" className="text-decoration-none">
                     <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
                       <h5 className=" m-auto fw-bold text-light">
-                        {user.name[0].toUpperCase()}
+                        {user?.name[0]?.toUpperCase()}
                       </h5>
                     </div>
                   </a>

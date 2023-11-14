@@ -37,7 +37,7 @@ import { PulseLoader } from "react-spinners";
 import Offer from "./Pages/Offer/Offer";
 import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
 import Guideme from "./Pages/GuideMe/Guideme";
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
 // const Home = React.lazy(() => import("./Pages/Home/Home"));
 const Category = React.lazy(() => import("./Pages/Category/Category"));
 const Navigation = React.lazy(() =>
@@ -76,144 +76,146 @@ function App() {
 
   return (
     <div className="App">
-      <CartContext.Provider
-        value={{
-          setShowCartDrawer,
-          showCartDrawer,
-          setCartRenderer,
-          cartRenderer,
-        }}
-      >
-        <AuthContext.Provider value={{ user, setUser }}>
-          <AuthDispatcherContext.Provider value={setUser}>
-            <CurrencyContext.Provider value={{ currency, setCurrency }}>
-              <Router>
-                <Suspense fallback={<PulseLoader />}>
-                  <Navigation
-                    renderer={cartRenderer}
-                    currency={currency}
-                    setCurrency={setCurrency}
-                    // setShowCartDrawer={setShowCartDrawer}
-                  />
-                </Suspense>
+      <GoogleOAuthProvider clientId="116640610459-l774ctmgedtp501cjkvfrrklbrl4v2aj.apps.googleusercontent.com">
+        <CartContext.Provider
+          value={{
+            setShowCartDrawer,
+            showCartDrawer,
+            setCartRenderer,
+            cartRenderer,
+          }}
+        >
+          <AuthContext.Provider value={{ user, setUser }}>
+            <AuthDispatcherContext.Provider value={setUser}>
+              <CurrencyContext.Provider value={{ currency, setCurrency }}>
+                <Router>
+                  <Suspense fallback={<PulseLoader />}>
+                    <Navigation
+                      renderer={cartRenderer}
+                      currency={currency}
+                      setCurrency={setCurrency}
+                      // setShowCartDrawer={setShowCartDrawer}
+                    />
+                  </Suspense>
 
-                <Suspense fallback={<PulseLoader />}>
-                  <CartDrawer
-                    opened={showCartDrawer}
-                    close={() => {
-                      setShowCartDrawer(false);
-                    }}
-                  />
-                </Suspense>
+                  <Suspense fallback={<PulseLoader />}>
+                    <CartDrawer
+                      opened={showCartDrawer}
+                      close={() => {
+                        setShowCartDrawer(false);
+                      }}
+                    />
+                  </Suspense>
 
-                <Routes>
-                  <Route
-                    path="/"
-                    element={
-                      <Suspense fallback={<PulseLoader />}>
+                  <Routes>
+                    <Route
+                      path="/"
+                      element={
+                        <Suspense fallback={<PulseLoader />}>
+                          <Home />
+                        </Suspense>
+                      }
+                    />
+                    <Route
+                      path="/home"
+                      element={
+                        // <Suspense fallback={<PulseLoader />}>
+                        // {" "}
                         <Home />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="/home"
-                    element={
-                      // <Suspense fallback={<PulseLoader />}>
-                      // {" "}
-                      <Home />
-                      // </Suspense>
-                    }
-                  />
-                  <Route
-                    path="/catagory"
-                    element={
-                      <Suspense fallback={<PulseLoader />}>
-                        {" "}
-                        <Category />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="/checkout"
-                    element={
-                      <Suspense fallback={<PulseLoader />}>
-                        <Checkout />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="/ProductDetails/:product"
-                    element={
-                      <Suspense fallback={<PulseLoader />}>
-                        <ProductDetail
-                          setCartRenderer={setCartRenderer}
-                          cartRenderer={cartRenderer}
-                        />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="/faq"
-                    element={
-                      <Suspense fallback={<PulseLoader />}>
-                        <FAQ />
-                      </Suspense>
-                    }
-                  />
-                  <Route path="/paymentMethod" element={<PaymentMethod />} />
-                  <Route path="/about" element={<About />} />
-                  <Route
-                    path="/shippingPartner"
-                    element={<ShippingPartners />}
-                  />
-                  <Route path="/joinus" element={<Joinus />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/repair" element={<Repair />} />
-                  <Route path="/guideme" element={<Guideme />} />
-                  <Route path="/offers" element={<Offer />} />
-                  <Route path="/customize" element={<Customize />} />
-                  <Route path="/wholesale" element={<Wholesale />} />
-                  <Route path="/wholesalehome" element={<WholesaleHome />} />
-                  <Route path="/privacy" element={<Privacy />} />
-                  <Route path="/terms" element={<Terms />} />
-                  <Route path="/return" element={<Return />} />
-                  <Route path="/shipping" element={<Shipping />} />
-                  {/* <Route path="/aboutus" element={<Home />} /> */}
-                  <Route
-                    path="/login"
-                    element={
-                      <Suspense fallback={<PulseLoader />}>
-                        {" "}
-                        <Login />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="/signup"
-                    element={
-                      <Suspense fallback={<PulseLoader />}>
-                        {" "}
-                        <Signup />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="/profile"
-                    element={
-                      <Suspense fallback={<PulseLoader />}>
-                        {" "}
-                        <Profile />
-                      </Suspense>
-                    }
-                  />
-                </Routes>
+                        // </Suspense>
+                      }
+                    />
+                    <Route
+                      path="/catagory"
+                      element={
+                        <Suspense fallback={<PulseLoader />}>
+                          {" "}
+                          <Category />
+                        </Suspense>
+                      }
+                    />
+                    <Route
+                      path="/checkout"
+                      element={
+                        <Suspense fallback={<PulseLoader />}>
+                          <Checkout />
+                        </Suspense>
+                      }
+                    />
+                    <Route
+                      path="/ProductDetails/:product"
+                      element={
+                        <Suspense fallback={<PulseLoader />}>
+                          <ProductDetail
+                            setCartRenderer={setCartRenderer}
+                            cartRenderer={cartRenderer}
+                          />
+                        </Suspense>
+                      }
+                    />
+                    <Route
+                      path="/faq"
+                      element={
+                        <Suspense fallback={<PulseLoader />}>
+                          <FAQ />
+                        </Suspense>
+                      }
+                    />
+                    <Route path="/paymentMethod" element={<PaymentMethod />} />
+                    <Route path="/about" element={<About />} />
+                    <Route
+                      path="/shippingPartner"
+                      element={<ShippingPartners />}
+                    />
+                    <Route path="/joinus" element={<Joinus />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/repair" element={<Repair />} />
+                    <Route path="/guideme" element={<Guideme />} />
+                    <Route path="/offers" element={<Offer />} />
+                    <Route path="/customize" element={<Customize />} />
+                    <Route path="/wholesale" element={<Wholesale />} />
+                    <Route path="/wholesalehome" element={<WholesaleHome />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/return" element={<Return />} />
+                    <Route path="/shipping" element={<Shipping />} />
+                    {/* <Route path="/aboutus" element={<Home />} /> */}
+                    <Route
+                      path="/login"
+                      element={
+                        <Suspense fallback={<PulseLoader />}>
+                          {" "}
+                          <Login />
+                        </Suspense>
+                      }
+                    />
+                    <Route
+                      path="/signup"
+                      element={
+                        <Suspense fallback={<PulseLoader />}>
+                          {" "}
+                          <Signup />
+                        </Suspense>
+                      }
+                    />
+                    <Route
+                      path="/profile"
+                      element={
+                        <Suspense fallback={<PulseLoader />}>
+                          {" "}
+                          <Profile />
+                        </Suspense>
+                      }
+                    />
+                  </Routes>
 
-                <Footer></Footer>
-              </Router>
-            </CurrencyContext.Provider>
-          </AuthDispatcherContext.Provider>
-        </AuthContext.Provider>
-      </CartContext.Provider>
+                  <Footer></Footer>
+                </Router>
+              </CurrencyContext.Provider>
+            </AuthDispatcherContext.Provider>
+          </AuthContext.Provider>
+        </CartContext.Provider>
+      </GoogleOAuthProvider>
     </div>
   );
 }
