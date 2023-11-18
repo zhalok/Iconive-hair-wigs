@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -25,6 +25,7 @@ import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
 import { useSearchParams } from "react-router-dom";
+import annotate from "../../utils/annotate";
 
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
@@ -48,11 +49,15 @@ export default function Navigation({ renderer }) {
       setCartItems(cart.length);
     }
   }, [renderer]);
-  console.log(user);
+  // console.log(user);
   // const authContext = useContext(AuthContext);
 
+  const ref = useRef();
+
+  useEffect(() => {}, []);
+
   return (
-    <>
+    <div ref={ref}>
       {/* offer div */}
       <div className="bg-top d-flex ">
         <p className="m-auto text-light text-14 animate__animated animate__fadeInUp   animate__slow	5s animate__infinite	infinite">
@@ -348,6 +353,6 @@ export default function Navigation({ renderer }) {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
