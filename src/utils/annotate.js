@@ -4,34 +4,47 @@ import { MarkerArea } from "markerjs2";
 
 const takeScreenshot = async (dom, img) => {
   html2canvas(document.body, {}).then((canvas) => {
-    window.location.href = canvas.toDataURL();
-
-    img.src = canvas.toDataURL();
+    // window.location.href = canvas.toDataURL();
+    console.log(canvas.toDataURL());
+    // img.src = canvas.toDataURL();
     // console.log(img);
   });
 };
 
-const takeScreenShot = async () => {
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d");
-  const video = document.createElement("video");
-  const captureStream = await navigator.mediaDevices.getDisplayMedia({
-    video: true,
+const takeScreenShot = async (img) => {
+  const stream = await navigator.mediaDevices.getDisplayMedia({
     preferCurrentTab: true,
   });
-  video.srcObject = captureStream;
-  context.drawImage(video, 0, 0, window.width, window.height);
-  const frame = canvas.toDataURL("image/png");
-  captureStream.getTracks().forEach((track) => track.stop());
-  //   //   return file;
-  //   console.log(frame);
-  // window.capture;
+
+  const track = stream.getVideoTracks()[0];
+
+  const imageCapture = new ImageCapture(track);
+  // take first frame only
+  const bitmap = await imageCapture.grabFrame();
+  console.log(bitmap);
+
+  track.stop();
+
+  const canvas = document.createElement("canvas");
+
+  canvas.width = bitmap.width;
+  canvas.height = bitmap.height;
+  const context = canvas.getContext("2d");
+  context.drawImage(bitmap, 0, 0, bitmap.width, bitmap.height);
+  const image = canvas.toDataURL();
+  img.src = image;
+
+  return image;
+  // return frame;
 };
 
 function showMarkerArea(target) {
   const markerArea = new MarkerArea(target);
-  // markerArea.settings.displayMode = "popup";
+  console.log(markerArea);
+  markerArea.settings.displayMode = "popup";
   markerArea.uiStyleSettings.zIndex = "1000";
+  // markerArea.pos;
+
   markerArea.uiStyleSettings.backgroundColor = "rgba(0,0,0,0.5)";
   // markerArea.uiStyleSettings
   markerArea.addEventListener("render", (event) => {
@@ -106,14 +119,14 @@ export default function annotate(dom) {
   root?.appendChild(main);
 
   // const img = document.createElement("img");
-  const img = new Image();
+  const img = document.createElement("img");
   img.id = "annotate_preview";
 
   // img.style.border = "1px solid #ccc";
-  img.width = "100%";
-  // img.height = "fit-content";
-  img.height = "100%";
-  img.style.overflowY = "scroll";
+  // img.width = "100%";
+  // // img.height = "fit-content";
+  // img.height = "100%";
+  // img.style.overflowY = "scroll";
   //   img.style.marginBottom = "10px";
   // img.style.overflowY = "auto";
   //   img.style.borderRadius = "10px";
@@ -145,7 +158,9 @@ export default function annotate(dom) {
     // takeScreenshot(dom, img).then(() => {
     //   annotatorModal.style.display = "flex";
     // });
-    takeScreenShot();
+    takeScreenShot(img).then(() => {
+      annotatorModal.style.display = "flex";
+    });
   };
 
   openButton.onclick = () => {
