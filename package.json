@@ -42,7 +42,6 @@
     "react-spinners": "^0.13.8",
     "react-to-pdf": "^0.0.14",
     "react-toastify": "^9.1.3",
-    "ss-annotator": "^1.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
