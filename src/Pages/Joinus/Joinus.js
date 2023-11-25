@@ -1,11 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from "react";
+import React, { useEffect } from "react";
 import "./Joinus.css";
 import Subscription from "../../Components/Subscription/Subscription";
 
 export default function Joinus() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <div>
       <div className="w-100 ">
@@ -29,21 +33,21 @@ export default function Joinus() {
         <h3 className="mt-5 fw-bold">Select a Program:</h3>
 
         <div className="d-flex gap-5 py-3 flex-column flex-lg-row">
-          <button className="px-5 py-2 btn  btn-join rounded-2 shadow">
-            <a href="#everybody" className="text-decoration-none text-dark ">
+          <a href="#everybody" className="text-decoration-none text-dark ">
+            <button className="px-5 py-2 btn  btn-join rounded-2 shadow">
               FOR EVERYBODY
-            </a>
-          </button>
-          <button className="px-5 py-2 btn  btn-join rounded-2 shadow">
-            <a href="#influnce" className="text-decoration-none text-dark ">
+            </button>
+          </a>
+          <a href="#influnce" className="text-decoration-none text-dark ">
+            <button className="px-5 py-2 btn btn-join rounded-2 shadow">
               FOR content creators
-            </a>
-          </button>
-          <button className="px-5 py-2 btn  btn-join rounded-2 shadow">
-            <a href="#style" className="text-decoration-none text-dark ">
+            </button>
+          </a>
+          <a href="#style" className="text-decoration-none text-dark ">
+            <button className="px-5 py-2 btn  btn-join rounded-2 shadow">
               FOR stylists
-            </a>
-          </button>
+            </button>
+          </a>
         </div>
       </div>
 

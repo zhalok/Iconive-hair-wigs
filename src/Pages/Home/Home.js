@@ -4,7 +4,7 @@
 import { React, Suspense, useEffect, useState } from "react";
 import { lazy } from "react";
 import "./Home.css";
-
+import { FloatingWhatsApp } from "react-floating-whatsapp";
 import Replacement from "../../Components/Replacement/Replacement";
 import StarIcon from "@mui/icons-material/Star";
 import CustomWigs from "../../Components/CustomWiga/CustomWigs";
@@ -307,6 +307,11 @@ export default function Home() {
 
       {/* Subscription */}
       <Subscription></Subscription>
+      <FloatingWhatsApp
+        phoneNumber="+8801602290655"
+        accountName="Iconive Wigs"
+        avatar="./image/logo/Img 3.png"
+      />
     </div>
   );
 }

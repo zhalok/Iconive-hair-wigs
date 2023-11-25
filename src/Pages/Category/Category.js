@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { Suspense, useEffect, useState, lazy } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Category.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -17,6 +18,7 @@ export default function Category({}) {
     categories: [],
     subcategories: [],
   });
+  const navigate = useNavigate();
   // const [filters, setFilters] = useState([])
   const [loadingProducts, setLoadingProductts] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -96,6 +98,10 @@ export default function Category({}) {
     }
   }, []);
 
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <>
       <ToastContainer />
@@ -140,7 +146,7 @@ export default function Category({}) {
                   />
                 )}
               </div>
-              <div className="d-flex justify-content-between px120pro flex-column flex-lg-row ">
+              {/* <div className="d-flex justify-content-between px120pro flex-column flex-lg-row ">
                 <div className="d-flex gap-2 gayeb w-25p">
                   <p className="text-uppercase text-22 my-auto ps-4 fw-bold">
                     Filters{" "}
@@ -188,9 +194,9 @@ export default function Category({}) {
                     </ul>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="d-flex px120 flex-column flex-lg-row">
+              <div className="d-flex px120 flex-column flex-lg-row mt-5">
                 {/* sidebar */}
                 <div className="sidebarwidth d-flex flex-column gap-4">
                   <div className="sidebarBg  ">
@@ -296,6 +302,9 @@ export default function Category({}) {
                   </div>
                   <div className="m-auto pt-2 overFlow rounded-iconive gayeb">
                     <img
+                      onClick={() => {
+                        navigate("/offers");
+                      }}
                       src="./Image/image_c/sidebar.svg"
                       alt="this is an image "
                       className="w-100 m-auto sidebarImg gayeb"

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Subscription from "../../Components/Subscription/Subscription";
 
@@ -7,6 +7,10 @@ import "./Repair.css";
 
 export default function Repair() {
   const usenavigate = useNavigate();
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       <div className="w-100">
@@ -228,10 +232,11 @@ export default function Repair() {
               If you have any questions at all, big or small, please feel free
               to ask us.
             </p>
-
-            <button className="btn btn-theme-up px-5 text-light text-uppercase rounded-3 mt-4 w-100 t">
-              Get in touch
-            </button>
+            <a href="https://wa.me/1602290655" target="_blank" rel="noreferrer">
+              <button className="btn btn-theme-up px-5 text-light text-uppercase rounded-3 mt-4 w-100 t">
+                Get in touch
+              </button>
+            </a>
             <button
               data-bs-toggle="modal"
               data-bs-target="#repairModal12"

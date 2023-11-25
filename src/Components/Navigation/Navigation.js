@@ -25,7 +25,6 @@ import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
 import { useSearchParams } from "react-router-dom";
-
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
@@ -168,7 +167,6 @@ export default function Navigation({ renderer }) {
                   <Nav.Link href="/home" className="text-black text-nav  drop">
                     HOME
                   </Nav.Link>
-
                   <Nav.Link
                     onClick={() => {
                       setCollectionDropdown((prevs) => {
@@ -179,15 +177,12 @@ export default function Navigation({ renderer }) {
                   >
                     SHOP
                   </Nav.Link>
-
                   <Nav.Link
                     href="/guideme"
                     className="text-black text-nav text-uppercase drop"
                   >
-                    {" "}
-                    Guide ME
+                    Guide me
                   </Nav.Link>
-
                   <Nav.Link
                     href="/customize"
                     className="text-black text-nav text-uppercase drop"
@@ -222,14 +217,19 @@ export default function Navigation({ renderer }) {
               </Navbar.Collapse>
             </Navbar>
             <div className="d-flex  gap-1 w12 justify-content-end mb-auto mt-2  my-lg-auto">
-              <div className="m-auto  ">
+              {/* <div className="m-auto  ">
                 <img
                   width={"20"}
                   src="./Image/navi/search.svg"
                   alt="this is an icon"
                 />
-              </div>
-              <div className="m-auto ">
+              </div> */}
+              <div
+                onClick={() => {
+                  navigate("/profile");
+                }}
+                className="my-auto ms-auto"
+              >
                 <img
                   width={"27"}
                   src="./Image/navi/wishj.svg"
@@ -251,7 +251,7 @@ export default function Navigation({ renderer }) {
                 {/* </a> */}
               </div>
               {user ? (
-                <div className="m-auto">
+                <div className="my-auto">
                   <a href="/profile" className="text-decoration-none">
                     <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
                       <h5 className=" m-auto fw-bold text-light">

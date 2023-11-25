@@ -30,6 +30,7 @@
     "react-bootstrap": "^2.7.2",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",
+    "react-floating-whatsapp": "^5.0.8",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",

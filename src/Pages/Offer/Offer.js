@@ -31,6 +31,9 @@ export default function Offer() {
     getNewArrivals();
   }, []);
 
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       <div className="w-100">
