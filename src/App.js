@@ -32,7 +32,6 @@ import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
 import Guideme from "./Pages/GuideMe/Guideme";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 // import annotate from "./utils/annotate";
-import annotate from "ss-annotator";
 const Category = React.lazy(() => import("./Pages/Category/Category"));
 const Navigation = React.lazy(() =>
   import("./Components/Navigation/Navigation")
@@ -68,9 +67,7 @@ function App() {
     }
   }, []);
   const ref = useRef(null);
-  useEffect(() => {
-    annotate();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="App">
