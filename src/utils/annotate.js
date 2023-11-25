@@ -21,7 +21,7 @@ const takeScreenShot = async (img) => {
   const imageCapture = new ImageCapture(track);
   // take first frame only
   const bitmap = await imageCapture.grabFrame();
-  console.log(bitmap);
+  // console.log(bitmap);
 
   track.stop();
 
@@ -74,6 +74,19 @@ export default function annotate(dom) {
 
   const main = document.createElement("div");
   main.id = "main";
+
+  var tool = document.createElement("div");
+
+  // Set its inner HTML
+  tool.innerHTML = "I'm a sticky block!";
+
+  // Set the CSS properties
+  tool.style.position = "sticky";
+  tool.style.top = "0px";
+  tool.style.backgroundColor = "#f9f9f9";
+  tool.style.padding = "10px";
+  tool.style.zIndex = "1000";
+  document.body.appendChild(tool);
 
   const annotatorModal = document.createElement("div");
 
@@ -155,9 +168,6 @@ export default function annotate(dom) {
   };
 
   const openImage = () => {
-    // takeScreenshot(dom, img).then(() => {
-    //   annotatorModal.style.display = "flex";
-    // });
     takeScreenShot(img).then(() => {
       annotatorModal.style.display = "flex";
     });
