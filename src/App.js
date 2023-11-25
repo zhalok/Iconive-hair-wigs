@@ -1,21 +1,16 @@
 import "./App.css";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
-// import Navigation from "./Components/Navigation/Navigation";
-// import Category from "./Pages/Category/Category";
+
 import Footer from "./Components/Footer/Footer";
-// import Checkout from "./Pages/Checkout/Checkout";
-// import ProductDetail from "./Components/ProductDetails/ProductDetails";
-// import Login from "./Components/Login/Login";
-// import Signup from "./Components/Signup/Signup";
+
 import CartContext from "./Contexts/CartContext";
 import Profile from "./Components/Profile/Profile";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import AuthContext from "./Contexts/AuthContext";
 import AuthDispatcherContext from "./Contexts/AuthDIspatcherContext";
-// import Orders from "./Pages/Orders";
 import CurrencyContext from "./Contexts/CurrencyContext";
 import Privacy from "./Pages/PrivacyAndPolicy/Privacy";
 import Terms from "./Pages/TermsAndConds/Terms";
@@ -23,11 +18,9 @@ import Return from "./Pages/ReturnAndRefund/Return";
 import Shipping from "./Pages/ShippingPolicy/Shipping";
 import Wholesale from "./Pages/Wholesale/Wholesale";
 import Joinus from "./Pages/Joinus/Joinus";
-// import FAQ from "./Pages/FooterPages/FAQ";
 import ShippingPartners from "./Pages/FooterPages/ShippingPartners";
 import PaymentMethod from "./Pages/FooterPages/PaymentMethod";
 import About from "./Pages/FooterPages/About";
-// import CartDrawer from "./Components/Drawer/CartDrawer";
 import Customize from "./Pages/Customize/Customize";
 import Blog from "./Pages/Blog/Blog";
 import Repair from "./Pages/Repair/Repair";
@@ -38,7 +31,7 @@ import Offer from "./Pages/Offer/Offer";
 import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
 import Guideme from "./Pages/GuideMe/Guideme";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-// const Home = React.lazy(() => import("./Pages/Home/Home"));
+// import annotate from "./utils/annotate";
 const Category = React.lazy(() => import("./Pages/Category/Category"));
 const Navigation = React.lazy(() =>
   import("./Components/Navigation/Navigation")
@@ -73,6 +66,8 @@ function App() {
       setUser(decoded);
     }
   }, []);
+  const ref = useRef(null);
+  useEffect(() => {}, []);
 
   return (
     <div className="App">

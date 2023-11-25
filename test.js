@@ -1,23 +1,38 @@
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sept",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+const canIRun = navigator.mediaDevices.getDisplayMedia;
 
-let date = "2023-07-20T08:41:05.215Z";
-date = new Date(date);
-let deliveryDate = 15 * 24 * 60 * 60 * 1000 + date.getTime();
-deliveryDate = new Date(deliveryDate);
-console.log("delivery day", deliveryDate.getDate());
+const takeScreenShot = async () => {
+  const stream = await navigator.mediaDevices.getDisplayMedia({
+    video: { mediaSource: "screen" },
+  });
+  // get correct video track
+  const track = stream.getVideoTracks()[0];
+  // init Image Capture and not Video stream
+  const imageCapture = new ImageCapture(track);
+  // take first frame only
+  const bitmap = await imageCapture.grabFrame();
+  // destory video track to prevent more recording / mem leak
+  track.stop();
 
-console.log("delivery month", months[deliveryDate.getMonth() - 1]);
-console.log(deliveryDate.getFullYear());
+  const canvas = document.getElementById("fake");
+  // this could be a document.createElement('canvas') if you want
+  // draw weird image type to canvas so we can get a useful image
+  canvas.width = bitmap.width;
+  canvas.height = bitmap.height;
+  const context = canvas.getContext("2d");
+  context.drawImage(bitmap, 0, 0, bitmap.width, bitmap.height);
+  const image = canvas.toDataURL("image/jpeg");
+  return image;
+  // this turns the base 64 string to a [File] object
+  const res = await fetch(image);
+  const buff = await res.arrayBuffer();
+  // clone so we can rename, and put into array for easy proccessing
+  const file = [
+    new File([buff], `photo_${new Date()}.jpg`, {
+      type: "image/jpeg",
+    }),
+  ];
+  return file;
+};
+
+const button = (document.getElementById("cake").onclick = () =>
+  canIRun ? takeScreenShot() : {});

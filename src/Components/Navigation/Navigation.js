@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -25,6 +25,14 @@ import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
 import { useSearchParams } from "react-router-dom";
+import annotate from "../../utils/annotate";
+import { auth } from "../../utils/firebaseConfig";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import axios from "../../utils/axios";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
+import glogo from "../Images/login/gmailicon.svg";
+import { FaGoogle } from "react-icons/fa";
 
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
@@ -40,6 +48,63 @@ export default function Navigation({ renderer }) {
   // console.log("currency", currency);
   // console.log(currency);
   // console.log(user);
+  const googleLogin = () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // console.log("credentials from success", credential);
+        // console.log("user", user);
+        const { uid, email } = user;
+        axios
+          .post("/auth/login", {
+            email,
+            password: uid,
+          })
+          .then((response) => {
+            Cookies.set("jwt", response.data.token);
+            window.location.reload();
+          })
+          .catch((e) => {
+            // console.log(e);\
+            axios
+              .post("/auth/signup", {
+                email,
+                password: uid,
+                passwordConfirm: uid,
+                name: user?.displayName,
+                verified: user?.emailVerified,
+              })
+              .then((response) => {
+                Cookies.set("jwt", response.data.token);
+                window.location.reload();
+              })
+              .catch((e) => {
+                console.log(e);
+                toast.error(e?.response?.data?.message);
+              });
+          });
+
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(credential);
+        // ...
+      });
+  };
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -48,11 +113,15 @@ export default function Navigation({ renderer }) {
       setCartItems(cart.length);
     }
   }, [renderer]);
-  console.log(user);
+  // console.log(user);
   // const authContext = useContext(AuthContext);
 
+  const ref = useRef();
+
+  useEffect(() => {}, []);
+
   return (
-    <>
+    <div ref={ref}>
       {/* offer div */}
       <div className="bg-top d-flex ">
         <p className="m-auto text-light text-14 animate__animated animate__fadeInUp   animate__slow	5s animate__infinite	infinite">
@@ -254,18 +323,15 @@ export default function Navigation({ renderer }) {
                 </div>
               ) : (
                 <div
+                  className="my-auto mx-auto"
                   style={{
                     cursor: "pointer",
                   }}
-                  onClick={() => {
-                    navigate("/login");
-                  }}
                 >
-                  <img
-                    width={"35"}
-                    src={usericon}
-                    alt="this is an icon"
-                    onClick={() => {}}
+                  <FaGoogle
+                    onClick={() => {
+                      googleLogin();
+                    }}
                   />
                 </div>
               )}
@@ -348,6 +414,6 @@ export default function Navigation({ renderer }) {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
