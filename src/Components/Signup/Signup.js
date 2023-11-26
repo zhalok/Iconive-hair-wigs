@@ -35,6 +35,7 @@ export default function Signup() {
     localStorage.clear();
     window.location.reload();
   };
+
   const signup = async () => {
     if (!firstName || !lastName || !email || !pass || !confirmPass) {
       alert("Please fill all necessary informations");

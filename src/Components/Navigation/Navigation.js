@@ -1,9 +1,14 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import "./Navigation.css";
+import maleCollection from "./image/malenav.webp";
+import femaleCollection from "./image/femalenav.webp";
+import Rawhair from "./image/rawnav.webp";
+import Accessories from "./image/accnav.webp";
+import { Login, LoginOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +22,7 @@ import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
 import { useSearchParams } from "react-router-dom";
+
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
@@ -31,6 +37,63 @@ export default function Navigation({ renderer }) {
   // console.log("currency", currency);
   // console.log(currency);
   // console.log(user);
+  const googleLogin = () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // console.log("credentials from success", credential);
+        // console.log("user", user);
+        const { uid, email } = user;
+        axios
+          .post("/auth/login", {
+            email,
+            password: uid,
+          })
+          .then((response) => {
+            Cookies.set("jwt", response.data.token);
+            window.location.reload();
+          })
+          .catch((e) => {
+            // console.log(e);\
+            axios
+              .post("/auth/signup", {
+                email,
+                password: uid,
+                passwordConfirm: uid,
+                name: user?.displayName,
+                verified: user?.emailVerified,
+              })
+              .then((response) => {
+                Cookies.set("jwt", response.data.token);
+                window.location.reload();
+              })
+              .catch((e) => {
+                console.log(e);
+                toast.error(e?.response?.data?.message);
+              });
+          });
+
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(credential);
+        // ...
+      });
+  };
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -39,11 +102,15 @@ export default function Navigation({ renderer }) {
       setCartItems(cart.length);
     }
   }, [renderer]);
-
+  // console.log(user);
   // const authContext = useContext(AuthContext);
 
+  const ref = useRef();
+
+  useEffect(() => {}, []);
+
   return (
-    <>
+    <div ref={ref}>
       {/* offer div */}
       <div className="bg-top d-flex ">
         <p className="m-auto text-light text-14 animate__animated animate__fadeInUp   animate__slow	5s animate__infinite	infinite">
@@ -290,23 +357,21 @@ export default function Navigation({ renderer }) {
                   <a href="/profile" className="text-decoration-none">
                     <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
                       <h5 className=" m-auto fw-bold text-light">
-                        {user.name[0].toUpperCase()}
+                        {user?.name[0]?.toUpperCase()}
                       </h5>
                     </div>
                   </a>
                 </div>
               ) : (
                 <div
+                  className="my-auto mx-auto"
                   style={{
                     cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    navigate("/login");
                   }}
                 >
                   <img
                     width={"35"}
-                    src="./Image/navi/picon.png"
+                    src={usericon}
                     alt="this is an icon"
                     onClick={() => {}}
                   />
@@ -391,6 +456,6 @@ export default function Navigation({ renderer }) {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
