@@ -13,14 +13,6 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-// import maleCollection from "./Image/navi/malenav.webp";
-// import femaleCollection from "./Image/navi/femalenav.webp";
-// import Rawhair from "./Image/navi/rawnav.webp";
-// import Accessories from "./Image/navi/accnav.webp";
-// import search from "./Image/navi/search.svg";
-// import wish from "./Image/navi/wishj.svg";
-// import cart from "./Image/navi/cart.svg";
-// import usericon from "./Image/navi/picon.png";
 import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
@@ -34,7 +26,7 @@ export default function Navigation({ renderer }) {
   const { user, setUser } = useContext(AuthContext);
   const { setShowCartDrawer } = useContext(CartContext);
   const [searchParam, setSearchParam] = useSearchParams();
-  // console.log(searchParam.get("category"));
+  const [activeNav, setActiveNav] = useState();
 
   // console.log("currency", currency);
   // console.log(currency);
@@ -164,54 +156,97 @@ export default function Navigation({ renderer }) {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto gap-2 gap-md-4 d-flex mx-auto position-relative">
-                  <Nav.Link href="/home" className="text-black text-nav  drop">
+                  <Nav.Link
+                    onClick={() => {
+                      setActiveNav(1);
+                    }}
+                    href="/home"
+                    className={`${
+                      activeNav == 1 ? "activeNav" : "text-black text-nav  drop"
+                    } `}
+                  >
                     HOME
                   </Nav.Link>
                   <Nav.Link
                     onClick={() => {
+                      setActiveNav(2);
                       setCollectionDropdown((prevs) => {
                         return !prevs;
                       });
                     }}
-                    className="text-black drop  text-nav"
+                    className={`${
+                      activeNav == 2 ? "activeNav" : "text-black text-nav  drop"
+                    } `}
                   >
                     SHOP
                   </Nav.Link>
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(3);
+                    }}
                     href="/guideme"
-                    className="text-black text-nav text-uppercase drop"
+                    className={`${
+                      activeNav == 3 ? "activeNav" : "text-black text-nav  drop"
+                    } `}
                   >
-                    Guide me
+                    GUIDE ME
                   </Nav.Link>
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(4);
+                    }}
                     href="/customize"
-                    className="text-black text-nav text-uppercase drop"
+                    className={`${
+                      activeNav == 4 ? "activeNav" : "text-black text-nav  drop"
+                    } `}
                   >
-                    customIZE
+                    CUSTOMIZE
                   </Nav.Link>
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(5);
+                    }}
                     href="/offers"
-                    className="text-black text-nav text-uppercase drop"
+                    className={`${
+                      activeNav == 5 ? "activeNav" : "text-black text-nav  drop"
+                    } `}
                   >
-                    Offers
+                    OFFERS
                   </Nav.Link>
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(6);
+                    }}
                     href="/joinus"
-                    className="text-black text-nav text-uppercase drop"
+                    className={`${
+                      activeNav == 6 ? "activeNav" : "text-black text-nav  drop"
+                    } `}
                   >
                     JOIN US
                   </Nav.Link>
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(7);
+                    }}
                     href="/blog"
-                    className="text-black text-nav text-uppercase drop"
+                    className={`${
+                      activeNav == 7 ? "activeNav" : "text-black text-nav  drop"
+                    } `}
                   >
                     BLOG
                   </Nav.Link>
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(8);
+                    }}
                     href="/wholesale"
-                    className="text-warning text-nav text-uppercase drop"
+                    className={`${
+                      activeNav == 8
+                        ? "activeNav"
+                        : "text-black text-nav  drop  text-themee"
+                    } `}
                   >
-                    Wholesale
+                    WHOLESALE
                   </Nav.Link>
                 </Nav>
               </Navbar.Collapse>
