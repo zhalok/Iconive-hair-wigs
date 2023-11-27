@@ -17,6 +17,7 @@ import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
 import { useSearchParams } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
@@ -359,16 +360,18 @@ export default function Navigation({ renderer }) {
                 </div>
               ) : (
                 <div
-                  className="my-auto mx-auto"
+                  className="my-auto"
                   style={{
                     cursor: "pointer",
                   }}
                 >
                   <img
                     width={"35"}
-                    src="./Images/navi/picon.png"
+                    src="./Image/navi/picon.png"
                     alt="this is an icon"
-                    onClick={() => {}}
+                    onClick={() => {
+                      navigate("/login");
+                    }}
                   />
                 </div>
               )}
