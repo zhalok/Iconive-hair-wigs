@@ -4,11 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import "./Navigation.css";
-import maleCollection from "./image/malenav.webp";
-import femaleCollection from "./image/femalenav.webp";
-import Rawhair from "./image/rawnav.webp";
-import Accessories from "./image/accnav.webp";
-import { Login, LoginOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -37,63 +32,63 @@ export default function Navigation({ renderer }) {
   // console.log("currency", currency);
   // console.log(currency);
   // console.log(user);
-  const googleLogin = () => {
-    const provider = new GoogleAuthProvider();
+  // const googleLogin = () => {
+  //   const provider = new GoogleAuthProvider();
 
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // console.log("credentials from success", credential);
-        // console.log("user", user);
-        const { uid, email } = user;
-        axios
-          .post("/auth/login", {
-            email,
-            password: uid,
-          })
-          .then((response) => {
-            Cookies.set("jwt", response.data.token);
-            window.location.reload();
-          })
-          .catch((e) => {
-            // console.log(e);\
-            axios
-              .post("/auth/signup", {
-                email,
-                password: uid,
-                passwordConfirm: uid,
-                name: user?.displayName,
-                verified: user?.emailVerified,
-              })
-              .then((response) => {
-                Cookies.set("jwt", response.data.token);
-                window.location.reload();
-              })
-              .catch((e) => {
-                console.log(e);
-                toast.error(e?.response?.data?.message);
-              });
-          });
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       // This gives you a Google Access Token. You can use it to access the Google API.
+  //       const credential = GoogleAuthProvider.credentialFromResult(result);
+  //       const token = credential.accessToken;
+  //       // The signed-in user info.
+  //       const user = result.user;
+  //       // console.log("credentials from success", credential);
+  //       // console.log("user", user);
+  //       const { uid, email } = user;
+  //       axios
+  //         .post("/auth/login", {
+  //           email,
+  //           password: uid,
+  //         })
+  //         .then((response) => {
+  //           Cookies.set("jwt", response.data.token);
+  //           window.location.reload();
+  //         })
+  //         .catch((e) => {
+  //           // console.log(e);\
+  //           axios
+  //             .post("/auth/signup", {
+  //               email,
+  //               password: uid,
+  //               passwordConfirm: uid,
+  //               name: user?.displayName,
+  //               verified: user?.emailVerified,
+  //             })
+  //             .then((response) => {
+  //               Cookies.set("jwt", response.data.token);
+  //               window.location.reload();
+  //             })
+  //             .catch((e) => {
+  //               console.log(e);
+  //               toast.error(e?.response?.data?.message);
+  //             });
+  //         });
 
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(credential);
-        // ...
-      });
-  };
+  //       // IdP data available using getAdditionalUserInfo(result)
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       // Handle Errors here.
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       // The email of the user's account used.
+  //       const email = error.customData.email;
+  //       // The AuthCredential type that was used.
+  //       const credential = GoogleAuthProvider.credentialFromError(error);
+  //       console.log(credential);
+  //       // ...
+  //     });
+  // };
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -308,7 +303,7 @@ export default function Navigation({ renderer }) {
                     }}
                     href="/wholesale"
                     className={`${
-                      activeNav == 8
+                      activeNav === 8
                         ? "activeNav"
                         : "text-black text-nav  drop  text-themee"
                     } `}
@@ -371,7 +366,7 @@ export default function Navigation({ renderer }) {
                 >
                   <img
                     width={"35"}
-                    src={usericon}
+                    src="./Images/navi/picon.png"
                     alt="this is an icon"
                     onClick={() => {}}
                   />

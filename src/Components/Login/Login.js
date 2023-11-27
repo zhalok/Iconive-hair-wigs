@@ -9,15 +9,9 @@ import Cookies from "js-cookie";
 import { PulseLoader } from "react-spinners";
 import { useSearchParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-<<<<<<< HEAD
-=======
 import { GoogleLogin } from "@react-oauth/google";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../utils/firebaseConfig.js";
-
-// import {auth,provider} from './config.js'
-// import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
->>>>>>> cdcf7a8b3554f894616b1669368c41848b76f5e8
 
 const Login = () => {
   const [googlelog, setGooglelog] = useState("");
@@ -220,11 +214,10 @@ const Login = () => {
                       // onClick={handleGoogleLogin}
                       className="mx-auto"
                     >
-<<<<<<< HEAD
                       <img src="./Image/login/gmailicon.svg" className="me-2" />
                       <img src="./Image/login/facebookicon.svg" className="" />
-=======
-                      <img
+
+                      {/* <img
                         style={{
                           cursor: "pointer",
                         }}
@@ -233,13 +226,12 @@ const Login = () => {
                         onClick={() => {
                           googleLogin();
                         }}
-                      />
+                      /> */}
                       {/* <GoogleLogin
                         onSuccess={responseMessage}
                         onError={errorMessage}
                       /> */}
-                      <img src={flogo} className="" />
->>>>>>> cdcf7a8b3554f894616b1669368c41848b76f5e8
+                      {/* <img src={flogo} className="" /> */}
                     </span>
                   </div>
                 </div>

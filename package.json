@@ -35,11 +35,8 @@
     "react-bootstrap": "^2.7.2",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-floating-whatsapp": "^5.0.8",
-=======
     "react-icons": "^4.12.0",
->>>>>>> cdcf7a8b3554f894616b1669368c41848b76f5e8
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",

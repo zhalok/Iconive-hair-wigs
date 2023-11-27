@@ -19,7 +19,7 @@ export default function Guideme() {
 
   return (
     <div className="pt-md-5">
-      {windowCount == 1 && (
+      {windowCount === 1 && (
         <div className="bg-light rounded-2 p-4 p-md-5 text-start container my-5 border ">
           <p className="text-theme-gray text-center pt-5">
             Please answer a few questions to help us understand your hair loss
@@ -77,7 +77,7 @@ export default function Guideme() {
           </div>
         </div>
       )}
-      {windowCount == 2 && (
+      {windowCount === 2 && (
         <div className="container">
           {morf == 1 && (
             <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
@@ -309,7 +309,7 @@ export default function Guideme() {
           )}
         </div>
       )}
-      {(windowCount == 3 || window == 3.5) && (
+      {(windowCount === 3 || windowCount === 3.5) && (
         <div className="bg-light rounded-2 p-md-5 px-3 text-start container my-5 border">
           <h3 className="fw-bold mb-5 text-start mt-4 ms-3  ms-md-5">
             1. During which weather you would like to wear your wigs on?
@@ -410,7 +410,7 @@ export default function Guideme() {
           </div>
         </div>
       )}
-      {(windowCount == 4 || window == 4.5) && (
+      {(windowCount === 4 || windowCount === 4.5) && (
         <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
           {morf == 0 && (
             <div>
@@ -547,7 +547,7 @@ export default function Guideme() {
           )}
         </div>
       )}
-      {windowCount == 5 && (
+      {windowCount === 5 && (
         <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
           {morf === 0 && (
             <div>
