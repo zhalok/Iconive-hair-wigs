@@ -106,7 +106,8 @@ export default function Navigation({ renderer }) {
   useEffect(() => {}, []);
 
   return (
-    <div ref={ref}>
+    <>
+      {/* div ref={ref} Commented by Akash for navbar funtion*/}
       {/* offer div */}
       <div className="bg-top d-flex ">
         <p className="m-auto text-light text-14 animate__animated animate__fadeInUp   animate__slow	5s animate__infinite	infinite">
@@ -215,7 +216,7 @@ export default function Navigation({ renderer }) {
                 </label>
               </div>
             </div>
-            <Navbar expand="lg m-auto " className="">
+            <Navbar expand="lg m-auto " className="sticky-top">
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto gap-2 gap-md-4 d-flex mx-auto position-relative">
@@ -454,6 +455,6 @@ export default function Navigation({ renderer }) {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
