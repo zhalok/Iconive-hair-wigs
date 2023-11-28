@@ -105,6 +105,9 @@ export default function Navigation({ renderer }) {
 
   useEffect(() => {}, []);
 
+  let pathname = window.location.pathname;
+  // console.log("pathname" + pathname);
+
   return (
     <>
       {/* div ref={ref} Commented by Akash for navbar funtion*/}
@@ -226,7 +229,9 @@ export default function Navigation({ renderer }) {
                     }}
                     href="/home"
                     className={`${
-                      activeNav == 1 ? "activeNav" : "text-black text-nav  drop"
+                      pathname.match("/home")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
                     } `}
                   >
                     HOME
@@ -239,7 +244,9 @@ export default function Navigation({ renderer }) {
                       });
                     }}
                     className={`${
-                      activeNav == 2 ? "activeNav" : "text-black text-nav  drop"
+                      pathname.match("/catagory")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
                     } `}
                   >
                     SHOP
@@ -250,7 +257,9 @@ export default function Navigation({ renderer }) {
                     }}
                     href="/guideme"
                     className={`${
-                      activeNav == 3 ? "activeNav" : "text-black text-nav  drop"
+                      pathname.match("/guideme")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
                     } `}
                   >
                     GUIDE ME
@@ -261,7 +270,9 @@ export default function Navigation({ renderer }) {
                     }}
                     href="/customize"
                     className={`${
-                      activeNav == 4 ? "activeNav" : "text-black text-nav  drop"
+                      pathname.match("/customize")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
                     } `}
                   >
                     CUSTOMIZE
@@ -272,7 +283,9 @@ export default function Navigation({ renderer }) {
                     }}
                     href="/offers"
                     className={`${
-                      activeNav == 5 ? "activeNav" : "text-black text-nav  drop"
+                      pathname.match("/offers")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
                     } `}
                   >
                     OFFERS
@@ -283,7 +296,9 @@ export default function Navigation({ renderer }) {
                     }}
                     href="/joinus"
                     className={`${
-                      activeNav == 6 ? "activeNav" : "text-black text-nav  drop"
+                      pathname.match("/joinus")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
                     } `}
                   >
                     JOIN US
@@ -294,7 +309,9 @@ export default function Navigation({ renderer }) {
                     }}
                     href="/blog"
                     className={`${
-                      activeNav == 7 ? "activeNav" : "text-black text-nav  drop"
+                      pathname.match("/blog")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
                     } `}
                   >
                     BLOG
@@ -305,7 +322,7 @@ export default function Navigation({ renderer }) {
                     }}
                     href="/wholesale"
                     className={`${
-                      activeNav === 8
+                      pathname.match("/wholesale")
                         ? "activeNav"
                         : "text-black text-nav  drop  text-themee"
                     } `}
