@@ -21,7 +21,16 @@
   border-bottom: #ecb30a solid 2px;
   color: #ecb30a !important;
 }
-
+.activeNav {
+  font-weight: 800;
+  font-size: 1vw;
+  border-bottom: #ecb30a solid 2px;
+  color: #ecb30a !important;
+}
+.text-themee {
+  font-weight: 600;
+  color: #ecb30a !important;
+}
 .bg-gray {
   background-color: #343a40;
 }

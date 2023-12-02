@@ -2,10 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useContext, useEffect, useState } from "react";
-import banner1 from "../../.././src/Components/Images/offer/offer1.webp";
-import banner2 from "../../.././src/Components/Images/offer/offter2.webp";
 import Subscription from "../../Components/Subscription/Subscription";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 import CurrencyContext from "../../Contexts/CurrencyContext";
@@ -34,10 +31,17 @@ export default function Offer() {
     getNewArrivals();
   }, []);
 
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       <div className="w-100">
-        <img src={banner1} className="w-100" alt="this is a banner" />
+        <img
+          src="./Image/offer/offer1.webp"
+          className="w-100"
+          alt="this is a banner"
+        />
       </div>
       <div className="container mt-5p">
         <div className="w-100  pb-3">
@@ -85,7 +89,11 @@ export default function Offer() {
       </div>
 
       <div className="w-100">
-        <img src={banner2} className="w-100" alt="this is a banner" />
+        <img
+          src="./Image/offer/offter2.webp"
+          className="w-100"
+          alt="this is a banner"
+        />
       </div>
 
       <div className="container mt-5p">

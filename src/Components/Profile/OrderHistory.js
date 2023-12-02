@@ -1,13 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState } from "react";
-import invoice from ".././Images/profile/order/invoice.svg";
-import orderdp from ".././Images/profile/order/orderdp.svg";
-import bluetick from ".././Images/profile/OrderHistory/blueTick.svg";
-import dateY from ".././Images/profile/OrderHistory/dateY.svg";
 import "react-circular-progressbar/dist/styles.css";
-
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
-import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import OrderHistoryItem from "../OrderHistory/OrderHistoryItem";

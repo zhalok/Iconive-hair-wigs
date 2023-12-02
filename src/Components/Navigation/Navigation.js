@@ -4,10 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import "./Navigation.css";
-import maleCollection from "./image/malenav.webp";
-import femaleCollection from "./image/femalenav.webp";
-import Rawhair from "./image/rawnav.webp";
-import Accessories from "./image/accnav.webp";
 import { Badge } from "@mui/material";
 import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -17,22 +13,16 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import search from "./image/search.svg";
-import wish from "./image/wishj.svg";
-import cart from "./image/cart.svg";
-import usericon from "./image/picon.png";
 import "animate.css";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
 import { useSearchParams } from "react-router-dom";
-import annotate from "../../utils/annotate";
-import { auth } from "../../utils/firebaseConfig";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../utils/firebaseConfig";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import glogo from "../Images/login/gmailicon.svg";
-import { FaGoogle } from "react-icons/fa";
 
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
@@ -43,7 +33,7 @@ export default function Navigation({ renderer }) {
   const { user, setUser } = useContext(AuthContext);
   const { setShowCartDrawer } = useContext(CartContext);
   const [searchParam, setSearchParam] = useSearchParams();
-  // console.log(searchParam.get("category"));
+  const [activeNav, setActiveNav] = useState();
 
   // console.log("currency", currency);
   // console.log(currency);
@@ -120,8 +110,12 @@ export default function Navigation({ renderer }) {
 
   useEffect(() => {}, []);
 
+  let pathname = window.location.pathname;
+  // console.log("pathname" + pathname);
+
   return (
-    <div ref={ref}>
+    <>
+      {/* div ref={ref} Commented by Akash for navbar funtion*/}
       {/* offer div */}
       <div className="bg-top d-flex ">
         <p className="m-auto text-light text-14 animate__animated animate__fadeInUp   animate__slow	5s animate__infinite	infinite">
@@ -221,88 +215,142 @@ export default function Navigation({ renderer }) {
                 />
 
                 <label class=" text-16 my-auto" for="flexSwitchCheckChecked">
-                  {/* {usdCheck ? (
-                  <p className="my-auto ms-1">BDT</p>
-                ) : (
-                  <p className="my-auto ms-1">USD</p>
-                )} */}
                   <p className="my-auto ms-1">{currency}</p>
                 </label>
               </div>
             </div>
-            <Navbar expand="lg m-auto " className="">
+            <Navbar expand="lg m-auto " className="sticky-top">
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto gap-2 gap-md-4 d-flex mx-auto position-relative">
-                  <Nav.Link href="/home" className="text-black text-nav  drop">
-                    HOME
-                  </Nav.Link>
-
                   <Nav.Link
                     onClick={() => {
+                      setActiveNav(1);
+                    }}
+                    href="/home"
+                    className={`${
+                      pathname.match("/home")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
+                    } `}
+                  >
+                    HOME
+                  </Nav.Link>
+                  <Nav.Link
+                    onClick={() => {
+                      setActiveNav(2);
                       setCollectionDropdown((prevs) => {
                         return !prevs;
                       });
                     }}
-                    className="text-black drop  text-nav"
+                    className={`${
+                      pathname.match("/catagory")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
+                    } `}
                   >
                     SHOP
                   </Nav.Link>
-
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(3);
+                    }}
                     href="/guideme"
-                    className="text-black text-nav text-uppercase drop"
+                    className={`${
+                      pathname.match("/guideme")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
+                    } `}
                   >
-                    {" "}
-                    Guide ME
+                    GUIDE ME
                   </Nav.Link>
-
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(4);
+                    }}
                     href="/customize"
-                    className="text-black text-nav text-uppercase drop"
+                    className={`${
+                      pathname.match("/customize")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
+                    } `}
                   >
-                    customIZE
+                    CUSTOMIZE
                   </Nav.Link>
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(5);
+                    }}
                     href="/offers"
-                    className="text-black text-nav text-uppercase drop"
+                    className={`${
+                      pathname.match("/offers")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
+                    } `}
                   >
-                    Offers
+                    OFFERS
                   </Nav.Link>
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(6);
+                    }}
                     href="/joinus"
-                    className="text-black text-nav text-uppercase drop"
+                    className={`${
+                      pathname.match("/joinus")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
+                    } `}
                   >
                     JOIN US
                   </Nav.Link>
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(7);
+                    }}
                     href="/blog"
-                    className="text-black text-nav text-uppercase drop"
+                    className={`${
+                      pathname.match("/blog")
+                        ? "activeNav"
+                        : "text-black text-nav  drop"
+                    } `}
                   >
                     BLOG
                   </Nav.Link>
                   <Nav.Link
+                    onClick={() => {
+                      setActiveNav(8);
+                    }}
                     href="/wholesale"
-                    className="text-warning text-nav text-uppercase drop"
+                    className={`${
+                      pathname.match("/wholesale")
+                        ? "activeNav"
+                        : "text-black text-nav  drop  text-themee"
+                    } `}
                   >
-                    Wholesale
+                    WHOLESALE
                   </Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
             <div className="d-flex  gap-1 w12 justify-content-end mb-auto mt-2  my-lg-auto">
-              <div className="m-auto  ">
-                <img width={"20"} src={search} alt="this is an icon" />
-              </div>
-              <div className="m-auto ">
-                <img width={"27"} src={wish} alt="this is an icon" />
+              <div
+                onClick={() => {
+                  // navigate("/profile");
+                }}
+                className="my-auto ms-auto"
+              >
+                <img
+                  width={"27"}
+                  src="/Image/navi/wishj.svg"
+                  alt="this is an icon"
+                />
               </div>
               <div className="m-auto">
                 {/* <a href="/checkout"> */}
                 <Badge badgeContent={cartItems} color="primary">
                   <img
                     width={"25"}
-                    src={cart}
+                    src="/Image/navi/cart.svg"
                     alt="this is an icon"
                     onClick={() => {
                       setShowCartDrawer((prev) => !prev);
@@ -312,7 +360,7 @@ export default function Navigation({ renderer }) {
                 {/* </a> */}
               </div>
               {user ? (
-                <div className="m-auto">
+                <div className="my-auto">
                   <a href="/profile" className="text-decoration-none">
                     <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
                       <h5 className=" m-auto fw-bold text-light">
@@ -323,13 +371,17 @@ export default function Navigation({ renderer }) {
                 </div>
               ) : (
                 <div
-                  className="my-auto mx-auto"
+                  className="my-auto"
                   style={{
                     cursor: "pointer",
                   }}
                 >
-                  <FaGoogle
+                  <img
+                    width={"35"}
+                    src="/Image/navi/picon.png"
+                    alt="this is an icon"
                     onClick={() => {
+                      // navigate("/login");
                       googleLogin();
                     }}
                   />
@@ -346,7 +398,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100 ">
                   <div className="">
                     <img
-                      src={maleCollection}
+                      src="/Image/navi/malenav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />
@@ -364,7 +416,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100  ">
                   <div className="w-100 ">
                     <img
-                      src={femaleCollection}
+                      src="./Image/navi/femalenav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />
@@ -382,7 +434,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100 ">
                   <div className="w-100 ">
                     <img
-                      src={Rawhair}
+                      src="./Image/navi/rawnav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />
@@ -400,7 +452,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100">
                   <div className="w-100 ">
                     <img
-                      src={Accessories}
+                      src="./Image/navi/accnav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />
@@ -414,6 +466,6 @@ export default function Navigation({ renderer }) {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }

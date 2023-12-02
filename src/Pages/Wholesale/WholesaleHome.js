@@ -1,6 +1,4 @@
-import { Button } from "@mui/base";
 import React, { useContext, useEffect, useState } from "react";
-import banner from "../../.././src/Components/Images/joinus/wholesale.webp";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import "./Wholesale.css";
@@ -10,7 +8,6 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import CloseIcon from "@mui/icons-material/Close";
 import AuthContext from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
@@ -251,7 +248,11 @@ export default function WholesaleHome() {
     <div>
       <ToastContainer />
       <div className="w-100">
-        <img src={banner} className="w-100" alt="this is a banner" />
+        <img
+          src="./Image/joinus/wholesale.webp"
+          className="w-100"
+          alt="this is a banner"
+        />
       </div>
       <div className="bg-whole-home p-5 ">
         <div className=" pb-3 d-flex flex-column text-center ">

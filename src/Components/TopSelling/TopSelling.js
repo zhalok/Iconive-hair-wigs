@@ -2,9 +2,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./TopSelling.css";
-import card1 from "../Images/card/Mask1.svg";
-import cardicon1 from "../Images/card/cardicon1.svg";
-import cardicon2 from "../Images/card/cardicon2.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "animate.css";
 import axios from "../../utils/axios";
@@ -92,7 +89,7 @@ export default function TopSelling() {
                       <button className="btn px-0 mt-1">
                         {" "}
                         <img
-                          src={cardicon2}
+                          src="./Image/card/cardicon2.svg"
                           className=""
                           alt="this is an icon"
                         />

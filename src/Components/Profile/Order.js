@@ -1,8 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState, useContext } from "react";
-import invoice from ".././Images/profile/order/invoice.svg";
-import biman from ".././Images/profile/order/biman.svg";
-import orderdp from ".././Images/profile/order/orderdp.svg";
 import FlightIcon from "@mui/icons-material/Flight";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -14,16 +11,12 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import StepContent from "@mui/material/StepContent";
-import Button from "@mui/material/Button";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
 import OrderItem from "../Orders/OderItems";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import axios from "../../utils/axios";
 import axios1 from "axios";
 import Cookies from "js-cookie";
 import { PulseLoader } from "react-spinners";
-import invoiceApiAxios from "../../utils/invoiceApiAxios";
 // import Invoice from "../Invoice";
 // import {
 //   renderToFile,
@@ -227,7 +220,7 @@ export default function Order({ order, index, getOrders }) {
                     <img
                       className="m-auto"
                       alt="this is an image"
-                      src={invoice}
+                      src="./Image/profile/order/invoice.svg"
                     />
                   </span>
                 </div>

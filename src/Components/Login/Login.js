@@ -2,25 +2,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
-import GoogleIcon from "@mui/icons-material/Google";
-import logo from "../Images/logoblack.png";
 import "../globalcss/style.css";
 import "./Login.css";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
-import AuthContext from "../../Contexts/AuthContext";
 import { PulseLoader } from "react-spinners";
 import { useSearchParams } from "react-router-dom";
-import flogo from "../Images/login/facebookicon.svg";
-import glogo from "../Images/login/gmailicon.svg";
-import logbanner from "../Images/login/login.png";
 import { ToastContainer, toast } from "react-toastify";
 import { GoogleLogin } from "@react-oauth/google";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../utils/firebaseConfig.js";
-
-// import {auth,provider} from './config.js'
-// import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   const [googlelog, setGooglelog] = useState("");
@@ -162,7 +153,7 @@ const Login = () => {
           <div className="row mx-auto w-100 p-4 p-md-0">
             <div className="col-12 col-md-6 d-flex p-0">
               <img
-                src={logbanner}
+                src="./Image/login/login.png"
                 alt="login img"
                 className="m-auto "
                 width="100%"
@@ -223,7 +214,10 @@ const Login = () => {
                       // onClick={handleGoogleLogin}
                       className="mx-auto"
                     >
-                      <img
+                      <img src="./Image/login/gmailicon.svg" className="me-2" />
+                      <img src="./Image/login/facebookicon.svg" className="" />
+
+                      {/* <img
                         style={{
                           cursor: "pointer",
                         }}
@@ -232,12 +226,12 @@ const Login = () => {
                         onClick={() => {
                           googleLogin();
                         }}
-                      />
+                      /> */}
                       {/* <GoogleLogin
                         onSuccess={responseMessage}
                         onError={errorMessage}
                       /> */}
-                      <img src={flogo} className="" />
+                      {/* <img src={flogo} className="" /> */}
                     </span>
                   </div>
                 </div>

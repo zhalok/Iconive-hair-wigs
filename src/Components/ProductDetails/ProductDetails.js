@@ -7,7 +7,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import checkimg from "./Images/checkimg.jpg";
+// import checkimg from "./Image/checkimg.jpg";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -928,11 +928,11 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                 >
                   <div className="d-flex">
                     <div className="w-s100 w-15 ">
-                      <img
+                      {/* <img
                         className="w-100 h-100"
-                        src={checkimg}
+                        src="./Image/checkimg.jpg"
                         alt="this is an icon"
-                      />
+                      /> */}
                     </div>
                     <div className="d-flex w-85 ms-3">
                       <p className="fw-bold my-auto">
