@@ -210,11 +210,6 @@ export default function Navigation({ renderer }) {
                 />
 
                 <label class=" text-16 my-auto" for="flexSwitchCheckChecked">
-                  {/* {usdCheck ? (
-                  <p className="my-auto ms-1">BDT</p>
-                ) : (
-                  <p className="my-auto ms-1">USD</p>
-                )} */}
                   <p className="my-auto ms-1">{currency}</p>
                 </label>
               </div>
@@ -333,13 +328,6 @@ export default function Navigation({ renderer }) {
               </Navbar.Collapse>
             </Navbar>
             <div className="d-flex  gap-1 w12 justify-content-end mb-auto mt-2  my-lg-auto">
-              {/* <div className="m-auto  ">
-                <img
-                  width={"20"}
-                  src="./Image/navi/search.svg"
-                  alt="this is an icon"
-                />
-              </div> */}
               <div
                 onClick={() => {
                   navigate("/profile");
@@ -348,7 +336,7 @@ export default function Navigation({ renderer }) {
               >
                 <img
                   width={"27"}
-                  src="./Image/navi/wishj.svg"
+                  src="/Image/navi/wishj.svg"
                   alt="this is an icon"
                 />
               </div>
@@ -357,7 +345,7 @@ export default function Navigation({ renderer }) {
                 <Badge badgeContent={cartItems} color="primary">
                   <img
                     width={"25"}
-                    src="./Image/navi/cart.svg"
+                    src="/Image/navi/cart.svg"
                     alt="this is an icon"
                     onClick={() => {
                       setShowCartDrawer((prev) => !prev);
@@ -385,7 +373,7 @@ export default function Navigation({ renderer }) {
                 >
                   <img
                     width={"35"}
-                    src="./Image/navi/picon.png"
+                    src="/Image/navi/picon.png"
                     alt="this is an icon"
                     onClick={() => {
                       navigate("/login");
@@ -404,7 +392,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100 ">
                   <div className="">
                     <img
-                      src="./Image/navi/malenav.webp"
+                      src="/Image/navi/malenav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />

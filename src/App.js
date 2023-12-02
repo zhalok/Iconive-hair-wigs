@@ -89,7 +89,6 @@ function App() {
                       renderer={cartRenderer}
                       currency={currency}
                       setCurrency={setCurrency}
-                      // setShowCartDrawer={setShowCartDrawer}
                     />
                   </Suspense>
 
