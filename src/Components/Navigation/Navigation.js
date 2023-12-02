@@ -332,19 +332,25 @@ export default function Navigation({ renderer }) {
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
-            <div className="d-flex  gap-1 w12 justify-content-end mb-auto mt-2  my-lg-auto">
-              <div
-                onClick={() => {
-                  // navigate("/profile");
-                }}
-                className="my-auto ms-auto"
-              >
-                <img
-                  width={"27"}
-                  src="/Image/navi/wishj.svg"
-                  alt="this is an icon"
-                />
-              </div>
+            <div className="d-flex gap-4 px-2 w-12 justify-content-end mb-auto mt-2  my-lg-auto">
+              {user && (
+                <div
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    // navigate("/profile");
+                    navigate("/profile?sidebar=4");
+                  }}
+                  className="my-auto ms-auto cursor-pointer"
+                >
+                  <img
+                    width={"27"}
+                    src="/Image/navi/wishj.svg"
+                    alt="this is an icon"
+                  />
+                </div>
+              )}
               <div className="m-auto">
                 {/* <a href="/checkout"> */}
                 <Badge badgeContent={cartItems} color="primary">
