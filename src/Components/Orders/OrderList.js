@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import axios from "../../utils/axios";
 import { useState } from "react";
 import Cookies from "js-cookie";
-import Accordion from "react-bootstrap/Accordion";
 import Order from "./Order";
 
 export default function OrderList({ orderList }) {

@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
-import edit from ".././Images/profile/Myprofile/editicon.svg";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import { PulseLoader } from "react-spinners";
@@ -98,7 +97,7 @@ export default function MyProfile({ name, setName }) {
                     style={{
                       cursor: "pointer",
                     }}
-                    src={edit}
+                    src="./Image/profile/Myprofile/editicon.svg"
                     className="ms-2"
                     alt="this is an icon"
                     onClick={() => {
@@ -133,7 +132,7 @@ export default function MyProfile({ name, setName }) {
                     style={{
                       cursor: "pointer",
                     }}
-                    src={edit}
+                    src="./Image/profile/Myprofile/editicon.svg"
                     className="ms-2"
                     alt="this is an icon"
                     onClick={() => {
@@ -169,7 +168,7 @@ export default function MyProfile({ name, setName }) {
                     style={{
                       cursor: "pointer",
                     }}
-                    src={edit}
+                    src="./Image/profile/Myprofile/editicon.svg"
                     className="ms-2"
                     alt="this is an icon"
                     onClick={() => {

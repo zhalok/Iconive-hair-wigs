@@ -8,14 +8,6 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import sp1 from "../Images/footer/sp1.svg";
-import sp2 from "../Images/footer/sp2.svg";
-import sp3 from "../Images/footer/sp3.svg";
-import p1 from "../Images/footer/p1.svg";
-import p2 from "../Images/footer/p2.svg";
-import p3 from "../Images/footer/p3.svg";
-import p4 from "../Images/footer/p4.svg";
-import p5 from "../Images/footer/p5.svg";
 
 export default function Footer() {
   return (
@@ -28,19 +20,51 @@ export default function Footer() {
                 Shipping Partner
               </p>
               <div className="text-lg-start text-center">
-                <img src={sp1} className="" alt="this is an icon" />
-                <img src={sp2} className="" alt="this is an icon" />
-                <img src={sp3} className="" alt="this is an icon" />
+                <img
+                  src="./Image/footer/sp1.svg"
+                  className=""
+                  alt="this is an icon"
+                />
+                <img
+                  src="./Image/footer/sp2.svg"
+                  className=""
+                  alt="this is an icon"
+                />
+                <img
+                  src="./Image/footer/sp3.svg"
+                  className=""
+                  alt="this is an icon"
+                />
               </div>
               <p className="text-16 text-lg-start text-center ms-2">
                 Accepted Payment Methods
               </p>
               <div className="text-lg-start text-center">
-                <img src={p1} className="" alt="this is an icon" />
-                <img src={p2} className="" alt="this is an icon" />
-                <img src={p3} className="" alt="this is an icon" />
-                <img src={p4} className="" alt="this is an icon" />
-                <img src={p5} className="" alt="this is an icon" />
+                <img
+                  src="./Image/footer/p1.svg"
+                  className=""
+                  alt="this is an icon"
+                />
+                <img
+                  src="./Image/footer/p2.svg"
+                  className=""
+                  alt="this is an icon"
+                />
+                <img
+                  src="./Image/footer/p3.svg"
+                  className=""
+                  alt="this is an icon"
+                />
+                <img
+                  src="./Image/footer/p4.svg"
+                  className=""
+                  alt="this is an icon"
+                />
+                <img
+                  src="./Image/footer/p5.svg"
+                  className=""
+                  alt="this is an icon"
+                />
               </div>
             </div>
           </div>

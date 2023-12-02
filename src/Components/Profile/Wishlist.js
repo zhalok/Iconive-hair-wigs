@@ -1,15 +1,11 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { Suspense, useContext, useEffect, useState } from "react";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./Profile.css";
-import cardicon1 from "../Images/card/cardicon1.svg";
-import cardicon2 from "../Images/card/cardicon2.svg";
 import Cookies from "js-cookie";
 import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 import currencyConverter from "../../utils/CurrencyChanger";
 import CurrencyContext from "../../Contexts/CurrencyContext";
-import { PulseLoader } from "react-spinners";
 
 export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
@@ -82,12 +78,16 @@ export default function Wishlist() {
                 <div className="d-flex">
                   <button className="btn px-0 mt-1">
                     {" "}
-                    <img src={cardicon2} className="" alt="this is an icon" />
+                    <img
+                      src="./Image/card/cardicon2.svg"
+                      className=""
+                      alt="this is an icon"
+                    />
                   </button>
                   <button className="btn ps-2 my-auto">
                     {" "}
                     <img
-                      src={cardicon1}
+                      src="./Image/card/cardicon1.svg"
                       className="w-100 "
                       alt="this is an icon"
                     />

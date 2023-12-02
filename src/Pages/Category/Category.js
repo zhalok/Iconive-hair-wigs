@@ -1,20 +1,12 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { Suspense, useContext, useEffect, useState, lazy } from "react";
+import React, { Suspense, useEffect, useState, lazy } from "react";
 import { useNavigate } from "react-router-dom";
-import Collection from "./image/Collections.jpg";
-import maleCollection from "./image/malecollection.webp";
-import femaleCollection from "./image/femaleCollections.webp";
-import Rawhair from "./image/Rawhair.webp";
-import Accessories from "./image/Accessories.webp";
 import "./Category.css";
-import sidebarimg from "./image/sidebar.svg";
-import filter from "./image/filter.svg";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
-// import CollectionCard from "../../Components/Collections/CollectionCard";
 const CollectionCard = React.lazy(() =>
   import("../../Components/Collections/CollectionCard")
 );
@@ -26,6 +18,7 @@ export default function Category({}) {
     categories: [],
     subcategories: [],
   });
+  const navigate = useNavigate();
   // const [filters, setFilters] = useState([])
   const [loadingProducts, setLoadingProductts] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -105,6 +98,10 @@ export default function Category({}) {
     }
   }, []);
 
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <>
       <ToastContainer />
@@ -115,43 +112,47 @@ export default function Category({}) {
               <div className="w-100">
                 {topbanner === 0 && (
                   <img
-                    src={Collection}
+                    src="./Image/image_c/Collections.jpg"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 1 && (
                   <img
-                    src={maleCollection}
+                    src="./Image/image_c/malecollection.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 2 && (
                   <img
-                    src={femaleCollection}
+                    src="./Image/image_c/femaleCollections.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 3 && (
-                  <img src={Rawhair} width={"100%"} alt="This is an bannnner" />
+                  <img
+                    src="./Image/image_c/Rawhair.webp"
+                    width={"100%"}
+                    alt="This is an bannnner"
+                  />
                 )}
                 {topbanner === 4 && (
                   <img
-                    src={Accessories}
+                    src="./Image/image_c/Accessories.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
               </div>
-              <div className="d-flex justify-content-between px120pro flex-column flex-lg-row ">
+              {/* <div className="d-flex justify-content-between px120pro flex-column flex-lg-row ">
                 <div className="d-flex gap-2 gayeb w-25p">
                   <p className="text-uppercase text-22 my-auto ps-4 fw-bold">
                     Filters{" "}
                   </p>
                   <img
-                    src={filter}
+                    src="./Image/image_c/filter.svg"
                     className="h-50 my-auto"
                     alt="this is an image"
                   />
@@ -193,9 +194,9 @@ export default function Category({}) {
                     </ul>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="d-flex px120 flex-column flex-lg-row">
+              <div className="d-flex px120 flex-column flex-lg-row mt-5">
                 {/* sidebar */}
                 <div className="sidebarwidth d-flex flex-column gap-4">
                   <div className="sidebarBg  ">
@@ -301,7 +302,10 @@ export default function Category({}) {
                   </div>
                   <div className="m-auto pt-2 overFlow rounded-iconive gayeb">
                     <img
-                      src={sidebarimg}
+                      onClick={() => {
+                        navigate("/offers");
+                      }}
+                      src="./Image/image_c/sidebar.svg"
                       alt="this is an image "
                       className="w-100 m-auto sidebarImg gayeb"
                     />

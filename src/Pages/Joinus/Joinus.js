@@ -1,25 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from "react";
-import banner from "../../.././src/Components/Images/joinus/joinus.webp";
-import sq from "../../.././src/Components/Images/joinus/sqside.png";
-import twenty from "../../.././src/Components/Images/joinus/20p.png";
-import iconp from "../../.././src/Components/Images/joinus/joinp.png";
-import info from "../../.././src/Components/Images/joinus/infojoin.png";
-import style from "../../.././src/Components/Images/joinus/style.png";
-import Subscription from "../../Components/Subscription/Subscription";
-import s1 from "../../.././src/Components/Images/joinus/Group (1).png";
-import s2 from "../../.././src/Components/Images/joinus/Group (2).png";
-import s3 from "../../.././src/Components/Images/joinus/Group (3).png";
-import s4 from "../../.././src/Components/Images/joinus/Group (4).png";
+import React, { useEffect } from "react";
 import "./Joinus.css";
+import Subscription from "../../Components/Subscription/Subscription";
 
 export default function Joinus() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <div>
       <div className="w-100 ">
-        <img src={banner} className="w-100" alt="this is a banner" />
+        <img
+          src="./Image/joinus/joinus.webp"
+          className="w-100"
+          alt="this is a banner"
+        />
       </div>
       <div className="container py-5 text-start px-4">
         <h2 className="mt-4 mb-4 fw-bold">Iconive Affiliate Programs</h2>
@@ -35,21 +33,21 @@ export default function Joinus() {
         <h3 className="mt-5 fw-bold">Select a Program:</h3>
 
         <div className="d-flex gap-5 py-3 flex-column flex-lg-row">
-          <button className="px-5 py-2 btn  btn-join rounded-2 shadow">
-            <a href="#everybody" className="text-decoration-none text-dark ">
+          <a href="#everybody" className="text-decoration-none text-dark ">
+            <button className="px-5 py-2 btn  btn-join rounded-2 shadow">
               FOR EVERYBODY
-            </a>
-          </button>
-          <button className="px-5 py-2 btn  btn-join rounded-2 shadow">
-            <a href="#influnce" className="text-decoration-none text-dark ">
+            </button>
+          </a>
+          <a href="#influnce" className="text-decoration-none text-dark ">
+            <button className="px-5 py-2 btn btn-join rounded-2 shadow">
               FOR content creators
-            </a>
-          </button>
-          <button className="px-5 py-2 btn  btn-join rounded-2 shadow">
-            <a href="#style" className="text-decoration-none text-dark ">
+            </button>
+          </a>
+          <a href="#style" className="text-decoration-none text-dark ">
+            <button className="px-5 py-2 btn  btn-join rounded-2 shadow">
               FOR stylists
-            </a>
-          </button>
+            </button>
+          </a>
         </div>
       </div>
 
@@ -62,7 +60,7 @@ export default function Joinus() {
               three friends!
             </p>
             <div className="my-5">
-              <img src={twenty} alt="" className="w-50" />
+              <img src="./Image/joinus/20p.png" alt="" className="w-50" />
             </div>
 
             <button
@@ -147,14 +145,22 @@ export default function Joinus() {
             </div>
           </div>
           <div className="w-50 d-flex pb-md-5 mx-auto">
-            <img src={sq} className="w-100 m-auto" alt="this is a picture" />
+            <img
+              src="./Image/joinus/sqside.png"
+              className="w-100 m-auto"
+              alt="this is a picture"
+            />
           </div>
         </div>
       </div>
 
       <div id="influnce" className=" mx-auto py-5 container">
         <div className="w-100 mb-5">
-          <img src={info} alt="this is a banner" className="w-100" />
+          <img
+            src="./Image/joinus/infojoin.png"
+            alt="this is a banner"
+            className="w-100"
+          />
         </div>
         <div className="text-start container px-4">
           <h4 className="fw-bold">Influencer Affiliate Program:</h4>
@@ -169,7 +175,11 @@ export default function Joinus() {
           <div className="d-flex flex-column gap-4 pb-5">
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <p className="my-auto ps-3">
                 Exclusive coupon code to share with your followers and earn
@@ -179,7 +189,11 @@ export default function Joinus() {
 
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <div>
                 <p className="my-auto ps-3">
@@ -196,7 +210,11 @@ export default function Joinus() {
 
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <p className="my-auto ps-3">
                 Opportunity to get featured on Iconive website and our social
@@ -206,7 +224,11 @@ export default function Joinus() {
 
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <p className="my-auto ps-3">
                 Opportunity for further sponsorships and partnerships
@@ -215,7 +237,11 @@ export default function Joinus() {
 
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <p className="my-auto ps-3">
                 Exclusive coupon code to share with your followers and earn
@@ -228,7 +254,11 @@ export default function Joinus() {
           <div className="d-flex flex-column gap-4 pb-5">
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <p className="my-auto ps-3">
                 Active on several social media platforms
@@ -237,7 +267,11 @@ export default function Joinus() {
 
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <div>
                 <p className="my-auto ps-3">Have at least one social with:</p>
@@ -250,7 +284,11 @@ export default function Joinus() {
 
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <p className="my-auto ps-3">
                 Your content will be hair, fashion or beauty related
@@ -259,7 +297,11 @@ export default function Joinus() {
 
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <p className="my-auto ps-3">
                 You'll follow Iconive social media channels (
@@ -269,7 +311,11 @@ export default function Joinus() {
 
             <div className="d-flex ">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
 
               <div>
@@ -292,7 +338,11 @@ export default function Joinus() {
           <div className="d-flex flex-column gap-4">
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <p className="my-auto ps-3">
                 To post at least 1 piece of UniWigs exclusive content on social
@@ -302,7 +352,11 @@ export default function Joinus() {
 
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
 
               <p className="my-auto ps-3">
@@ -313,7 +367,11 @@ export default function Joinus() {
 
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <p className="my-auto ps-3">
                 Please tag and @iconive related accounts in your Instagram posts{" "}
@@ -325,7 +383,11 @@ export default function Joinus() {
 
             <div className="d-flex">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
               <p className="my-auto ps-3">
                 The content should be positive and encouraging. Please do not
@@ -335,7 +397,11 @@ export default function Joinus() {
 
             <div className="d-flex ">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
 
               <p className="ps-3 py-0 my-auto">
@@ -346,7 +412,11 @@ export default function Joinus() {
 
             <div className="d-flex ">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
 
               <p className="ps-3 py-0 my-auto">
@@ -357,7 +427,11 @@ export default function Joinus() {
 
             <div className="d-flex ">
               <span className="w-60 d-flex">
-                <img src={iconp} alt="this is an icon" className=" m-auto" />
+                <img
+                  src="./Image/joinus/joinp.png"
+                  alt="this is an icon"
+                  className=" m-auto"
+                />
               </span>
 
               <p className="ps-3 py-0 my-auto">
@@ -473,7 +547,11 @@ export default function Joinus() {
       </div>
 
       <div id="style" className=" pb-5 border-bottom container">
-        <img className="w-100" src={style} alt="this is a picture" />
+        <img
+          className="w-100"
+          src="./Image/joinus/style.png"
+          alt="this is a picture"
+        />
 
         <h4 className="text-start fw-bold pt-5 pb-4 ps-4">
           Join Iconive Stylist Program
@@ -481,21 +559,21 @@ export default function Joinus() {
         <div className="row container mx-auto">
           <div className="col-md-3 col-12 text-center p-4">
             <span className="mx-auto w-88 d-flex my-3">
-              <img src={s1} className="w-50 m-auto" />
+              <img src="./Image/joinus/Group (1).png" className="w-50 m-auto" />
             </span>
             <p className="pt-4 fw-bold">Chance to get free hair samples</p>
           </div>
 
           <div className="col-md-3 col-12 text-center p-4">
             <span className="mx-auto w-88 d-flex my-3">
-              <img src={s2} className="w-50 m-auto" />
+              <img src="./Image/joinus/Group (2).png" className="w-50 m-auto" />
             </span>
             <p className="pt-4 fw-bold">Exclusive coupon code</p>
           </div>
 
           <div className="col-md-3 col-12 text-center p-4">
             <span className="mx-auto w-88 d-flex my-3">
-              <img src={s3} className="w-50 m-auto" />
+              <img src="./Image/joinus/Group (3).png" className="w-50 m-auto" />
             </span>
             <p className="pt-4 fw-bold">
               Get featured on Iconive website and social media
@@ -504,7 +582,7 @@ export default function Joinus() {
 
           <div className="col-md-3 col-12 text-center p-4">
             <span className="mx-auto w-88 d-flex my-3">
-              <img src={s4} className="w-50 m-auto" />
+              <img src="./Image/joinus/Group (4).png" className="w-50 m-auto" />
             </span>
             <p className="pt-4 fw-bold">
               Get paid to refer clients by earning commission on purchases made

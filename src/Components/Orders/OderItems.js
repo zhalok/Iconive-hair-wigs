@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState, useContext } from "react";
 import axios from "../../utils/axios";
-import { Accordion } from "react-bootstrap";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import currencyConverter from "../../utils/CurrencyChanger";
 import "./OrderItems.css";

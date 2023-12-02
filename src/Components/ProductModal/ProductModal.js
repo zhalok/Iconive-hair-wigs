@@ -4,8 +4,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import StarIcon from "@mui/icons-material/Star";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import pic1 from "./Images/modalpic2.jpg";
-import pic from "./Images/modalpic.webp";
 
 export default function ProductModal({ id }) {
   return (
@@ -25,18 +23,18 @@ export default function ProductModal({ id }) {
             <div className="modal-body d-flex">
               <div className=" w-50 px-4">
                 <div className="w-100 position-relative">
-                  <img src={pic1} alt="wigs" className="w-100" />
+                  {/* <img src={pic1} alt="wigs" className="w-100" /> */}
                   <span className="position-absolute top-0 end-0 bg-dark text-light px-4 py-3 rounded-circle m-3">
                     <h4 className="fw-bold mb-0 mt-2">20%</h4>
                     <h4 className="fw-bold mt-0 mb-2">Off</h4>
                   </span>
                 </div>
                 <div className="w-100 d-flex justify-content-between py-3">
-                  <img src={pic1} alt="wigs" className="wm-22 h-25 " />
+                  {/* <img src={pic1} alt="wigs" className="wm-22 h-25 " />
                   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
                   <img src={pic1} alt="wigs" className="wm-22 h-25  " />
                   <img src={pic1} alt="wigs" className="wm-22 h-25 " />
-                  <img src={pic1} alt="wigs" className="wm-22 h-25 " />
+                  <img src={pic1} alt="wigs" className="wm-22 h-25 " /> */}
                 </div>
               </div>
               <div className="w-50 px-4 my-auto">
@@ -44,7 +42,6 @@ export default function ProductModal({ id }) {
                   7"X8" COURTNEY | MONO PART | LEFT PART REMY HUMAN HAIR TOPPER
                 </h5>
 
-               
                 <div className="d-flex justify-content-between pt-3">
                   <div className="d-flex  gap-3">
                     <h4 className="fw-bold my-auto text-danger text-decoration-line-through ">
@@ -179,10 +176,9 @@ export default function ProductModal({ id }) {
                       Processing time does not include delivery time
                     </small>
                   </p>
-                 
 
                   <div className="w-100">
-                    <button  className="w-50 btn btn-dark py-2 rounded-0 me-4">
+                    <button className="w-50 btn btn-dark py-2 rounded-0 me-4">
                       <ShoppingCartIcon /> ADD TO CART
                     </button>
                     <button className=" btn btn-outline-dark py-2 px-5  rounded-0">

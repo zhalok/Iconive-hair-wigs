@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Customize.css";
 import Subscription from "../../Components/Subscription/Subscription";
-import BackupIcon from "@mui/icons-material/Backup";
-import banner from "../../.././src/Components/Images/joinus/customize.webp";
 import Select from "react-select";
 import axios from "../../utils/axios";
 import downloadFile from "../../utils/downloadFIle";
@@ -55,10 +53,19 @@ export default function Customize() {
   const DropAction = (e) => {
     setValue(e.label);
   };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <>
       <div className="w-100">
-        <img src={banner} className="w-100" alt="this is a banner" />
+        <img
+          src="./Image/joinus/customize.webp"
+          className="w-100"
+          alt="this is a banner"
+        />
       </div>
 
       {/* signup */}
