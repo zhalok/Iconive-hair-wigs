@@ -18,6 +18,11 @@ import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
 import { useSearchParams } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../utils/firebaseConfig";
+import axios from "../../utils/axios";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
@@ -210,16 +215,14 @@ export default function Navigation({ renderer }) {
                 />
 
                 <label class=" text-16 my-auto" for="flexSwitchCheckChecked">
-                  {/* {usdCheck ? (
-                  <p className="my-auto ms-1">BDT</p>
-                ) : (
-                  <p className="my-auto ms-1">USD</p>
-                )} */}
                   <p className="my-auto ms-1">{currency}</p>
                 </label>
               </div>
             </div>
-            <Navbar expand="lg m-auto " className="sticky-top">
+            <Navbar
+              expand="lg m-auto "
+              className="sticky-topsticky-top mx-auto w60p"
+            >
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto gap-2 gap-md-4 d-flex mx-auto position-relative">
@@ -238,6 +241,7 @@ export default function Navigation({ renderer }) {
                   </Nav.Link>
                   <Nav.Link
                     onClick={() => {
+                      setActiveNav(2);
                       setActiveNav(2);
                       setCollectionDropdown((prevs) => {
                         return !prevs;
@@ -332,32 +336,31 @@ export default function Navigation({ renderer }) {
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
-            <div className="d-flex  gap-1 w12 justify-content-end mb-auto mt-2  my-lg-auto">
-              {/* <div className="m-auto  ">
-                <img
-                  width={"20"}
-                  src="./Image/navi/search.svg"
-                  alt="this is an icon"
-                />
-              </div> */}
-              <div
-                onClick={() => {
-                  navigate("/profile");
-                }}
-                className="my-auto ms-auto"
-              >
-                <img
-                  width={"27"}
-                  src="./Image/navi/wishj.svg"
-                  alt="this is an icon"
-                />
-              </div>
+            <div className="d-flex gap-4 px-2 justify-content-end mb-auto mt-2  my-lg-auto w12b">
+              {user && (
+                <div
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    // navigate("/profile");
+                    navigate("/profile?sidebar=4");
+                  }}
+                  className="my-auto ms-auto cursor-pointer"
+                >
+                  <img
+                    width={"27"}
+                    src="/Image/navi/wishj.svg"
+                    alt="this is an icon"
+                  />
+                </div>
+              )}
               <div className="m-auto">
                 {/* <a href="/checkout"> */}
                 <Badge badgeContent={cartItems} color="primary">
                   <img
                     width={"25"}
-                    src="./Image/navi/cart.svg"
+                    src="/Image/navi/cart.svg"
                     alt="this is an icon"
                     onClick={() => {
                       setShowCartDrawer((prev) => !prev);
@@ -367,7 +370,7 @@ export default function Navigation({ renderer }) {
                 {/* </a> */}
               </div>
               {user ? (
-                <div className="my-auto">
+                <div className="myy-auto">
                   <a href="/profile" className="text-decoration-none">
                     <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
                       <h5 className=" m-auto fw-bold text-light">
@@ -385,9 +388,10 @@ export default function Navigation({ renderer }) {
                 >
                   <img
                     width={"35"}
-                    src="./Image/navi/picon.png"
+                    src="/Image/navi/picon.png"
                     alt="this is an icon"
                     onClick={() => {
+                      // navigate("/login");
                       navigate("/login");
                     }}
                   />
@@ -404,7 +408,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100 ">
                   <div className="">
                     <img
-                      src="./Image/navi/malenav.webp"
+                      src="/Image/navi/malenav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />

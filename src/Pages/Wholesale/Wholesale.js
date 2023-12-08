@@ -66,6 +66,7 @@ const dropItemProducts = [
 
 export default function Wholesale() {
   const [contact, setContact] = useState("");
+  const [email, setEmail] = useState("");
   const [value, setValue] = useState("");
   // const { auth, setAuth } = useContext(AuthContext);
   // const {user,setUser} = AuthContext
@@ -92,12 +93,18 @@ export default function Wholesale() {
       return;
     }
 
+    if (!contact || !email) {
+      alert("Please fill all the fields");
+      return;
+    }
+
     try {
       setLoading(true);
       const response = await axios.post(
         "/wholesale/createRequest",
         {
-          contact: contact,
+          contact,
+          email,
         },
         {
           headers: {
@@ -152,15 +159,33 @@ export default function Wholesale() {
                 <br />
                 */}
                 {isRequested && !loading && (
-                  <input
-                    type="text"
-                    placeholder="Contact Number"
-                    className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
-                    value={contact}
-                    onChange={(e) => {
-                      setContact(e.target.value);
+                  <div
+                    className="flex flex-column gap-5"
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
                     }}
-                  />
+                  >
+                    <input
+                      type="text"
+                      placeholder="Contact Number"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
+                      value={contact}
+                      onChange={(e) => {
+                        setContact(e.target.value);
+                      }}
+                    />
+                    <input
+                      type="email"
+                      placeholder="Work Email"
+                      className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                    />
+                  </div>
                 )}
                 <br />
 

@@ -52,7 +52,7 @@ export default function Profile() {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       });
-      // console.log(orders.data);
+
       setOrders(response.data);
     } catch (e) {
       console.log(e);
@@ -61,10 +61,28 @@ export default function Profile() {
 
   useEffect(() => {
     const token = Cookies.get("jwt");
-    // console.log("token", token);
+
     token ? getOrders() : window.location.replace("/home");
   }, []);
 
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const querySidebar = searchParams.get("sidebar");
+
+    // if (category) {
+    //   setShowSubCategory(category);
+    //   setFilters((prev) => {
+    //     return { ...prev, categories: [category] };
+    //   });
+    // }
+    // if (banner) {
+    //   setTopBanner(parseInt(banner));
+    // }
+
+    if (querySidebar) {
+      setSidebar(parseInt(querySidebar));
+    }
+  }, []);
   // useEffect(()=>)
 
   return (

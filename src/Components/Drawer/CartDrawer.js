@@ -120,8 +120,8 @@ export default function CartDrawer({ opened, close }) {
                   </p>
 
                   <div className="d-flex mx-3 gap-3">
-                    <a href="/checkout" className="w-50 pb-3">
-                      <button className="btn btn-chek w-100 text-light py-2 btn-shadow">
+                    <a href="/checkout" className="w-50 h-100 pb-3">
+                      <button className="btn btn-warning w-100 h-100 text-light py-2 btn-shadow">
                         CHECK OUT
                       </button>
                     </a>

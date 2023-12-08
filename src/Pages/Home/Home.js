@@ -310,6 +310,11 @@ export default function Home() {
       <FloatingWhatsApp
         phoneNumber="+8801602290655"
         accountName="Iconive Wigs"
+        avatar="/Image/logo/Img 3.png"
+      />
+      <FloatingWhatsApp
+        phoneNumber="+8801602290655"
+        accountName="Iconive Wigs"
         avatar="./image/logo/Img 3.png"
       />
     </div>
