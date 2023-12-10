@@ -24,7 +24,7 @@ export default function Subscription() {
         "Ag41kIaMsu1Uqj2Cu"
       )
       .then((response) => {
-        console.log("sended", response);
+        // console.log("sended", response);
         setemail("your e-mail address");
       })
       .catch((error) => {

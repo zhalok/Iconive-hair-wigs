@@ -59,7 +59,7 @@ export default function Order({ order, index, getOrders }) {
   const [pdfLoading, setPdfLoading] = useState(false);
   const [blob1, setBlob1] = useState(null);
   const [blob2, setBlob2] = useState(null);
-  console.log("Order", order);
+  // console.log("Order", order);
 
   const cancelOrder = async () => {
     try {
@@ -78,7 +78,7 @@ export default function Order({ order, index, getOrders }) {
       getOrders();
     } catch (e) {
       setLoading(false);
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -100,14 +100,14 @@ export default function Order({ order, index, getOrders }) {
       window.location.replace(paymentResponse.data.payment_url);
     } catch (e) {
       setLoading(false);
-      console.log(e);
+      // console.log(e);
     }
   };
 
   const updateStepper = () => {
-    console.log("Order status", order.status);
+    // console.log("Order status", order.status);
     const idx = steps.indexOf(order.status);
-    console.log("index of steps", idx);
+    // console.log("index of steps", idx);
     return idx + 1;
   };
 
@@ -163,7 +163,7 @@ export default function Order({ order, index, getOrders }) {
       })
       .catch((error) => {
         setPdfLoading(false);
-        console.log("error: ", error);
+        // console.log("error: ", error);
       });
     // }
   };

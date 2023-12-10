@@ -40,7 +40,7 @@ export default function CartItem({
       setLoading(false);
     } catch (e) {
       setLoading(false);
-      console.log(e);
+      // console.log(e);
     }
   };
 

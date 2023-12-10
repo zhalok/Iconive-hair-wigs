@@ -38,63 +38,63 @@ export default function Navigation({ renderer }) {
   // console.log("currency", currency);
   // console.log(currency);
   // console.log(user);
-  // const googleLogin = () => {
-  //   const provider = new GoogleAuthProvider();
+  const googleLogin = () => {
+    const provider = new GoogleAuthProvider();
 
-  //   signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       // This gives you a Google Access Token. You can use it to access the Google API.
-  //       const credential = GoogleAuthProvider.credentialFromResult(result);
-  //       const token = credential.accessToken;
-  //       // The signed-in user info.
-  //       const user = result.user;
-  //       // console.log("credentials from success", credential);
-  //       // console.log("user", user);
-  //       const { uid, email } = user;
-  //       axios
-  //         .post("/auth/login", {
-  //           email,
-  //           password: uid,
-  //         })
-  //         .then((response) => {
-  //           Cookies.set("jwt", response.data.token);
-  //           window.location.reload();
-  //         })
-  //         .catch((e) => {
-  //           // console.log(e);\
-  //           axios
-  //             .post("/auth/signup", {
-  //               email,
-  //               password: uid,
-  //               passwordConfirm: uid,
-  //               name: user?.displayName,
-  //               verified: user?.emailVerified,
-  //             })
-  //             .then((response) => {
-  //               Cookies.set("jwt", response.data.token);
-  //               window.location.reload();
-  //             })
-  //             .catch((e) => {
-  //               console.log(e);
-  //               toast.error(e?.response?.data?.message);
-  //             });
-  //         });
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // console.log("credentials from success", credential);
+        // console.log("user", user);
+        const { uid, email } = user;
+        axios
+          .post("/auth/login", {
+            email,
+            password: uid,
+          })
+          .then((response) => {
+            Cookies.set("jwt", response.data.token);
+            window.location.reload();
+          })
+          .catch((e) => {
+            // console.log(e);\
+            axios
+              .post("/auth/signup", {
+                email,
+                password: uid,
+                passwordConfirm: uid,
+                name: user?.displayName,
+                verified: user?.emailVerified,
+              })
+              .then((response) => {
+                Cookies.set("jwt", response.data.token);
+                window.location.reload();
+              })
+              .catch((e) => {
+                console.log(e);
+                toast.error(e?.response?.data?.message);
+              });
+          });
 
-  //       // IdP data available using getAdditionalUserInfo(result)
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors here.
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       // The email of the user's account used.
-  //       const email = error.customData.email;
-  //       // The AuthCredential type that was used.
-  //       const credential = GoogleAuthProvider.credentialFromError(error);
-  //       console.log(credential);
-  //       // ...
-  //     });
-  // };
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(credential);
+        // ...
+      });
+  };
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -336,7 +336,7 @@ export default function Navigation({ renderer }) {
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
-            <div className="d-flex gap-4 px-2 justify-content-end mb-auto mt-2  my-lg-auto w12b">
+            <div className="d-flex gap-4 px-2 justify-content-end mb-auto mt-2 my-lg-auto w-12">
               {user && (
                 <div
                   style={{
@@ -392,7 +392,8 @@ export default function Navigation({ renderer }) {
                     alt="this is an icon"
                     onClick={() => {
                       // navigate("/login");
-                      navigate("/login");
+                      // navigate("/login");
+                      googleLogin();
                     }}
                   />
                 </div>

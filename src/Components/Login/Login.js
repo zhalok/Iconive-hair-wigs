@@ -66,10 +66,10 @@ const Login = () => {
   };
 
   const responseMessage = (response) => {
-    console.log(response);
+    // console.log(response);
   };
   const errorMessage = (error) => {
-    console.log(error);
+    // console.log(error);
   };
 
   useEffect(() => {
@@ -120,7 +120,7 @@ const Login = () => {
                 window.location.reload();
               })
               .catch((e) => {
-                console.log(e);
+                // console.log(e);
                 toast.error(e?.response?.data?.message);
               });
           });
@@ -136,7 +136,7 @@ const Login = () => {
         const email = error.customData.email;
         // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(credential);
+        // console.log(credential);
         // ...
       });
   };
