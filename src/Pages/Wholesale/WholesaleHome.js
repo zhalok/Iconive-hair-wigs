@@ -138,7 +138,7 @@ export default function WholesaleHome() {
         }
       )
       .then((e) => {
-        console.log("Order submitted");
+        // console.log("Order submitted");
         setSelected([]);
         setSubmitting(false);
         toast.success("Order submitted");
@@ -202,7 +202,7 @@ export default function WholesaleHome() {
         },
       })
       .then((res) => {
-        console.log("extensions", res.data);
+        // console.log("extensions", res.data);
         setExtensionProducts(res.data);
       })
       .catch((e) => {

@@ -73,7 +73,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   //     (e) => e.family.toLowerCase() == selectedFamily
   //   )
   // );
-  console.log(selectedFamily);
+  // console.log(selectedFamily);
 
   const checkWishList = async () => {
     try {
@@ -90,7 +90,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
       setWishlistloading(false);
     } catch (e) {
       setWishlistloading(false);
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -119,7 +119,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
       setWishlistloading(false);
     } catch (e) {
       setWishlistloading(false);
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -141,7 +141,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
       setInWishList(false);
     } catch (e) {
       setWishlistloading(false);
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -194,7 +194,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
         discountCalculator(response.data.price, response.data.discount)
       );
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 

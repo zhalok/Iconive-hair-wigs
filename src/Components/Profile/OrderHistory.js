@@ -19,7 +19,7 @@ export default function OrderHistory() {
       // console.log(response.data);
       setOrderHistory(response.data);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 

@@ -17,7 +17,7 @@ export default function Refund() {
       console.log("cancelled Orders", data);
       setCancelledOrders(data);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

@@ -69,7 +69,7 @@ export default function Checkout(props) {
 
     if (cart) {
       setCartItems(JSON.parse(cart));
-      console.log(cartItems);
+      // console.log(cartItems);
     }
   }, [cartRenderer]);
 
@@ -138,7 +138,7 @@ export default function Checkout(props) {
 
     if (cart) {
       const cartItems = JSON.parse(cart);
-      console.log("Cart Items", cartItems);
+      // console.log("Cart Items", cartItems);
       if (cartItems.length == 0) {
         alert("Cart is empty");
         return;
@@ -180,7 +180,7 @@ export default function Checkout(props) {
         window.location.replace(paymentResponse.data.payment_url);
       } catch (e) {
         setLoading(false);
-        console.log(e);
+        // console.log(e);
       }
     } else {
       alert("Cart is empty");

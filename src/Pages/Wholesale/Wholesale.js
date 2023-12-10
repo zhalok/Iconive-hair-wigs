@@ -77,8 +77,8 @@ export default function Wholesale() {
   // console.log(value);
   const [isRequested, setIsRequested] = useState(false);
 
-  console.log("isRequested", isRequested);
-  console.log("loading", loading);
+  // console.log("isRequested", isRequested);
+  // console.log("loading", loading);
 
   const DropAction = (e) => {
     setValue(e.label);
