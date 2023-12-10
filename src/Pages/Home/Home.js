@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import { React, Suspense, useEffect, useState } from "react";
 import { lazy } from "react";
 import "./Home.css";
@@ -19,17 +16,13 @@ const TopSelling = lazy(() => import("../../Components/TopSelling/TopSelling"));
 const Trending = lazy(() => import("../../Components/Trending/Trending"));
 
 export default function Home() {
-  const [show, setShow] = useState(false);
-  // const [mostSold, setMostSold] = useState([]);
-  const [newArrivals, setNewArrivals] = useState([]);
-
   const navigate = useNavigate();
 
   return (
     <div>
-      {/* <Suspense fallback={<PulseLoader />}> */}
-      <CarouselHome></CarouselHome>
-      {/* </Suspense> */}
+      <Suspense fallback={<PulseLoader />}>
+        <CarouselHome />
+      </Suspense>
 
       {/* free features section */}
       <div className="container d-flex ">
@@ -311,6 +304,11 @@ export default function Home() {
         phoneNumber="+8801602290655"
         accountName="Iconive Wigs"
         avatar="/Image/logo/Img 3.png"
+      />
+      <FloatingWhatsApp
+        phoneNumber="+8801602290655"
+        accountName="Iconive Wigs"
+        avatar="./image/logo/Img 3.png"
       />
     </div>
   );

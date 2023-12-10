@@ -14,7 +14,10 @@
   margin-top: 45px;
 }
 .w12 {
-  width: 12%;
+  width: 10%;
+}
+.w12b {
+  width: 10%;
 }
 .drop:hover {
   font-weight: 600;
@@ -162,5 +165,17 @@
   }
   .text-12p {
     font-size: 13px !important;
+  }
+  .activeNav {
+    font-weight: 800;
+    font-size: 5vw;
+    border-bottom: #ecb30a solid 2px;
+    color: #ecb30a !important;
+  }
+  .w12 {
+    width: 15%;
+  }
+  .w12b {
+    width: 9%;
   }
 }
