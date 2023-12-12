@@ -10,6 +10,10 @@ import AuthContext from "../../Contexts/AuthContext";
 import currencyConverter from "../../utils/CurrencyChanger";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import CartContext from "../../Contexts/CartContext";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth as firebaseAuth } from "../../utils/firebaseConfig";
+
+import { toast } from "react-toastify";
 
 export default function Checkout(props) {
   const [cartItems, setCartItems] = useState(null);
@@ -101,6 +105,62 @@ export default function Checkout(props) {
 
   const navigate = useNavigate();
 
+  const googleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+
+    return signInWithPopup(firebaseAuth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+
+        const { uid, email } = user;
+        axios
+          .post("/auth/login", {
+            email,
+            password: uid,
+          })
+          .then((response) => {
+            Cookies.set("jwt", response.data.token);
+            window.location.reload();
+          })
+          .catch((e) => {
+            // console.log(e);\
+            axios
+              .post("/auth/signup", {
+                email,
+                password: uid,
+                passwordConfirm: uid,
+                name: user?.displayName,
+                verified: user?.emailVerified,
+              })
+              .then((response) => {
+                Cookies.set("jwt", response.data.token);
+                window.location.reload();
+              })
+              .catch((e) => {
+                console.log(e);
+                toast.error(e?.response?.data?.message);
+              });
+          });
+
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        console.log(error);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // // The email of the user's account used.
+        // const email = error.customData.email;
+        // // The AuthCredential type that was used.
+        // const credential = GoogleAuthProvider.credentialFromError(error);
+        // console.log(credential);
+        // ...
+      });
+  };
+
   const checkout = async () => {
     const billingInfo = {
       name,
@@ -129,10 +189,8 @@ export default function Checkout(props) {
     const token = Cookies.get("jwt");
 
     if (!token) {
-      // alert("")
       localStorage.setItem("billingInfo", JSON.stringify(billingInfo));
-      navigate("/login?proceeedToCheckout=true");
-      return;
+      await googleLogin();
     }
     const cart = localStorage.getItem("cart");
 
@@ -372,7 +430,7 @@ export default function Checkout(props) {
                 ) : (
                   <input
                     type="submit"
-                    value="CHECK OUT"
+                    value={auth?.user ? "Checkout" : `Login & Checkout`}
                     className="border-0 btn-theme-check text-white mx-auto my-4 w-50 "
                     onClick={(e) => {
                       e.preventDefault();
