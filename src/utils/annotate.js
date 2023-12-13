@@ -5,7 +5,7 @@ import { MarkerArea } from "markerjs2";
 const takeScreenshot = async (dom, img) => {
   html2canvas(document.body, {}).then((canvas) => {
     // window.location.href = canvas.toDataURL();
-    console.log(canvas.toDataURL());
+    // console.log(canvas.toDataURL());
     // img.src = canvas.toDataURL();
     // console.log(img);
   });
@@ -40,7 +40,7 @@ const takeScreenShot = async (img) => {
 
 function showMarkerArea(target) {
   const markerArea = new MarkerArea(target);
-  console.log(markerArea);
+  // console.log(markerArea);
   markerArea.settings.displayMode = "popup";
   markerArea.uiStyleSettings.zIndex = "1000";
   // markerArea.pos;

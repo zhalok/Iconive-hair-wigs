@@ -57,7 +57,7 @@ export default function Order({ order, index, setOrders, getOrders }) {
       // window.location.replace(paymentResponse.data.payment_url);
     } catch (e) {
       setLoading(false);
-      console.log(e);
+      // console.log(e);
     }
   };
 

@@ -41,7 +41,7 @@ export default function CartDrawer({ opened, close }) {
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
-    console.log("cart", cart);
+    // console.log("cart", cart);
     if (cart) {
       setCartItems(JSON.parse(cart));
     }

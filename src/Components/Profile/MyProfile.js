@@ -38,7 +38,7 @@ export default function MyProfile({ name, setName }) {
       });
       // console.log(response.data.user);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
   const updateInfo = async () => {
@@ -72,7 +72,7 @@ export default function MyProfile({ name, setName }) {
       setShowUpdateButton(false);
     } catch (e) {
       setLoading(false);
-      console.log(e);
+      // console.log(e);
     }
   };
 

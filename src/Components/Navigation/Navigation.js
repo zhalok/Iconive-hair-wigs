@@ -23,7 +23,7 @@ import { auth } from "../../utils/firebaseConfig";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-
+import "./Toggle.css";
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
@@ -38,63 +38,63 @@ export default function Navigation({ renderer }) {
   // console.log("currency", currency);
   // console.log(currency);
   // console.log(user);
-  // const googleLogin = () => {
-  //   const provider = new GoogleAuthProvider();
+  const googleLogin = () => {
+    const provider = new GoogleAuthProvider();
 
-  //   signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       // This gives you a Google Access Token. You can use it to access the Google API.
-  //       const credential = GoogleAuthProvider.credentialFromResult(result);
-  //       const token = credential.accessToken;
-  //       // The signed-in user info.
-  //       const user = result.user;
-  //       // console.log("credentials from success", credential);
-  //       // console.log("user", user);
-  //       const { uid, email } = user;
-  //       axios
-  //         .post("/auth/login", {
-  //           email,
-  //           password: uid,
-  //         })
-  //         .then((response) => {
-  //           Cookies.set("jwt", response.data.token);
-  //           window.location.reload();
-  //         })
-  //         .catch((e) => {
-  //           // console.log(e);\
-  //           axios
-  //             .post("/auth/signup", {
-  //               email,
-  //               password: uid,
-  //               passwordConfirm: uid,
-  //               name: user?.displayName,
-  //               verified: user?.emailVerified,
-  //             })
-  //             .then((response) => {
-  //               Cookies.set("jwt", response.data.token);
-  //               window.location.reload();
-  //             })
-  //             .catch((e) => {
-  //               console.log(e);
-  //               toast.error(e?.response?.data?.message);
-  //             });
-  //         });
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // console.log("credentials from success", credential);
+        // console.log("user", user);
+        const { uid, email } = user;
+        axios
+          .post("/auth/login", {
+            email,
+            password: uid,
+          })
+          .then((response) => {
+            Cookies.set("jwt", response.data.token);
+            window.location.reload();
+          })
+          .catch((e) => {
+            // console.log(e);\
+            axios
+              .post("/auth/signup", {
+                email,
+                password: uid,
+                passwordConfirm: uid,
+                name: user?.displayName,
+                verified: user?.emailVerified,
+              })
+              .then((response) => {
+                Cookies.set("jwt", response.data.token);
+                window.location.reload();
+              })
+              .catch((e) => {
+                console.log(e);
+                toast.error(e?.response?.data?.message);
+              });
+          });
 
-  //       // IdP data available using getAdditionalUserInfo(result)
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors here.
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       // The email of the user's account used.
-  //       const email = error.customData.email;
-  //       // The AuthCredential type that was used.
-  //       const credential = GoogleAuthProvider.credentialFromError(error);
-  //       console.log(credential);
-  //       // ...
-  //     });
-  // };
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(credential);
+        // ...
+      });
+  };
 
   useEffect(() => {
     let cart = localStorage.getItem("cart");
@@ -200,8 +200,8 @@ export default function Navigation({ renderer }) {
         }}
       >
         <div className="position-relative ">
-          <div className="d-flex mx-auto  justify-content-between px115">
-            <div className="mb-auto mt-2  my-lg-auto d-flex w12 text-start ">
+          <div className="d-flex mx-auto  justify-content-between px115 ">
+            <div className="mb-auto mts-4  my-lg-auto d-flex w-12 text-start ">
               <div className="my-auto d-flex text-18 ps-5 pe-3 py-1 bg-light useBtn form-check form-switch">
                 <input
                   className="my-auto form-check-input ps-2 me-2 btnCheckUse "
@@ -220,12 +220,28 @@ export default function Navigation({ renderer }) {
               </div>
             </div>
             <Navbar
-              expand="lg m-auto "
-              className="sticky-topsticky-top mx-auto w60p"
+              collapseOnSelect
+              expand="lg"
+              className="sticky-top sticky-top mx-auto no-transition d-flex z-10"
             >
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto gap-2 gap-md-4 d-flex mx-auto position-relative">
+              <button
+                class="navbar-toggler collapsed mx-auto d-flex d-lg-none flex-column justify-content-around"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="toggler-icon top-bar"></span>
+                <span class="toggler-icon middle-bar"></span>
+                <span class="toggler-icon bottom-bar"></span>
+              </button>
+              <div
+                class="collapse navbar-collapse "
+                id="navbarSupportedContent"
+              >
+                <Nav className="mx-auto gap-2 gap-md-4 d-flex mx-auto position-relative">
                   <Nav.Link
                     onClick={() => {
                       setActiveNav(1);
@@ -334,9 +350,9 @@ export default function Navigation({ renderer }) {
                     WHOLESALE
                   </Nav.Link>
                 </Nav>
-              </Navbar.Collapse>
+              </div>
             </Navbar>
-            <div className="d-flex gap-4 px-2 justify-content-end mb-auto mt-2  my-lg-auto w12b">
+            <div className="d-flex gap-4 px-2 justify-content-end mb-auto mt-2 my-lg-auto w-12 ">
               {user && (
                 <div
                   style={{
@@ -346,7 +362,7 @@ export default function Navigation({ renderer }) {
                     // navigate("/profile");
                     navigate("/profile?sidebar=4");
                   }}
-                  className="my-auto ms-auto cursor-pointer"
+                  className="my-auto ms-auto cursor-pointer mbs-1"
                 >
                   <img
                     width={"27"}
@@ -355,8 +371,7 @@ export default function Navigation({ renderer }) {
                   />
                 </div>
               )}
-              <div className="m-auto">
-                {/* <a href="/checkout"> */}
+              <div className="m-auto mbs-1">
                 <Badge badgeContent={cartItems} color="primary">
                   <img
                     width={"25"}
@@ -367,10 +382,9 @@ export default function Navigation({ renderer }) {
                     }}
                   />
                 </Badge>
-                {/* </a> */}
               </div>
               {user ? (
-                <div className="myy-auto">
+                <div className="myy-auto mbs-1">
                   <a href="/profile" className="text-decoration-none">
                     <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
                       <h5 className=" m-auto fw-bold text-light">
@@ -381,7 +395,7 @@ export default function Navigation({ renderer }) {
                 </div>
               ) : (
                 <div
-                  className="my-auto"
+                  className="my-auto mbs-1"
                   style={{
                     cursor: "pointer",
                   }}
@@ -392,7 +406,8 @@ export default function Navigation({ renderer }) {
                     alt="this is an icon"
                     onClick={() => {
                       // navigate("/login");
-                      navigate("/login");
+                      // navigate("/login");
+                      googleLogin();
                     }}
                   />
                 </div>

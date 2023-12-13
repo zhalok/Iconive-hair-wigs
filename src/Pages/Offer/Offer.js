@@ -20,10 +20,10 @@ export default function Offer() {
   const getNewArrivals = async () => {
     try {
       const response = await axios.get("/filterProducts/newArrivals");
-      console.log("Latest", response.data);
+      // console.log("Latest", response.data);
       setNewArrivals(response.data);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 

@@ -43,7 +43,7 @@ async function downloadCustomizationRequirementFile(fileURL, fileName) {
       downloadFile("Customization_Requirements.pdf", response.data);
     })
     .catch((error) => {
-      console.log("error: ", error);
+      // console.log("error: ", error);
     });
 }
 
