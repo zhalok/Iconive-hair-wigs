@@ -7,6 +7,8 @@ import Subscription from "../../Components/Subscription/Subscription";
 import Select from "react-select";
 import axios from "../../utils/axios";
 import downloadFile from "../../utils/downloadFIle";
+import { toast } from "react-toastify";
+import { PulseLoader } from "react-spinners";
 // import axios from "axios";
 
 const dropItemBusinessType = [
@@ -34,25 +36,31 @@ const dropItemBusinessType = [
 ];
 
 /* Helper function */
-async function downloadCustomizationRequirementFile(fileURL, fileName) {
-  axios
-    .get("/customwigs/get-custom-wigs-sheet", {
-      responseType: "blob",
-    })
-    .then((response) => {
-      downloadFile("Customization_Requirements.pdf", response.data);
-    })
-    .catch((error) => {
-      // console.log("error: ", error);
-    });
-}
 
 export default function Customize() {
   const navigate = useNavigate();
   const [value, setValue] = useState(dropItemBusinessType.value);
+  const [downlaading, setDownloading] = useState(false);
   const DropAction = (e) => {
     setValue(e.label);
   };
+
+  async function downloadCustomizationRequirementFile(fileURL, fileName) {
+    setDownloading(true);
+    axios
+      .get("/customwigs/get-custom-wigs-sheet", {
+        responseType: "blob",
+      })
+      .then((response) => {
+        downloadFile("Customization_Requirements.pdf", response.data);
+        setDownloading(false);
+      })
+      .catch((error) => {
+        // console.log("error: ", error);
+        setDownloading(false);
+        toast.error("Something went wrong");
+      });
+  }
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -273,15 +281,16 @@ export default function Customize() {
                 </span>
                 .
               </p>
-              <div className="d-flex flex-column flex-lg-row gap-4 justify-content-between px-5 my-4">
+              <div className="d-flex flex-column flex-lg-row gap-4 justify-content-center px-5 my-4">
                 <button
                   className="btn-theme-up btn text-light px-5"
                   onClick={() => {
                     downloadCustomizationRequirementFile();
                   }}
                 >
-                  Download custom sheet
+                  {downlaading ? <PulseLoader /> : "Download custom sheet"}
                 </button>
+
                 <button
                   onClick={() => {
                     navigate("/repair");
