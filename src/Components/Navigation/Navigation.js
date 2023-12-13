@@ -201,7 +201,7 @@ export default function Navigation({ renderer }) {
       >
         <div className="position-relative ">
           <div className="d-flex mx-auto  justify-content-between px115">
-            <div className="mb-auto mt-2  my-lg-auto d-flex w12 text-start ">
+            <div className="mb-auto mt-2  my-lg-auto d-flex w-12 text-start ">
               <div className="my-auto d-flex text-18 ps-5 pe-3 py-1 bg-light useBtn form-check form-switch">
                 <input
                   className="my-auto form-check-input ps-2 me-2 btnCheckUse "
@@ -220,12 +220,12 @@ export default function Navigation({ renderer }) {
               </div>
             </div>
             <Navbar
-              expand="lg m-auto "
-              className="sticky-topsticky-top mx-auto w60p"
+              expand="lg m-auto"
+              className="sticky-topsticky-top mx-auto "
             >
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto gap-2 gap-md-4 d-flex mx-auto position-relative">
+                <Nav className="mx-auto gap-2 gap-md-4 d-flex mx-auto position-relative">
                   <Nav.Link
                     onClick={() => {
                       setActiveNav(1);
