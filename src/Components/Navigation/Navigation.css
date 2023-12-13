@@ -8,7 +8,10 @@
   color: black !important;
 }
 .z-100 {
-  z-index: 100;
+  z-index: 200 !important;
+}
+.z-10 {
+  z-index: 100 !important;
 }
 .mt-50 {
   margin-top: 45px;
@@ -119,14 +122,6 @@
   width: 38px;
   height: 38px;
 }
-@media screen and (max-width: 480px) {
-  .px115 {
-    padding: 0px 10px;
-  }
-  .hide {
-    display: none;
-  }
-}
 
 .m-auto {
   cursor: pointer;
@@ -177,5 +172,19 @@
   }
   .w12b {
     width: 9%;
+  }
+  .mbs-1 {
+    padding-bottom: 4px;
+  }
+  .mts-4 {
+    padding-top: 6px !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  .px115 {
+    padding: 0px 10px;
+  }
+  .hide {
+    display: none;
   }
 }
