@@ -23,7 +23,7 @@ import { auth } from "../../utils/firebaseConfig";
 import axios from "../../utils/axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-
+import "./Toggle.css";
 export default function Navigation({ renderer }) {
   const navigate = useNavigate();
   const [CollectionDropdown, setCollectionDropdown] = useState(false);
@@ -34,6 +34,7 @@ export default function Navigation({ renderer }) {
   const { setShowCartDrawer } = useContext(CartContext);
   const [searchParam, setSearchParam] = useSearchParams();
   const [activeNav, setActiveNav] = useState();
+  const [showNavbar, setShowNavbar] = useState(false);
 
   // console.log("currency", currency);
   // console.log(currency);
@@ -200,8 +201,8 @@ export default function Navigation({ renderer }) {
         }}
       >
         <div className="position-relative ">
-          <div className="d-flex mx-auto  justify-content-between px115">
-            <div className="mb-auto mt-2  my-lg-auto d-flex w-12 text-start ">
+          <div className="d-flex mx-auto  justify-content-between px115 ">
+            <div className="mb-auto mts-4  my-lg-auto d-flex w-12 text-start ">
               <div className="my-auto d-flex text-18 ps-5 pe-3 py-1 bg-light useBtn form-check form-switch">
                 <input
                   className="my-auto form-check-input ps-2 me-2 btnCheckUse "
@@ -220,11 +221,33 @@ export default function Navigation({ renderer }) {
               </div>
             </div>
             <Navbar
-              expand="lg m-auto"
-              className="sticky-topsticky-top mx-auto "
+              collapseOnSelect
+              expand="lg"
+              className="sticky-top sticky-top mx-auto no-transition d-flex z-10"
             >
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
+              <button
+                class="navbar-toggler collapsed mx-auto d-flex d-lg-none flex-column justify-content-around"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                onClick={() => {
+                  if (showNavbar) {
+                    setCollectionDropdown(false);
+                  }
+                  setShowNavbar((prev) => !prev);
+                }}
+              >
+                <span class="toggler-icon top-bar"></span>
+                <span class="toggler-icon middle-bar"></span>
+                <span class="toggler-icon bottom-bar"></span>
+              </button>
+              <div
+                class="collapse navbar-collapse "
+                id="navbarSupportedContent"
+              >
                 <Nav className="mx-auto gap-2 gap-md-4 d-flex mx-auto position-relative">
                   <Nav.Link
                     onClick={() => {
@@ -242,7 +265,7 @@ export default function Navigation({ renderer }) {
                   <Nav.Link
                     onClick={() => {
                       setActiveNav(2);
-                      setActiveNav(2);
+
                       setCollectionDropdown((prevs) => {
                         return !prevs;
                       });
@@ -334,9 +357,9 @@ export default function Navigation({ renderer }) {
                     WHOLESALE
                   </Nav.Link>
                 </Nav>
-              </Navbar.Collapse>
+              </div>
             </Navbar>
-            <div className="d-flex gap-4 px-2 justify-content-end mb-auto mt-2 my-lg-auto w-12">
+            <div className="d-flex gap-4 px-2 justify-content-end mb-auto mt-2 my-lg-auto w-12 ">
               {user && (
                 <div
                   style={{
@@ -346,7 +369,7 @@ export default function Navigation({ renderer }) {
                     // navigate("/profile");
                     navigate("/profile?sidebar=4");
                   }}
-                  className="my-auto ms-auto cursor-pointer"
+                  className="my-auto ms-auto cursor-pointer mbs-1"
                 >
                   <img
                     width={"27"}
@@ -355,8 +378,7 @@ export default function Navigation({ renderer }) {
                   />
                 </div>
               )}
-              <div className="m-auto">
-                {/* <a href="/checkout"> */}
+              <div className="m-auto mbs-1">
                 <Badge badgeContent={cartItems} color="primary">
                   <img
                     width={"25"}
@@ -367,10 +389,9 @@ export default function Navigation({ renderer }) {
                     }}
                   />
                 </Badge>
-                {/* </a> */}
               </div>
               {user ? (
-                <div className="myy-auto">
+                <div className="myy-auto mbs-1">
                   <a href="/profile" className="text-decoration-none">
                     <div className=" rounded-circle bg-themeYellow w-36px d-flex ">
                       <h5 className=" m-auto fw-bold text-light">
@@ -381,7 +402,7 @@ export default function Navigation({ renderer }) {
                 </div>
               ) : (
                 <div
-                  className="my-auto"
+                  className="my-auto mbs-1"
                   style={{
                     cursor: "pointer",
                   }}
