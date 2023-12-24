@@ -7,6 +7,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 const CollectionCard = React.lazy(() =>
   import("../../Components/Collections/CollectionCard")
 );
@@ -23,6 +24,8 @@ export default function Category({}) {
   const [loadingProducts, setLoadingProductts] = useState(false);
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
+
+  console.log("categories", categories);
   // console.log("filter", filters);
   // console.log("products", products);
 
@@ -104,6 +107,11 @@ export default function Category({}) {
 
   return (
     <>
+      <Helmet>
+        {categories[topbanner - 1] && (
+          <title>Category - {categories?.[topbanner - 1]?.name}</title>
+        )}
+      </Helmet>
       <ToastContainer />
       <div>
         <div className="w-100 ">
@@ -112,35 +120,35 @@ export default function Category({}) {
               <div className="w-100">
                 {topbanner === 0 && (
                   <img
-                    src="./Image/image_c/Collections.jpg"
+                    src="/Image/image_c/Collections.jpg"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 1 && (
                   <img
-                    src="./Image/image_c/malecollection.webp"
+                    src="/Image/image_c/malecollection.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 2 && (
                   <img
-                    src="./Image/image_c/femaleCollections.webp"
+                    src="/Image/image_c/femaleCollections.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 3 && (
                   <img
-                    src="./Image/image_c/Rawhair.webp"
+                    src="/Image/image_c/Rawhair.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 4 && (
                   <img
-                    src="./Image/image_c/Accessories.webp"
+                    src="/Image/image_c/Accessories.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
