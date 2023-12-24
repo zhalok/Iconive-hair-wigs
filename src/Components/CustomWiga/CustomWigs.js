@@ -2,20 +2,7 @@
 import React from "react";
 import "./CustomWigs.css";
 import { useNavigate } from "react-router-dom";
-// import card1 from "./Image/custom/1.svg";
-// import card2 from "./Image/custom/2.svg";
-// import card3 from "./Image/custom/3.svg";
-// import card4 from "./Image/custom/4.svg";
-// import card5 from "./Image/custom/5.svg";
-// import card6 from "./Image/custom/6.svg";
-// import p1 from "./Image/partners/1.svg";
-// import p2 from "./Image/partners/2.svg";
-// import p3 from "./Image/partners/3.svg";
-// import p4 from "./Image/partners/4.svg";
-// import p5 from "./Image/partners/5.svg";
-// import p6 from "./Image/partners/6.svg";
-// import icon1 from "./Image/custom/iconwhy.svg";
-// import icon2 from "./Image/custom/iconwhy1.svg";
+
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function CustomWigs() {
@@ -27,31 +14,25 @@ export default function CustomWigs() {
         <h2 className="fw-bold text-uppercase headingHover">Our partners</h2>
         <div className="d-flex flex-wrap justify-content-between container pt-5 row mx-auto g-3">
           <div className="col  my-auto p-3 cardImg">
-            <img src="./Image/partners/1.svg" alt="this is a picture" />
+            <img src="Image/partners/1.svg" alt="this is a picture" />
           </div>
           <div className="col  my-auto p-3 cardImg">
-            <img src="./Image/partners/2.svg" alt="this is a picture" />
+            <img src="Image/partners/2.svg" alt="this is a picture" />
           </div>
           <div className="col  my-auto p-3 cardImg">
-            <img src="./Image/partners/3.svg" alt="this is a picture" />
+            <img src="Image/partners/3.svg" alt="this is a picture" />
           </div>
           <div className="col  my-auto p-3 cardImg">
-            <img src="./Image/partners/4.svg" alt="this is a picture" />
+            <img src="Image/partners/4.svg" alt="this is a picture" />
           </div>
           <div className="col  my-auto p-3 cardImg">
-            <img src="./Image/partners/5.svg" alt="this is a picture" />
+            <img src="Image/partners/5.svg" alt="this is a picture" />
           </div>
           <div className="col  my-auto p-3 cardImg">
-            <img src="./Image/partners/6.svg" alt="this is a picture" />
+            <img src="Image/partners/6.svg" alt="this is a picture" />
           </div>
-          {/* <img src={p2} alt="this is a picture" />
-          <img src={p3} alt="this is a picture" />
-          <img src={p4} alt="this is a picture" />
-          <img src={p5} alt="this is a picture" />
-          <img src={p6} alt="this is a picture" /> */}
         </div>
       </div>
-      {/* position-relative position-absolute */}
 
       <div className="bg-custom">
         <div className="p-3 p-lg-0 overflow-hidden">
@@ -71,7 +52,7 @@ export default function CustomWigs() {
             <div className="mx-auto   col-6 col-lg-2">
               <img
                 className=" wc-22 w-100 h-100"
-                src="./Image/custom/1.svg"
+                src="Image/custom/1.svg"
                 alt="This  is an  picture"
               />
             </div>
@@ -79,7 +60,7 @@ export default function CustomWigs() {
             <div className="mx-auto  col-6 col-lg-2">
               <img
                 className=" wc-22 w-100 h-100"
-                src="./Image/custom/2.svg"
+                src="Image/custom/2.svg"
                 alt="This  is an  picture"
               />
             </div>
@@ -87,7 +68,7 @@ export default function CustomWigs() {
             <div className="mx-auto  col-6 col-lg-2">
               <img
                 className=" wc-22 w-100 h-100"
-                src="./Image/custom/3.svg"
+                src="Image/custom/3.svg"
                 alt="This  is an  picture"
               />
             </div>
@@ -95,21 +76,21 @@ export default function CustomWigs() {
             <div className="mx-auto  col-6 col-lg-2">
               <img
                 className=" wc-22 w-100 h-100"
-                src="./Image/custom/4.svg"
+                src="Image/custom/4.svg"
                 alt="This  is an  picture "
               />
             </div>
             <div className="mx-auto col-6 col-lg-2">
               <img
                 className=" wc-22 w-100 h-100"
-                src="./Image/custom/5.svg"
+                src="Image/custom/5.svg"
                 alt="This  is an  picture "
               />
             </div>
             <div className="mx-auto  col-6 col-lg-2">
               <img
                 className="wc-22 w-100 h-100"
-                src="./Image/custom/6.svg"
+                src="Image/custom/6.svg"
                 alt="This  is an  picture "
               />
             </div>
@@ -138,7 +119,7 @@ export default function CustomWigs() {
             <h2 className="fw-bold my-whole">WHY CHOOSE US</h2>
             <img
               className="mb-3"
-              src="./Image/custom/iconwhy.svg"
+              src="Image/custom/iconwhy.svg"
               alt="this is a picture"
             />
             <p className="text-theme-gray ">Non-Surgical Hair Replacement</p>
@@ -147,7 +128,7 @@ export default function CustomWigs() {
             <p className="text-theme-gray ">Loyal customer base</p>
             <img
               className="mt-5 mb-3"
-              src="./Image/custom/iconwhy1.svg"
+              src="Image/custom/iconwhy1.svg"
               alt="this is a picture"
             />
             <p className="text-theme-gray ">Easy return policy</p>
