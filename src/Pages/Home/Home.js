@@ -305,11 +305,11 @@ export default function Home() {
         accountName="Iconive Wigs"
         avatar="/Image/logo/Img 3.png"
       />
-      <FloatingWhatsApp
+      {/* <FloatingWhatsApp
         phoneNumber="+8801880962155"
         accountName="Iconive Wigs"
         avatar="./image/logo/Img 3.png"
-      />
+      /> */}
     </div>
   );
 }
