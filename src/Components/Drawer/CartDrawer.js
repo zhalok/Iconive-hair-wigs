@@ -58,7 +58,7 @@ export default function CartDrawer({ opened, close }) {
       <Drawer
         opened={opened}
         onClose={close}
-        title="  Shopping Cart"
+        title="Shopping Cart"
         zIndex={1000}
         withOverlay={true}
         position={"right"}
@@ -136,7 +136,7 @@ export default function CartDrawer({ opened, close }) {
             ) : (
               <div className="text-center p-2 fw-bold text-secondary">
                 <img
-                  src="./Image/emptycart.webp"
+                  src="/Image/emptycart.webp"
                   alt="this is an image "
                   className="w-75 mt-5 mb-3"
                 />

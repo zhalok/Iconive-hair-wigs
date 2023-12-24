@@ -22,6 +22,7 @@ import CurrencyContext from "../../Contexts/CurrencyContext";
 import AuthContext from "../../Contexts/AuthContext";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const navigate = useNavigate();
@@ -249,6 +250,12 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{productDetails?.name}</title>
+        <meta property="og:title" content={productDetails?.name} />
+        <meta name="description" content={productDetails?.metaDescription} />
+      </Helmet>
       <ToastContainer />
       <div className="positon-relation">
         <div className="px120 d-flex flex-column flex-lg-row my-5 row m-0">
