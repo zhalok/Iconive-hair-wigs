@@ -21,17 +21,17 @@ export default function Footer() {
               </p>
               <div className="text-lg-start text-center">
                 <img
-                  src="./Image/footer/sp1.svg"
+                  src="/Image/footer/sp1.svg"
                   className=""
                   alt="this is an icon"
                 />
                 <img
-                  src="./Image/footer/sp2.svg"
+                  src="/Image/footer/sp2.svg"
                   className=""
                   alt="this is an icon"
                 />
                 <img
-                  src="./Image/footer/sp3.svg"
+                  src="/Image/footer/sp3.svg"
                   className=""
                   alt="this is an icon"
                 />
@@ -41,27 +41,27 @@ export default function Footer() {
               </p>
               <div className="text-lg-start text-center">
                 <img
-                  src="./Image/footer/p1.svg"
+                  src="/Image/footer/p1.svg"
                   className=""
                   alt="this is an icon"
                 />
                 <img
-                  src="./Image/footer/p2.svg"
+                  src="/Image/footer/p2.svg"
                   className=""
                   alt="this is an icon"
                 />
                 <img
-                  src="./Image/footer/p3.svg"
+                  src="/Image/footer/p3.svg"
                   className=""
                   alt="this is an icon"
                 />
                 <img
-                  src="./Image/footer/p4.svg"
+                  src="/Image/footer/p4.svg"
                   className=""
                   alt="this is an icon"
                 />
                 <img
-                  src="./Image/footer/p5.svg"
+                  src="/Image/footer/p5.svg"
                   className=""
                   alt="this is an icon"
                 />
