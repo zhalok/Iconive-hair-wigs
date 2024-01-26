@@ -126,11 +126,27 @@ export default function Wholesale() {
   //   console.log("user", user);
   //   console.log(user?.isWholeSaler);
   // }, []);
+  const checkUser = () => {
+    axios
+      .get("/users/me", {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.user.isWholeSaler) {
+          console.log("yes");
+          navigate("/wholesalehome");
+        }
+      });
+  };
 
-  if (user?.isWholeSaler) {
-    navigate("/wholesalehome");
-    return <></>;
-  }
+  useEffect(() => {
+    if (user) {
+      checkUser();
+    }
+  }, [user]);
+
   return (
     <>
       <div className="w-100">

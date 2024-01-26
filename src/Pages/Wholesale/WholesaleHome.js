@@ -229,16 +229,6 @@ export default function WholesaleHome() {
   };
 
   useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    }
-
-    if (!user?.isWholeSaler) {
-      navigate("/wholesale");
-    }
-  }, []);
-
-  useEffect(() => {
     fetchProducts();
   }, []);
 
