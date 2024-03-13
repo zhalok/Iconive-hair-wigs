@@ -212,7 +212,8 @@ export default function Customize() {
                     type="number"
                     className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
                     placeholder="Order Quantity"
-                    value={quantity}
+                    min={1}
+                    value={quantity === 0 ? null : quantity}
                     onChange={(e) => {
                       setQuantity(e.target.value);
                     }}

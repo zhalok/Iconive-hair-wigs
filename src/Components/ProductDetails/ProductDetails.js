@@ -442,7 +442,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
                   <p className="mt-3 text-14 text-secondary">
                     For detailed & clear color guide{" "}
                     <a
-                      href="/blog"
+                      href="/blog?show=5"
                       className="text-decoration-none text-theme-yellow hoverBold"
                     >
                       Click here

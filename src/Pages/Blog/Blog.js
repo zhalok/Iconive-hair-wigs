@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Blog.css";
 import Subscription from "../../Components/Subscription/Subscription";
 import BasicHair from "./BasicHair";
@@ -8,9 +8,19 @@ import BaseHair from "./BaseHair";
 import WearingSize from "./WearingSize";
 import HairWaveDensity from "./HairWaveDensity";
 import ColorGuide from "./ColorGuide";
+import { useLocation } from "react-router-dom";
 
 export default function Blog() {
   const [active, setActive] = useState(1);
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  console.log(query.get("show"));
+
+  useEffect(() => {
+    if (query.get("show")) {
+      setActive(parseInt(query.get("show")));
+    }
+  }, [query]);
   return (
     <>
       <div className="d-flex flex-column flex-lg-row flex-wrap justify-content-center pt-4 pb-2 gap-md-5 gap-3 px-5 px-lg-0">

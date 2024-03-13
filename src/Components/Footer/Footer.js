@@ -90,7 +90,7 @@ export default function Footer() {
               </a>
               <a
                 className="mx-1"
-                href="https://wa.me/message/PIZLMGBXCLUUN1"
+                href="https://wa.me/+8801601162155"
                 target="_blank"
                 rel="noreferrer"
               >
