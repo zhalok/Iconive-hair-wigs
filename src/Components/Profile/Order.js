@@ -195,7 +195,7 @@ export default function Order({ order, index, getOrders }) {
   //       // console.log(typeof res.data);
   //       const blob = new Blob([res.data], { type: "application/pdf" });
   //       const url = URL.createObjectURL(blob);
-  //       const link = document.createElement("a");
+  //       const link = document.createElement("a")4589+;
   //       link.href = url;
   //       link.download = "invoice_" + order?.payment?.invoice_number + ".pdf"; // Adjust the file name and extension
   //       link.click();
@@ -231,7 +231,7 @@ export default function Order({ order, index, getOrders }) {
                 </p>
                 <p className="text-invoice text-theme">
                   {" "}
-                  {order?.createdAt} <FlightIcon />
+                  {calculateDays(order?.createdAt)} <FlightIcon />
                 </p>
               </div>
             </div>
