@@ -60,7 +60,6 @@ export default function Order({ order, index, getOrders }) {
   const [blob1, setBlob1] = useState(null);
   const [blob2, setBlob2] = useState(null);
   // console.log("Order", order);
-
   const cancelOrder = async () => {
     try {
       setLoading(true);
@@ -204,8 +203,6 @@ export default function Order({ order, index, getOrders }) {
   //     })
   //     .catch((e) => console.log(e));
   // };
-
-  console.log(order);
 
   return (
     <>
