@@ -154,55 +154,6 @@ export default function Category({}) {
                   />
                 )}
               </div>
-              {/* <div className="d-flex justify-content-between px120pro flex-column flex-lg-row ">
-                <div className="d-flex gap-2 gayeb w-25p">
-                  <p className="text-uppercase text-22 my-auto ps-4 fw-bold">
-                    Filters{" "}
-                  </p>
-                  <img
-                    src="./Image/image_c/filter.svg"
-                    className="h-50 my-auto"
-                    alt="this is an image"
-                  />
-                </div>
-                <div className="w-60p mx-auto pt-4 pt-md-0">
-                  <form class="d-flex  w-60p mx-auto">
-                    <input
-                      class="form-control round-start "
-                      type="search"
-                      placeholder="Search"
-                      aria-label="Search"
-                    />
-                    <button
-                      class="btn btn-secondary  py-1 round-end"
-                      type="submit"
-                    >
-                      Search
-                    </button>
-                  </form>
-                </div>
-
-                <div className="my-auto d-flex mx-auto gap-5 py-3 pt-md-0 w-25p  msm-auto ms">
-                  <div class="btn-group w-100 outline-secondary">
-                    <p className="text-16 text-theme-gray my-auto w-50 ">
-                      SORT BY
-                    </p>
-                    <button
-                      class="btn btn-secondary btn-sm dropdown-toggle"
-                      type="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Price
-                    </button>
-                    <ul class="dropdown-menu p-2 text-13 ">
-                      <li>Price (High to Low)</li>
-                      <li className="py-2">Price (Low to High)</li>
-                      <li>A to Z</li>
-                    </ul>
-                  </div>
-                </div>
-              </div> */}
 
               <div className="d-flex px120 flex-column flex-lg-row mt-5">
                 {/* sidebar */}

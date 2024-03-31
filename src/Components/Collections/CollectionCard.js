@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState, useContext, Suspense } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
 import currencyConverter from "../../utils/CurrencyChanger";
@@ -14,7 +14,6 @@ import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function CollectionCard({ product, setProduct, index }) {
-  const navigate = useNavigate();
   const { user, setUser } = useContext(AuthContext);
   // const [product, setProduct] = useState({});
   const [inWishList, setInWishList] = useState(false);
@@ -23,22 +22,6 @@ export default function CollectionCard({ product, setProduct, index }) {
   const [loading, setLoading] = useState(false);
 
   const { currency, setCurrency } = useContext(CurrencyContext);
-  // console.log()
-
-  // const getProduct = async (productId) => {
-  //   try {
-  //     const response = await axios.get("/products/" + productId, {
-  //       params: {
-  //         currency: currency,
-  //       },
-  //     });
-  //     const data = response.data;
-  //     // console.log(data);
-  //     setProduct(data);
-  //   } catch (e) {
-  //     // console.log(e);
-  //   }
-  // };
 
   const addToWishlist = async () => {
     try {
@@ -98,7 +81,6 @@ export default function CollectionCard({ product, setProduct, index }) {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       });
-      // console.log(response.data);
       if (response.data) {
         setInWishList(true);
       } else setInWishList(false);
@@ -109,144 +91,45 @@ export default function CollectionCard({ product, setProduct, index }) {
     }
   };
 
-  // const currencyConversion = async () => {
-  //   const response = await axios.get("/products/" + product?._id, {
-  //     params: {
-  //       currency: currency,
-  //     },
-  //   });
-  //   const data = response.data;
-  //   // console.log(data);
-  //   setProduct((prev) => {
-  //     return { ...prev, price: data.price };
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   currencyConversion();
-  // }, [currency]);
-
   const handleClick = () => {
-    // navigate(`/productDetails/${productId}`);
     window.location.replace(
       `${window.location.origin}/productDetails/` + product?._id
     );
   };
 
   useEffect(() => {
-    // console.log(productId);
-    // getProduct(productId);
     user && checkWishList();
   }, [product]);
-
-  // useEffect(() => {
-  //   console.log(currency);
-  //   changeCurrency(product.currency, currency, product.price);
-  // }, [currency]);
 
   if (loading) return <PulseLoader color="#F50057" size={20} />;
 
   return (
     <>
-      {/* <ToastContainer /> */}
-      {/* <div
-        key={index}
-        style={{
-          cursor: "pointer",
-        }}
-        className="card-main border rounded-iconive  mx-auto d-flex flex-column"
-      >
-        <div className="img-card position-relative cardMain porda overflow-hidden">
-          <div
-            onClick={() => {
-              handleClick(product?._id);
-            }}
-          >
-            <img
-              className="w-100 h-100 rounded-iconive card-img2 overflow-hidden"
-              src={product?.photo}
-              alt="This  is an  picture"
-            />
-            {product?.discount !== 0 && (
-              <span className="position-absolute top-0 end-0 bg-danger text-light px-3 py-2 rounded-circle m-3 overflow-hidden">
-                <p className="fw-bold mb-0 mt-1 text-18">
-                  {product?.discount}%
-                </p>
-                <p className="fw-bold my-0 pt-0 text-14">OFF</p>
-              </span>
-            )}
-            <p className="text-start px-3 pt-3 fw-bold  ">{product?.name}</p>
-            <div className="d-flex mt-auto px-3 pb-3">
-              {product?.discount !== 0 && (
-                <p className="text-20 fw-bold text-secondary text-decoration-line-through pt-1 my-auto me-3">
-                  {currency === "USD" ? "$" : "৳"}
-                  {currencyConverter(currency, product?.price)}
-                </p>
-              )}
-
-              <p className="text-20 fw-bold text-dark my-auto pt-1 ">
-                {currency === "USD" ? "$" : "৳"}
-                {currencyConverter(
-                  currency,
-                  discountCalculator(product?.price, product?.discount)
-                )}
-              </p>
-            </div>
-          </div>
-
-          <div className="d-flex ms-auto" style={{}}>
-            {user && (
-              <button
-                className="btn px-0 mt-1"
-                name="wishlist"
-                onClick={() => {
-                  inWishList ? removeFromWishlist() : addToWishlist();
-                }}
-              >
-                {" "}
-                {!inWishList ? (
-                  <FavoriteBorderIcon
-                    className="text-theme-icon"
-                    sx={{ width: "29px", height: "25px" }}
-                  />
-                ) : (
-                  <Favorite
-                    className="text-theme-icon"
-                    sx={{ width: "29px", height: "25px" }}
-                  />
-                )}
-              </button>
-            )}
-          </div>
-        </div>
-      </div> */}
       <div
         key={index}
         className="card-main border rounded-iconive w-25 d-flex flex-column"
       >
-        <div
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            handleClick(product?._id);
-          }}
-        >
-          {" "}
-          <div className="img-card img-card position-relative cardMain overflow-hidden porda">
-            <img
-              className="w-100 h-100 rounded-iconive cardImg"
-              src={product.photo}
-              alt="This  is an  picture"
-            />
-            {product.discount !== 0 && (
-              <span className="position-absolute top-0 end-0 bg-danger text-light px-3 py-2 rounded-circle m-3 overflow-hidden">
-                <p className="fw-bold mb-0 mt-1 text-18">{product.discount}%</p>
-                <p className="fw-bold my-0 pt-0 text-14">OFF</p>
-              </span>
-            )}
-          </div>
-          <p className=" fw-bold text-16 text-dark text-start px-3">
-            {product.name}
-          </p>
+        <div style={{ cursor: "pointer" }}>
+          <Link to={`/productDetails/${product?._id}`}>
+            <div className="img-card img-card position-relative cardMain overflow-hidden porda">
+              <img
+                className="w-100 h-100 rounded-iconive cardImg"
+                src={product.photo}
+                alt="This  is an  picture"
+              />
+              {product.discount !== 0 && (
+                <span className="position-absolute top-0 end-0 bg-danger text-light px-3 py-2 rounded-circle m-3 overflow-hidden">
+                  <p className="fw-bold mb-0 mt-1 text-18">
+                    {product.discount}%
+                  </p>
+                  <p className="fw-bold my-0 pt-0 text-14">OFF</p>
+                </span>
+              )}
+            </div>
+            <p className=" fw-bold text-16 text-dark text-start px-3">
+              {product.name}
+            </p>
+          </Link>{" "}
         </div>
 
         <div className="text-start px-3 pb-3 mt-auto">
@@ -261,23 +144,7 @@ export default function CollectionCard({ product, setProduct, index }) {
               {currency == "USD" ? "$" : "৳"}
               {currencyConverter(currency, product.price)}
             </p>
-            {/* <div className="d-flex ms-auto">
-              {user && (
-                <button
-                  className="btn px-0 mt-1"
-                  onClick={() => {
-                    addToWishlist();
-                  }}
-                >
-                  {" "}
-                  <img
-                    src="./Image/card/cardicon2.svg"
-                    className=""
-                    alt="this is an icon"
-                  />
-                </button>
-              )}
-            </div> */}
+
             <div className="d-flex ms-auto">
               {user && (
                 <button
