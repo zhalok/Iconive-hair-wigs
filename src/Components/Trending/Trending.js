@@ -39,9 +39,8 @@ export default function Trending() {
             picks of trending wigs
           </p>
         </div>
-        <div className="d-flex flex-wrap flex-column flex-lg-row gap-4 mx-auto justify-content-center">
+        <div className="d-flex w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center ">
           {newArrivals.map((product, index) => {
-            // console.log(product._id);
             return <CollectionCard product={product} index={index} />;
           })}
         </div>

@@ -14,7 +14,6 @@ export default function OrderItem({ orderItemId }) {
   const getOrderItem = async () => {
     try {
       const response = await axios.get(`/orderItem/getOne/${orderItemId}`);
-      // console.log("orderItem", response.data);
       setOrderItem(response.data);
     } catch (e) {
       console.log();
