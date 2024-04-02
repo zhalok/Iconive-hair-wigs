@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
 import currencyConverter from "../../utils/CurrencyChanger";
-import discountCalculator from "../../utils/calculateDIscount";
 import CurrencyContext from "../../Contexts/CurrencyContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Favorite } from "@mui/icons-material";

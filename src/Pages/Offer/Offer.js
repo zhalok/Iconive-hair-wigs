@@ -15,15 +15,16 @@ export default function Offer() {
   const navigate = useNavigate();
   const [collapase, setCollapse] = useState(false);
   const [newArrivals, setNewArrivals] = useState([]);
+  const [productsToShow, setProductsToShow] = useState([]);
   const { currency, setCurrency } = useContext(CurrencyContext);
 
   const getNewArrivals = async () => {
     try {
-      const response = await axios.get("/filterProducts/newArrivals");
-      // console.log("Latest", response.data);
+      const response = await axios.get("/filterProducts/offers");
+      console.log("Latest", response.data);
       setNewArrivals(response.data);
     } catch (e) {
-      // console.log(e);
+      console.log(e);
     }
   };
 
@@ -34,8 +35,13 @@ export default function Offer() {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
+
+  useEffect(() => {
+    setProductsToShow(newArrivals.slice(0, 3));
+  }, [newArrivals]);
+
   return (
-    <>
+    <div className="w-100">
       <div className="w-100">
         <img
           src="./Image/offer/offer1.webp"
@@ -43,8 +49,8 @@ export default function Offer() {
           alt="this is a banner"
         />
       </div>
-      <div className="container mt-5p">
-        <div className="w-100  pb-3">
+      <div className="mt-5p">
+        <div className="w-100 pb-3">
           <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 mx-auto text-uppercase headingHover">
             Stock clearance sale
           </h2>
@@ -52,16 +58,17 @@ export default function Offer() {
             Get the perfect Wig at an amazing price that is readily available!
           </p>
         </div>
-        <div className="container d-flex flex-column flex-lg-row justify-content-center gap-5 my-5">
-          {newArrivals.map((product, index) => {
-            // console.log(product._id);
+        <div className="container d-flex flex-row flex-wrap  justify-content-center gap-5 my-5">
+          {productsToShow.map((product, index) => {
             return <CollectionCard product={product} index={index} />;
           })}
         </div>
+
         <div className="mb-5 mt-4 d-flex flex-column text-center">
           {collapase && (
             <button
               onClick={() => {
+                setProductsToShow(newArrivals.slice(0, 3));
                 setCollapse((prevs) => {
                   return !prevs;
                 });
@@ -75,6 +82,7 @@ export default function Offer() {
           {!collapase && (
             <button
               onClick={() => {
+                setProductsToShow(newArrivals);
                 setCollapse((prevs) => {
                   return !prevs;
                 });
@@ -106,12 +114,22 @@ export default function Offer() {
             price.
           </p>
         </div>
-        <div className="d-flex flex-column flex-lg-row w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center">
+        {/* <div className="d-flex flex-wrap flex-column flex-lg-row gap mt-5 flex-wrap gap-4 mx-auto justify-content-center">
           {newArrivals.map((product, index) => {
             // console.log(product._id);
             return <CollectionCard product={product} index={index} />;
           })}
-        </div>
+        </div> */}
+
+        {/* <div className="w-80 ps-md-5 pt-5 pt-md-0">
+          <div className="d-flex flex-wrap flex-column gap-4 mx-auto justify-content-center">
+            {newArrivals.map((product, index) => {
+              // console.log(product._id);
+              return <CollectionCard product={product} index={index} />;
+            })}
+          </div>
+        </div> */}
+
         <div className="mb-5 mt-4 d-flex flex-column text-center">
           {collapase && (
             <button
@@ -143,6 +161,6 @@ export default function Offer() {
       </div>
 
       <Subscription />
-    </>
+    </div>
   );
 }

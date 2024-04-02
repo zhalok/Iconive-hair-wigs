@@ -155,7 +155,7 @@ export default function Category({}) {
                 )}
               </div>
 
-              <div className="d-flex px120 flex-column flex-lg-row mt-5">
+              <div className="d-flex px-120 flex-column flex-lg-row mt-5">
                 {/* sidebar */}
                 <div className="sidebarwidth d-flex flex-column gap-4">
                   <div className="sidebarBg  ">
