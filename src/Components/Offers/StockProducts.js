@@ -4,14 +4,14 @@ import axios from "../../utils/axios";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 
-export default function StockExchange() {
+export default function StockProducts() {
   const [newArrivals, setNewArrivals] = useState([]);
   const [productsToShow, setProductsToShow] = useState([]);
   const [collapase, setCollapse] = useState(false);
 
   const getNewArrivals = async () => {
     try {
-      const response = await axios.get("/filterProducts/offers");
+      const response = await axios.get("/filterProducts/stock");
       console.log("Latest", response.data);
       setNewArrivals(response.data);
     } catch (e) {
@@ -35,7 +35,7 @@ export default function StockExchange() {
     <>
       <div className="w-100">
         <img
-          src="./Image/offer/offer1.webp"
+          src="/Image/offer/offer1.webp"
           className="w-100"
           alt="this is a banner"
         />

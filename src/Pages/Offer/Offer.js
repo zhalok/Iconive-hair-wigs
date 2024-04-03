@@ -10,8 +10,8 @@ import CollectionCard from "../../.././src/Components/Collections/CollectionCard
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import "./Offer.css";
-import StockExchange from "../../Components/Offers/StockExchange";
 import Offers from "../../Components/Offers/Offers";
+import StockProducts from "../../Components/Offers/StockProducts";
 
 export default function Offer() {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ export default function Offer() {
 
   return (
     <div className="w-100">
-      <StockExchange />
+      <StockProducts />
       <Offers />
 
       <Subscription />

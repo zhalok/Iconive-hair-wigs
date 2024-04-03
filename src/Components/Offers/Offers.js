@@ -35,7 +35,7 @@ export default function Offers() {
     <>
       <div className="w-100">
         <img
-          src="./Image/offer/offter2.webp"
+          src="/Image/offer/offter2.webp"
           className="w-100"
           alt="this is a banner"
         />
@@ -43,10 +43,11 @@ export default function Offers() {
       <div className="mt-5p">
         <div className="w-100 pb-3">
           <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 mx-auto text-uppercase headingHover">
-            Stock clearance sale
+            Spring Sale
           </h2>
           <p className="text-theme-gray text-18">
-            Get the perfect Wig at an amazing price that is readily available!
+            Spot perfectly fitting wigs for spring at a stunning discounted
+            price.
           </p>
         </div>
         <div className="container d-flex flex-row flex-wrap  justify-content-center gap-5 my-5">
