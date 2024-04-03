@@ -106,7 +106,7 @@ export default function CollectionCard({ product, setProduct, index }) {
     <>
       <div
         key={index}
-        className="card-main border rounded-iconive w-25 d-flex flex-column"
+        className="card-main border rounded-iconive w-25 d-flex flex-column mx-auto"
       >
         <div style={{ cursor: "pointer" }}>
           <Link to={`/productDetails/${product?._id}`}>
