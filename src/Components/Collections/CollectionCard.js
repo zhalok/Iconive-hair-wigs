@@ -106,10 +106,15 @@ export default function CollectionCard({ product, setProduct, index }) {
     <>
       <div
         key={index}
-        className="card-main border rounded-iconive w-25 d-flex flex-column"
+        className="card-main border rounded-iconive w-25 d-flex flex-column mx-auto"
       >
         <div style={{ cursor: "pointer" }}>
-          <Link to={`/productDetails/${product?._id}`}>
+          <Link
+            to={`/productDetails/${product?._id}`}
+            style={{
+              textDecoration: "none",
+            }}
+          >
             <div className="img-card img-card position-relative cardMain overflow-hidden porda">
               <img
                 className="w-100 h-100 rounded-iconive cardImg"
