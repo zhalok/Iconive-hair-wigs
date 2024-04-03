@@ -186,6 +186,11 @@ export default function Checkout(props) {
       return;
     }
 
+    if (!checkRefund) {
+      alert("Please agree to the return policy");
+      return;
+    }
+
     const token = Cookies.get("jwt");
 
     if (!token) {

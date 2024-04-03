@@ -10,20 +10,23 @@ import CollectionCard from "../../.././src/Components/Collections/CollectionCard
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import "./Offer.css";
+import Offers from "../../Components/Offers/Offers";
+import StockProducts from "../../Components/Offers/StockProducts";
 
 export default function Offer() {
   const navigate = useNavigate();
   const [collapase, setCollapse] = useState(false);
   const [newArrivals, setNewArrivals] = useState([]);
+  const [productsToShow, setProductsToShow] = useState([]);
   const { currency, setCurrency } = useContext(CurrencyContext);
 
   const getNewArrivals = async () => {
     try {
-      const response = await axios.get("/filterProducts/newArrivals");
-      // console.log("Latest", response.data);
+      const response = await axios.get("/filterProducts/offers");
+      console.log("Latest", response.data);
       setNewArrivals(response.data);
     } catch (e) {
-      // console.log(e);
+      console.log(e);
     }
   };
 
@@ -34,115 +37,17 @@ export default function Offer() {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
+
+  useEffect(() => {
+    setProductsToShow(newArrivals.slice(0, 3));
+  }, [newArrivals]);
+
   return (
-    <>
-      <div className="w-100">
-        <img
-          src="./Image/offer/offer1.webp"
-          className="w-100"
-          alt="this is a banner"
-        />
-      </div>
-      <div className="container mt-5p">
-        <div className="w-100  pb-3">
-          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 mx-auto text-uppercase headingHover">
-            Stock clearance sale
-          </h2>
-          <p className="text-theme-gray text-18">
-            Get the perfect Wig at an amazing price that is readily available!
-          </p>
-        </div>
-        <div className="container d-flex flex-column flex-lg-row justify-content-center gap-5 my-5">
-          {newArrivals.map((product, index) => {
-            // console.log(product._id);
-            return <CollectionCard product={product} index={index} />;
-          })}
-        </div>
-        <div className="mb-5 mt-4 d-flex flex-column text-center">
-          {collapase && (
-            <button
-              onClick={() => {
-                setCollapse((prevs) => {
-                  return !prevs;
-                });
-              }}
-              className="btn text-16 text-theme-gray"
-            >
-              <KeyboardArrowUpOutlinedIcon />
-              Collapse
-            </button>
-          )}
-          {!collapase && (
-            <button
-              onClick={() => {
-                setCollapse((prevs) => {
-                  return !prevs;
-                });
-              }}
-              className="btn text-16 text-theme-gray"
-            >
-              <KeyboardArrowDownOutlinedIcon />
-              Expand
-            </button>
-          )}
-        </div>
-      </div>
-
-      <div className="w-100">
-        <img
-          src="./Image/offer/offter2.webp"
-          className="w-100"
-          alt="this is a banner"
-        />
-      </div>
-
-      <div className="container mt-5p">
-        <div className="w-100 pb-3">
-          <h2 className="fw-bold fs-2 bg-wh text-dark px-4 pb-0 mx-auto text-uppercase headingHover">
-            Spring Sale
-          </h2>
-          <p className="text-theme-gray text-18">
-            Spot perfectly fitting wigs for spring at a stunning discounted
-            price.
-          </p>
-        </div>
-        <div className="d-flex flex-column flex-lg-row w-100 mt-5 flex-wrap gap-4 mx-auto justify-content-center">
-          {newArrivals.map((product, index) => {
-            // console.log(product._id);
-            return <CollectionCard product={product} index={index} />;
-          })}
-        </div>
-        <div className="mb-5 mt-4 d-flex flex-column text-center">
-          {collapase && (
-            <button
-              onClick={() => {
-                setCollapse((prevs) => {
-                  return !prevs;
-                });
-              }}
-              className="btn text-16 text-theme-gray"
-            >
-              <KeyboardArrowUpOutlinedIcon />
-              Collapse
-            </button>
-          )}
-          {!collapase && (
-            <button
-              onClick={() => {
-                setCollapse((prevs) => {
-                  return !prevs;
-                });
-              }}
-              className="btn text-16 text-theme-gray"
-            >
-              <KeyboardArrowDownOutlinedIcon />
-              Expand
-            </button>
-          )}
-        </div>
-      </div>
+    <div className="w-100">
+      <StockProducts />
+      <Offers />
 
       <Subscription />
-    </>
+    </div>
   );
 }
