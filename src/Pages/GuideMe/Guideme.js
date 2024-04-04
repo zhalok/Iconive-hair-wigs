@@ -1,13 +1,20 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Guideme.css";
 import Subscription from "../../Components/Subscription/Subscription";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
+import AuthContext from "../../Contexts/AuthContext";
+import { Navigate } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../utils/firebaseConfig";
+import axios from "../../utils/axios";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 export default function Guideme() {
   useEffect(() => {
     window.scroll(0, 0);
@@ -16,6 +23,93 @@ export default function Guideme() {
   const [windowCount, setWindow] = useState(1);
   const [btnCtn, setbtnCtn] = useState(1);
   const [morf, setmorf] = useState();
+
+  const { user, setUser } = useContext(AuthContext);
+  const googleLogin = () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // console.log("credentials from success", credential);
+        // console.log("user", user);
+        const { uid, email } = user;
+        axios
+          .post("/auth/login", {
+            email,
+            password: uid,
+          })
+          .then((response) => {
+            Cookies.set("jwt", response.data.token);
+            window.location.reload();
+          })
+          .catch((e) => {
+            // console.log(e);\
+            axios
+              .post("/auth/signup", {
+                email,
+                password: uid,
+                passwordConfirm: uid,
+                name: user?.displayName,
+                verified: user?.emailVerified,
+              })
+              .then((response) => {
+                Cookies.set("jwt", response.data.token);
+                window.location.reload();
+              })
+              .catch((e) => {
+                console.log(e);
+                toast.error(e?.response?.data?.message);
+              });
+          });
+
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(credential);
+        // ...
+      });
+  };
+
+  if (!user)
+    return (
+      <div className="container my-5 bg-wholesale">
+        <div className="w-50   rounded-theme11 m-auto ">
+          <div className=" w-100 text-center">
+            <p className="pt-5 pb-0 mb-0 fw-bold text-theme-dark  text-28 mx-auto ">
+              Please login first
+            </p>
+            {/* <p className="ps-5 pt-1 text-14">Want to be a wholesaler?</p> */}
+            <div className="text-center p-5 ">
+              <button
+                type="submit"
+                className="btn btn-theme-up px-5 py-2 my-4 text-light text-boldz"
+                style={{
+                  textEmphasis: true,
+                }}
+                onClick={() => {
+                  googleLogin();
+                }}
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
 
   return (
     <div className="pt-md-5">
