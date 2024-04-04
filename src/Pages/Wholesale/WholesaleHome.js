@@ -107,10 +107,14 @@ export default function WholesaleHome() {
   const [itemQuantity, setItemQuantity] = useState(0);
   const { user, setUser } = useContext(AuthContext);
   const [gentsProducts, setGentsProducts] = useState();
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedSubCategory, setSelectedSubCategory] = useState([]);
+
   // Array.from({ length: 20 })
   const [ladiesProducts, setLadiesProducts] = useState([]);
   const [extensionProducts, setExtensionProducts] = useState([]);
   const [accessoriesProducts, setAccessoriesProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [selected, setSelected] = useState([]);
   const navigate = useNavigate();
@@ -151,13 +155,14 @@ export default function WholesaleHome() {
       });
   };
 
-  const fetchProducts = async () => {
+  const fetchSubcategories = async () => {
     axios
-      .get("/wholesale/getAllProducts", {
+      .get("/subCategory/", {
         params: {
-          filters: {
-            categories: ["6432a3f8bc1e9c4115b67db5"],
-          },
+          // filters: {
+          //   categories: ["6432a3f8bc1e9c4115b67db5"],
+          // },
+          category: "6432a3f8bc1e9c4115b67db5",
         },
         headers: {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
@@ -173,67 +178,109 @@ export default function WholesaleHome() {
       });
 
     axios
-      .get("/wholesale/getAllProducts", {
+      .get("/subCategory/", {
         params: {
-          filters: {
-            categories: ["6432eb5a9e5f9a8abde960e0"],
-          },
+          // filters: {
+          //   categories: ["6432a3f8bc1e9c4115b67db5"],
+          // },
+          category: "6432eb5a9e5f9a8abde960e0",
         },
         headers: {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       })
       .then((res) => {
+        // console.log(res.data.slice(0, 3));
         setLadiesProducts(res.data);
+        console.log(gentsProducts);
       })
       .catch((e) => {
         console.log(e);
       });
 
     axios
-      .get("/wholesale/getAllProducts", {
+      .get("/subCategory/", {
         params: {
-          filters: {
-            categories: ["64343a704fb336001b129958"],
-          },
+          // filters: {
+          //   categories: ["6432a3f8bc1e9c4115b67db5"],
+          // },
+          category: "64343a704fb336001b129958",
         },
         headers: {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       })
       .then((res) => {
-        // console.log("extensions", res.data);
+        // console.log(res.data.slice(0, 3));
         setExtensionProducts(res.data);
+        console.log("extension", res.data);
       })
       .catch((e) => {
         console.log(e);
       });
 
     axios
-      .get("/wholesale/getAllProducts", {
+      .get("/subCategory/", {
         params: {
-          filters: {
-            categories: ["64343aaf4fb336001b12995c"],
-          },
+          category: "64343aaf4fb336001b12995c",
         },
         headers: {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       })
       .then((res) => {
+        // console.log(res.data.slice(0, 3));
         setAccessoriesProducts(res.data);
+        console.log(gentsProducts);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
+  const getProducts = async () => {
+    // console.log("calling");
+    try {
+      const response = await axios.get("/products", {
+        params: {
+          filters: {
+            subcategories: selectedSubCategory,
+          },
+        },
+      });
+      // toast
+      //   .promise(response, {
+      //     pending: "Loading",
+      //     success: "Products Loaded",
+      //     error: "Error loading products",
+      //   })
+      //   .then((result) => {
+      //     console.log(result);
+      //     setLoadingProductts(false);
+      //     setProducts(result.data);
+      //   })
+      //   .catch((e) => {
+      //     throw new Error(e);
+      //   });
+
+      // console.log("data", response.data);
+      setProducts(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
-    fetchProducts();
+    fetchSubcategories();
   }, []);
 
-  // console.log(selected);
+  useEffect(() => {
+    getProducts();
+  }, [selectedSubCategory]);
 
+  // console.log(selected);
+  console.log("products", products);
+  console.log("selected subcategory", selectedSubCategory);
   return (
     <div>
       <ToastContainer />
@@ -326,19 +373,28 @@ export default function WholesaleHome() {
                     <div
                       className="ps-2  d-flex f-18 my-3"
                       onClick={() => {
-                        setSelected((prev) => {
-                          if (prev.map((e) => e._id).includes(product._id)) {
-                            const newState = [...prev].filter((e) => {
-                              return e._id != product._id;
-                            });
+                        // setSelected((prev) => {
+                        //   if (prev.map((e) => e._id).includes(product._id)) {
+                        //     const newState = [...prev].filter((e) => {
+                        //       return e._id != product._id;
+                        //     });
 
-                            return newState;
-                          } else {
-                            const newState = [...prev];
-                            newState.push({ ...product, quantity: 1 });
-                            return newState;
-                          }
-                        });
+                        //     return newState;
+                        //   } else {
+                        //     const newState = [...prev];
+                        //     newState.push({ ...product, quantity: 1 });
+                        //     return newState;
+                        //   }
+                        // });
+                        if (!selectedSubCategory.includes(product._id)) {
+                          setSelectedSubCategory((prev) => {
+                            return [...prev, product._id];
+                          });
+                        } else {
+                          setSelectedSubCategory((prev) => {
+                            return prev.filter((e) => e != product._id);
+                          });
+                        }
                       }}
                     >
                       <input
@@ -352,9 +408,10 @@ export default function WholesaleHome() {
                         // checked={filters
                         //   .map((e) => e.split(" ")[1])
                         //   .includes(subcategory._id)}
-                        checked={selected
-                          .map((product) => product._id)
-                          .includes(product._id)}
+                        // checked={selected
+                        //   .map((product) => product._id)
+                        //   .includes(product._id)}
+                        checked={selectedSubCategory.includes(product._id)}
                         aria-label="..."
                       />
 
@@ -421,19 +478,28 @@ export default function WholesaleHome() {
                     <div
                       className="ps-2  d-flex f-18 my-3"
                       onClick={() => {
-                        setSelected((prev) => {
-                          if (prev.map((e) => e._id).includes(product._id)) {
-                            const newState = [...prev].filter((e) => {
-                              return e._id != product._id;
-                            });
+                        // setSelected((prev) => {
+                        //   if (prev.map((e) => e._id).includes(product._id)) {
+                        //     const newState = [...prev].filter((e) => {
+                        //       return e._id != product._id;
+                        //     });
 
-                            return newState;
-                          } else {
-                            const newState = [...prev];
-                            newState.push({ ...product, quantity: 1 });
-                            return newState;
-                          }
-                        });
+                        //     return newState;
+                        //   } else {
+                        //     const newState = [...prev];
+                        //     newState.push({ ...product, quantity: 1 });
+                        //     return newState;
+                        //   }
+                        // });
+                        if (!selectedSubCategory.includes(product._id)) {
+                          setSelectedSubCategory((prev) => {
+                            return [...prev, product._id];
+                          });
+                        } else {
+                          setSelectedSubCategory((prev) => {
+                            return prev.filter((e) => e != product._id);
+                          });
+                        }
                       }}
                       //   onClick={() => {
                       //     setFilters((prev) => {
@@ -454,9 +520,7 @@ export default function WholesaleHome() {
                         class="form-check-input checkCatagory my-auto"
                         type="checkbox"
                         id="checkboxNoLabel"
-                        checked={selected
-                          .map((product) => product._id)
-                          .includes(product._id)}
+                        checked={selectedSubCategory.includes(product._id)}
                         // checked
                         aria-label="..."
                       />
@@ -523,19 +587,28 @@ export default function WholesaleHome() {
                     <div
                       className="ps-2  d-flex f-18 my-3"
                       onClick={() => {
-                        setSelected((prev) => {
-                          if (prev.map((e) => e._id).includes(product._id)) {
-                            const newState = [...prev].filter((e) => {
-                              return e._id != product._id;
-                            });
+                        // setSelected((prev) => {
+                        //   if (prev.map((e) => e._id).includes(product._id)) {
+                        //     const newState = [...prev].filter((e) => {
+                        //       return e._id != product._id;
+                        //     });
 
-                            return newState;
-                          } else {
-                            const newState = [...prev];
-                            newState.push({ ...product, quantity: 1 });
-                            return newState;
-                          }
-                        });
+                        //     return newState;
+                        //   } else {
+                        //     const newState = [...prev];
+                        //     newState.push({ ...product, quantity: 1 });
+                        //     return newState;
+                        //   }
+                        // });
+                        if (!selectedSubCategory.includes(product._id)) {
+                          setSelectedSubCategory((prev) => {
+                            return [...prev, product._id];
+                          });
+                        } else {
+                          setSelectedSubCategory((prev) => {
+                            return prev.filter((e) => e != product._id);
+                          });
+                        }
                       }}
                     >
                       <input
@@ -543,9 +616,7 @@ export default function WholesaleHome() {
                         type="checkbox"
                         id="checkboxNoLabel"
                         aria-label="..."
-                        checked={selected
-                          .map((product) => product._id)
-                          .includes(product._id)}
+                        checked={selectedSubCategory.includes(product._id)}
                       />
                       <p className="text-14 text-start Chover ms-3 my-auto">
                         {product.name}
@@ -624,31 +695,22 @@ export default function WholesaleHome() {
                       //     });
                       //   }}
                       onClick={() => {
-                        setSelected((prev) => {
-                          if (prev.map((e) => e._id).includes(product._id)) {
-                            const newState = [...prev].filter((e) => {
-                              return e._id != product._id;
-                            });
-
-                            return newState;
-                          } else {
-                            const newState = [...prev];
-                            newState.push({ ...product, quantity: 1 });
-                            return newState;
-                          }
-                        });
+                        if (!selectedSubCategory.includes(product._id)) {
+                          setSelectedSubCategory((prev) => {
+                            return [...prev, product._id];
+                          });
+                        } else {
+                          setSelectedSubCategory((prev) => {
+                            return prev.filter((e) => e != product._id);
+                          });
+                        }
                       }}
                     >
                       <input
                         class="form-check-input checkCatagory my-auto"
                         type="checkbox"
                         id="checkboxNoLabel"
-                        checked={selected
-                          .map((product) => product._id)
-                          .includes(product._id)}
-                        // checked={filters
-                        //   .map((e) => e.split(" ")[1])
-                        //   .includes(subcategory._id)}
+                        checked={selectedSubCategory.includes(product._id)}
                         aria-label="..."
                       />
                       <p className="text-14 text-start Chover ms-3 my-auto">
@@ -659,6 +721,60 @@ export default function WholesaleHome() {
                 })}
               </div>
             )}
+          </div>
+        </div>
+      </div>
+
+      <div className="w-25 ws-100 mx-auto">
+        <div className="dropbg p-4">
+          <div className="text-black d-flex border-bottom border-1 border-secondary py-3">
+            <p className="text-18 text-start text-uppercase fw-bold mb-0 pt-1 px-2">
+              Products
+            </p>
+          </div>
+
+          <div
+            className=" text-theme-gray  pt-2"
+            style={{
+              overflowY: "scroll",
+              height: "200px",
+            }}
+          >
+            {products?.map((product) => {
+              return (
+                <div
+                  className="ps-2  d-flex f-18 my-3"
+                  onClick={() => {
+                    setSelected((prev) => {
+                      if (prev.map((e) => e._id).includes(product._id)) {
+                        const newState = [...prev].filter((e) => {
+                          return e._id != product._id;
+                        });
+
+                        return newState;
+                      } else {
+                        const newState = [...prev];
+                        newState.push({ ...product, quantity: 1 });
+                        return newState;
+                      }
+                    });
+                  }}
+                >
+                  <input
+                    class="form-check-input checkCatagory my-auto"
+                    type="checkbox"
+                    id="checkboxNoLabel"
+                    checked={selected
+                      .map((product) => product._id)
+                      .includes(product._id)}
+                    aria-label="..."
+                  />
+                  <p className="text-14 text-start Chover ms-3 my-auto">
+                    {product.name}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
