@@ -241,7 +241,7 @@ export default function WholesaleHome() {
   const getProducts = async () => {
     // console.log("calling");
     try {
-      const response = await axios.get("/products", {
+      const response = await axios.get("/wholesale/getAllProducts", {
         params: {
           filters: {
             subcategories: selectedSubCategory,
