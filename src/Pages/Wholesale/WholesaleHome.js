@@ -247,6 +247,9 @@ export default function WholesaleHome() {
             subcategories: selectedSubCategory,
           },
         },
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
       });
       // toast
       //   .promise(response, {
