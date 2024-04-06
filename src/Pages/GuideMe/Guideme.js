@@ -39,18 +39,25 @@ export default function Guideme() {
 
   console.log("window", windowCount);
 
+  const createCustomProductOrder = async () => {
+    const response = await axios.post("/customProducts", info, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("jwt")}`,
+      },
+    });
+    console.log(response.data);
+    setWindow(7);
+  };
+
   const googleLogin = () => {
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        // The signed-in user info.
         const user = result.user;
-        // console.log("credentials from success", credential);
-        // console.log("user", user);
+
         const { uid, email } = user;
         axios
           .post("/auth/login", {
@@ -443,9 +450,7 @@ export default function Guideme() {
                             setInfo((prev) => {
                               return { ...prev, style: e };
                             });
-                            setWindow((prevs) => {
-                              return (prevs = prevs + 2);
-                            });
+                            createCustomProductOrder();
                           }}
                           className="btn py-2 d-flex btn-outline-secondary border px-4 "
                         >
@@ -478,8 +483,7 @@ export default function Guideme() {
                               info.type === "Complete Hair Loss" ||
                               info.type === "Hair Thinning at the Crown"
                             ) {
-                              console.log("hello there");
-                              return (prevs = prevs + 2);
+                              createCustomProductOrder();
                             } else {
                               return (prevs = prevs + 1);
                             }
@@ -505,7 +509,7 @@ export default function Guideme() {
             </h3>
 
             <div className="d-flex px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row pb-3">
-              {["6 x .75", "6 x 1", "6 x 1.5", "6 x 2"].map((e) => {
+              {sizeMapping[info.type].map((e) => {
                 return (
                   <>
                     <button
@@ -514,9 +518,7 @@ export default function Guideme() {
                           return { ...prev, baseSize: e };
                         });
 
-                        setWindow((prevs) => {
-                          return (prevs = prevs + 1);
-                        });
+                        createCustomProductOrder();
                       }}
                       className="btn py-2 d-flex btn-outline-secondary border px-4 "
                     >
