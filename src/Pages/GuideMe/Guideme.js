@@ -25,6 +25,20 @@ export default function Guideme() {
   const [morf, setmorf] = useState();
 
   const { user, setUser } = useContext(AuthContext);
+
+  const [info, setInfo] = useState({
+    gender: "",
+    type: "",
+    preferredWeather: "",
+    prority: "",
+    style: "",
+    greyHairMixed: false,
+    baseSize: "",
+    attachSystem: "",
+  });
+
+  console.log("window", windowCount);
+
   const googleLogin = () => {
     const provider = new GoogleAuthProvider();
 
@@ -83,6 +97,20 @@ export default function Guideme() {
       });
   };
 
+  const sizeMapping = {
+    "Hair thinning at the front": ["6 x .75", "6 x 1", "6 x 1.5", "6 x 2"],
+    "Hair thinning at the crown": [
+      "6 x 5",
+      "8 x 5",
+      "8 x 6",
+      "9 x 7",
+      "10 x 7",
+      "10 x 8",
+    ],
+  };
+
+  // console.log("info", info);
+
   if (!user)
     return (
       <div className="container my-5 bg-wholesale">
@@ -126,45 +154,31 @@ export default function Guideme() {
           <div className="d-flex flex-column flex-md-row p-3 p-md-5 gap-5 w-100 justify-content-center">
             <button
               onClick={() => {
-                setbtnCtn((prevs) => {
-                  return (prevs = prevs + 1);
+                setInfo((prev) => {
+                  return { ...prev, gender: "male" };
                 });
-                setmorf(1);
                 setWindow((prevs) => {
                   return (prevs = prevs + 1);
                 });
               }}
               className="btn w-50 ws-100  py-4 d-flex bg-white border px-4 overGuide"
             >
-              {/* <input
-                className="form-check-input my-auto"
-                type="radio"
-                name="flexRadioDefault "
-                id="flexRadioDefault1"
-                checked
-              /> */}
               <h5 className="ms-4 my-auto fw-bold">Male</h5>
 
               <MaleIcon className="fs-2 my-auto ms-2" />
             </button>
             <button
               onClick={() => {
-                setbtnCtn((prevs) => {
-                  return (prevs = prevs + 1);
+                setInfo((prev) => {
+                  return { ...prev, gender: "female" };
                 });
-                setmorf(0);
+
                 setWindow((prevs) => {
                   return (prevs = prevs + 1);
                 });
               }}
               className="btn w-50 ws-100 py-4 d-flex bg-white border px-4 overGuide "
             >
-              {/* <input
-                class="form-check-input"
-                type="radio"
-                name="flexRadioDefault"
-                id="flexRadioDefault2"
-              /> */}
               <h5 className="ms-4 my-auto fw-bold">Female</h5>
               <FemaleIcon className="fs-2 my-auto ms-2" />
             </button>
@@ -173,231 +187,114 @@ export default function Guideme() {
       )}
       {windowCount === 2 && (
         <div className="container">
-          {morf == 1 && (
+          {info.gender == "male" && (
             <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
               <h3 className="fw-bold text-center mb-5 mt-4 ">
                 What kind of hair wig product are you looking for?
               </h3>
-              {/* male guide */}
               <div className="d-flex px-md-5 px-3 gap-4 w-100 flex-wrap justify-content-center pb-3">
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
+                {[
+                  {
+                    type: "Complete Hair Loss",
+                    image: "Image/guidemale/bald-01.png",
+                  },
+                  {
+                    type: "Hair thinning at the crown",
+                    image: "/Image/guidemale/crown thinning-01.png",
+                  },
+                  {
+                    type: "Hair thinning at the front",
+                    image: "/Image/guidemale/front thinning-01.png",
+                  },
+                  {
+                    type: "Increased thinning at the crown",
+                    image: "/Image/guidemale/More top thinning-01.png",
+                  },
+                  {
+                    type: "Hair thinning at the top",
+                    image: "/Image/guidemale/top thinning-01.png",
+                  },
+                ].map((e) => {
+                  return (
+                    <>
+                      <button
+                        onClick={() => {
+                          setInfo((prev) => {
+                            return { ...prev, type: e.type };
+                          });
 
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn w-23 ws-100 fs-4 py-4  bg-white border px-4 "
-                >
-                  <img
-                    src="/Image/guidemale/bald-01.png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Complete hair loss</p>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 "
-                >
-                  <img
-                    src="/Image/guidemale/crown thinning-01.png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Hair thinning at the crown</p>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn w-23 ws-100 fs-4 py-4  bg-white border px-4 "
-                >
-                  <img
-                    src="/Image/guidemale/front thinning-01.png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Hair thinning at the front</p>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn w-23 ws-100 fs-4 py-4  bg-white border px-4 "
-                >
-                  <img
-                    src="/Image/guidemale/More top thinning-01.png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">
-                    Increased thinning at the crown
-                  </p>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn w-25 ws-100 fs-4 py-4 bg-white border px-4 "
-                >
-                  <img
-                    src="/Image/guidemale/top thinning-01.png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Hair thinning at the top</p>
-                </button>
+                          setWindow((prevs) => {
+                            return (prevs = prevs + 1);
+                          });
+                        }}
+                        className="btn w-23 ws-100 fs-4 py-4  bg-white border px-4 "
+                      >
+                        <img
+                          src={e.image}
+                          alt="This is an image"
+                          className="w-100"
+                        />
+                        <p className="fs-6 fw-bold">{e.type}</p>
+                      </button>
+                    </>
+                  );
+                })}
               </div>
             </div>
           )}
-          {morf == 0 && (
+          {info.gender == "female" && (
             <div className="bg-light rounded-2 p-3 p-md-5 text-start container my-5 border">
               <h3 className="fw-bold text-center mb-5 mt-4 ">
                 What kind of hair wig product are you looking for?
               </h3>
-              {/*female guide */}
+
               <div className="d-flex px-md-5 px-3 gap-4 w-100 flex-wrap justify-content-center pb-3">
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
+                {[
+                  {
+                    type: "Add Volume",
+                    image: "/Image/guidefemale/Add Volume.png",
+                  },
+                  {
+                    type: "Complete Hair Loss",
+                    image: "/Image/guidefemale/Full Coverage.png",
+                  },
+                  {
+                    type: "Hair Thinning at the Crown",
+                    image: "/Image/guidefemale/Partial (5).png",
+                  },
+                  {
+                    type: "Crown Thinning",
+                    image: "/Image/guidefemale/Partial (6).png",
+                  },
+                  {
+                    type: "Front zone hair loss",
+                    image: "/Image/guidefemale/Partial Front Zone.png",
+                  },
+                ].map((e) => {
+                  return (
+                    <>
+                      <button
+                        onClick={() => {
+                          setInfo((prev) => {
+                            return { ...prev, type: e.type };
+                          });
 
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 "
-                >
-                  <img
-                    src="/Image/guidefemale/Add Colour.png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Add extension</p>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 "
-                >
-                  <img
-                    src="/Image/guidefemale/Add Length.png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Add length</p>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 "
-                >
-                  <img
-                    src="/Image/guidefemale/Add Volume.png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Add Volume</p>
-                </button>
-                <button className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 ">
-                  <img
-                    src="/Image/guidefemale/Full Coverage.png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Complete Hair Loss</p>
-                </button>
-                <button className="btn w-25 ws-100 fs-4 py-4 bg-white border px-4 ">
-                  <img
-                    src="/Image/guidefemale/Partial (5).png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Increased Crown thinning</p>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn w-25 ws-100 fs-4 py-4 bg-white border px-4 "
-                >
-                  <img
-                    src="/Image/guidefemale/Partial (6).png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Crown thinning</p>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn w-25 ws-100 fs-4 py-4 bg-white border px-4 "
-                >
-                  <img
-                    src="/Image/guidefemale/Partial Front Zone.png"
-                    alt="This is an image"
-                    className="w-100"
-                  />
-                  <p className="fs-6 fw-bold">Front zone hair loss</p>
-                </button>
+                          setWindow((prevs) => {
+                            return (prevs = prevs + 1);
+                          });
+                        }}
+                        className="btn w-23 ws-100 fs-4 py-4 bg-white border px-4 "
+                      >
+                        <img
+                          src={e.image}
+                          alt="This is an image"
+                          className="w-100"
+                        />
+                        <p className="fs-6 fw-bold">{e.type}</p>
+                      </button>
+                    </>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -410,48 +307,28 @@ export default function Guideme() {
           </h3>
 
           <div className="d-flex pb-5 px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row">
-            <button
-              onClick={() => {
-                setbtnCtn((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
+            {["Summer (warm)", "Autumn (balanced)", "Winter (cold)"].map(
+              (e) => {
+                return (
+                  <>
+                    <button
+                      onClick={() => {
+                        setInfo((prev) => {
+                          return { ...prev, preferredWeather: e };
+                        });
 
-                setWindow((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
-              }}
-              className="btn py-2 d-flex btn-outline-secondary border px-4 "
-            >
-              <h6 className=" my-auto fw-bold">Summer (warm)</h6>
-            </button>
-            <button
-              onClick={() => {
-                setbtnCtn((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
-
-                setWindow((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
-              }}
-              className="btn py-2 d-flex btn-outline-secondary border px-4 "
-            >
-              <h6 className=" my-auto fw-bold">Autumn (balanced)</h6>
-            </button>
-            <button
-              onClick={() => {
-                setbtnCtn((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
-
-                setWindow((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
-              }}
-              className="btn py-2 d-flex btn-outline-secondary border px-4 "
-            >
-              <h6 className=" my-auto fw-bold">Winter (cold)</h6>
-            </button>
+                        setWindow((prevs) => {
+                          return (prevs = prevs + 0.5);
+                        });
+                      }}
+                      className="btn py-2 d-flex btn-outline-secondary border px-4 "
+                    >
+                      <h6 className=" my-auto fw-bold">{e}</h6>
+                    </button>
+                  </>
+                );
+              }
+            )}
           </div>
 
           <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
@@ -459,183 +336,90 @@ export default function Guideme() {
           </h3>
 
           <div className="d-flex px-md-5 px-3 flex-column flex-lg-row gap-4 w-100 mb-3 pb-3">
-            <button
-              onClick={() => {
-                setbtnCtn((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
+            {["Comfort", "Balanced", "Durability"].map((e) => {
+              return (
+                <>
+                  <button
+                    onClick={() => {
+                      setInfo((prev) => {
+                        return { ...prev, prority: e };
+                      });
 
-                setWindow((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
-              }}
-              className="btn py-2 d-flex btn-outline-secondary border px-4 "
-            >
-              <h6 className=" my-auto fw-bold">Comfort</h6>
-            </button>
-            <button
-              onClick={() => {
-                setbtnCtn((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
-
-                setWindow((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
-              }}
-              className="btn py-2 d-flex btn-outline-secondary border px-4 "
-            >
-              <h6 className=" my-auto fw-bold">Balanced</h6>
-            </button>
-            <button
-              onClick={() => {
-                setbtnCtn((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
-
-                setWindow((prevs) => {
-                  return (prevs = prevs + 0.5);
-                });
-              }}
-              className="btn py-2 d-flex btn-outline-secondary border px-4 "
-            >
-              <h6 className=" my-auto fw-bold">Durability</h6>
-            </button>
+                      setWindow((prevs) => {
+                        return (prevs = prevs + 0.5);
+                      });
+                    }}
+                    className="btn py-2 d-flex btn-outline-secondary border px-4 "
+                  >
+                    <h6 className=" my-auto fw-bold">{e}</h6>
+                  </button>
+                </>
+              );
+            })}
           </div>
         </div>
       )}
       {(windowCount === 4 || windowCount === 4.5) && (
         <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
-          {morf == 0 && (
+          {info.gender === "female" && (
             <div>
               <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
                 ladies- how would you like to attach the system?
               </h3>
 
               <div className="d-flex pb-md-5 pb-3 px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row">
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
+                {["Clip", "Glue", "Tape"].map((e) => {
+                  return (
+                    <>
+                      <button
+                        onClick={() => {
+                          setInfo((prev) => {
+                            return { ...prev, attachSystem: e };
+                          });
 
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Clip</h6>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Glue</h6>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Tape</h6>
-                </button>
+                          setWindow((prevs) => {
+                            return (prevs = prevs + 1);
+                          });
+                        }}
+                        className="btn py-2 d-flex btn-outline-secondary border px-4 "
+                      >
+                        <h6 className=" my-auto fw-bold">{e}</h6>
+                      </button>
+                    </>
+                  );
+                })}
               </div>
             </div>
           )}
-
-          {morf == 1 && (
+          {info.gender == "male" && (
             <div>
               <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
                 gents- hairstyle
               </h3>
 
               <div className="d-flex px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row pb-3">
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
+                {["Straight", "Wavy", "Curly", "Loose", "Brushed back"].map(
+                  (e) => {
+                    return (
+                      <>
+                        <button
+                          onClick={() => {
+                            setInfo((prev) => {
+                              return { ...prev, style: e };
+                            });
 
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Straight</h6>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Wavy</h6>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Curly</h6>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Loose</h6>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Brushed back</h6>
-                </button>
+                            setWindow((prevs) => {
+                              return (prevs = prevs + 1);
+                            });
+                          }}
+                          className="btn py-2 d-flex btn-outline-secondary border px-4 "
+                        >
+                          <h6 className=" my-auto fw-bold">Straight</h6>
+                        </button>
+                      </>
+                    );
+                  }
+                )}
               </div>
             </div>
           )}
@@ -643,177 +427,150 @@ export default function Guideme() {
       )}
       {windowCount === 5 && (
         <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
-          {morf === 0 && (
+          {info.gender === "female" && (
             <div>
               <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
                 Ladies- Hairstyle
               </h3>
 
               <div className="d-flex pb-md-5 pb-3 px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row pb-3">
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                    setmorf((prevs) => {
-                      return !prevs;
-                    });
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Straight</h6>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                    setmorf((prevs) => {
-                      return !prevs;
-                    });
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Loose wave</h6>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                    setmorf((prevs) => {
-                      return !prevs;
-                    });
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Water wave</h6>
-                </button>
-
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                    setmorf((prevs) => {
-                      return !prevs;
-                    });
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Yaki</h6>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                    setmorf((prevs) => {
-                      return !prevs;
-                    });
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Curly</h6>
-                </button>
+                {["Straight", "Loose wave", "Water wave", "Yaki", "Curly"].map(
+                  (e) => {
+                    return (
+                      <>
+                        <button
+                          onClick={() => {
+                            setInfo((prev) => {
+                              return { ...prev, style: e };
+                            });
+                            setWindow((prevs) => {
+                              return (prevs = prevs + 2);
+                            });
+                          }}
+                          className="btn py-2 d-flex btn-outline-secondary border px-4 "
+                        >
+                          <h6 className=" my-auto fw-bold">{e}</h6>
+                        </button>
+                      </>
+                    );
+                  }
+                )}
               </div>
             </div>
           )}
-          {morf === 1 && (
+          {info.gender === "male" && (
             <div>
               <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
                 gents- Do you want grey Hair mixed?
               </h3>
 
               <div className="d-flex px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row pb-3">
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                    setmorf((prevs) => {
-                      return !prevs;
-                    });
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">Yes</h6>
-                </button>
-                <button
-                  onClick={() => {
-                    setbtnCtn((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                    setmorf((prevs) => {
-                      return !prevs;
-                    });
-                    setWindow((prevs) => {
-                      return (prevs = prevs + 1);
-                    });
-                  }}
-                  className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                >
-                  <h6 className=" my-auto fw-bold">No</h6>
-                </button>
+                {["Yes", "No"].map((e) => {
+                  return (
+                    <>
+                      <button
+                        onClick={() => {
+                          setInfo((prev) => {
+                            return { ...prev, greyHairMixed: e === "Yes" };
+                          });
+                          setWindow((prevs) => {
+                            if (
+                              info.type === "Complete Hair Loss" ||
+                              info.type === "Hair Thinning at the Crown"
+                            ) {
+                              console.log("hello there");
+                              return (prevs = prevs + 2);
+                            } else {
+                              return (prevs = prevs + 1);
+                            }
+                          });
+                        }}
+                        className="btn py-2 d-flex btn-outline-secondary border px-4 "
+                      >
+                        <h6 className=" my-auto fw-bold">{e}</h6>
+                      </button>
+                    </>
+                  );
+                })}
               </div>
             </div>
           )}
         </div>
       )}
+      {windowCount === 6 && (
+        <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
+          <div>
+            <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
+              Select the base size
+            </h3>
 
-      <div className="d-flex container ms-auto w-100">
-        {btnCtn !== 1 && (
+            <div className="d-flex px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row pb-3">
+              {["6 x .75", "6 x 1", "6 x 1.5", "6 x 2"].map((e) => {
+                return (
+                  <>
+                    <button
+                      onClick={() => {
+                        setInfo((prev) => {
+                          return { ...prev, baseSize: e };
+                        });
+
+                        setWindow((prevs) => {
+                          return (prevs = prevs + 1);
+                        });
+                      }}
+                      className="btn py-2 d-flex btn-outline-secondary border px-4 "
+                    >
+                      <h6 className=" my-auto fw-bold">{e}</h6>
+                    </button>
+                  </>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {windowCount === 7 && (
+        <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
+          <div>
+            <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
+              Congratulations
+            </h3>
+          </div>
+        </div>
+      )}
+
+      {windowCount < 7 && (
+        <div className="d-flex container ms-auto w-100">
+          {windowCount !== 1 && (
+            <button
+              onClick={() => {
+                setWindow((prevs) => {
+                  if (prevs === 1) return 1;
+                  else return (prevs = prevs - 1);
+                });
+              }}
+              className="btn px-md-5 px-3 py-2 bg-theme-holud text-light fs-5 me-auto"
+            >
+              <KeyboardDoubleArrowLeftIcon /> Back
+            </button>
+          )}
           <button
             onClick={() => {
               setbtnCtn((prevs) => {
-                if (prevs === 1) return 1;
-                else if (prevs > 5) return 4;
-                else return (prevs = prevs - 1);
+                return (prevs = prevs + 1);
               });
               setWindow((prevs) => {
-                if (prevs === 1) return 1;
-                else if (prevs > 5) return 4;
-                else return (prevs = prevs - 1);
+                if (prevs === 5) return (prevs = 5);
+                else return (prevs = prevs + 1);
               });
             }}
-            className="btn px-md-5 px-3 py-2 bg-theme-holud text-light fs-5 me-auto"
+            className="btn px-md-5 px-3 py-2  bg-theme-holud text-light fs-5 ms-auto"
           >
-            <KeyboardDoubleArrowLeftIcon /> Back
+            Next <KeyboardDoubleArrowRightIcon />
           </button>
-        )}
-        <button
-          onClick={() => {
-            setbtnCtn((prevs) => {
-              return (prevs = prevs + 1);
-            });
-            setWindow((prevs) => {
-              if (prevs === 5) return (prevs = 5);
-              else return (prevs = prevs + 1);
-            });
-          }}
-          className="btn px-md-5 px-3 py-2  bg-theme-holud text-light fs-5 ms-auto"
-        >
-          Next <KeyboardDoubleArrowRightIcon />
-        </button>
-      </div>
+        </div>
+      )}
       <Subscription />
     </div>
   );
