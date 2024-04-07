@@ -106,7 +106,7 @@ export default function Guideme() {
 
   const sizeMapping = {
     "Hair thinning at the front": ["6 x .75", "6 x 1", "6 x 1.5", "6 x 2"],
-    "Hair thinning at the crown": [
+    "Hair thinning at the top": [
       "6 x 5",
       "8 x 5",
       "8 x 6",
