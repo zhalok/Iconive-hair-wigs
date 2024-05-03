@@ -159,7 +159,14 @@ export default function Wholesale() {
       <div className="container my-5 bg-wholesale">
         <div className="w-50   rounded-theme11 m-auto ">
           <div className=" w-100 text-center">
-            <p className="pt-5 ps-5 pb-0 mb-0 fw-bold text-theme-dark  text-28 mx-auto ">
+            <p
+              // className="pt-5 ps-5 pb-0 mb-0 fw-bold text-theme-dark text-28 mx-auto"
+              className="pt-5"
+              style={{
+                textAlign: "center",
+                // paddingTop: "5px",
+              }}
+            >
               WANT TO BE A WHOLESALER?
             </p>
             {/* <p className="ps-5 pt-1 text-14">Want to be a wholesaler?</p> */}
