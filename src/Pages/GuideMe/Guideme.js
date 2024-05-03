@@ -87,17 +87,11 @@ export default function Guideme() {
                 toast.error(e?.response?.data?.message);
               });
           });
-
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
       })
       .catch((error) => {
-        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
         const email = error.customData.email;
-        // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
         console.log(credential);
         // ...
@@ -429,7 +423,7 @@ export default function Guideme() {
                           }}
                           className="btn py-2 d-flex btn-outline-secondary border px-4 "
                         >
-                          <h6 className=" my-auto fw-bold">Straight</h6>
+                          <h6 className=" my-auto fw-bold">{e}</h6>
                         </button>
                       </>
                     );
@@ -449,25 +443,53 @@ export default function Guideme() {
               </h3>
 
               <div className="d-flex pb-md-5 pb-3 px-md-5 px-3 gap-4 w-100 flex-column flex-lg-row pb-3">
-                {["Straight", "Loose wave", "Water wave", "Yaki", "Curly"].map(
-                  (e) => {
-                    return (
-                      <>
-                        <button
-                          onClick={() => {
-                            setInfo((prev) => {
-                              return { ...prev, style: e };
-                            });
-                            createCustomProductOrder();
-                          }}
-                          className="btn py-2 d-flex btn-outline-secondary border px-4 "
-                        >
-                          <h6 className=" my-auto fw-bold">{e}</h6>
-                        </button>
-                      </>
-                    );
-                  }
-                )}
+                {[
+                  {
+                    type: "Baby Curl",
+                    image: "/Image/guidefemale/baby-curl.jpeg",
+                  },
+                  {
+                    type: "Loose Wave",
+                    image: "/Image/guidefemale/loose-wave.jpeg",
+                  },
+                  {
+                    type: "Natural Wave",
+                    image: "/Image/guidefemale/natural-wave.jpeg",
+                  },
+                  {
+                    type: "Spring Curl",
+                    image: "/Image/guidefemale/spring-curl.jpeg",
+                  },
+                  {
+                    type: "Water Wave",
+                    image: "/Image/guidefemale/water-wave.jpeg",
+                  },
+                  {
+                    type: "Yaki",
+                    image: "/Image/guidefemale/yaki.jpeg",
+                  },
+                ].map((e) => {
+                  return (
+                    <>
+                      <button
+                        onClick={() => {
+                          setInfo((prev) => {
+                            return { ...prev, style: e };
+                          });
+                          createCustomProductOrder();
+                        }}
+                        className="btn py-2 d-flex btn-outline-secondary border px-4 "
+                      >
+                        <img
+                          src={e.image}
+                          alt="This is an image"
+                          className="w-100"
+                        />
+                        <p className=" my-auto fw-bold">{e.type}</p>
+                      </button>
+                    </>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -489,7 +511,7 @@ export default function Guideme() {
                           setWindow((prevs) => {
                             if (
                               info.type === "Complete Hair Loss" ||
-                              info.type === "Hair Thinning at the Crown"
+                              info.type === "Hair thinning at the crown"
                             ) {
                               createCustomProductOrder();
                             } else {
