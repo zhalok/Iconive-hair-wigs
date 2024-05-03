@@ -101,7 +101,7 @@ export default function Checkout(props) {
     }
   }, []);
 
-  const [checkRefund, setCheckRefund] = useState(true);
+  const [checkRefund, setCheckRefund] = useState(false);
 
   const navigate = useNavigate();
 
