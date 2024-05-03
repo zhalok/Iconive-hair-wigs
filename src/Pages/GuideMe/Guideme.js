@@ -423,7 +423,7 @@ export default function Guideme() {
                           }}
                           className="btn py-2 d-flex btn-outline-secondary border px-4 "
                         >
-                          <h6 className=" my-auto fw-bold">Straight</h6>
+                          <h6 className=" my-auto fw-bold">{e}</h6>
                         </button>
                       </>
                     );
