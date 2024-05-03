@@ -160,7 +160,7 @@ export default function Wholesale() {
         <div className="w-50   rounded-theme11 m-auto ">
           <div className=" w-100 text-center">
             <p className="pt-5 ps-5 pb-0 mb-0 fw-bold text-theme-dark  text-28 mx-auto ">
-              WANTO TO BE A WHOLESALER?
+              WANT TO BE A WHOLESALER?
             </p>
             {/* <p className="ps-5 pt-1 text-14">Want to be a wholesaler?</p> */}
             <div className="text-center p-5 ">
