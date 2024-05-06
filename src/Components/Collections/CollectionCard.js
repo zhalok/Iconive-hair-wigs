@@ -115,9 +115,14 @@ export default function CollectionCard({ product, setProduct, index }) {
               textDecoration: "none",
             }}
           >
-            <div className="img-card img-card position-relative cardMain overflow-hidden porda">
+            <div
+              className="img-card img-card position-relative card-main overflow-hidden porda mx-auto"
+              style={{
+                marginBottom: "30px",
+              }}
+            >
               <img
-                className="w-100 h-100 rounded-iconive cardImg"
+                className="w-100 h-100"
                 src={product.photo}
                 alt="This  is an  picture"
               />
