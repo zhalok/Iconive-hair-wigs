@@ -115,21 +115,6 @@ export default function CollectionCard({ product, setProduct, index }) {
               textDecoration: "none",
             }}
           >
-            {/* <div className="img-card img-card position-relative card-main overflow-hidden porda mx-auto">
-              <img
-                className="w-100 h-100 mx-auto"
-                src={product.photo}
-                alt="This  is an  picture"
-              />
-              {product.discount !== 0 && (
-                <span className="position-absolute top-0 end-0 bg-danger text-light px-3 py-2 rounded-circle m-3 overflow-hidden">
-                  <p className="fw-bold mb-0 mt-1 text-18">
-                    {product.discount}%
-                  </p>
-                  <p className="fw-bold my-0 pt-0 text-14">OFF</p>
-                </span>
-              )}
-            </div> */}
             <div className="img-card img-card position-relative cardMain overflow-hidden porda mx-auto">
               <img
                 className="w-100 h-100 rounded-iconive cardImg"
