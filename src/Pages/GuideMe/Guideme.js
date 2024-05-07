@@ -37,8 +37,6 @@ export default function Guideme() {
     attachSystem: "",
   });
 
-  console.log("window", windowCount);
-
   const createCustomProductOrder = async () => {
     const response = await axios.post("/customProducts", info, {
       headers: {
@@ -566,7 +564,8 @@ export default function Guideme() {
         <div className="bg-light rounded-2 p-md-5 p-3 text-start container my-5 border">
           <div>
             <h3 className="fw-bold mb-5 text-start mt-4 ms-md-5 ms-3">
-              Congratulations
+              Congratulations! Your responses have been submitted, our experts
+              will email you shortly with the best suggestions.
             </h3>
           </div>
         </div>
