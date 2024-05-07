@@ -110,7 +110,7 @@ export default function CollectionCard({ product, setProduct, index }) {
       >
         <div style={{ cursor: "pointer" }}>
           <Link
-            to={`/productDetails/${product?._id}`}
+            to={`/productDetails/${product?.name}?id=${product?._id}`}
             style={{
               textDecoration: "none",
             }}

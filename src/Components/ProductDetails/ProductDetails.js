@@ -23,11 +23,11 @@ import AuthContext from "../../Contexts/AuthContext";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import { Helmet } from "react-helmet";
+import { useSearchParams } from "react-router-dom";
 
-export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
+export default function ProductDetail({ setCartRenderer, cartRenderer }) {
   const navigate = useNavigate();
   const [productDetails, setProductDetails] = useState(null);
-  const { product } = useParams();
   const [selectedAddOns, setSelectedAddons] = useState([]);
   const [amount, setAmount] = useState(0);
   const [cartAdded, setCartAdded] = useState(false);
@@ -45,6 +45,9 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const { showCartDrawer, setShowCartDrawer } = useContext(CartContext);
   const [selectedFamily, setSelectedFamily] = useState("black");
   const [colors, setColors] = useState("");
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
+  console.log("id", id);
 
   useEffect(() => {
     // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -79,7 +82,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const checkWishList = async () => {
     try {
       setWishlistloading(true);
-      const response = await axios.get(`/wishlist/getProduct/${product}`, {
+      const response = await axios.get(`/wishlist/getProduct/${id}`, {
         headers: {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
@@ -101,7 +104,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
       const response = axios.post(
         "/wishlist/addProduct",
         {
-          product: productDetails._id,
+          product: id,
         },
         {
           headers: {
@@ -127,7 +130,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   const removeFromWishlist = async () => {
     try {
       setWishlistloading(true);
-      const response = axios.delete(`wishlist/removeProduct/${product}`, {
+      const response = axios.delete(`wishlist/removeProduct/${id}`, {
         headers: {
           Authorization: `Bearer ${Cookies.get("jwt")}`,
         },
@@ -188,7 +191,7 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
 
   const getProductDetails = async () => {
     try {
-      const response = await axios.get(`/products/${product}`, {});
+      const response = await axios.get(`/products/${id}`, {});
       setProductDetails(response.data);
 
       setAmount(
@@ -200,11 +203,11 @@ export default function ProductDetail({ id, setCartRenderer, cartRenderer }) {
   };
 
   useEffect(() => {
-    if (product) {
+    if (id) {
       getProductDetails();
       checkWishList();
     }
-  }, [product]);
+  }, [id]);
 
   useEffect(() => {
     if (productDetails) {
