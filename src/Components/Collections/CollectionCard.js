@@ -11,6 +11,7 @@ import "./CollectionCard.css";
 import AuthContext from "../../Contexts/AuthContext";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
+import discountCalculator from "../../utils/calculateDIscount";
 
 export default function CollectionCard({ product, setProduct, index }) {
   const { user, setUser } = useContext(AuthContext);
@@ -146,7 +147,10 @@ export default function CollectionCard({ product, setProduct, index }) {
             )}
             <p className="text-20 fw-bold text-dark my-auto pt-1">
               {currency == "USD" ? "$" : "৳"}
-              {currencyConverter(currency, product.price)}
+              {currencyConverter(
+                currency,
+                discountCalculator(product.price, product.discount)
+              )}
             </p>
 
             <div className="d-flex ms-auto">
