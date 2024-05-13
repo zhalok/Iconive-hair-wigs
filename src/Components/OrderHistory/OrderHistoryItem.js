@@ -29,9 +29,10 @@ export default function OrderHistoryItem({ order }) {
             <div className="text-start">
               <div className="d-flex">
                 <p className="text-invoice my-auto pe-2 text-theme">
-                  {`${new Date(order.createdAt).getDate()} ${
+                  {/* {`${new Date(order.createdAt).getDate()} ${
                     months[new Date(order.createdAt).getMonth()]
-                  }, ${new Date(order.createdAt).getFullYear()}`}
+                  }, ${new Date(order.createdAt).getFullYear()}`} */}
+                  {calculateDays(order?.createdAt)} <FlightIcon />
                 </p>
                 <span className="my-auto ms-1">
                   <img
