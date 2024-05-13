@@ -405,7 +405,7 @@ export default function Order({ order, index, getOrders }) {
   );
 }
 
-const calculateDays = (currDate) => {
+export const calculateDays = (currDate) => {
   let currentDate = new Date(currDate); // get the current date
   currentDate.setDate(currentDate.getDate() + 20); // set the date 20 days from now
   let options = { day: "numeric", month: "long", year: "numeric" };
