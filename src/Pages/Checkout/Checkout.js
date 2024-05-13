@@ -434,32 +434,14 @@ export default function Checkout(props) {
                     className="border-0 btn-theme-check text-white mx-auto my-4 w-50 "
                     onClick={(e) => {
                       e.preventDefault();
-                      // console.log(cartItems);
                       checkout();
-                      // console.log("hello");
                     }}
                   />
                 )}
               </form>
             </div>
             <div className="col-12 col-md-4 border-start p-4 ">
-              <div>
-                {/* {cartItems &&
-                  cartItems.map((card, index) => (
-                    <CartItem
-                      id={card.product}
-                      addOns={card.addons}
-                      quantity={card.amount}
-                      discardCartItem={discardCartItem}
-                      setCartItems={setCartItems}
-                      setProductTotal={setProductTotal}
-                      // currency={currency}
-                      price={card.price}
-                      setUpdate={setUpdate}
-                      setCartRenderer={setCartRenderer}
-                    />
-                  ))} */}
-              </div>
+              <div></div>
               <div>
                 <div className="w-100 hc-50 d-flex my-4">
                   <input

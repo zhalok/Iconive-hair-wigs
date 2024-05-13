@@ -34,6 +34,7 @@ export default function Navigation({ renderer }) {
   const { setShowCartDrawer } = useContext(CartContext);
   const [searchParam, setSearchParam] = useSearchParams();
   const [activeNav, setActiveNav] = useState();
+  const [showNavbar, setShowNavbar] = useState(false);
 
   // console.log("currency", currency);
   // console.log(currency);
@@ -232,6 +233,12 @@ export default function Navigation({ renderer }) {
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
+                onClick={() => {
+                  if (showNavbar) {
+                    setCollectionDropdown(false);
+                  }
+                  setShowNavbar((prev) => !prev);
+                }}
               >
                 <span class="toggler-icon top-bar"></span>
                 <span class="toggler-icon middle-bar"></span>
@@ -258,7 +265,7 @@ export default function Navigation({ renderer }) {
                   <Nav.Link
                     onClick={() => {
                       setActiveNav(2);
-                      setActiveNav(2);
+
                       setCollectionDropdown((prevs) => {
                         return !prevs;
                       });
