@@ -17,7 +17,9 @@ import { toast } from "react-toastify";
 
 export default function Checkout(props) {
   const [cartItems, setCartItems] = useState(null);
-  const [deliveryCharge, setDeliveryCharge] = useState(20 * 111);
+  const [deliveryCharge, setDeliveryCharge] = useState(
+    process.env.REACT_APP_DELIVERY_CHARGE * process.env.REACT_APP_FX_RATE
+  );
   const [productTotal, setProductTotal] = useState(0);
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState();
