@@ -35,7 +35,7 @@ export default function Offers() {
     <>
       <div className="w-100">
         <img
-          src="/Image/offer/offter2.webp"
+          src="/Image/offer/offer2.webp"
           className="w-100"
           alt="this is a banner"
         />

@@ -155,7 +155,7 @@ export default function Category({}) {
                 )}
               </div>
 
-              <div className="d-flex px-120 flex-column flex-lg-row mt-5">
+              <div className="d-flex px-4 md:px-5 flex-column flex-lg-row mt-5">
                 {/* sidebar */}
                 <div className="sidebarwidth d-flex flex-column gap-4">
                   <div className="sidebarBg  ">
@@ -259,12 +259,12 @@ export default function Category({}) {
                       );
                     })}
                   </div>
-                  <div className="m-auto pt-2 overFlow rounded-iconive gayeb">
+                  <div className=" pt-2 overFlow rounded-iconive gayeb">
                     <img
                       onClick={() => {
                         navigate("/offers");
                       }}
-                      src="./Image/image_c/sidebar.svg"
+                      src="./Image/image_c/sidebar.webp"
                       alt="this is an image "
                       className="w-100 m-auto sidebarImg gayeb"
                     />

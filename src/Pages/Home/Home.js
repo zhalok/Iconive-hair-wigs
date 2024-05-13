@@ -1,4 +1,6 @@
-import { React, Suspense, useEffect, useState } from "react";
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import { React, Suspense } from "react";
 import { lazy } from "react";
 import "./Home.css";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
@@ -124,7 +126,7 @@ export default function Home() {
               <img
                 width="100%"
                 height="100%"
-                src="./Image/ImagesPage/Guy.png"
+                src="./Image/ImagesPage/Guy.webp"
                 alt="this is a picture of girl"
               />
               <div className="overlay d-flex mx-auto w-100">
@@ -156,7 +158,7 @@ export default function Home() {
               <img
                 width="100%"
                 height="100%"
-                src="./Image/ImagesPage/girl.png"
+                src="./Image/ImagesPage/girl.webp"
                 alt="this is a picture of girl"
               />
               <div className="overlay d-flex mx-auto w-100">
@@ -189,7 +191,7 @@ export default function Home() {
         <div className="row w-100 position-relative d-flex pb-5 px-0 ">
           <div className="displayHidden col-12 col-lg-8 ms-lg-auto mx-0 overflow-hidden">
             <img
-              src="./Image/ImagesPage/WI.svg"
+              src="./Image/ImagesPage/Wholesale.webp"
               alt="this is a picture "
               className="w-100 cardImg"
             />
