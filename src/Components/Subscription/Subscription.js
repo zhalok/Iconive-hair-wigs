@@ -1,20 +1,26 @@
 import React, { useRef, useState } from "react";
 import "./Subscription.css";
 import emailjs from "@emailjs/browser";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Subscription() {
   const form = useRef();
   const [email, setemail] = useState(" ");
 
-  const templeteParams = {
-    from_name: "user",
-    from_email: email,
-    to_name: "Iconive wigs",
-    message: "SUBBSCRIPTION",
-  };
-
   const sendEmail = (e) => {
     e.preventDefault();
+
+    if (!email) {
+      toast.error("Please enter your email");
+      return;
+    }
+
+    const templeteParams = {
+      from_name: "user",
+      from_email: email,
+      to_name: "Iconive wigs",
+      message: "SUBBSCRIPTION",
+    };
 
     emailjs
       .send(
@@ -26,6 +32,7 @@ export default function Subscription() {
       .then((response) => {
         // console.log("sended", response);
         setemail("your e-mail address");
+        toast.success("Your mail has been recieved");
       })
       .catch((error) => {
         console.log("error", error);
@@ -33,6 +40,7 @@ export default function Subscription() {
   };
   return (
     <>
+      <ToastContainer />
       <div className="my90 d-flex flex-column p-3">
         <div className="d-flex flex-column overflow-hidden">
           <h2 className="fw-bold headingHover">

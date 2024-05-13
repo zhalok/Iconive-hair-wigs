@@ -29,9 +29,10 @@ export default function OrderHistoryItem({ order }) {
             <div className="text-start">
               <div className="d-flex">
                 <p className="text-invoice my-auto pe-2 text-theme">
-                  {`${new Date(order.createdAt).getDate()} ${
+                  {/* {`${new Date(order.createdAt).getDate()} ${
                     months[new Date(order.createdAt).getMonth()]
-                  }, ${new Date(order.createdAt).getFullYear()}`}
+                  }, ${new Date(order.createdAt).getFullYear()}`} */}
+                  {calculateDays(order?.createdAt)}
                 </p>
                 <span className="my-auto ms-1">
                   <img
@@ -161,3 +162,11 @@ export default function OrderHistoryItem({ order }) {
     </div>
   );
 }
+
+export const calculateDays = (currDate) => {
+  let currentDate = new Date(currDate); // get the current date
+  currentDate.setDate(currentDate.getDate() + 20); // set the date 20 days from now
+  let options = { day: "numeric", month: "long", year: "numeric" };
+  let formattedDate = currentDate.toLocaleDateString("en-US", options);
+  return formattedDate;
+};

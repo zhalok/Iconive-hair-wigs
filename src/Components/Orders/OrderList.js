@@ -15,7 +15,7 @@ export default function OrderList({ orderList }) {
         },
       });
 
-      setOrders(response.data.reverse());
+      setOrders(response.data);
     } catch (e) {
       console.log(e);
     }

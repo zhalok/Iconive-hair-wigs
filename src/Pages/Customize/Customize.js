@@ -9,29 +9,74 @@ import axios from "../../utils/axios";
 import downloadFile from "../../utils/downloadFIle";
 import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
-// import axios from "axios";
+import { Input } from "@mui/material";
+
+const baseMateiralOptions = [
+  "Mono Base",
+  "Lace Base",
+  "Skin Base",
+  "Silk Base",
+  "Mix Base",
+];
+
+const hairMaterialOptions = [
+  "Remy Hair",
+  "Virgin Hair",
+  "Synthetic Hair",
+  "remy+synthetic Mixed",
+];
+
+const preHairCutOptions = ["Yes", "No"];
+
+const hairDirectionOptions = [
+  "Free style",
+  "Left parting",
+  "Right parting",
+  "Center parting",
+  "Left crown",
+  "right crown",
+  "center crown",
+  "Brush back",
+];
+
+const ladiesHairTextureOptions = [
+  "Straight",
+  "Loose wave",
+  "Natural wave",
+  "water wave",
+  "yaki",
+  "baby curl",
+  "Spring curl",
+];
+
+const hairColorOptions = ["Single color", "Mix colors (max 2)", "Shade color"];
+
+const percentageOfGrayGolor = Array.from(
+  { length: 10 },
+  (_, i) => (i + 1) * 10
+);
+
+const hairDensityOptions = Array.from({ length: 10 }, (_, i) => i + 1);
+
+const hairLengthOptions = Array.from({ length: 27 }, (_, i) => i + 6);
+
+const hairTextureForGentsOptions = [
+  "Natural straight",
+  "36mm body wave",
+  "32mm slight wave",
+  "25mm medium wave",
+  "20mm tight wave",
+  "15mm loose curl",
+  "10mm tight curl",
+  "8mm extra-loose Afro",
+  "6mm loose Afro",
+  "4mm medium Afro ",
+];
 
 const dropItemBusinessType = [
   {
-    value: 1,
-    label: "Professional salon",
-  },
-  {
-    value: 2,
-    label: "Stylists",
-  },
-  {
-    value: 3,
-    label: "Online store",
-  },
-  {
-    value: 4,
-    label: "Offline store",
-  },
-
-  {
-    value: 5,
-    label: "Others",
+    name: "name",
+    value: "value",
   },
 ];
 
@@ -39,11 +84,22 @@ const dropItemBusinessType = [
 
 export default function Customize() {
   const navigate = useNavigate();
-  const [value, setValue] = useState(dropItemBusinessType.value);
+  const [name, setName] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [baseSize, setBaseSize] = useState("");
+  const [baseMaterial, setBaseMaterial] = useState("");
+  const [hairLength, setHairLength] = useState("");
+  const [hairMaterial, setHairMaterial] = useState("");
+  const [hairColor, setHairColor] = useState("");
+  const [preHairCut, setPreHairCut] = useState("");
+  const [grayHairPercentage, setGrayHairPercentage] = useState(0);
+  const [hairDIrection, setHairDirection] = useState("");
+  const [hairDensity, setHairDensity] = useState(0);
+  const [hairTextureForLadies, setHairTextureForLadies] = useState("");
+  const [hairTextureForGents, setHairTextureForGents] = useState("");
+  const [specialInstructions, setSpecialInstructoins] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [downlaading, setDownloading] = useState(false);
-  const DropAction = (e) => {
-    setValue(e.label);
-  };
 
   async function downloadCustomizationRequirementFile(fileURL, fileName) {
     setDownloading(true);
@@ -61,6 +117,52 @@ export default function Customize() {
         toast.error("Something went wrong");
       });
   }
+
+  const submitCustomizationRequest = async () => {
+    if (name === "" || quantity === 0) {
+      toast.error("Please fill name and quantity fields");
+      return;
+    }
+    setSubmitting(true);
+    axios
+      .post("/customwigs", {
+        customerName: name,
+        orderQuantity: quantity,
+        baseSize,
+        baseMaterial,
+        hairLength,
+        hairMaterial,
+        hairColor,
+        preHairCut,
+        grayHairPercentage,
+        hairDIrection,
+        hairDensity,
+        hairTextureForLadies,
+        hairTextureForGents,
+      })
+      .then((res) => {
+        setSubmitting(false);
+        toast.success("Customization request submitted successfully");
+        setName("");
+        setQuantity(0);
+        setBaseSize("");
+        setBaseMaterial("");
+        setHairLength("");
+        setHairMaterial("");
+        setHairColor("");
+        setPreHairCut("");
+        setGrayHairPercentage(0);
+        setHairDirection("");
+        setHairDensity(0);
+        setHairTextureForLadies("");
+        setHairTextureForGents("");
+      })
+      .catch((error) => {
+        setSubmitting(false);
+        toast.error("Something went wrong");
+        console.log("error: ", error);
+      });
+  };
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -99,28 +201,31 @@ export default function Customize() {
                   type="text"
                   className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 text-black border-dark outline-none   mx-auto"
                   placeholder="Client  Name"
-                  // value={email}
-                  // onChange={handleEmailchange}
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
                 />{" "}
                 <br />
                 <div className="w-100 d-flex gap-2">
                   <input
-                    type="text"
+                    type="number"
                     className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
                     placeholder="Order Quantity"
-                    //   value={name}
-                    //   onChange={(e) => {
-                    //     setName(e.target.value);
-                    //   }}
+                    min={1}
+                    value={quantity === 0 ? null : quantity}
+                    onChange={(e) => {
+                      setQuantity(e.target.value);
+                    }}
                   />
                   <input
                     type="text"
                     className="form-control border-top-0  bg-signup border-start-0 border-end-0 rounded-0 border-dark outline-none mx-auto w-50"
                     placeholder="Base Size"
-                    //   value={name}
-                    //   onChange={(e) => {
-                    //     setName(e.target.value);
-                    //   }}
+                    value={baseSize}
+                    onChange={(e) => {
+                      setBaseSize(e.target.value);
+                    }}
                   />
                 </div>
                 <br />
@@ -130,18 +235,34 @@ export default function Customize() {
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
-                        options={dropItemBusinessType}
-                        onChange={DropAction}
+                        options={baseMateiralOptions.map((e) => {
+                          return {
+                            label: e,
+                            value: e,
+                          };
+                        })}
+                        isOptionSelected={baseMaterial}
+                        onChange={(e) => {
+                          setBaseMaterial(e.value);
+                        }}
                       />
                     </div>
                   </div>
                   <div className="w-50 text-start">
-                    <p className="text-14 pt-1 mb-2 ms-3">Hair Length </p>
+                    <p className="text-14 pt-1 mb-2 ms-3">Hair Length</p>
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
-                        options={dropItemBusinessType}
-                        onChange={DropAction}
+                        options={hairLengthOptions.map((e) => {
+                          return {
+                            label: e,
+                            value: e,
+                          };
+                        })}
+                        isOptionSelected={hairLength}
+                        onChange={(e) => {
+                          setHairLength(e.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -152,8 +273,16 @@ export default function Customize() {
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
-                        options={dropItemBusinessType}
-                        onChange={DropAction}
+                        options={hairMaterialOptions.map((e) => {
+                          return {
+                            label: e,
+                            value: e,
+                          };
+                        })}
+                        isOptionSelected={hairMaterial}
+                        onChange={(e) => {
+                          setHairMaterial(e.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -162,8 +291,16 @@ export default function Customize() {
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
-                        options={dropItemBusinessType}
-                        onChange={DropAction}
+                        options={hairColorOptions.map((e) => {
+                          return {
+                            label: e,
+                            value: e,
+                          };
+                        })}
+                        isOptionSelected={hairColor}
+                        onChange={(e) => {
+                          setHairColor(e.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -174,8 +311,16 @@ export default function Customize() {
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
-                        options={dropItemBusinessType}
-                        onChange={DropAction}
+                        options={preHairCutOptions.map((e) => {
+                          return {
+                            label: e,
+                            value: e,
+                          };
+                        })}
+                        isOptionSelected={preHairCut}
+                        onChange={(e) => {
+                          setPreHairCut(e.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -186,8 +331,16 @@ export default function Customize() {
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
-                        options={dropItemBusinessType}
-                        onChange={DropAction}
+                        options={percentageOfGrayGolor.map((e) => {
+                          return {
+                            label: e,
+                            value: e,
+                          };
+                        })}
+                        isOptionSelected={grayHairPercentage}
+                        onChange={(e) => {
+                          setGrayHairPercentage(e.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -198,8 +351,16 @@ export default function Customize() {
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
-                        options={dropItemBusinessType}
-                        onChange={DropAction}
+                        options={hairDirectionOptions.map((e) => {
+                          return {
+                            label: e,
+                            value: e,
+                          };
+                        })}
+                        isOptionSelected={hairDIrection}
+                        onChange={(e) => {
+                          setHairDirection(e.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -208,8 +369,16 @@ export default function Customize() {
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
-                        options={dropItemBusinessType}
-                        onChange={DropAction}
+                        options={hairDensityOptions.map((e) => {
+                          return {
+                            label: e,
+                            value: e,
+                          };
+                        })}
+                        isOptionSelected={hairDensity}
+                        onChange={(e) => {
+                          setHairDensity(e.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -222,8 +391,16 @@ export default function Customize() {
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
-                        options={dropItemBusinessType}
-                        onChange={DropAction}
+                        options={ladiesHairTextureOptions.map((e) => {
+                          return {
+                            label: e,
+                            value: e,
+                          };
+                        })}
+                        isOptionSelected={hairTextureForLadies}
+                        onChange={(e) => {
+                          setHairTextureForLadies(e.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -234,8 +411,16 @@ export default function Customize() {
                     <div class="btn-group w-100">
                       <Select
                         className="w-100 text-14"
-                        options={dropItemBusinessType}
-                        onChange={DropAction}
+                        options={hairTextureForGentsOptions.map((e) => {
+                          return {
+                            label: e,
+                            value: e,
+                          };
+                        })}
+                        isOptionSelected={hairTextureForGents}
+                        onChange={(e) => {
+                          setHairTextureForGents(e.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -244,6 +429,10 @@ export default function Customize() {
                   <textarea
                     className="w-100 border-0 mb-auto p-3 text-wrap h-333"
                     placeholder="Special Instructions"
+                    value={specialInstructions}
+                    onChange={(e) => {
+                      setSpecialInstructoins(e.target.value);
+                    }}
                   />
                 </div>
                 {/* {loading ? (
@@ -253,13 +442,12 @@ export default function Customize() {
                   type="submit"
                   className=" btn-theme-up btn  text-light px-5 py-2 my-4 me-auto"
                   value="Sign Up"
-                  // onClick={handleSignup}
-                  //   onClick={(e) => {
-                  //     e.preventDefault();
-                  //     signup();
-                  //   }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    submitCustomizationRequest();
+                  }}
                 >
-                  SUBMIT
+                  {submitting ? <PulseLoader /> : "SUBMIT"}
                 </button>
                 {/* )} */}
                 {/* <small className="text-success">{message}</small>

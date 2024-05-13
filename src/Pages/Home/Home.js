@@ -301,15 +301,15 @@ export default function Home() {
       {/* Subscription */}
       <Subscription></Subscription>
       <FloatingWhatsApp
-        phoneNumber="+8801602290655"
+        phoneNumber="+8801880962155"
         accountName="Iconive Wigs"
         avatar="/Image/logo/Img 3.png"
       />
-      <FloatingWhatsApp
-        phoneNumber="+8801602290655"
+      {/* <FloatingWhatsApp
+        phoneNumber="+8801880962155"
         accountName="Iconive Wigs"
         avatar="./image/logo/Img 3.png"
-      />
+      /> */}
     </div>
   );
 }

@@ -17,7 +17,9 @@ import { toast } from "react-toastify";
 
 export default function Checkout(props) {
   const [cartItems, setCartItems] = useState(null);
-  const [deliveryCharge, setDeliveryCharge] = useState(20 * 111);
+  const [deliveryCharge, setDeliveryCharge] = useState(
+    process.env.REACT_APP_DELIVERY_CHARGE * process.env.REACT_APP_FX_RATE
+  );
   const [productTotal, setProductTotal] = useState(0);
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState();
@@ -101,7 +103,7 @@ export default function Checkout(props) {
     }
   }, []);
 
-  const [checkRefund, setCheckRefund] = useState(true);
+  const [checkRefund, setCheckRefund] = useState(false);
 
   const navigate = useNavigate();
 
@@ -183,6 +185,11 @@ export default function Checkout(props) {
       !selectedCountry
     ) {
       alert("FIll necessary informations");
+      return;
+    }
+
+    if (!checkRefund) {
+      alert("Please agree to the return policy");
       return;
     }
 

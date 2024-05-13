@@ -232,7 +232,11 @@ export default function Repair() {
               If you have any questions at all, big or small, please feel free
               to ask us.
             </p>
-            <a href="https://wa.me/1602290655" target="_blank" rel="noreferrer">
+            <a
+              href="https://wa.me/+8801601162155"
+              target="_blank"
+              rel="noreferrer"
+            >
               <button className="btn btn-theme-up px-5 text-light text-uppercase rounded-3 mt-4 w-100 t">
                 Get in touch
               </button>

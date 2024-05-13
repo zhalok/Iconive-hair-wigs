@@ -7,6 +7,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import axios from "../../utils/axios";
 import { PulseLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 const CollectionCard = React.lazy(() =>
   import("../../Components/Collections/CollectionCard")
 );
@@ -23,6 +24,8 @@ export default function Category({}) {
   const [loadingProducts, setLoadingProductts] = useState(false);
   const [categories, setCategories] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState("");
+
+  console.log("categories", categories);
   // console.log("filter", filters);
   // console.log("products", products);
 
@@ -104,6 +107,11 @@ export default function Category({}) {
 
   return (
     <>
+      <Helmet>
+        {categories[topbanner - 1] && (
+          <title>Category - {categories?.[topbanner - 1]?.name}</title>
+        )}
+      </Helmet>
       <ToastContainer />
       <div>
         <div className="w-100 ">
@@ -112,91 +120,42 @@ export default function Category({}) {
               <div className="w-100">
                 {topbanner === 0 && (
                   <img
-                    src="./Image/image_c/Collections.jpg"
+                    src="/Image/image_c/Collections.jpg"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 1 && (
                   <img
-                    src="./Image/image_c/malecollection.webp"
+                    src="/Image/image_c/malecollection.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 2 && (
                   <img
-                    src="./Image/image_c/femaleCollections.webp"
+                    src="/Image/image_c/femaleCollections.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 3 && (
                   <img
-                    src="./Image/image_c/Rawhair.webp"
+                    src="/Image/image_c/Rawhair.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
                 {topbanner === 4 && (
                   <img
-                    src="./Image/image_c/Accessories.webp"
+                    src="/Image/image_c/Accessories.webp"
                     width={"100%"}
                     alt="This is an bannnner"
                   />
                 )}
               </div>
-              {/* <div className="d-flex justify-content-between px120pro flex-column flex-lg-row ">
-                <div className="d-flex gap-2 gayeb w-25p">
-                  <p className="text-uppercase text-22 my-auto ps-4 fw-bold">
-                    Filters{" "}
-                  </p>
-                  <img
-                    src="./Image/image_c/filter.svg"
-                    className="h-50 my-auto"
-                    alt="this is an image"
-                  />
-                </div>
-                <div className="w-60p mx-auto pt-4 pt-md-0">
-                  <form class="d-flex  w-60p mx-auto">
-                    <input
-                      class="form-control round-start "
-                      type="search"
-                      placeholder="Search"
-                      aria-label="Search"
-                    />
-                    <button
-                      class="btn btn-secondary  py-1 round-end"
-                      type="submit"
-                    >
-                      Search
-                    </button>
-                  </form>
-                </div>
 
-                <div className="my-auto d-flex mx-auto gap-5 py-3 pt-md-0 w-25p  msm-auto ms">
-                  <div class="btn-group w-100 outline-secondary">
-                    <p className="text-16 text-theme-gray my-auto w-50 ">
-                      SORT BY
-                    </p>
-                    <button
-                      class="btn btn-secondary btn-sm dropdown-toggle"
-                      type="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Price
-                    </button>
-                    <ul class="dropdown-menu p-2 text-13 ">
-                      <li>Price (High to Low)</li>
-                      <li className="py-2">Price (Low to High)</li>
-                      <li>A to Z</li>
-                    </ul>
-                  </div>
-                </div>
-              </div> */}
-
-              <div className="d-flex px120 flex-column flex-lg-row mt-5">
+              <div className="d-flex px-120 flex-column flex-lg-row mt-5">
                 {/* sidebar */}
                 <div className="sidebarwidth d-flex flex-column gap-4">
                   <div className="sidebarBg  ">

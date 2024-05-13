@@ -31,6 +31,7 @@ import Offer from "./Pages/Offer/Offer";
 import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
 import Guideme from "./Pages/GuideMe/Guideme";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { ToastContainer } from "react-toastify";
 // import annotate from "./utils/annotate";
 const Category = React.lazy(() => import("./Pages/Category/Category"));
 const Navigation = React.lazy(() =>
@@ -71,6 +72,7 @@ function App() {
 
   return (
     <div className="App">
+      <ToastContainer />
       <GoogleOAuthProvider clientId="116640610459-l774ctmgedtp501cjkvfrrklbrl4v2aj.apps.googleusercontent.com">
         <CartContext.Provider
           value={{

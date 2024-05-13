@@ -84,14 +84,6 @@ export default function Wishlist() {
                       alt="this is an icon"
                     />
                   </button>
-                  <button className="btn ps-2 my-auto">
-                    {" "}
-                    <img
-                      src="./Image/card/cardicon1.svg"
-                      className="w-100 "
-                      alt="this is an icon"
-                    />
-                  </button>
                 </div>
               </div>
             </div>

@@ -10,12 +10,10 @@ export default function OrderItem({ orderItemId }) {
   const [orderItem, setOrderItem] = useState({});
   const { currency, setCurrency } = useContext(CurrencyContext);
   const navigate = useNavigate();
-  // console.log("orderItem", orderItem);
 
   const getOrderItem = async () => {
     try {
       const response = await axios.get(`/orderItem/getOne/${orderItemId}`);
-      // console.log("orderItem", response.data);
       setOrderItem(response.data);
     } catch (e) {
       console.log();
@@ -44,7 +42,19 @@ export default function OrderItem({ orderItemId }) {
       <div className="text-start w-60p ps-md-3  my-auto">
         <p className="text-18 mb-1">{orderItem?.product?.name}</p>
         <p className="text-theme-gray text-14 mb-0">
-          {orderItem?.product?.description}
+          <p className="mt-1 ">
+            {/* */}
+            {orderItem?.addOns?.map((e) => {
+              return (
+                <small
+                  className="text-theme-gray"
+                  style={{ marginRight: "10px" }}
+                >
+                  {e.name} : {e.value}
+                </small>
+              );
+            })}
+          </p>
         </p>
       </div>
       <div className="text-md-end pt-4 pt-md-0 my-auto ms-md-auto w-20p ">

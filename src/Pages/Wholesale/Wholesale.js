@@ -126,11 +126,27 @@ export default function Wholesale() {
   //   console.log("user", user);
   //   console.log(user?.isWholeSaler);
   // }, []);
+  const checkUser = () => {
+    axios
+      .get("/users/me", {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.user.isWholeSaler) {
+          console.log("yes");
+          navigate("/wholesalehome");
+        }
+      });
+  };
 
-  if (user?.isWholeSaler) {
-    navigate("/wholesalehome");
-    return <></>;
-  }
+  useEffect(() => {
+    if (user) {
+      checkUser();
+    }
+  }, [user]);
+
   return (
     <>
       <div className="w-100">
@@ -143,8 +159,15 @@ export default function Wholesale() {
       <div className="container my-5 bg-wholesale">
         <div className="w-50   rounded-theme11 m-auto ">
           <div className=" w-100 text-center">
-            <p className="pt-5 ps-5 pb-0 mb-0 fw-bold text-theme-dark  text-28 mx-auto ">
-              WANTO TO BE A WHOLESALER?
+            <p
+              // className="pt-5 ps-5 pb-0 mb-0 fw-bold text-theme-dark text-28 mx-auto"
+              className="pt-5"
+              style={{
+                textAlign: "center",
+                // paddingTop: "5px",
+              }}
+            >
+              WANT TO BE A WHOLESALER?
             </p>
             {/* <p className="ps-5 pt-1 text-14">Want to be a wholesaler?</p> */}
             <div className="text-center p-5 ">

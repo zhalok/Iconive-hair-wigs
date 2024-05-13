@@ -448,7 +448,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100  ">
                   <div className="w-100 ">
                     <img
-                      src="./Image/navi/femalenav.webp"
+                      src="/Image/navi/femalenav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />
@@ -466,7 +466,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100 ">
                   <div className="w-100 ">
                     <img
-                      src="./Image/navi/rawnav.webp"
+                      src="/Image/navi/rawnav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />
@@ -484,7 +484,7 @@ export default function Navigation({ renderer }) {
                 <div className="w-100">
                   <div className="w-100 ">
                     <img
-                      src="./Image/navi/accnav.webp"
+                      src="/Image/navi/accnav.webp"
                       alt="This is an Image"
                       className="w-100"
                     />
