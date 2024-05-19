@@ -1,7 +1,6 @@
 import "./App.css";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home/Home";
 
 import Footer from "./Components/Footer/Footer";
 
@@ -12,27 +11,32 @@ import jwtDecode from "jwt-decode";
 import AuthContext from "./Contexts/AuthContext";
 import AuthDispatcherContext from "./Contexts/AuthDIspatcherContext";
 import CurrencyContext from "./Contexts/CurrencyContext";
-import Privacy from "./Pages/PrivacyAndPolicy/Privacy";
-import Terms from "./Pages/TermsAndConds/Terms";
-import Return from "./Pages/ReturnAndRefund/Return";
-import Shipping from "./Pages/ShippingPolicy/Shipping";
-import Wholesale from "./Pages/Wholesale/Wholesale";
-import Joinus from "./Pages/Joinus/Joinus";
-import ShippingPartners from "./Pages/FooterPages/ShippingPartners";
-import PaymentMethod from "./Pages/FooterPages/PaymentMethod";
-import About from "./Pages/FooterPages/About";
-import Customize from "./Pages/Customize/Customize";
-import Blog from "./Pages/Blog/Blog";
-import Repair from "./Pages/Repair/Repair";
-import UnderConst from "./Pages/Underconst/UnderConst";
+
+
 import { PulseLoader } from "react-spinners";
 
-import Offer from "./Pages/Offer/Offer";
-import WholesaleHome from "./Pages/Wholesale/WholesaleHome";
-import Guideme from "./Pages/GuideMe/Guideme";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ToastContainer } from "react-toastify";
 // import annotate from "./utils/annotate";
+
+
+const Home = React.lazy(()=>import("./Pages/Home/Home"))
+const Privacy = React.lazy(() => import("./Pages/PrivacyAndPolicy/Privacy"));
+const Terms = React.lazy(()=>import("./Pages/TermsAndConds/Terms"))
+const Return = React.lazy(()=>import("./Pages/ReturnAndRefund/Return"))
+const Shipping = React.lazy(()=>import("./Pages/ShippingPolicy/Shipping"))
+const Wholesale = React.lazy(()=>import("./Pages/Wholesale/Wholesale"))
+const Joinus = React.lazy(()=>import("./Pages/Joinus/Joinus"))
+const ShippingPartners = React.lazy(()=>import("./Pages/FooterPages/ShippingPartners"))
+const PaymentMethod = React.lazy(()=>import("./Pages/FooterPages/PaymentMethod"))
+const About = React.lazy(()=>import("./Pages/FooterPages/About"))
+const Customize = React.lazy(()=>import("./Pages/Customize/Customize"))
+const Blog = React.lazy(()=>import("./Pages/Blog/Blog"))
+const Repair = React.lazy(()=>import("./Pages/Repair/Repair"))
+const Offer = React.lazy(()=>import("./Pages/Offer/Offer"))
+const WholesaleHome = React.lazy(()=>import("./Pages/Wholesale/WholesaleHome"))
+const Guideme = React.lazy(()=> import("./Pages/GuideMe/Guideme"))
+
 const Category = React.lazy(() => import("./Pages/Category/Category"));
 const Navigation = React.lazy(() =>
   import("./Components/Navigation/Navigation")
