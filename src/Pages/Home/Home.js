@@ -301,7 +301,7 @@ export default function Home() {
       {/* Subscription */}
       <Subscription></Subscription>
       <FloatingWhatsApp
-        phoneNumber="+8801880962155"
+        phoneNumber="+8801601162155"
         accountName="Iconive Wigs"
         avatar="/Image/logo/Img 3.png"
       />
